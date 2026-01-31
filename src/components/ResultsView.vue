@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { PropType } from "vue";
+import ReviewAnswers, { type AnswerGroup } from "~/components/ReviewAnswers.vue";
 
 type PresentedDistro = {
   distroId: string;
@@ -8,12 +9,6 @@ type PresentedDistro = {
   includedBecause: string[];
   excludedBecause: string[];
   matchedConstraints: string[];
-};
-
-type AnswerSummary = {
-  questionId: string;
-  questionText: string;
-  optionLabel: string;
 };
 
 defineProps({
@@ -45,8 +40,8 @@ defineProps({
     type: Array as PropType<string[]>,
     required: true
   },
-  answers: {
-    type: Array as PropType<AnswerSummary[]>,
+  answerGroups: {
+    type: Array as PropType<AnswerGroup[]>,
     required: true
   },
   shareUrl: {
@@ -216,27 +211,7 @@ const editAnswer = (questionId: string) => emit("editAnswer", questionId);
         </button>
       </div>
 
-      <div v-if="answers.length === 0" class="mt-4 text-sm text-gray-500">No answers recorded.</div>
-
-      <ul v-else class="mt-4 space-y-2">
-        <li
-          v-for="answer in answers"
-          :key="answer.questionId"
-          class="flex flex-col gap-2 rounded-xl border border-gray-100 bg-gray-50 p-4 md:flex-row md:items-center md:justify-between"
-        >
-          <div>
-            <div class="text-sm font-semibold text-gray-700">{{ answer.questionText }}</div>
-            <div class="text-xs text-gray-500">{{ answer.optionLabel }}</div>
-          </div>
-          <button
-            class="rounded-full border border-slate-300 px-3 py-1 text-xs font-semibold text-slate-700 transition hover:-translate-y-0.5 hover:border-slate-400"
-            type="button"
-            @click="editAnswer(answer.questionId)"
-          >
-            Edit
-          </button>
-        </li>
-      </ul>
+      <ReviewAnswers :groups="answerGroups" @edit-answer="editAnswer" />
     </section>
   </div>
 </template>

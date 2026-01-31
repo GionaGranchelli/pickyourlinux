@@ -17,6 +17,14 @@ describe("compatibility engine", () => {
             architecture: "x86_64",
             minRam: 8,
             tags: [],
+            experience: "BEGINNER",
+            desktopPreference: "NO_PREFERENCE",
+            releaseModel: "NO_PREFERENCE",
+            initSystem: "NO_PREFERENCE",
+            packageManager: "NO_PREFERENCE",
+            secureBootNeeded: null,
+            gpu: "UNKNOWN",
+            nvidiaTolerance: "NO_PREFERENCE",
         });
 
         const results = buildCompatibility(intent);
@@ -38,6 +46,14 @@ describe("compatibility engine", () => {
             architecture: "x86_64",
             minRam: 4,
             tags: ["OldHardware"],
+            experience: "BEGINNER",
+            desktopPreference: "NO_PREFERENCE",
+            releaseModel: "NO_PREFERENCE",
+            initSystem: "NO_PREFERENCE",
+            packageManager: "NO_PREFERENCE",
+            secureBootNeeded: null,
+            gpu: "UNKNOWN",
+            nvidiaTolerance: "NO_PREFERENCE",
         });
 
         const results = buildCompatibility(intent);
@@ -59,6 +75,14 @@ describe("compatibility engine", () => {
             architecture: "x86_64",
             minRam: 8,
             tags: ["Privacy"],
+            experience: "BEGINNER",
+            desktopPreference: "NO_PREFERENCE",
+            releaseModel: "NO_PREFERENCE",
+            initSystem: "NO_PREFERENCE",
+            packageManager: "NO_PREFERENCE",
+            secureBootNeeded: null,
+            gpu: "UNKNOWN",
+            nvidiaTolerance: "NO_PREFERENCE",
         });
 
         const results = buildCompatibility(intent);
@@ -70,5 +94,110 @@ describe("compatibility engine", () => {
 
         expect(arch.compatible).toBe(false);
         expect(arch.excludedBecause).toContain("exclude_installer_manual");
+    });
+
+    it("excludes distros without secure boot when required", () => {
+        const intent = UserIntentSchema.parse({
+            installation: "GUI",
+            maintenance: "NO_TERMINAL",
+            proprietary: "OPTIONAL",
+            architecture: "x86_64",
+            minRam: 8,
+            tags: [],
+            experience: "BEGINNER",
+            desktopPreference: "NO_PREFERENCE",
+            releaseModel: "NO_PREFERENCE",
+            initSystem: "NO_PREFERENCE",
+            packageManager: "NO_PREFERENCE",
+            secureBootNeeded: true,
+            gpu: "UNKNOWN",
+            nvidiaTolerance: "NO_PREFERENCE",
+        });
+
+        const results = buildCompatibility(intent);
+        const ubuntu = getResult(results, "ubuntu");
+        const mint = getResult(results, "linux_mint");
+
+        expect(ubuntu.compatible).toBe(true);
+        expect(mint.compatible).toBe(false);
+        expect(mint.excludedBecause).toContain("exclude_secure_boot_unavailable");
+    });
+
+    it("excludes hard NVIDIA setups when easy NVIDIA is required", () => {
+        const intent = UserIntentSchema.parse({
+            installation: "CLI_OK",
+            maintenance: "TERMINAL_OK",
+            proprietary: "OPTIONAL",
+            architecture: "x86_64",
+            minRam: 8,
+            tags: [],
+            experience: "BEGINNER",
+            desktopPreference: "NO_PREFERENCE",
+            releaseModel: "NO_PREFERENCE",
+            initSystem: "NO_PREFERENCE",
+            packageManager: "NO_PREFERENCE",
+            secureBootNeeded: null,
+            gpu: "NVIDIA",
+            nvidiaTolerance: "WANT_EASY",
+        });
+
+        const results = buildCompatibility(intent);
+        const arch = getResult(results, "arch");
+        const ubuntu = getResult(results, "ubuntu");
+
+        expect(arch.compatible).toBe(false);
+        expect(arch.excludedBecause).toContain("exclude_nvidia_hard");
+        expect(ubuntu.compatible).toBe(true);
+    });
+
+    it("adds desktop preference reasons without excluding other distros", () => {
+        const intent = UserIntentSchema.parse({
+            installation: "GUI",
+            maintenance: "NO_TERMINAL",
+            proprietary: "OPTIONAL",
+            architecture: "x86_64",
+            minRam: 8,
+            tags: [],
+            experience: "BEGINNER",
+            desktopPreference: "KDE",
+            releaseModel: "NO_PREFERENCE",
+            initSystem: "NO_PREFERENCE",
+            packageManager: "NO_PREFERENCE",
+            secureBootNeeded: null,
+            gpu: "UNKNOWN",
+            nvidiaTolerance: "NO_PREFERENCE",
+        });
+
+        const results = buildCompatibility(intent);
+        const kubuntu = getResult(results, "kubuntu");
+        const ubuntu = getResult(results, "ubuntu");
+
+        expect(kubuntu.compatible).toBe(true);
+        expect(kubuntu.includedBecause).toContain("include_desktop_match");
+        expect(ubuntu.compatible).toBe(true);
+    });
+
+    it("does not add preference reasons when set to NO_PREFERENCE", () => {
+        const intent = UserIntentSchema.parse({
+            installation: "GUI",
+            maintenance: "NO_TERMINAL",
+            proprietary: "OPTIONAL",
+            architecture: "x86_64",
+            minRam: 8,
+            tags: [],
+            experience: "BEGINNER",
+            desktopPreference: "NO_PREFERENCE",
+            releaseModel: "NO_PREFERENCE",
+            initSystem: "NO_PREFERENCE",
+            packageManager: "NO_PREFERENCE",
+            secureBootNeeded: null,
+            gpu: "UNKNOWN",
+            nvidiaTolerance: "NO_PREFERENCE",
+        });
+
+        const results = buildCompatibility(intent);
+        const kubuntu = getResult(results, "kubuntu");
+
+        expect(kubuntu.includedBecause).not.toContain("include_desktop_match");
     });
 });

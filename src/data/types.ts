@@ -3,6 +3,29 @@ import { z } from "zod";
 // --- 1. Enums (Legal Moves Only) ---
 export const TagEnum = z.enum(["Gaming", "Privacy", "Server", "OldHardware", "Work"]);
 export const ArchitectureEnum = z.enum(["x86_64", "arm64"]);
+export const ExperienceEnum = z.enum(["BEGINNER", "INTERMEDIATE", "ADVANCED"]);
+export const DesktopPreferenceEnum = z.enum([
+    "NO_PREFERENCE",
+    "GNOME",
+    "KDE",
+    "XFCE",
+    "CINNAMON",
+    "MATE",
+    "LXQT",
+]);
+export const ReleaseModelPreferenceEnum = z.enum(["NO_PREFERENCE", "FIXED", "ROLLING"]);
+export const InitSystemPreferenceEnum = z.enum(["NO_PREFERENCE", "SYSTEMD", "OPENRC", "RUNIT"]);
+export const PackageManagerPreferenceEnum = z.enum([
+    "NO_PREFERENCE",
+    "APT",
+    "DNF",
+    "PACMAN",
+    "ZYPPER",
+    "APK",
+    "NIX",
+]);
+export const GpuEnum = z.enum(["UNKNOWN", "INTEL_AMD", "NVIDIA"]);
+export const NvidiaToleranceEnum = z.enum(["NO_PREFERENCE", "WANT_EASY", "OK_HANDS_ON", "AVOID_PROPRIETARY"]);
 
 // --- 2. User Intent (The State) ---
 export const UserIntentSchema = z.object({
@@ -12,6 +35,14 @@ export const UserIntentSchema = z.object({
     architecture: ArchitectureEnum,
     minRam: z.number().min(0),
     tags: z.array(TagEnum).default([]),
+    experience: ExperienceEnum.default("BEGINNER"),
+    desktopPreference: DesktopPreferenceEnum.default("NO_PREFERENCE"),
+    releaseModel: ReleaseModelPreferenceEnum.default("NO_PREFERENCE"),
+    initSystem: InitSystemPreferenceEnum.default("NO_PREFERENCE"),
+    packageManager: PackageManagerPreferenceEnum.default("NO_PREFERENCE"),
+    secureBootNeeded: z.boolean().nullable().default(null),
+    gpu: GpuEnum.default("UNKNOWN"),
+    nvidiaTolerance: NvidiaToleranceEnum.default("NO_PREFERENCE"),
 });
 export type UserIntent = z.infer<typeof UserIntentSchema>;
 export type IntentKey = keyof UserIntent;

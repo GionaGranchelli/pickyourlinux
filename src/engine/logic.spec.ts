@@ -11,6 +11,14 @@ describe("engine/logic", () => {
             architecture: "x86_64",
             minRam: 4,
             tags: ["Gaming"],
+            experience: "BEGINNER",
+            desktopPreference: "NO_PREFERENCE",
+            releaseModel: "NO_PREFERENCE",
+            initSystem: "NO_PREFERENCE",
+            packageManager: "NO_PREFERENCE",
+            secureBootNeeded: null,
+            gpu: "UNKNOWN",
+            nvidiaTolerance: "NO_PREFERENCE",
         });
 
         const cond = { field: "tags", op: "contains", value: "Gaming" } as const;
@@ -25,6 +33,14 @@ describe("engine/logic", () => {
             architecture: "x86_64",
             minRam: 4,
             tags: [],
+            experience: "BEGINNER",
+            desktopPreference: "NO_PREFERENCE",
+            releaseModel: "NO_PREFERENCE",
+            initSystem: "NO_PREFERENCE",
+            packageManager: "NO_PREFERENCE",
+            secureBootNeeded: null,
+            gpu: "UNKNOWN",
+            nvidiaTolerance: "NO_PREFERENCE",
         });
 
         const next = applyPatch(intent, [{ op: "add_tag", value: "Privacy" }]);

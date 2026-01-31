@@ -9,6 +9,14 @@ const baseIntent = UserIntentSchema.parse({
     architecture: "x86_64",
     minRam: 4,
     tags: [],
+    experience: "BEGINNER",
+    desktopPreference: "NO_PREFERENCE",
+    releaseModel: "NO_PREFERENCE",
+    initSystem: "NO_PREFERENCE",
+    packageManager: "NO_PREFERENCE",
+    secureBootNeeded: null,
+    gpu: "UNKNOWN",
+    nvidiaTolerance: "NO_PREFERENCE",
 });
 
 const findRec = (recommendations: ReturnType<typeof recommendDistros>, distroId: string) => {

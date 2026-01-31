@@ -31,6 +31,28 @@ const buildIncludedReasons = (intent: UserIntent, distroId: string): InclusionRe
         reasons.push("include_old_hardware_suitable");
     }
 
+    if (
+        intent.desktopPreference !== "NO_PREFERENCE" &&
+        distro.supportedDesktops.includes(intent.desktopPreference)
+    ) {
+        reasons.push("include_desktop_match");
+    }
+
+    if (intent.releaseModel !== "NO_PREFERENCE" && distro.releaseModel === intent.releaseModel) {
+        reasons.push("include_release_model_match");
+    }
+
+    if (intent.initSystem !== "NO_PREFERENCE" && distro.initSystem === intent.initSystem) {
+        reasons.push("include_init_system_match");
+    }
+
+    if (
+        intent.packageManager !== "NO_PREFERENCE" &&
+        distro.packageManager === intent.packageManager
+    ) {
+        reasons.push("include_package_manager_match");
+    }
+
     if (reasons.length === 0) {
         reasons.push("include_meets_requirements");
     }

@@ -39,6 +39,22 @@ export function eliminateDistros(intent: UserIntent): EliminationResult[] {
             excludedBecause.push("exclude_old_hardware_unsuitable");
         }
 
+        if (intent.secureBootNeeded === true && !distro.secureBootOutOfBox) {
+            excludedBecause.push("exclude_secure_boot_unavailable");
+        }
+
+        if (intent.gpu === "NVIDIA" && intent.nvidiaTolerance === "WANT_EASY") {
+            if (distro.nvidiaExperience === "HARD") {
+                excludedBecause.push("exclude_nvidia_hard");
+            }
+        }
+
+        if (intent.gpu === "NVIDIA" && intent.proprietary === "AVOID") {
+            if (distro.nvidiaExperience === "GOOD" || distro.nvidiaExperience === "OK") {
+                excludedBecause.push("exclude_nvidia_proprietary_required");
+            }
+        }
+
         return {
             distroId: distro.id,
             included: excludedBecause.length === 0,

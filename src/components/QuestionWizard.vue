@@ -7,7 +7,7 @@ import type { DecisionEngine } from "~/engine/state";
 const props = defineProps<{ engine?: DecisionEngine }>();
 
 const engine = props.engine ?? useDecisionEngine();
-const { currentQuestion, status, intent, answeredIds, selectOptionById, undo, progress } = engine;
+const { currentQuestion, status, intent, answeredIds, selectOptionById, undo, progress, phaseLabel } = engine;
 
 const canUndo = computed(() => answeredIds.value.length > 0);
 const onSelect = (optionId: string) => {
@@ -34,8 +34,11 @@ const onSelect = (optionId: string) => {
         </div>
       </div>
 
-      <div class="text-sm text-gray-400 font-medium">
-        Question {{ progress.current }} of {{ progress.total }}
+      <div class="flex flex-wrap items-center justify-between gap-2 text-sm text-gray-400 font-medium">
+        <span>Question {{ progress.current }} of {{ progress.total }}</span>
+        <span class="inline-flex items-center rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-600">
+          {{ phaseLabel }}
+        </span>
       </div>
 
       <QuestionCard :question="currentQuestion" @select="onSelect" />

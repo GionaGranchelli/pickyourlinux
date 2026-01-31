@@ -9,9 +9,12 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "typecheck": "nuxt typecheck",
+    "lint": "node scripts/lint.js",
+    "test": "npx vitest run",
     "validate:flow": "node scripts/validate-flow.js",
     "validate:questions": "node scripts/validate-question-catalog.js",
-    "validate:distros": "node scripts/validate-distros.js"
+    "validate:distros": "node scripts/validate-distros.js",
+    "audit:distros": "node scripts/audit-distros.js"
   },
   "dependencies": {
     "nuxt": "^3.0.0",

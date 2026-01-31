@@ -1,7 +1,9 @@
 import { describe, expect, it } from "vitest";
 import { ALL_QUESTIONS } from "../../src/data/questions";
-import type { QuestionOption } from "../../src/data/types";
-import { useDecisionEngine } from "../../src/engine/state";
+import { DistroListSchema } from "../../src/data/distro-types";
+import distrosData from "../../src/data/distros.json";
+import { UserIntentSchema, type QuestionOption } from "../../src/data/types";
+import { buildResultsPresentation, useDecisionEngine } from "../../src/engine/state";
 
 const getOption = (questionId: string, optionId: string): QuestionOption => {
     const question = ALL_QUESTIONS.find((q) => q.id === questionId);
@@ -9,6 +11,10 @@ const getOption = (questionId: string, optionId: string): QuestionOption => {
     const option = question.options.find((opt) => opt.id === optionId);
     if (!option) throw new Error(`Missing option: ${optionId}`);
     return option;
+};
+
+const getSafeOption = (options: QuestionOption[]): QuestionOption => {
+    return options.find((option) => !option.isDisqualifier) ?? options[0];
 };
 
 describe("engine/state", () => {
@@ -35,7 +41,7 @@ describe("engine/state", () => {
             const question = engine.currentQuestion.value;
             if (!question) break;
             selectedIds.push(question.id);
-            engine.selectOption(question.id, question.options[0]);
+            engine.selectOption(question.id, getSafeOption(question.options));
         }
 
         expect(engine.answeredIds.value).toEqual(selectedIds);
@@ -44,7 +50,7 @@ describe("engine/state", () => {
     it("undo restores intent, progress, and status", () => {
         const engine = useDecisionEngine();
         const purposeOption = getOption("q_purpose", "gaming");
-        const privacyOption = getOption("q_privacy", "very_important");
+        const privacyOption = getOption("q_privacy_importance", "very_important");
 
         engine.selectOption("q_purpose", purposeOption);
         engine.selectOption("q_privacy", privacyOption);
@@ -84,12 +90,40 @@ describe("engine/state", () => {
         while (engine.currentQuestion.value) {
             const question = engine.currentQuestion.value;
             if (!question) break;
-            engine.selectOption(question.id, question.options[0]);
+            engine.selectOption(question.id, getSafeOption(question.options));
         }
 
         void engine.currentQuestion.value;
 
         expect(engine.status.value).toBe("COMPLETED");
         expect(engine.isComplete.value).toBe(true);
+    });
+
+    it("keeps presentation ordering stable by distro id", () => {
+        const intent = UserIntentSchema.parse({
+            installation: "GUI",
+            maintenance: "NO_TERMINAL",
+            proprietary: "OPTIONAL",
+            architecture: "x86_64",
+            minRam: 4,
+            tags: [],
+            experience: "BEGINNER",
+            desktopPreference: "NO_PREFERENCE",
+            releaseModel: "NO_PREFERENCE",
+            initSystem: "NO_PREFERENCE",
+            packageManager: "NO_PREFERENCE",
+            secureBootNeeded: null,
+            gpu: "UNKNOWN",
+            nvidiaTolerance: "NO_PREFERENCE",
+        });
+
+        const distros = DistroListSchema.parse(distrosData);
+        const presentation = buildResultsPresentation(intent, distros, { limit: 50, showAll: true });
+
+        const compatibleIds = presentation.compatible.map((item) => item.distroId);
+        const excludedIds = presentation.excluded.map((item) => item.distroId);
+
+        expect(compatibleIds).toEqual([...compatibleIds].sort());
+        expect(excludedIds).toEqual([...excludedIds].sort());
     });
 });

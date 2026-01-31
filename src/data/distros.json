@@ -8,7 +8,15 @@
     "proprietarySupport": "FULL",
     "suitableForOldHardware": false,
     "gamingSupport": "GOOD",
-    "privacyPosture": "DEFAULT"
+    "privacyPosture": "DEFAULT",
+    "supportedDesktops": [
+      "GNOME"
+    ],
+    "releaseModel": "FIXED",
+    "initSystem": "SYSTEMD",
+    "packageManager": "APT",
+    "secureBootOutOfBox": true,
+    "nvidiaExperience": "OK"
   },
   {
     "id": "linux_mint",
@@ -19,7 +27,15 @@
     "proprietarySupport": "OPTIONAL",
     "suitableForOldHardware": true,
     "gamingSupport": "LIMITED",
-    "privacyPosture": "DEFAULT"
+    "privacyPosture": "DEFAULT",
+    "supportedDesktops": [
+      "CINNAMON"
+    ],
+    "releaseModel": "FIXED",
+    "initSystem": "SYSTEMD",
+    "packageManager": "APT",
+    "secureBootOutOfBox": false,
+    "nvidiaExperience": "OK"
   },
   {
     "id": "pop_os",
@@ -30,7 +46,15 @@
     "proprietarySupport": "FULL",
     "suitableForOldHardware": false,
     "gamingSupport": "GOOD",
-    "privacyPosture": "DEFAULT"
+    "privacyPosture": "DEFAULT",
+    "supportedDesktops": [
+      "GNOME"
+    ],
+    "releaseModel": "FIXED",
+    "initSystem": "SYSTEMD",
+    "packageManager": "APT",
+    "secureBootOutOfBox": false,
+    "nvidiaExperience": "GOOD"
   },
   {
     "id": "fedora",
@@ -41,7 +65,15 @@
     "proprietarySupport": "OPTIONAL",
     "suitableForOldHardware": false,
     "gamingSupport": "LIMITED",
-    "privacyPosture": "DEFAULT"
+    "privacyPosture": "DEFAULT",
+    "supportedDesktops": [
+      "GNOME"
+    ],
+    "releaseModel": "FIXED",
+    "initSystem": "SYSTEMD",
+    "packageManager": "DNF",
+    "secureBootOutOfBox": true,
+    "nvidiaExperience": "OK"
   },
   {
     "id": "debian",
@@ -52,7 +84,15 @@
     "proprietarySupport": "OPTIONAL",
     "suitableForOldHardware": true,
     "gamingSupport": "LIMITED",
-    "privacyPosture": "DEFAULT"
+    "privacyPosture": "DEFAULT",
+    "supportedDesktops": [
+      "GNOME"
+    ],
+    "releaseModel": "FIXED",
+    "initSystem": "SYSTEMD",
+    "packageManager": "APT",
+    "secureBootOutOfBox": false,
+    "nvidiaExperience": "OK"
   },
   {
     "id": "arch",
@@ -63,7 +103,15 @@
     "proprietarySupport": "OPTIONAL",
     "suitableForOldHardware": false,
     "gamingSupport": "LIMITED",
-    "privacyPosture": "DEFAULT"
+    "privacyPosture": "DEFAULT",
+    "supportedDesktops": [
+      "OTHER"
+    ],
+    "releaseModel": "ROLLING",
+    "initSystem": "SYSTEMD",
+    "packageManager": "PACMAN",
+    "secureBootOutOfBox": false,
+    "nvidiaExperience": "HARD"
   },
   {
     "id": "manjaro",
@@ -74,7 +122,15 @@
     "proprietarySupport": "OPTIONAL",
     "suitableForOldHardware": false,
     "gamingSupport": "GOOD",
-    "privacyPosture": "DEFAULT"
+    "privacyPosture": "DEFAULT",
+    "supportedDesktops": [
+      "XFCE"
+    ],
+    "releaseModel": "ROLLING",
+    "initSystem": "SYSTEMD",
+    "packageManager": "PACMAN",
+    "secureBootOutOfBox": false,
+    "nvidiaExperience": "OK"
   },
   {
     "id": "opensuse_leap",
@@ -85,7 +141,15 @@
     "proprietarySupport": "OPTIONAL",
     "suitableForOldHardware": false,
     "gamingSupport": "LIMITED",
-    "privacyPosture": "DEFAULT"
+    "privacyPosture": "DEFAULT",
+    "supportedDesktops": [
+      "KDE"
+    ],
+    "releaseModel": "FIXED",
+    "initSystem": "SYSTEMD",
+    "packageManager": "ZYPPER",
+    "secureBootOutOfBox": true,
+    "nvidiaExperience": "OK"
   },
   {
     "id": "opensuse_tumbleweed",
@@ -96,7 +160,15 @@
     "proprietarySupport": "OPTIONAL",
     "suitableForOldHardware": false,
     "gamingSupport": "LIMITED",
-    "privacyPosture": "DEFAULT"
+    "privacyPosture": "DEFAULT",
+    "supportedDesktops": [
+      "KDE"
+    ],
+    "releaseModel": "ROLLING",
+    "initSystem": "SYSTEMD",
+    "packageManager": "ZYPPER",
+    "secureBootOutOfBox": true,
+    "nvidiaExperience": "OK"
   },
   {
     "id": "elementary_os",
@@ -107,7 +179,15 @@
     "proprietarySupport": "OPTIONAL",
     "suitableForOldHardware": false,
     "gamingSupport": "LIMITED",
-    "privacyPosture": "DEFAULT"
+    "privacyPosture": "DEFAULT",
+    "supportedDesktops": [
+      "OTHER"
+    ],
+    "releaseModel": "FIXED",
+    "initSystem": "SYSTEMD",
+    "packageManager": "APT",
+    "secureBootOutOfBox": false,
+    "nvidiaExperience": "OK"
   },
   {
     "id": "zorin_os",
@@ -118,7 +198,15 @@
     "proprietarySupport": "FULL",
     "suitableForOldHardware": true,
     "gamingSupport": "LIMITED",
-    "privacyPosture": "DEFAULT"
+    "privacyPosture": "DEFAULT",
+    "supportedDesktops": [
+      "GNOME"
+    ],
+    "releaseModel": "FIXED",
+    "initSystem": "SYSTEMD",
+    "packageManager": "APT",
+    "secureBootOutOfBox": false,
+    "nvidiaExperience": "OK"
   },
   {
     "id": "mx_linux",
@@ -129,7 +217,15 @@
     "proprietarySupport": "OPTIONAL",
     "suitableForOldHardware": true,
     "gamingSupport": "LIMITED",
-    "privacyPosture": "DEFAULT"
+    "privacyPosture": "DEFAULT",
+    "supportedDesktops": [
+      "XFCE"
+    ],
+    "releaseModel": "FIXED",
+    "initSystem": "OTHER",
+    "packageManager": "APT",
+    "secureBootOutOfBox": false,
+    "nvidiaExperience": "OK"
   },
   {
     "id": "endeavouros",
@@ -140,7 +236,15 @@
     "proprietarySupport": "OPTIONAL",
     "suitableForOldHardware": false,
     "gamingSupport": "LIMITED",
-    "privacyPosture": "DEFAULT"
+    "privacyPosture": "DEFAULT",
+    "supportedDesktops": [
+      "XFCE"
+    ],
+    "releaseModel": "ROLLING",
+    "initSystem": "SYSTEMD",
+    "packageManager": "PACMAN",
+    "secureBootOutOfBox": false,
+    "nvidiaExperience": "OK"
   },
   {
     "id": "garuda",
@@ -151,7 +255,15 @@
     "proprietarySupport": "FULL",
     "suitableForOldHardware": false,
     "gamingSupport": "GOOD",
-    "privacyPosture": "DEFAULT"
+    "privacyPosture": "DEFAULT",
+    "supportedDesktops": [
+      "KDE"
+    ],
+    "releaseModel": "ROLLING",
+    "initSystem": "SYSTEMD",
+    "packageManager": "PACMAN",
+    "secureBootOutOfBox": false,
+    "nvidiaExperience": "GOOD"
   },
   {
     "id": "void_linux",
@@ -162,7 +274,15 @@
     "proprietarySupport": "OPTIONAL",
     "suitableForOldHardware": true,
     "gamingSupport": "LIMITED",
-    "privacyPosture": "DEFAULT"
+    "privacyPosture": "DEFAULT",
+    "supportedDesktops": [
+      "OTHER"
+    ],
+    "releaseModel": "ROLLING",
+    "initSystem": "RUNIT",
+    "packageManager": "OTHER",
+    "secureBootOutOfBox": false,
+    "nvidiaExperience": "HARD"
   },
   {
     "id": "alpine",
@@ -173,7 +293,15 @@
     "proprietarySupport": "NONE",
     "suitableForOldHardware": true,
     "gamingSupport": "NONE",
-    "privacyPosture": "STRONG"
+    "privacyPosture": "STRONG",
+    "supportedDesktops": [
+      "OTHER"
+    ],
+    "releaseModel": "FIXED",
+    "initSystem": "OPENRC",
+    "packageManager": "APK",
+    "secureBootOutOfBox": false,
+    "nvidiaExperience": "HARD"
   },
   {
     "id": "nixos",
@@ -184,7 +312,15 @@
     "proprietarySupport": "OPTIONAL",
     "suitableForOldHardware": false,
     "gamingSupport": "LIMITED",
-    "privacyPosture": "DEFAULT"
+    "privacyPosture": "DEFAULT",
+    "supportedDesktops": [
+      "OTHER"
+    ],
+    "releaseModel": "FIXED",
+    "initSystem": "SYSTEMD",
+    "packageManager": "NIX",
+    "secureBootOutOfBox": false,
+    "nvidiaExperience": "HARD"
   },
   {
     "id": "tails",
@@ -195,7 +331,15 @@
     "proprietarySupport": "NONE",
     "suitableForOldHardware": true,
     "gamingSupport": "NONE",
-    "privacyPosture": "STRONG"
+    "privacyPosture": "STRONG",
+    "supportedDesktops": [
+      "GNOME"
+    ],
+    "releaseModel": "FIXED",
+    "initSystem": "SYSTEMD",
+    "packageManager": "APT",
+    "secureBootOutOfBox": false,
+    "nvidiaExperience": "HARD"
   },
   {
     "id": "qubes_os",
@@ -206,7 +350,15 @@
     "proprietarySupport": "OPTIONAL",
     "suitableForOldHardware": false,
     "gamingSupport": "NONE",
-    "privacyPosture": "STRONG"
+    "privacyPosture": "STRONG",
+    "supportedDesktops": [
+      "XFCE"
+    ],
+    "releaseModel": "FIXED",
+    "initSystem": "SYSTEMD",
+    "packageManager": "DNF",
+    "secureBootOutOfBox": false,
+    "nvidiaExperience": "HARD"
   },
   {
     "id": "trisquel",
@@ -217,7 +369,15 @@
     "proprietarySupport": "NONE",
     "suitableForOldHardware": true,
     "gamingSupport": "NONE",
-    "privacyPosture": "STRONG"
+    "privacyPosture": "STRONG",
+    "supportedDesktops": [
+      "MATE"
+    ],
+    "releaseModel": "FIXED",
+    "initSystem": "SYSTEMD",
+    "packageManager": "APT",
+    "secureBootOutOfBox": false,
+    "nvidiaExperience": "HARD"
   },
   {
     "id": "slackware",
@@ -228,7 +388,15 @@
     "proprietarySupport": "OPTIONAL",
     "suitableForOldHardware": true,
     "gamingSupport": "LIMITED",
-    "privacyPosture": "DEFAULT"
+    "privacyPosture": "DEFAULT",
+    "supportedDesktops": [
+      "OTHER"
+    ],
+    "releaseModel": "FIXED",
+    "initSystem": "OTHER",
+    "packageManager": "OTHER",
+    "secureBootOutOfBox": false,
+    "nvidiaExperience": "HARD"
   },
   {
     "id": "kubuntu",
@@ -239,7 +407,15 @@
     "proprietarySupport": "OPTIONAL",
     "suitableForOldHardware": false,
     "gamingSupport": "LIMITED",
-    "privacyPosture": "DEFAULT"
+    "privacyPosture": "DEFAULT",
+    "supportedDesktops": [
+      "KDE"
+    ],
+    "releaseModel": "FIXED",
+    "initSystem": "SYSTEMD",
+    "packageManager": "APT",
+    "secureBootOutOfBox": true,
+    "nvidiaExperience": "OK"
   },
   {
     "id": "ubuntu_mate",
@@ -250,7 +426,15 @@
     "proprietarySupport": "OPTIONAL",
     "suitableForOldHardware": true,
     "gamingSupport": "LIMITED",
-    "privacyPosture": "DEFAULT"
+    "privacyPosture": "DEFAULT",
+    "supportedDesktops": [
+      "MATE"
+    ],
+    "releaseModel": "FIXED",
+    "initSystem": "SYSTEMD",
+    "packageManager": "APT",
+    "secureBootOutOfBox": true,
+    "nvidiaExperience": "OK"
   },
   {
     "id": "lubuntu",
@@ -261,7 +445,15 @@
     "proprietarySupport": "OPTIONAL",
     "suitableForOldHardware": true,
     "gamingSupport": "LIMITED",
-    "privacyPosture": "DEFAULT"
+    "privacyPosture": "DEFAULT",
+    "supportedDesktops": [
+      "LXQT"
+    ],
+    "releaseModel": "FIXED",
+    "initSystem": "SYSTEMD",
+    "packageManager": "APT",
+    "secureBootOutOfBox": true,
+    "nvidiaExperience": "OK"
   },
   {
     "id": "xubuntu",
@@ -272,7 +464,15 @@
     "proprietarySupport": "OPTIONAL",
     "suitableForOldHardware": true,
     "gamingSupport": "LIMITED",
-    "privacyPosture": "DEFAULT"
+    "privacyPosture": "DEFAULT",
+    "supportedDesktops": [
+      "XFCE"
+    ],
+    "releaseModel": "FIXED",
+    "initSystem": "SYSTEMD",
+    "packageManager": "APT",
+    "secureBootOutOfBox": true,
+    "nvidiaExperience": "OK"
   },
   {
     "id": "kde_neon",
@@ -283,7 +483,15 @@
     "proprietarySupport": "OPTIONAL",
     "suitableForOldHardware": false,
     "gamingSupport": "LIMITED",
-    "privacyPosture": "DEFAULT"
+    "privacyPosture": "DEFAULT",
+    "supportedDesktops": [
+      "KDE"
+    ],
+    "releaseModel": "FIXED",
+    "initSystem": "SYSTEMD",
+    "packageManager": "APT",
+    "secureBootOutOfBox": false,
+    "nvidiaExperience": "OK"
   },
   {
     "id": "linux_lite",
@@ -294,7 +502,15 @@
     "proprietarySupport": "OPTIONAL",
     "suitableForOldHardware": true,
     "gamingSupport": "LIMITED",
-    "privacyPosture": "DEFAULT"
+    "privacyPosture": "DEFAULT",
+    "supportedDesktops": [
+      "XFCE"
+    ],
+    "releaseModel": "FIXED",
+    "initSystem": "SYSTEMD",
+    "packageManager": "APT",
+    "secureBootOutOfBox": false,
+    "nvidiaExperience": "OK"
   },
   {
     "id": "peppermint_os",
@@ -305,7 +521,15 @@
     "proprietarySupport": "OPTIONAL",
     "suitableForOldHardware": true,
     "gamingSupport": "LIMITED",
-    "privacyPosture": "DEFAULT"
+    "privacyPosture": "DEFAULT",
+    "supportedDesktops": [
+      "XFCE"
+    ],
+    "releaseModel": "FIXED",
+    "initSystem": "SYSTEMD",
+    "packageManager": "APT",
+    "secureBootOutOfBox": false,
+    "nvidiaExperience": "OK"
   },
   {
     "id": "nobara",
@@ -316,7 +540,15 @@
     "proprietarySupport": "FULL",
     "suitableForOldHardware": false,
     "gamingSupport": "GOOD",
-    "privacyPosture": "DEFAULT"
+    "privacyPosture": "DEFAULT",
+    "supportedDesktops": [
+      "GNOME"
+    ],
+    "releaseModel": "FIXED",
+    "initSystem": "SYSTEMD",
+    "packageManager": "DNF",
+    "secureBootOutOfBox": false,
+    "nvidiaExperience": "GOOD"
   },
   {
     "id": "pureos",
@@ -327,7 +559,15 @@
     "proprietarySupport": "NONE",
     "suitableForOldHardware": false,
     "gamingSupport": "NONE",
-    "privacyPosture": "STRONG"
+    "privacyPosture": "STRONG",
+    "supportedDesktops": [
+      "GNOME"
+    ],
+    "releaseModel": "FIXED",
+    "initSystem": "SYSTEMD",
+    "packageManager": "APT",
+    "secureBootOutOfBox": false,
+    "nvidiaExperience": "HARD"
   },
   {
     "id": "rocky_linux",
@@ -338,7 +578,15 @@
     "proprietarySupport": "OPTIONAL",
     "suitableForOldHardware": false,
     "gamingSupport": "NONE",
-    "privacyPosture": "DEFAULT"
+    "privacyPosture": "DEFAULT",
+    "supportedDesktops": [
+      "OTHER"
+    ],
+    "releaseModel": "FIXED",
+    "initSystem": "SYSTEMD",
+    "packageManager": "DNF",
+    "secureBootOutOfBox": false,
+    "nvidiaExperience": "UNKNOWN"
   },
   {
     "id": "almalinux",
@@ -349,7 +597,15 @@
     "proprietarySupport": "OPTIONAL",
     "suitableForOldHardware": false,
     "gamingSupport": "NONE",
-    "privacyPosture": "DEFAULT"
+    "privacyPosture": "DEFAULT",
+    "supportedDesktops": [
+      "OTHER"
+    ],
+    "releaseModel": "FIXED",
+    "initSystem": "SYSTEMD",
+    "packageManager": "DNF",
+    "secureBootOutOfBox": false,
+    "nvidiaExperience": "UNKNOWN"
   },
   {
     "id": "centos_stream",
@@ -360,6 +616,211 @@
     "proprietarySupport": "OPTIONAL",
     "suitableForOldHardware": false,
     "gamingSupport": "NONE",
-    "privacyPosture": "DEFAULT"
+    "privacyPosture": "DEFAULT",
+    "supportedDesktops": [
+      "OTHER"
+    ],
+    "releaseModel": "ROLLING",
+    "initSystem": "SYSTEMD",
+    "packageManager": "DNF",
+    "secureBootOutOfBox": false,
+    "nvidiaExperience": "UNKNOWN"
+  },
+  {
+    "id": "ubuntu_budgie",
+    "name": "Ubuntu Budgie",
+    "description": "Ubuntu flavor with the Budgie desktop.",
+    "installerExperience": "GUI",
+    "maintenanceStyle": "LOW_FRICTION",
+    "proprietarySupport": "OPTIONAL",
+    "suitableForOldHardware": false,
+    "gamingSupport": "LIMITED",
+    "privacyPosture": "DEFAULT",
+    "supportedDesktops": [
+      "OTHER"
+    ],
+    "releaseModel": "FIXED",
+    "initSystem": "SYSTEMD",
+    "packageManager": "APT",
+    "secureBootOutOfBox": true,
+    "nvidiaExperience": "OK"
+  },
+  {
+    "id": "ubuntu_studio",
+    "name": "Ubuntu Studio",
+    "description": "Ubuntu flavor focused on audio and video tools.",
+    "installerExperience": "GUI",
+    "maintenanceStyle": "LOW_FRICTION",
+    "proprietarySupport": "OPTIONAL",
+    "suitableForOldHardware": false,
+    "gamingSupport": "LIMITED",
+    "privacyPosture": "DEFAULT",
+    "supportedDesktops": [
+      "KDE"
+    ],
+    "releaseModel": "FIXED",
+    "initSystem": "SYSTEMD",
+    "packageManager": "APT",
+    "secureBootOutOfBox": true,
+    "nvidiaExperience": "OK"
+  },
+  {
+    "id": "lmde",
+    "name": "Linux Mint Debian Edition",
+    "description": "Debian-based Linux Mint edition.",
+    "installerExperience": "GUI",
+    "maintenanceStyle": "LOW_FRICTION",
+    "proprietarySupport": "OPTIONAL",
+    "suitableForOldHardware": true,
+    "gamingSupport": "LIMITED",
+    "privacyPosture": "DEFAULT",
+    "supportedDesktops": [
+      "CINNAMON"
+    ],
+    "releaseModel": "FIXED",
+    "initSystem": "SYSTEMD",
+    "packageManager": "APT",
+    "secureBootOutOfBox": false,
+    "nvidiaExperience": "OK"
+  },
+  {
+    "id": "solus",
+    "name": "Solus",
+    "description": "Independent desktop-focused distribution.",
+    "installerExperience": "GUI",
+    "maintenanceStyle": "HANDS_ON",
+    "proprietarySupport": "OPTIONAL",
+    "suitableForOldHardware": false,
+    "gamingSupport": "LIMITED",
+    "privacyPosture": "DEFAULT",
+    "supportedDesktops": [
+      "OTHER",
+      "GNOME",
+      "KDE",
+      "MATE"
+    ],
+    "releaseModel": "ROLLING",
+    "initSystem": "SYSTEMD",
+    "packageManager": "OTHER",
+    "secureBootOutOfBox": false,
+    "nvidiaExperience": "UNKNOWN"
+  },
+  {
+    "id": "mageia",
+    "name": "Mageia",
+    "description": "Community-driven distribution with multiple desktop options.",
+    "installerExperience": "GUI",
+    "maintenanceStyle": "LOW_FRICTION",
+    "proprietarySupport": "OPTIONAL",
+    "suitableForOldHardware": true,
+    "gamingSupport": "LIMITED",
+    "privacyPosture": "DEFAULT",
+    "supportedDesktops": [
+      "KDE",
+      "GNOME",
+      "XFCE"
+    ],
+    "releaseModel": "FIXED",
+    "initSystem": "SYSTEMD",
+    "packageManager": "OTHER",
+    "secureBootOutOfBox": false,
+    "nvidiaExperience": "UNKNOWN"
+  },
+  {
+    "id": "pclinuxos",
+    "name": "PCLinuxOS",
+    "description": "Rolling distribution with multiple desktop editions.",
+    "installerExperience": "GUI",
+    "maintenanceStyle": "HANDS_ON",
+    "proprietarySupport": "OPTIONAL",
+    "suitableForOldHardware": true,
+    "gamingSupport": "LIMITED",
+    "privacyPosture": "DEFAULT",
+    "supportedDesktops": [
+      "KDE",
+      "XFCE",
+      "MATE"
+    ],
+    "releaseModel": "ROLLING",
+    "initSystem": "OTHER",
+    "packageManager": "OTHER",
+    "secureBootOutOfBox": false,
+    "nvidiaExperience": "UNKNOWN"
+  },
+  {
+    "id": "deepin",
+    "name": "Deepin",
+    "description": "Distribution with the Deepin desktop environment.",
+    "installerExperience": "GUI",
+    "maintenanceStyle": "LOW_FRICTION",
+    "proprietarySupport": "OPTIONAL",
+    "suitableForOldHardware": false,
+    "gamingSupport": "LIMITED",
+    "privacyPosture": "DEFAULT",
+    "supportedDesktops": [
+      "OTHER"
+    ],
+    "releaseModel": "FIXED",
+    "initSystem": "SYSTEMD",
+    "packageManager": "APT",
+    "secureBootOutOfBox": false,
+    "nvidiaExperience": "UNKNOWN"
+  },
+  {
+    "id": "bodhi_linux",
+    "name": "Bodhi Linux",
+    "description": "Lightweight Ubuntu-based distribution.",
+    "installerExperience": "GUI",
+    "maintenanceStyle": "LOW_FRICTION",
+    "proprietarySupport": "OPTIONAL",
+    "suitableForOldHardware": true,
+    "gamingSupport": "LIMITED",
+    "privacyPosture": "DEFAULT",
+    "supportedDesktops": [
+      "OTHER"
+    ],
+    "releaseModel": "FIXED",
+    "initSystem": "SYSTEMD",
+    "packageManager": "APT",
+    "secureBootOutOfBox": false,
+    "nvidiaExperience": "UNKNOWN"
+  },
+  {
+    "id": "kali_linux",
+    "name": "Kali Linux",
+    "description": "Security testing distribution with rolling updates.",
+    "installerExperience": "GUI",
+    "maintenanceStyle": "HANDS_ON",
+    "proprietarySupport": "OPTIONAL",
+    "suitableForOldHardware": false,
+    "gamingSupport": "NONE",
+    "privacyPosture": "DEFAULT",
+    "supportedDesktops": [
+      "XFCE"
+    ],
+    "releaseModel": "ROLLING",
+    "initSystem": "SYSTEMD",
+    "packageManager": "APT",
+    "secureBootOutOfBox": false,
+    "nvidiaExperience": "UNKNOWN"
+  },
+  {
+    "id": "gentoo",
+    "name": "Gentoo",
+    "description": "Source-based distribution with manual configuration.",
+    "installerExperience": "MANUAL",
+    "maintenanceStyle": "HANDS_ON",
+    "proprietarySupport": "OPTIONAL",
+    "suitableForOldHardware": false,
+    "gamingSupport": "LIMITED",
+    "privacyPosture": "DEFAULT",
+    "supportedDesktops": [
+      "OTHER"
+    ],
+    "releaseModel": "ROLLING",
+    "initSystem": "OPENRC",
+    "packageManager": "OTHER",
+    "secureBootOutOfBox": false,
+    "nvidiaExperience": "HARD"
   }
 ]

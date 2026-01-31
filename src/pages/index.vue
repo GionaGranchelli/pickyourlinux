@@ -16,7 +16,7 @@ const router = useRouter();
 const runtimeConfig = useRuntimeConfig();
 
 const engine = useDecisionEngine();
-const { status, answeredIds, intent, lastAppliedPatches, skippedQuestions, answeredQuestions } = engine;
+const { status, answeredIds, intent, lastAppliedPatches, skippedQuestions, answeredGroups } = engine;
 const distros = DistroListSchema.parse(distrosData);
 const debugEnabled = import.meta.dev;
 const showAllCompatible = ref(false);
@@ -148,7 +148,7 @@ watch(status, (value) => {
       :can-toggle-compatible="canToggleCompatible"
       :show-all="showAllCompatible"
       :active-constraints="presentation.activeConstraints"
-      :answers="answeredQuestions"
+      :answer-groups="answeredGroups"
       :share-url="shareUrl"
       :can-share="canShare"
       @toggle-show-all="toggleShowAll"

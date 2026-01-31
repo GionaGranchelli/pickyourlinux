@@ -1,5 +1,8 @@
 # Question Catalog – Pick Your Linux
 
+> NOTE: This file is a legacy summary. The authoritative list is in `docs/QUESTION_CATALOG.md`.
+> When adding or changing questions, update `docs/QUESTION_CATALOG.md` first.
+
 This document defines the **complete, finite set of allowed user questions**.
 
 Agents MUST NOT invent new questions.
@@ -164,7 +167,7 @@ Each question maps to:
 ## Disallowed Questions (Explicitly Forbidden)
 
 The following concepts MUST NOT be used:
-- “Beginner / Advanced user”
+- Asking users to self-rank skill (use the depth selector instead)
 - “Best distro”
 - “Most popular”
 - “Recommended by community”
@@ -177,11 +180,11 @@ These are replaced by explicit intent fields.
 
 ## Rules for Agents
 
-- You MAY reference this catalog to build `questions.ts`.
-- You MAY NOT invent new questions.
+- You MAY reference `docs/QUESTION_CATALOG.md` to build `questions.ts`.
+- You MAY NOT invent new questions outside the catalog.
 - To add a question:
-    1. Update this file
+    1. Update `docs/QUESTION_CATALOG.md`
     2. Update UserIntentSchema if needed
-    3. Add an ADR explaining why
+    3. Add an ADR explaining why (if schema changes)
 
 Violation = hard stop.

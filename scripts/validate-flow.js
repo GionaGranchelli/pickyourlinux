@@ -8,23 +8,42 @@ const rootDir = resolve(__filename, "..", "..");
 const jiti = require("jiti")(__filename, { esmResolve: true, alias: { "~": resolve(rootDir, "src") } });
 
 const { ALL_QUESTIONS } = jiti("../src/data/questions");
-const { UserIntentSchema } = jiti("../src/data/types");
+const { TagEnum, UserIntentSchema } = jiti("../src/data/types");
 
-const intentKeys = Object.keys(UserIntentSchema.shape);
-
-const collectFields = (condition, fields = []) => {
-    if (condition.op === "and" || condition.op === "or") {
-        condition.conditions.forEach((child) => collectFields(child, fields));
-        return fields;
-    }
-
-    fields.push(condition.field);
-    return fields;
-};
+const intentKeys = new Set(Object.keys(UserIntentSchema.shape));
+const tagValues = new Set(TagEnum.options);
 
 const assertIntentField = (field, context) => {
-    if (!intentKeys.includes(field)) {
+    if (!intentKeys.has(field)) {
         throw new Error(`${context} references non-existent field: ${field}`);
+    }
+};
+
+const assertTagValue = (value, context) => {
+    if (!tagValues.has(value)) {
+        throw new Error(`${context} references invalid tag: ${value}`);
+    }
+};
+
+const validateCondition = (condition, context) => {
+    if (condition.op === "and" || condition.op === "or") {
+        condition.conditions.forEach((child, index) =>
+            validateCondition(child, `${context} -> ${condition.op}[${index}]`)
+        );
+        return;
+    }
+
+    assertIntentField(condition.field, context);
+};
+
+const validatePatch = (patch, context) => {
+    if (patch.op === "set") {
+        assertIntentField(patch.field, context);
+        return;
+    }
+
+    if (patch.op === "add_tag" || patch.op === "remove_tag") {
+        assertTagValue(patch.value, context);
     }
 };
 
@@ -34,15 +53,12 @@ ALL_QUESTIONS.forEach((q) => {
     }
 
     if (q.showIf) {
-        const fields = collectFields(q.showIf);
-        fields.forEach((field) => assertIntentField(field, `Question ${q.id}`));
+        validateCondition(q.showIf, `Question ${q.id} showIf`);
     }
 
     q.options.forEach((opt) => {
-        opt.patches.forEach((p) => {
-            if (p.op === "set") {
-                assertIntentField(p.field, `Option ${opt.id}`);
-            }
+        opt.patches.forEach((patch) => {
+            validatePatch(patch, `Question ${q.id} option ${opt.id}`);
         });
     });
 });

@@ -1,7 +1,7 @@
 import { computed, ref, toRaw } from "vue";
 import { z } from "zod";
 import { UserIntentSchema, type UserIntent, type Question, type QuestionOption } from "~/data/types";
-import { ALL_QUESTIONS } from "~/data/questions";
+import { ALL_QUESTIONS, QUESTION_PHASES } from "~/data/questions";
 import { CompatibilityResultListSchema, type CompatibilityResult } from "~/data/compatibility-types";
 import type { Distro } from "~/data/distro-types";
 import {
@@ -55,6 +55,14 @@ const defaultIntent: UserIntent = UserIntentSchema.parse({
     architecture: "x86_64",
     minRam: 4,
     tags: [],
+    experience: "BEGINNER",
+    desktopPreference: "NO_PREFERENCE",
+    releaseModel: "NO_PREFERENCE",
+    initSystem: "NO_PREFERENCE",
+    packageManager: "NO_PREFERENCE",
+    secureBootNeeded: null,
+    gpu: "UNKNOWN",
+    nvidiaTolerance: "NO_PREFERENCE",
 });
 
 export type AnswerRecord = {
@@ -63,6 +71,27 @@ export type AnswerRecord = {
     optionId: string;
     optionLabel: string;
 };
+
+export type AnswerGroup = {
+    phaseKey: (typeof QUESTION_PHASES)[number]["key"];
+    phaseLabel: string;
+    answers: AnswerRecord[];
+};
+
+type PhaseKey = AnswerGroup["phaseKey"];
+
+const experiencePhaseLabel: Record<UserIntent["experience"], string> = {
+    BEGINNER: "Beginner",
+    INTERMEDIATE: "Refine",
+    ADVANCED: "Expert",
+};
+
+const questionPhaseLookup = new Map<string, { key: PhaseKey; label: string }>();
+QUESTION_PHASES.forEach((phase) => {
+    phase.questionIds.forEach((questionId) => {
+        questionPhaseLookup.set(questionId, { key: phase.key, label: phase.label });
+    });
+});
 
 export function useDecisionEngine() {
     const debugEnabled = import.meta.dev;
@@ -109,6 +138,32 @@ export function useDecisionEngine() {
         const percent = total === 0 ? 100 : Math.min(100, Math.round((answered / total) * 100));
         const current = total === 0 ? 0 : Math.min(total, answered + 1);
         return { total, answered, percent, current };
+    });
+
+    const phaseLabel = computed(() => experiencePhaseLabel[intent.value.experience]);
+
+    const answeredGroups = computed<AnswerGroup[]>(() => {
+        const groups = QUESTION_PHASES.map((phase) => ({
+            phaseKey: phase.key,
+            phaseLabel: phase.label,
+            answers: [] as AnswerRecord[],
+        }));
+
+        const groupMap = new Map<PhaseKey, (typeof groups)[number]>();
+        groups.forEach((group) => groupMap.set(group.phaseKey, group));
+
+        answerHistory.value.forEach((answer) => {
+            const phase = questionPhaseLookup.get(answer.questionId) ?? {
+                key: QUESTION_PHASES[0].key,
+                label: QUESTION_PHASES[0].label,
+            };
+            const group = groupMap.get(phase.key);
+            if (group) {
+                group.answers.push(answer);
+            }
+        });
+
+        return groups.filter((group) => group.answers.length > 0);
     });
 
     const skippedQuestions = computed(() => {
@@ -297,6 +352,8 @@ export function useDecisionEngine() {
         appliedPatches,
         lastAppliedPatches,
         answeredQuestions: answerHistory,
+        answeredGroups,
+        phaseLabel,
 
         // derived
         visibleQuestions,
@@ -382,6 +439,60 @@ const getActiveConstraintKeys = (intent: UserIntent): ConstraintKey[] => {
         constraints.push("constraint_privacy_strong");
     }
 
+    if (intent.secureBootNeeded === true) {
+        constraints.push("constraint_secure_boot_required");
+    }
+
+    if (intent.gpu === "NVIDIA" && intent.nvidiaTolerance === "WANT_EASY") {
+        constraints.push("constraint_nvidia_easy");
+    }
+
+    if (intent.gpu === "NVIDIA" && intent.proprietary === "AVOID") {
+        constraints.push("constraint_nvidia_avoid_proprietary");
+    }
+
+    if (intent.desktopPreference === "GNOME") {
+        constraints.push("constraint_desktop_gnome");
+    } else if (intent.desktopPreference === "KDE") {
+        constraints.push("constraint_desktop_kde");
+    } else if (intent.desktopPreference === "XFCE") {
+        constraints.push("constraint_desktop_xfce");
+    } else if (intent.desktopPreference === "CINNAMON") {
+        constraints.push("constraint_desktop_cinnamon");
+    } else if (intent.desktopPreference === "MATE") {
+        constraints.push("constraint_desktop_mate");
+    } else if (intent.desktopPreference === "LXQT") {
+        constraints.push("constraint_desktop_lxqt");
+    }
+
+    if (intent.releaseModel === "FIXED") {
+        constraints.push("constraint_release_fixed");
+    } else if (intent.releaseModel === "ROLLING") {
+        constraints.push("constraint_release_rolling");
+    }
+
+    if (intent.initSystem === "SYSTEMD") {
+        constraints.push("constraint_init_systemd");
+    } else if (intent.initSystem === "OPENRC") {
+        constraints.push("constraint_init_openrc");
+    } else if (intent.initSystem === "RUNIT") {
+        constraints.push("constraint_init_runit");
+    }
+
+    if (intent.packageManager === "APT") {
+        constraints.push("constraint_pkg_apt");
+    } else if (intent.packageManager === "DNF") {
+        constraints.push("constraint_pkg_dnf");
+    } else if (intent.packageManager === "PACMAN") {
+        constraints.push("constraint_pkg_pacman");
+    } else if (intent.packageManager === "ZYPPER") {
+        constraints.push("constraint_pkg_zypper");
+    } else if (intent.packageManager === "APK") {
+        constraints.push("constraint_pkg_apk");
+    } else if (intent.packageManager === "NIX") {
+        constraints.push("constraint_pkg_nix");
+    }
+
     return constraints;
 };
 
@@ -401,6 +512,46 @@ const matchesConstraint = (constraint: ConstraintKey, distro: Distro): boolean =
             return distro.gamingSupport !== "NONE";
         case "constraint_privacy_strong":
             return distro.privacyPosture === "STRONG";
+        case "constraint_secure_boot_required":
+            return distro.secureBootOutOfBox;
+        case "constraint_nvidia_easy":
+            return distro.nvidiaExperience === "GOOD" || distro.nvidiaExperience === "OK";
+        case "constraint_nvidia_avoid_proprietary":
+            return distro.nvidiaExperience === "HARD" || distro.nvidiaExperience === "UNKNOWN";
+        case "constraint_desktop_gnome":
+            return distro.supportedDesktops.includes("GNOME");
+        case "constraint_desktop_kde":
+            return distro.supportedDesktops.includes("KDE");
+        case "constraint_desktop_xfce":
+            return distro.supportedDesktops.includes("XFCE");
+        case "constraint_desktop_cinnamon":
+            return distro.supportedDesktops.includes("CINNAMON");
+        case "constraint_desktop_mate":
+            return distro.supportedDesktops.includes("MATE");
+        case "constraint_desktop_lxqt":
+            return distro.supportedDesktops.includes("LXQT");
+        case "constraint_release_fixed":
+            return distro.releaseModel === "FIXED";
+        case "constraint_release_rolling":
+            return distro.releaseModel === "ROLLING";
+        case "constraint_init_systemd":
+            return distro.initSystem === "SYSTEMD";
+        case "constraint_init_openrc":
+            return distro.initSystem === "OPENRC";
+        case "constraint_init_runit":
+            return distro.initSystem === "RUNIT";
+        case "constraint_pkg_apt":
+            return distro.packageManager === "APT";
+        case "constraint_pkg_dnf":
+            return distro.packageManager === "DNF";
+        case "constraint_pkg_pacman":
+            return distro.packageManager === "PACMAN";
+        case "constraint_pkg_zypper":
+            return distro.packageManager === "ZYPPER";
+        case "constraint_pkg_apk":
+            return distro.packageManager === "APK";
+        case "constraint_pkg_nix":
+            return distro.packageManager === "NIX";
         default:
             return false;
     }
