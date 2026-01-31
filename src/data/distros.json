@@ -1,0 +1,68 @@
+[
+  {
+    "id": "ubuntu",
+    "name": "Ubuntu",
+    "description": "General-purpose desktop.",
+    "architectures": ["x86_64", "arm64"],
+    "installer": "GUI",
+    "maintenance": "NO_TERMINAL",
+    "proprietary": "OPTIONAL",
+    "minRam": 4,
+    "tags": ["Work"]
+  },
+  {
+    "id": "linux_mint",
+    "name": "Linux Mint",
+    "description": "Desktop-focused and familiar.",
+    "architectures": ["x86_64"],
+    "installer": "GUI",
+    "maintenance": "NO_TERMINAL",
+    "proprietary": "OPTIONAL",
+    "minRam": 4,
+    "tags": ["Work"]
+  },
+  {
+    "id": "pop_os",
+    "name": "Pop!_OS",
+    "description": "Desktop experience with gaming support.",
+    "architectures": ["x86_64"],
+    "installer": "GUI",
+    "maintenance": "NO_TERMINAL",
+    "proprietary": "OPTIONAL",
+    "minRam": 4,
+    "tags": ["Work", "Gaming"]
+  },
+  {
+    "id": "fedora",
+    "name": "Fedora Workstation",
+    "description": "Up-to-date desktop system.",
+    "architectures": ["x86_64", "arm64"],
+    "installer": "GUI",
+    "maintenance": "TERMINAL_OK",
+    "proprietary": "OPTIONAL",
+    "minRam": 4,
+    "tags": ["Work", "Server"]
+  },
+  {
+    "id": "debian",
+    "name": "Debian",
+    "description": "Stable base for servers and low-powered systems.",
+    "architectures": ["x86_64", "arm64"],
+    "installer": "CLI_OK",
+    "maintenance": "TERMINAL_OK",
+    "proprietary": "AVOID",
+    "minRam": 2,
+    "tags": ["Server", "OldHardware", "Privacy"]
+  },
+  {
+    "id": "arch",
+    "name": "Arch Linux",
+    "description": "Hands-on setup and maintenance.",
+    "architectures": ["x86_64"],
+    "installer": "CLI_OK",
+    "maintenance": "TERMINAL_OK",
+    "proprietary": "OPTIONAL",
+    "minRam": 2,
+    "tags": ["Work"]
+  }
+]

@@ -1,9 +1,18 @@
-import { ALL_QUESTIONS } from "../src/data/questions";
-import { UserIntentSchema, type Condition } from "../src/data/types";
+import { createRequire } from "node:module";
+import { fileURLToPath } from "node:url";
+import { resolve } from "node:path";
+
+const require = createRequire(import.meta.url);
+const __filename = fileURLToPath(import.meta.url);
+const rootDir = resolve(__filename, "..", "..");
+const jiti = require("jiti")(__filename, { esmResolve: true, alias: { "~": resolve(rootDir, "src") } });
+
+const { ALL_QUESTIONS } = jiti("../src/data/questions");
+const { UserIntentSchema } = jiti("../src/data/types");
 
 const intentKeys = Object.keys(UserIntentSchema.shape);
 
-const collectFields = (condition: Condition, fields: string[] = []): string[] => {
+const collectFields = (condition, fields = []) => {
     if (condition.op === "and" || condition.op === "or") {
         condition.conditions.forEach((child) => collectFields(child, fields));
         return fields;
@@ -13,7 +22,7 @@ const collectFields = (condition: Condition, fields: string[] = []): string[] =>
     return fields;
 };
 
-const assertIntentField = (field: string, context: string) => {
+const assertIntentField = (field, context) => {
     if (!intentKeys.includes(field)) {
         throw new Error(`${context} references non-existent field: ${field}`);
     }

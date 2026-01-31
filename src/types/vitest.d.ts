@@ -5,5 +5,11 @@ declare module "vitest" {
     export const expect: (value: unknown) => {
         toBe: (expected: unknown) => void;
         toEqual: (expected: unknown) => void;
+        toContain: (expected: unknown) => void;
+        not: {
+            toBe: (expected: unknown) => void;
+            toEqual: (expected: unknown) => void;
+            toContain: (expected: unknown) => void;
+        };
     };
 }

@@ -6,14 +6,14 @@ import { UserIntentSchema, type UserIntent, type Condition, type Patch } from "~
  */
 export function evaluateCondition(intent: UserIntent, condition: Condition): boolean {
     // Group nodes
-    if ("op" in condition && (condition.op === "and" || condition.op === "or")) {
+    if (condition.op === "and" || condition.op === "or") {
         return condition.op === "and"
             ? condition.conditions.every((c) => evaluateCondition(intent, c))
             : condition.conditions.some((c) => evaluateCondition(intent, c));
     }
 
     // Leaf node
-    const userValue = intent[condition.field];
+    const userValue = intent[condition.field as keyof UserIntent];
 
     switch (condition.op) {
         case "eq":
@@ -28,7 +28,7 @@ export function evaluateCondition(intent: UserIntent, condition: Condition): boo
 
         case "contains":
             // array contains scalar (e.g. tags contains "Gaming")
-            return Array.isArray(userValue) && userValue.includes(condition.value);
+            return Array.isArray(userValue) && (userValue as unknown[]).includes(condition.value);
 
         default:
             return false;
