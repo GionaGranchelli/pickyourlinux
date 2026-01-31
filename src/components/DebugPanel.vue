@@ -1,16 +1,11 @@
 <script setup lang="ts">
 import type { PropType } from "vue";
+import type { EngineStatus } from "~/engine/state";
+import type { UserIntent } from "~/data/types";
 
 export type DebugSkippedQuestion = {
-  id: string;
-  text: string;
-  reason: string;
+  questionId: string;
   showIfJson: string;
-};
-
-export type DebugExclusion = {
-  distroId: string;
-  excludedReason: string[];
 };
 
 defineProps({
@@ -18,20 +13,24 @@ defineProps({
     type: Boolean,
     required: true
   },
-  intent: {
-    type: Object as PropType<Record<string, unknown>>,
+  status: {
+    type: String as PropType<EngineStatus>,
     required: true
   },
-  appliedPatches: {
+  answeredIds: {
+    type: Array as PropType<string[]>,
+    required: true
+  },
+  intent: {
+    type: Object as PropType<UserIntent>,
+    required: true
+  },
+  lastAppliedPatches: {
     type: Array as PropType<string[]>,
     required: true
   },
   skippedQuestions: {
     type: Array as PropType<DebugSkippedQuestion[]>,
-    required: true
-  },
-  exclusions: {
-    type: Array as PropType<DebugExclusion[]>,
     required: true
   }
 });
@@ -42,36 +41,34 @@ defineProps({
     <div class="font-bold text-gray-600">DEBUG PANEL</div>
 
     <div class="mt-4">
+      <div class="font-semibold text-gray-500">Status</div>
+      <pre class="mt-2 whitespace-pre-wrap">{{ status }}</pre>
+    </div>
+
+    <div class="mt-4">
+      <div class="font-semibold text-gray-500">Answered IDs</div>
+      <pre class="mt-2 whitespace-pre-wrap">{{ answeredIds }}</pre>
+    </div>
+
+    <div class="mt-4">
       <div class="font-semibold text-gray-500">UserIntent</div>
       <pre class="mt-2 whitespace-pre-wrap">{{ intent }}</pre>
     </div>
 
     <div class="mt-4">
-      <div class="font-semibold text-gray-500">Applied Patches</div>
+      <div class="font-semibold text-gray-500">Last Applied Patches</div>
       <ul class="mt-2 space-y-1 text-gray-600">
-        <li v-if="appliedPatches.length === 0">None</li>
-        <li v-for="(patch, idx) in appliedPatches" :key="idx">{{ patch }}</li>
+        <li v-if="lastAppliedPatches.length === 0">None</li>
+        <li v-for="(patch, idx) in lastAppliedPatches" :key="idx">{{ patch }}</li>
       </ul>
     </div>
 
     <div class="mt-4">
       <div class="font-semibold text-gray-500">Skipped Questions</div>
       <div v-if="skippedQuestions.length === 0" class="mt-2 text-gray-600">None</div>
-      <div v-for="item in skippedQuestions" :key="item.id" class="mt-3 text-gray-600">
-        <div class="font-semibold">{{ item.id }} - {{ item.text }}</div>
-        <div>Reason: {{ item.reason }}</div>
+      <div v-for="item in skippedQuestions" :key="item.questionId" class="mt-3 text-gray-600">
+        <div class="font-semibold">{{ item.questionId }}</div>
         <pre class="mt-1 whitespace-pre-wrap">{{ item.showIfJson }}</pre>
-      </div>
-    </div>
-
-    <div class="mt-4">
-      <div class="font-semibold text-gray-500">Exclusion Reasons</div>
-      <div v-if="exclusions.length === 0" class="mt-2 text-gray-600">None</div>
-      <div v-for="exclusion in exclusions" :key="exclusion.distroId" class="mt-3 text-gray-600">
-        <div class="font-semibold">{{ exclusion.distroId }}</div>
-        <ul class="mt-1 space-y-1">
-          <li v-for="(reason, idx) in exclusion.excludedReason" :key="idx">{{ reason }}</li>
-        </ul>
       </div>
     </div>
   </div>

@@ -28,3 +28,11 @@ Goal: Scale data, not logic
 - More distros
 - More questions
 - Localization
+
+## Post-MVP Roadmap
+Focus: Expand accessibility and comparison depth without adding ranking.
+
+- Localization for the full question flow
+- Accessibility-first pass (keyboard, screen reader, contrast)
+- Advanced comparison mode (side-by-side constraints and tradeoffs)
+- Experimental flows for non-Linux domains using the same logic model

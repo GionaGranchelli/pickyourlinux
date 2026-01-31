@@ -1,16 +1,21 @@
 import { z } from "zod";
-import { ArchitectureEnum, TagEnum } from "~/data/types";
+
+export const InstallerExperienceEnum = z.enum(["GUI", "MANUAL"]);
+export const MaintenanceStyleEnum = z.enum(["LOW_FRICTION", "HANDS_ON"]);
+export const ProprietarySupportEnum = z.enum(["FULL", "OPTIONAL", "NONE"]);
+export const GamingSupportEnum = z.enum(["NONE", "LIMITED", "GOOD"]);
+export const PrivacyPostureEnum = z.enum(["DEFAULT", "STRONG"]);
 
 export const DistroSchema = z.object({
     id: z.string(),
     name: z.string(),
     description: z.string().optional(),
-    architectures: z.array(ArchitectureEnum).min(1),
-    installer: z.enum(["GUI", "CLI_OK"]),
-    maintenance: z.enum(["NO_TERMINAL", "TERMINAL_OK"]),
-    proprietary: z.enum(["REQUIRED", "OPTIONAL", "AVOID"]),
-    minRam: z.number().min(0),
-    tags: z.array(TagEnum).default([]),
+    installerExperience: InstallerExperienceEnum,
+    maintenanceStyle: MaintenanceStyleEnum,
+    proprietarySupport: ProprietarySupportEnum,
+    suitableForOldHardware: z.boolean(),
+    gamingSupport: GamingSupportEnum,
+    privacyPosture: PrivacyPostureEnum,
 });
 
 export const DistroListSchema = z.array(DistroSchema);

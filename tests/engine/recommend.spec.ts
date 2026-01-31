@@ -24,17 +24,15 @@ describe("recommendDistros", () => {
         const debian = findRec(recs, "debian");
 
         expect(debian.included).toBe(false);
-        expect(debian.excludedReason).toContain("Regular terminal use is expected.");
+        expect(debian.excludedReason).toContain("exclude_maintenance_hands_on");
     });
 
     it("prioritizes privacy-focused intent", () => {
         const intent = UserIntentSchema.parse({ ...baseIntent, tags: ["Privacy"] });
         const recs = recommendDistros(intent);
-        const debian = findRec(recs, "debian");
-        const ubuntu = findRec(recs, "ubuntu");
+        const trisquel = findRec(recs, "trisquel");
 
-        expect(debian.includedReason).toContain("Matches priority: Privacy.");
-        expect(ubuntu.excludedReason).toContain("Does not match priority: Privacy.");
+        expect(trisquel.includedReason).toContain("include_privacy_strong");
     });
 
     it("tracks gaming intent and matched tags", () => {
@@ -42,7 +40,7 @@ describe("recommendDistros", () => {
         const recs = recommendDistros(intent);
         const pop = findRec(recs, "pop_os");
 
-        expect(pop.includedReason).toContain("Matches priority: Gaming.");
+        expect(pop.includedReason).toContain("include_gaming_good");
         expect(pop.matchedTags).toContain("Gaming");
     });
 });

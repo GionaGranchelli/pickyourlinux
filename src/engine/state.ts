@@ -1,8 +1,19 @@
-import { computed, ref } from "vue";
+import { computed, ref, toRaw } from "vue";
 import { z } from "zod";
 import { UserIntentSchema, type UserIntent, type Question, type QuestionOption } from "~/data/types";
 import { ALL_QUESTIONS } from "~/data/questions";
+import { CompatibilityResultListSchema, type CompatibilityResult } from "~/data/compatibility-types";
+import type { Distro } from "~/data/distro-types";
+import {
+    ConstraintTemplates,
+    ExclusionReasonTemplates,
+    InclusionReasonTemplates,
+    type ConstraintKey,
+    type ExclusionReasonKey,
+    type InclusionReasonKey,
+} from "~/data/reason-templates";
 import { applyPatch, evaluateCondition } from "~/engine/logic";
+import { buildCompatibility } from "~/engine/compatibility";
 
 export type EngineStatus = "IN_PROGRESS" | "COMPLETED" | "DISQUALIFIED";
 
@@ -19,6 +30,8 @@ interface Snapshot {
     status: EngineStatus;
     disqualifyReason?: string;
     appliedPatches: string[];
+    lastAppliedPatches: string[];
+    answerHistory: AnswerRecord[];
 }
 
 const SessionStateSchema = z.object({
@@ -28,6 +41,13 @@ const SessionStateSchema = z.object({
     disqualifyReason: z.string().optional(),
 });
 
+const SharePayloadSchema = z.object({
+    intent: UserIntentSchema,
+    answeredIds: z.array(z.string()),
+});
+
+export type SharePayload = z.infer<typeof SharePayloadSchema>;
+
 const defaultIntent: UserIntent = UserIntentSchema.parse({
     installation: "GUI",
     maintenance: "NO_TERMINAL",
@@ -36,6 +56,13 @@ const defaultIntent: UserIntent = UserIntentSchema.parse({
     minRam: 4,
     tags: [],
 });
+
+export type AnswerRecord = {
+    questionId: string;
+    questionText: string;
+    optionId: string;
+    optionLabel: string;
+};
 
 export function useDecisionEngine() {
     const debugEnabled = import.meta.dev;
@@ -49,6 +76,8 @@ export function useDecisionEngine() {
     // History for undo
     const history = ref<Snapshot[]>([]);
     const appliedPatches = ref<string[]>([]);
+    const lastAppliedPatches = ref<string[]>([]);
+    const answerHistory = ref<AnswerRecord[]>([]);
 
     // Derived: visible questions given current intent
     const visibleQuestions = computed<Question[]>(() => {
@@ -75,17 +104,17 @@ export function useDecisionEngine() {
     const isDisqualified = computed(() => status.value === "DISQUALIFIED");
     const progress = computed(() => {
         const total = visibleQuestions.value.length;
-        const answered = answeredIds.value.length;
+        const visibleIds = new Set(visibleQuestions.value.map((question) => question.id));
+        const answered = answeredIds.value.filter((id) => visibleIds.has(id)).length;
         const percent = total === 0 ? 100 : Math.min(100, Math.round((answered / total) * 100));
-        return { total, answered, percent };
+        const current = total === 0 ? 0 : Math.min(total, answered + 1);
+        return { total, answered, percent, current };
     });
 
     const skippedQuestions = computed(() => {
         if (!debugEnabled) return [];
         return ALL_QUESTIONS.filter((q) => q.showIf && !evaluateCondition(intent.value, q.showIf)).map((q) => ({
-            id: q.id,
-            text: q.text,
-            reason: "showIf evaluated to false",
+            questionId: q.id,
             showIf: q.showIf,
             showIfJson: JSON.stringify(q.showIf),
         }));
@@ -96,20 +125,36 @@ export function useDecisionEngine() {
 
         // Snapshot for undo
         history.value.push({
-            intent: structuredClone(intent.value),
+            intent: structuredClone(toRaw(intent.value)),
             answeredIds: [...answeredIds.value],
             status: status.value,
             disqualifyReason: disqualifyReason.value,
             appliedPatches: [...appliedPatches.value],
+            lastAppliedPatches: [...lastAppliedPatches.value],
+            answerHistory: [...answerHistory.value],
         });
+
+        const question = ALL_QUESTIONS.find((item) => item.id === questionId);
+        const record: AnswerRecord = {
+            questionId,
+            questionText: question?.text ?? questionId,
+            optionId: option.id,
+            optionLabel: option.label,
+        };
 
         // Disqualifier: stop immediately (do NOT apply patches unless you explicitly want to)
         if (option.isDisqualifier) {
             status.value = "DISQUALIFIED";
             disqualifyReason.value = option.label;
             if (!answeredIds.value.includes(questionId)) answeredIds.value.push(questionId);
+            if (!answerHistory.value.some((item) => item.questionId === questionId)) {
+                answerHistory.value.push(record);
+            }
+            lastAppliedPatches.value = [];
             return;
         }
+
+        lastAppliedPatches.value = option.patches.map((patch) => JSON.stringify(patch));
 
         if (debugEnabled) {
             const label = `q:${questionId} -> ${option.id}`;
@@ -118,10 +163,13 @@ export function useDecisionEngine() {
         }
 
         // Apply patches (validated)
-        intent.value = applyPatch(intent.value, option.patches);
+        intent.value = applyPatch(toRaw(intent.value), option.patches);
 
         // Mark answered (by ID, not index)
         if (!answeredIds.value.includes(questionId)) answeredIds.value.push(questionId);
+        if (!answerHistory.value.some((item) => item.questionId === questionId)) {
+            answerHistory.value.push(record);
+        }
     }
 
     function undo() {
@@ -133,6 +181,43 @@ export function useDecisionEngine() {
         status.value = prev.status;
         disqualifyReason.value = prev.disqualifyReason;
         appliedPatches.value = prev.appliedPatches;
+        lastAppliedPatches.value = prev.lastAppliedPatches;
+        answerHistory.value = prev.answerHistory;
+    }
+
+    function selectOptionById(optionId: string) {
+        const question = currentQuestion.value;
+        if (!question) return;
+        const option = question.options.find((item) => item.id === optionId);
+        if (!option) return;
+        selectOption(question.id, option);
+    }
+
+    function reset() {
+        intent.value = structuredClone(defaultIntent);
+        answeredIds.value = [];
+        status.value = "IN_PROGRESS";
+        disqualifyReason.value = undefined;
+        history.value = [];
+        appliedPatches.value = [];
+        lastAppliedPatches.value = [];
+        answerHistory.value = [];
+    }
+
+    function editAnswer(questionId: string) {
+        const index = answeredIds.value.indexOf(questionId);
+        if (index === -1) return;
+        const snapshot = history.value[index];
+        if (!snapshot) return;
+
+        intent.value = snapshot.intent;
+        answeredIds.value = snapshot.answeredIds;
+        status.value = "IN_PROGRESS";
+        disqualifyReason.value = undefined;
+        appliedPatches.value = snapshot.appliedPatches;
+        lastAppliedPatches.value = snapshot.lastAppliedPatches;
+        answerHistory.value = snapshot.answerHistory;
+        history.value = history.value.slice(0, index);
     }
 
     function serializeSession(): string {
@@ -145,18 +230,22 @@ export function useDecisionEngine() {
         return JSON.stringify(snapshot);
     }
 
+    const validateAnsweredIds = (ids: string[]) => {
+        const validIds = new Set(ALL_QUESTIONS.map((q) => q.id));
+        const seen = new Set<string>();
+        for (const id of ids) {
+            if (!validIds.has(id)) throw new Error(`Unknown question id: ${id}`);
+            if (seen.has(id)) throw new Error(`Duplicate answered id: ${id}`);
+            seen.add(id);
+        }
+    };
+
     function restoreSession(serialized: string): boolean {
         try {
             const parsed = JSON.parse(serialized);
             const restored = SessionStateSchema.parse(parsed);
 
-            const validIds = new Set(ALL_QUESTIONS.map((q) => q.id));
-            const seen = new Set<string>();
-            for (const id of restored.answeredIds) {
-                if (!validIds.has(id)) throw new Error(`Unknown question id: ${id}`);
-                if (seen.has(id)) throw new Error(`Duplicate answered id: ${id}`);
-                seen.add(id);
-            }
+            validateAnsweredIds(restored.answeredIds);
 
             intent.value = restored.intent;
             answeredIds.value = [...restored.answeredIds];
@@ -164,6 +253,34 @@ export function useDecisionEngine() {
             disqualifyReason.value = restored.disqualifyReason;
             history.value = [];
             appliedPatches.value = [];
+            lastAppliedPatches.value = [];
+            answerHistory.value = [];
+            return true;
+        } catch {
+            return false;
+        }
+    }
+
+    function getSharePayload(): SharePayload {
+        return {
+            intent: structuredClone(toRaw(intent.value)),
+            answeredIds: [...answeredIds.value],
+        };
+    }
+
+    function restoreSharePayload(payload: SharePayload): boolean {
+        try {
+            const restored = SharePayloadSchema.parse(payload);
+            validateAnsweredIds(restored.answeredIds);
+
+            intent.value = restored.intent;
+            answeredIds.value = [...restored.answeredIds];
+            status.value = "IN_PROGRESS";
+            disqualifyReason.value = undefined;
+            history.value = [];
+            appliedPatches.value = [];
+            lastAppliedPatches.value = [];
+            answerHistory.value = [];
             return true;
         } catch {
             return false;
@@ -178,6 +295,8 @@ export function useDecisionEngine() {
         disqualifyReason,
         debugEnabled,
         appliedPatches,
+        lastAppliedPatches,
+        answeredQuestions: answerHistory,
 
         // derived
         visibleQuestions,
@@ -189,8 +308,162 @@ export function useDecisionEngine() {
 
         // actions
         selectOption,
+        selectOptionById,
         undo,
+        editAnswer,
+        reset,
         serializeSession,
         restoreSession,
+        getSharePayload,
+        restoreSharePayload,
+    };
+}
+
+export type DecisionEngine = ReturnType<typeof useDecisionEngine>;
+
+export function buildCompatibilityResults(intent: UserIntent): CompatibilityResult[] {
+    return buildCompatibility(intent);
+}
+
+export type PresentedDistro = {
+    distroId: string;
+    name: string;
+    description?: string;
+    includedBecause: string[];
+    excludedBecause: string[];
+    matchedConstraints: string[];
+};
+
+export type ResultsPresentation = {
+    compatible: PresentedDistro[];
+    excluded: PresentedDistro[];
+    compatibleTotal: number;
+    compatibleShown: number;
+    activeConstraints: string[];
+};
+
+type PresentationOptions = {
+    limit: number;
+    showAll: boolean;
+};
+
+const sortByDistroId = (a: CompatibilityResult, b: CompatibilityResult) => {
+    return a.distroId.localeCompare(b.distroId);
+};
+
+const getActiveConstraintKeys = (intent: UserIntent): ConstraintKey[] => {
+    const constraints: ConstraintKey[] = [];
+
+    if (intent.installation === "GUI") {
+        constraints.push("constraint_installer_gui");
+    }
+
+    if (intent.maintenance === "NO_TERMINAL") {
+        constraints.push("constraint_maintenance_low_friction");
+    }
+
+    if (intent.proprietary === "AVOID") {
+        constraints.push("constraint_proprietary_none");
+    }
+
+    if (intent.proprietary === "REQUIRED") {
+        constraints.push("constraint_proprietary_allowed");
+    }
+
+    if (intent.tags.includes("OldHardware")) {
+        constraints.push("constraint_old_hardware");
+    }
+
+    if (intent.tags.includes("Gaming")) {
+        constraints.push("constraint_gaming_support");
+    }
+
+    if (intent.tags.includes("Privacy")) {
+        constraints.push("constraint_privacy_strong");
+    }
+
+    return constraints;
+};
+
+const matchesConstraint = (constraint: ConstraintKey, distro: Distro): boolean => {
+    switch (constraint) {
+        case "constraint_installer_gui":
+            return distro.installerExperience === "GUI";
+        case "constraint_maintenance_low_friction":
+            return distro.maintenanceStyle === "LOW_FRICTION";
+        case "constraint_proprietary_none":
+            return distro.proprietarySupport === "NONE";
+        case "constraint_proprietary_allowed":
+            return distro.proprietarySupport !== "NONE";
+        case "constraint_old_hardware":
+            return distro.suitableForOldHardware;
+        case "constraint_gaming_support":
+            return distro.gamingSupport !== "NONE";
+        case "constraint_privacy_strong":
+            return distro.privacyPosture === "STRONG";
+        default:
+            return false;
+    }
+};
+
+const renderInclusionReasons = (reasons: InclusionReasonKey[]): string[] => {
+    return reasons.map((reason) => InclusionReasonTemplates[reason]);
+};
+
+const renderExclusionReasons = (reasons: ExclusionReasonKey[]): string[] => {
+    return reasons.map((reason) => ExclusionReasonTemplates[reason]);
+};
+
+export function buildResultsPresentation(
+    intent: UserIntent,
+    distros: Distro[],
+    options: PresentationOptions
+): ResultsPresentation {
+    const results = CompatibilityResultListSchema.parse(buildCompatibility(intent));
+    const distrosById = new Map(distros.map((distro) => [distro.id, distro] as const));
+
+    const compatibleAll = results.filter((item) => item.compatible).sort(sortByDistroId);
+    const excludedAll = results.filter((item) => !item.compatible).sort(sortByDistroId);
+
+    const compatibleShown = options.showAll ? compatibleAll : compatibleAll.slice(0, options.limit);
+    const activeConstraintKeys = getActiveConstraintKeys(intent);
+    const activeConstraints = activeConstraintKeys.map((key) => ConstraintTemplates[key]);
+
+    const presentCompatible = (result: CompatibilityResult): PresentedDistro => {
+        const distro = distrosById.get(result.distroId);
+        const matchedConstraints = distro
+            ? activeConstraintKeys
+                  .filter((constraint) => matchesConstraint(constraint, distro))
+                  .map((constraint) => ConstraintTemplates[constraint])
+            : [];
+
+        return {
+            distroId: result.distroId,
+            name: distro?.name ?? result.distroId,
+            description: distro?.description,
+            includedBecause: renderInclusionReasons(result.includedBecause),
+            excludedBecause: [],
+            matchedConstraints,
+        };
+    };
+
+    const presentExcluded = (result: CompatibilityResult): PresentedDistro => {
+        const distro = distrosById.get(result.distroId);
+        return {
+            distroId: result.distroId,
+            name: distro?.name ?? result.distroId,
+            description: distro?.description,
+            includedBecause: [],
+            excludedBecause: renderExclusionReasons(result.excludedBecause),
+            matchedConstraints: [],
+        };
+    };
+
+    return {
+        compatible: compatibleShown.map(presentCompatible),
+        excluded: excludedAll.map(presentExcluded),
+        compatibleTotal: compatibleAll.length,
+        compatibleShown: compatibleShown.length,
+        activeConstraints,
     };
 }
