@@ -9,23 +9,23 @@ const questions: Question[] = [
     // ---------------------------
     {
         id: "q_experience_depth",
-        text: "How deep do you want to go?",
+        text: "questions.q_experience_depth.text",
         options: [
             {
                 id: "quick",
-                label: "Quick",
+                label: "questions.q_experience_depth.options.quick",
                 patches: [{ op: "set", field: "experience", value: "BEGINNER" }],
                 isDisqualifier: false,
             },
             {
                 id: "more_accurate",
-                label: "More accurate",
+                label: "questions.q_experience_depth.options.more_accurate",
                 patches: [{ op: "set", field: "experience", value: "INTERMEDIATE" }],
                 isDisqualifier: false,
             },
             {
                 id: "expert_mode",
-                label: "Expert mode",
+                label: "questions.q_experience_depth.options.expert_mode",
                 patches: [{ op: "set", field: "experience", value: "ADVANCED" }],
                 isDisqualifier: false,
             },
@@ -37,29 +37,29 @@ const questions: Question[] = [
     // ---------------------------
     {
         id: "q_purpose",
-        text: "What do you mainly want to use this computer for?",
+        text: "questions.q_purpose.text",
         options: [
             {
                 id: "everyday",
-                label: "Everyday stuff (web, email, documents)",
+                label: "questions.q_purpose.options.everyday",
                 patches: [{ op: "add_tag", value: "Work" }],
                 isDisqualifier: false,
             },
             {
                 id: "gaming",
-                label: "Gaming",
+                label: "questions.q_purpose.options.gaming",
                 patches: [{ op: "add_tag", value: "Gaming" }],
                 isDisqualifier: false,
             },
             {
                 id: "privacy",
-                label: "Privacy-focused use",
+                label: "questions.q_purpose.options.privacy",
                 patches: [{ op: "add_tag", value: "Privacy" }],
                 isDisqualifier: false,
             },
             {
                 id: "server",
-                label: "Running a home server",
+                label: "questions.q_purpose.options.server",
                 patches: [{ op: "add_tag", value: "Server" }],
                 isDisqualifier: false,
             },
@@ -67,23 +67,23 @@ const questions: Question[] = [
     },
     {
         id: "q_works_right_away",
-        text: "How important is it that most things work right away?",
+        text: "questions.q_works_right_away.text",
         options: [
             {
                 id: "very",
-                label: "Very important — I want minimal setup",
+                label: "questions.q_works_right_away.options.very",
                 patches: [{ op: "set", field: "proprietary", value: "REQUIRED" }],
                 isDisqualifier: false,
             },
             {
                 id: "ok_with_some",
-                label: "I'm okay doing a bit of setup",
+                label: "questions.q_works_right_away.options.ok_with_some",
                 patches: [{ op: "set", field: "proprietary", value: "OPTIONAL" }],
                 isDisqualifier: false,
             },
             {
                 id: "only_free",
-                label: "I want only free/open software",
+                label: "questions.q_works_right_away.options.only_free",
                 patches: [{ op: "set", field: "proprietary", value: "AVOID" }],
                 isDisqualifier: false,
             },
@@ -91,17 +91,17 @@ const questions: Question[] = [
     },
     {
         id: "q_installation",
-        text: "How would you like to install Linux?",
+        text: "questions.q_installation.text",
         options: [
             {
                 id: "gui",
-                label: "I want a simple installer",
+                label: "questions.q_installation.options.gui",
                 patches: [{ op: "set", field: "installation", value: "GUI" }],
                 isDisqualifier: false,
             },
             {
                 id: "hands_on",
-                label: "I'm okay with a more hands-on setup",
+                label: "questions.q_installation.options.hands_on",
                 patches: [{ op: "set", field: "installation", value: "CLI_OK" }],
                 isDisqualifier: false,
             },
@@ -109,17 +109,17 @@ const questions: Question[] = [
     },
     {
         id: "q_troubleshooting_style",
-        text: "If something doesn't work, what feels most comfortable?",
+        text: "questions.q_troubleshooting_style.text",
         options: [
             {
                 id: "menus",
-                label: "I want buttons and menus, not commands",
+                label: "questions.q_troubleshooting_style.options.menus",
                 patches: [{ op: "set", field: "maintenance", value: "NO_TERMINAL" }],
                 isDisqualifier: false,
             },
             {
                 id: "follow_steps",
-                label: "I can follow a step-by-step guide",
+                label: "questions.q_troubleshooting_style.options.follow_steps",
                 patches: [{ op: "set", field: "maintenance", value: "TERMINAL_OK" }],
                 isDisqualifier: false,
             },
@@ -127,11 +127,11 @@ const questions: Question[] = [
     },
     {
         id: "q_old_hardware",
-        text: "Is this computer older or not very powerful?",
+        text: "questions.q_old_hardware.text",
         options: [
             {
                 id: "yes",
-                label: "Yes, it's pretty old",
+                label: "questions.q_old_hardware.options.yes",
                 patches: [
                     { op: "add_tag", value: "OldHardware" },
                     { op: "set", field: "minRam", value: 4 },
@@ -140,7 +140,7 @@ const questions: Question[] = [
             },
             {
                 id: "no",
-                label: "No, it's fairly modern",
+                label: "questions.q_old_hardware.options.no",
                 patches: [{ op: "set", field: "minRam", value: 8 }],
                 isDisqualifier: false,
             },
@@ -148,29 +148,29 @@ const questions: Question[] = [
     },
     {
         id: "q_ram_hint",
-        text: "Roughly, how much memory (RAM) does your computer have?",
+        text: "questions.q_ram_hint.text",
         options: [
             {
                 id: "ram_4",
-                label: "4 GB or less",
+                label: "questions.q_ram_hint.options.ram_4",
                 patches: [{ op: "set", field: "minRam", value: 4 }],
                 isDisqualifier: false,
             },
             {
                 id: "ram_8",
-                label: "8 GB",
+                label: "questions.q_ram_hint.options.ram_8",
                 patches: [{ op: "set", field: "minRam", value: 8 }],
                 isDisqualifier: false,
             },
             {
                 id: "ram_16",
-                label: "16 GB or more",
+                label: "questions.q_ram_hint.options.ram_16",
                 patches: [{ op: "set", field: "minRam", value: 16 }],
                 isDisqualifier: false,
             },
             {
                 id: "not_sure",
-                label: "I'm not sure",
+                label: "questions.q_ram_hint.options.not_sure",
                 patches: [],
                 isDisqualifier: false,
             },
@@ -178,17 +178,17 @@ const questions: Question[] = [
     },
     {
         id: "q_privacy_importance",
-        text: "How important is privacy to you?",
+        text: "questions.q_privacy_importance.text",
         options: [
             {
                 id: "very_important",
-                label: "Very important",
+                label: "questions.q_privacy_importance.options.very_important",
                 patches: [{ op: "add_tag", value: "Privacy" }],
                 isDisqualifier: false,
             },
             {
                 id: "balanced",
-                label: "I care, but convenience matters too",
+                label: "questions.q_privacy_importance.options.balanced",
                 patches: [],
                 isDisqualifier: false,
             },
@@ -196,47 +196,77 @@ const questions: Question[] = [
     },
     {
         id: "q_gpu_simple",
-        text: "Do you have an NVIDIA graphics card?",
+        text: "questions.q_gpu_simple.text",
         options: [
             {
                 id: "nvidia",
-                label: "Yes, NVIDIA",
+                label: "questions.q_gpu_simple.options.nvidia",
                 patches: [{ op: "set", field: "gpu", value: "NVIDIA" }],
                 isDisqualifier: false,
             },
             {
                 id: "not_sure",
-                label: "Not sure",
+                label: "questions.q_gpu_simple.options.not_sure",
                 patches: [{ op: "set", field: "gpu", value: "UNKNOWN" }],
                 isDisqualifier: false,
             },
             {
                 id: "no",
-                label: "No",
+                label: "questions.q_gpu_simple.options.no",
                 patches: [{ op: "set", field: "gpu", value: "INTEL_AMD" }],
                 isDisqualifier: false,
             },
         ],
     },
     {
+        id: "q_software_use_case",
+        text: "questions.q_software_use_case.text",
+        options: [
+            {
+                id: "office_suite",
+                label: "questions.q_software_use_case.options.office_suite",
+                patches: [{ op: "add_tag", value: "Office" }],
+                isDisqualifier: false,
+            },
+            {
+                id: "creative_apps",
+                label: "questions.q_software_use_case.options.creative_apps",
+                patches: [{ op: "add_tag", value: "Creative" }],
+                isDisqualifier: false,
+            },
+            {
+                id: "development_tools",
+                label: "questions.q_software_use_case.options.development_tools",
+                patches: [{ op: "add_tag", value: "Development" }],
+                isDisqualifier: false,
+            },
+            {
+                id: "basic_use",
+                label: "questions.q_software_use_case.options.basic_use",
+                patches: [{ op: "add_tag", value: "Basic" }],
+                isDisqualifier: false,
+            },
+        ],
+    },
+    {
         id: "q_secure_boot_simple",
-        text: "Does your computer need Secure Boot turned on?",
+        text: "questions.q_secure_boot_simple.text",
         options: [
             {
                 id: "yes",
-                label: "Yes, it should stay on",
+                label: "questions.q_secure_boot_simple.options.yes",
                 patches: [{ op: "set", field: "secureBootNeeded", value: true }],
                 isDisqualifier: false,
             },
             {
                 id: "no",
-                label: "No, it can be off",
+                label: "questions.q_secure_boot_simple.options.no",
                 patches: [{ op: "set", field: "secureBootNeeded", value: false }],
                 isDisqualifier: false,
             },
             {
                 id: "not_sure",
-                label: "Not sure",
+                label: "questions.q_secure_boot_simple.options.not_sure",
                 patches: [{ op: "set", field: "secureBootNeeded", value: null }],
                 isDisqualifier: false,
             },
@@ -248,19 +278,19 @@ const questions: Question[] = [
     // ---------------------------
     {
         id: "q_phase_exit",
-        text: "Want to see results now or refine further?",
+        text: "questions.q_phase_exit.text",
         showIf: showIfIntermediate,
         options: [
             {
                 id: "refine_further",
-                label: "Refine further",
+                label: "questions.q_phase_exit.options.refine_further",
                 patches: [],
                 isDisqualifier: false,
             },
             {
                 id: "see_results",
-                label: "See results now",
-                patches: [{ op: "set", field: "experience", value: "BEGINNER" }],
+                label: "questions.q_phase_exit.options.see_results",
+                patches: [],
                 isDisqualifier: false,
             },
         ],
@@ -271,24 +301,24 @@ const questions: Question[] = [
     // ---------------------------
     {
         id: "q_architecture_clarifier",
-        text: "Are you using a typical PC/laptop, or an ARM-based device?",
+        text: "questions.q_architecture_clarifier.text",
         showIf: showIfIntermediate,
         options: [
             {
                 id: "pc",
-                label: "Typical PC / laptop",
+                label: "questions.q_architecture_clarifier.options.pc",
                 patches: [{ op: "set", field: "architecture", value: "x86_64" }],
                 isDisqualifier: false,
             },
             {
                 id: "arm",
-                label: "ARM-based device (some newer devices use this)",
+                label: "questions.q_architecture_clarifier.options.arm",
                 patches: [{ op: "set", field: "architecture", value: "arm64" }],
                 isDisqualifier: false,
             },
             {
                 id: "not_sure",
-                label: "Not sure",
+                label: "questions.q_architecture_clarifier.options.not_sure",
                 patches: [],
                 isDisqualifier: false,
             },
@@ -296,7 +326,7 @@ const questions: Question[] = [
     },
     {
         id: "q_arm_expectation",
-        text: "On ARM devices, Linux options can be more limited. What do you prefer?",
+        text: "questions.q_arm_expectation.text",
         showIf: {
             op: "and",
             conditions: [
@@ -307,7 +337,7 @@ const questions: Question[] = [
         options: [
             {
                 id: "simple",
-                label: "Keep it simple and stable",
+                label: "questions.q_arm_expectation.options.simple",
                 patches: [
                     { op: "set", field: "installation", value: "GUI" },
                     { op: "set", field: "maintenance", value: "NO_TERMINAL" },
@@ -316,7 +346,7 @@ const questions: Question[] = [
             },
             {
                 id: "i_can_tinker",
-                label: "I can handle a more hands-on setup",
+                label: "questions.q_arm_expectation.options.i_can_tinker",
                 patches: [
                     { op: "set", field: "installation", value: "CLI_OK" },
                     { op: "set", field: "maintenance", value: "TERMINAL_OK" },
@@ -327,48 +357,48 @@ const questions: Question[] = [
     },
     {
         id: "q_desktop_preference",
-        text: "Do you have a desktop look you prefer?",
+        text: "questions.q_desktop_preference.text",
         showIf: showIfIntermediate,
         options: [
             {
                 id: "no_preference",
-                label: "No preference",
+                label: "questions.q_desktop_preference.options.no_preference",
                 patches: [{ op: "set", field: "desktopPreference", value: "NO_PREFERENCE" }],
                 isDisqualifier: false,
             },
             {
                 id: "gnome",
-                label: "GNOME (clean and simple)",
+                label: "questions.q_desktop_preference.options.gnome",
                 patches: [{ op: "set", field: "desktopPreference", value: "GNOME" }],
                 isDisqualifier: false,
             },
             {
                 id: "kde",
-                label: "KDE Plasma (very customizable)",
+                label: "questions.q_desktop_preference.options.kde",
                 patches: [{ op: "set", field: "desktopPreference", value: "KDE" }],
                 isDisqualifier: false,
             },
             {
                 id: "xfce",
-                label: "XFCE (lightweight)",
+                label: "questions.q_desktop_preference.options.xfce",
                 patches: [{ op: "set", field: "desktopPreference", value: "XFCE" }],
                 isDisqualifier: false,
             },
             {
                 id: "cinnamon",
-                label: "Cinnamon (familiar)",
+                label: "questions.q_desktop_preference.options.cinnamon",
                 patches: [{ op: "set", field: "desktopPreference", value: "CINNAMON" }],
                 isDisqualifier: false,
             },
             {
                 id: "mate",
-                label: "MATE (classic)",
+                label: "questions.q_desktop_preference.options.mate",
                 patches: [{ op: "set", field: "desktopPreference", value: "MATE" }],
                 isDisqualifier: false,
             },
             {
                 id: "lxqt",
-                label: "LXQt (very light)",
+                label: "questions.q_desktop_preference.options.lxqt",
                 patches: [{ op: "set", field: "desktopPreference", value: "LXQT" }],
                 isDisqualifier: false,
             },
@@ -376,24 +406,24 @@ const questions: Question[] = [
     },
     {
         id: "q_release_model",
-        text: "How do you feel about updates?",
+        text: "questions.q_release_model.text",
         showIf: showIfIntermediate,
         options: [
             {
                 id: "no_preference",
-                label: "No preference",
+                label: "questions.q_release_model.options.no_preference",
                 patches: [{ op: "set", field: "releaseModel", value: "NO_PREFERENCE" }],
                 isDisqualifier: false,
             },
             {
                 id: "fixed",
-                label: "Stable, less frequent updates",
+                label: "questions.q_release_model.options.fixed",
                 patches: [{ op: "set", field: "releaseModel", value: "FIXED" }],
                 isDisqualifier: false,
             },
             {
                 id: "rolling",
-                label: "Latest features, frequent updates",
+                label: "questions.q_release_model.options.rolling",
                 patches: [{ op: "set", field: "releaseModel", value: "ROLLING" }],
                 isDisqualifier: false,
             },
@@ -401,7 +431,7 @@ const questions: Question[] = [
     },
     {
         id: "q_work_gaming_focus",
-        text: "If you do both work and gaming, which matters more right now?",
+        text: "questions.q_work_gaming_focus.text",
         showIf: {
             op: "and",
             conditions: [
@@ -418,7 +448,7 @@ const questions: Question[] = [
         options: [
             {
                 id: "mostly_work",
-                label: "Mostly work or everyday use",
+                label: "questions.q_work_gaming_focus.options.mostly_work",
                 patches: [
                     { op: "add_tag", value: "Work" },
                     { op: "remove_tag", value: "Gaming" },
@@ -427,7 +457,7 @@ const questions: Question[] = [
             },
             {
                 id: "mostly_gaming",
-                label: "Mostly gaming",
+                label: "questions.q_work_gaming_focus.options.mostly_gaming",
                 patches: [
                     { op: "add_tag", value: "Gaming" },
                     { op: "remove_tag", value: "Work" },
@@ -436,7 +466,7 @@ const questions: Question[] = [
             },
             {
                 id: "both",
-                label: "Both about equally",
+                label: "questions.q_work_gaming_focus.options.both",
                 patches: [
                     { op: "add_tag", value: "Work" },
                     { op: "add_tag", value: "Gaming" },
@@ -445,7 +475,7 @@ const questions: Question[] = [
             },
             {
                 id: "no_preference",
-                label: "No preference",
+                label: "questions.q_work_gaming_focus.options.no_preference",
                 patches: [],
                 isDisqualifier: false,
             },
@@ -453,7 +483,7 @@ const questions: Question[] = [
     },
     {
         id: "q_secure_boot_clarifier",
-        text: "If Secure Boot comes up, what would you prefer?",
+        text: "questions.q_secure_boot_clarifier.text",
         showIf: {
             op: "and",
             conditions: [
@@ -464,19 +494,19 @@ const questions: Question[] = [
         options: [
             {
                 id: "must_on",
-                label: "It must stay on",
+                label: "questions.q_secure_boot_clarifier.options.must_on",
                 patches: [{ op: "set", field: "secureBootNeeded", value: true }],
                 isDisqualifier: false,
             },
             {
                 id: "can_off",
-                label: "I can turn it off if needed",
+                label: "questions.q_secure_boot_clarifier.options.can_off",
                 patches: [{ op: "set", field: "secureBootNeeded", value: false }],
                 isDisqualifier: false,
             },
             {
                 id: "still_unsure",
-                label: "Still not sure",
+                label: "questions.q_secure_boot_clarifier.options.still_unsure",
                 patches: [{ op: "set", field: "secureBootNeeded", value: null }],
                 isDisqualifier: false,
             },
@@ -484,7 +514,7 @@ const questions: Question[] = [
     },
     {
         id: "q_nvidia_tolerance",
-        text: "If you have NVIDIA, how much setup work are you willing to do?",
+        text: "questions.q_nvidia_tolerance.text",
         showIf: {
             op: "and",
             conditions: [showIfIntermediate, { field: "gpu", op: "eq", value: "NVIDIA" }],
@@ -492,25 +522,25 @@ const questions: Question[] = [
         options: [
             {
                 id: "no_preference",
-                label: "No preference",
+                label: "questions.q_nvidia_tolerance.options.no_preference",
                 patches: [{ op: "set", field: "nvidiaTolerance", value: "NO_PREFERENCE" }],
                 isDisqualifier: false,
             },
             {
                 id: "want_easy",
-                label: "I want it to work with minimal setup",
+                label: "questions.q_nvidia_tolerance.options.want_easy",
                 patches: [{ op: "set", field: "nvidiaTolerance", value: "WANT_EASY" }],
                 isDisqualifier: false,
             },
             {
                 id: "ok_hands_on",
-                label: "I'm okay with extra steps",
+                label: "questions.q_nvidia_tolerance.options.ok_hands_on",
                 patches: [{ op: "set", field: "nvidiaTolerance", value: "OK_HANDS_ON" }],
                 isDisqualifier: false,
             },
             {
                 id: "avoid_proprietary",
-                label: "I prefer to avoid closed-source NVIDIA software",
+                label: "questions.q_nvidia_tolerance.options.avoid_proprietary",
                 patches: [{ op: "set", field: "nvidiaTolerance", value: "AVOID_PROPRIETARY" }],
                 isDisqualifier: false,
             },
@@ -518,7 +548,7 @@ const questions: Question[] = [
     },
     {
         id: "q_everyday_apps",
-        text: "Which feels closer to your expectation for everyday apps?",
+        text: "questions.q_everyday_apps.text",
         showIf: {
             op: "and",
             conditions: [showIfIntermediate, { field: "tags", op: "contains", value: "Work" }],
@@ -526,13 +556,13 @@ const questions: Question[] = [
         options: [
             {
                 id: "must_just_work",
-                label: "I want common apps and media to work without hassle",
+                label: "questions.q_everyday_apps.options.must_just_work",
                 patches: [{ op: "set", field: "proprietary", value: "REQUIRED" }],
                 isDisqualifier: false,
             },
             {
                 id: "ok_alternatives",
-                label: "I'm okay using alternatives and doing small setup",
+                label: "questions.q_everyday_apps.options.ok_alternatives",
                 patches: [{ op: "set", field: "proprietary", value: "OPTIONAL" }],
                 isDisqualifier: false,
             },
@@ -540,7 +570,7 @@ const questions: Question[] = [
     },
     {
         id: "q_privacy_tradeoff",
-        text: "When privacy conflicts with convenience, what do you prefer?",
+        text: "questions.q_privacy_tradeoff.text",
         showIf: {
             op: "and",
             conditions: [showIfIntermediate, { field: "tags", op: "contains", value: "Privacy" }],
@@ -548,13 +578,13 @@ const questions: Question[] = [
         options: [
             {
                 id: "privacy_first",
-                label: "Privacy first, even if some things are harder",
+                label: "questions.q_privacy_tradeoff.options.privacy_first",
                 patches: [{ op: "set", field: "proprietary", value: "AVOID" }],
                 isDisqualifier: false,
             },
             {
                 id: "balanced",
-                label: "Balance is fine — I still want things to work smoothly",
+                label: "questions.q_privacy_tradeoff.options.balanced",
                 patches: [{ op: "set", field: "proprietary", value: "OPTIONAL" }],
                 isDisqualifier: false,
             },
@@ -562,7 +592,7 @@ const questions: Question[] = [
     },
     {
         id: "q_gaming",
-        text: "Do you plan to play games on this machine?",
+        text: "questions.q_gaming.text",
         showIf: {
             op: "and",
             conditions: [
@@ -573,13 +603,13 @@ const questions: Question[] = [
         options: [
             {
                 id: "yes",
-                label: "Yes",
+                label: "questions.q_gaming.options.yes",
                 patches: [{ op: "add_tag", value: "Gaming" }],
                 isDisqualifier: false,
             },
             {
                 id: "no",
-                label: "No",
+                label: "questions.q_gaming.options.no",
                 patches: [{ op: "remove_tag", value: "Gaming" }],
                 isDisqualifier: false,
             },
@@ -587,7 +617,7 @@ const questions: Question[] = [
     },
     {
         id: "q_gaming_expectation",
-        text: "What best describes what you expect from gaming on Linux?",
+        text: "questions.q_gaming_expectation.text",
         showIf: {
             op: "and",
             conditions: [showIfIntermediate, { field: "tags", op: "contains", value: "Gaming" }],
@@ -595,13 +625,13 @@ const questions: Question[] = [
         options: [
             {
                 id: "plug_and_play",
-                label: "I want it to be as smooth as possible",
+                label: "questions.q_gaming_expectation.options.plug_and_play",
                 patches: [{ op: "set", field: "proprietary", value: "REQUIRED" }],
                 isDisqualifier: false,
             },
             {
                 id: "i_can_tweak",
-                label: "I can tweak settings if needed",
+                label: "questions.q_gaming_expectation.options.i_can_tweak",
                 patches: [{ op: "set", field: "proprietary", value: "OPTIONAL" }],
                 isDisqualifier: false,
             },
@@ -609,7 +639,7 @@ const questions: Question[] = [
     },
     {
         id: "q_anticheat_warning",
-        text: "Do you mainly play games that require strict anti-cheat that may not work on Linux?",
+        text: "questions.q_anticheat_warning.text",
         showIf: {
             op: "and",
             conditions: [showIfIntermediate, { field: "tags", op: "contains", value: "Gaming" }],
@@ -617,13 +647,13 @@ const questions: Question[] = [
         options: [
             {
                 id: "yes",
-                label: "Yes",
+                label: "questions.q_anticheat_warning.options.yes",
                 patches: [],
                 isDisqualifier: true,
             },
             {
                 id: "no",
-                label: "No / Not sure",
+                label: "questions.q_anticheat_warning.options.no",
                 patches: [],
                 isDisqualifier: false,
             },
@@ -631,7 +661,7 @@ const questions: Question[] = [
     },
     {
         id: "q_server_comfort",
-        text: "For a home server, what setup style do you prefer?",
+        text: "questions.q_server_comfort.text",
         showIf: {
             op: "and",
             conditions: [showIfIntermediate, { field: "tags", op: "contains", value: "Server" }],
@@ -639,7 +669,7 @@ const questions: Question[] = [
         options: [
             {
                 id: "simple_admin",
-                label: "I want simple setup and straightforward maintenance",
+                label: "questions.q_server_comfort.options.simple_admin",
                 patches: [
                     { op: "set", field: "installation", value: "GUI" },
                     { op: "set", field: "maintenance", value: "NO_TERMINAL" },
@@ -648,7 +678,7 @@ const questions: Question[] = [
             },
             {
                 id: "hands_on_server",
-                label: "I'm okay managing it in a more hands-on way",
+                label: "questions.q_server_comfort.options.hands_on_server",
                 patches: [
                     { op: "set", field: "installation", value: "CLI_OK" },
                     { op: "set", field: "maintenance", value: "TERMINAL_OK" },
@@ -663,24 +693,24 @@ const questions: Question[] = [
     // ---------------------------
     {
         id: "q_release_model_advanced",
-        text: "At a technical level, do you prefer rolling or fixed releases?",
+        text: "questions.q_release_model_advanced.text",
         showIf: showIfAdvanced,
         options: [
             {
                 id: "no_preference",
-                label: "No preference",
+                label: "questions.q_release_model_advanced.options.no_preference",
                 patches: [{ op: "set", field: "releaseModel", value: "NO_PREFERENCE" }],
                 isDisqualifier: false,
             },
             {
                 id: "fixed",
-                label: "Fixed releases (predictable, less frequent updates)",
+                label: "questions.q_release_model_advanced.options.fixed",
                 patches: [{ op: "set", field: "releaseModel", value: "FIXED" }],
                 isDisqualifier: false,
             },
             {
                 id: "rolling",
-                label: "Rolling release (continuous updates)",
+                label: "questions.q_release_model_advanced.options.rolling",
                 patches: [{ op: "set", field: "releaseModel", value: "ROLLING" }],
                 isDisqualifier: false,
             },
@@ -688,48 +718,48 @@ const questions: Question[] = [
     },
     {
         id: "q_desktop_preference_advanced",
-        text: "If you care about the desktop environment, pick one.",
+        text: "questions.q_desktop_preference_advanced.text",
         showIf: showIfAdvanced,
         options: [
             {
                 id: "no_preference",
-                label: "No preference",
+                label: "questions.q_desktop_preference_advanced.options.no_preference",
                 patches: [{ op: "set", field: "desktopPreference", value: "NO_PREFERENCE" }],
                 isDisqualifier: false,
             },
             {
                 id: "gnome",
-                label: "GNOME",
+                label: "questions.q_desktop_preference_advanced.options.gnome",
                 patches: [{ op: "set", field: "desktopPreference", value: "GNOME" }],
                 isDisqualifier: false,
             },
             {
                 id: "kde",
-                label: "KDE Plasma",
+                label: "questions.q_desktop_preference_advanced.options.kde",
                 patches: [{ op: "set", field: "desktopPreference", value: "KDE" }],
                 isDisqualifier: false,
             },
             {
                 id: "xfce",
-                label: "XFCE",
+                label: "questions.q_desktop_preference_advanced.options.xfce",
                 patches: [{ op: "set", field: "desktopPreference", value: "XFCE" }],
                 isDisqualifier: false,
             },
             {
                 id: "cinnamon",
-                label: "Cinnamon",
+                label: "questions.q_desktop_preference_advanced.options.cinnamon",
                 patches: [{ op: "set", field: "desktopPreference", value: "CINNAMON" }],
                 isDisqualifier: false,
             },
             {
                 id: "mate",
-                label: "MATE",
+                label: "questions.q_desktop_preference_advanced.options.mate",
                 patches: [{ op: "set", field: "desktopPreference", value: "MATE" }],
                 isDisqualifier: false,
             },
             {
                 id: "lxqt",
-                label: "LXQt",
+                label: "questions.q_desktop_preference_advanced.options.lxqt",
                 patches: [{ op: "set", field: "desktopPreference", value: "LXQT" }],
                 isDisqualifier: false,
             },
@@ -737,24 +767,24 @@ const questions: Question[] = [
     },
     {
         id: "q_gpu_confirm_advanced",
-        text: "Which GPU vendor best matches your system?",
+        text: "questions.q_gpu_confirm_advanced.text",
         showIf: showIfAdvanced,
         options: [
             {
                 id: "not_sure",
-                label: "Not sure / no preference",
+                label: "questions.q_gpu_confirm_advanced.options.not_sure",
                 patches: [{ op: "set", field: "gpu", value: "UNKNOWN" }],
                 isDisqualifier: false,
             },
             {
                 id: "nvidia",
-                label: "NVIDIA",
+                label: "questions.q_gpu_confirm_advanced.options.nvidia",
                 patches: [{ op: "set", field: "gpu", value: "NVIDIA" }],
                 isDisqualifier: false,
             },
             {
                 id: "intel_amd",
-                label: "Intel or AMD",
+                label: "questions.q_gpu_confirm_advanced.options.intel_amd",
                 patches: [{ op: "set", field: "gpu", value: "INTEL_AMD" }],
                 isDisqualifier: false,
             },
@@ -762,24 +792,24 @@ const questions: Question[] = [
     },
     {
         id: "q_secure_boot_advanced",
-        text: "Secure Boot: do you require out-of-the-box support?",
+        text: "questions.q_secure_boot_advanced.text",
         showIf: showIfAdvanced,
         options: [
             {
                 id: "no_preference",
-                label: "No preference / not sure",
+                label: "questions.q_secure_boot_advanced.options.no_preference",
                 patches: [{ op: "set", field: "secureBootNeeded", value: null }],
                 isDisqualifier: false,
             },
             {
                 id: "must_on",
-                label: "Yes, it must stay on",
+                label: "questions.q_secure_boot_advanced.options.must_on",
                 patches: [{ op: "set", field: "secureBootNeeded", value: true }],
                 isDisqualifier: false,
             },
             {
                 id: "can_off",
-                label: "No, I can disable it if needed",
+                label: "questions.q_secure_boot_advanced.options.can_off",
                 patches: [{ op: "set", field: "secureBootNeeded", value: false }],
                 isDisqualifier: false,
             },
@@ -787,7 +817,7 @@ const questions: Question[] = [
     },
     {
         id: "q_nvidia_tolerance_advanced",
-        text: "For NVIDIA, which setup tradeoff do you accept?",
+        text: "questions.q_nvidia_tolerance_advanced.text",
         showIf: {
             op: "and",
             conditions: [showIfAdvanced, { field: "gpu", op: "eq", value: "NVIDIA" }],
@@ -795,25 +825,25 @@ const questions: Question[] = [
         options: [
             {
                 id: "no_preference",
-                label: "No preference",
+                label: "questions.q_nvidia_tolerance_advanced.options.no_preference",
                 patches: [{ op: "set", field: "nvidiaTolerance", value: "NO_PREFERENCE" }],
                 isDisqualifier: false,
             },
             {
                 id: "want_easy",
-                label: "Minimal setup",
+                label: "questions.q_nvidia_tolerance_advanced.options.want_easy",
                 patches: [{ op: "set", field: "nvidiaTolerance", value: "WANT_EASY" }],
                 isDisqualifier: false,
             },
             {
                 id: "ok_hands_on",
-                label: "Hands-on setup is fine",
+                label: "questions.q_nvidia_tolerance_advanced.options.ok_hands_on",
                 patches: [{ op: "set", field: "nvidiaTolerance", value: "OK_HANDS_ON" }],
                 isDisqualifier: false,
             },
             {
                 id: "avoid_proprietary",
-                label: "Avoid closed-source NVIDIA software",
+                label: "questions.q_nvidia_tolerance_advanced.options.avoid_proprietary",
                 patches: [{ op: "set", field: "nvidiaTolerance", value: "AVOID_PROPRIETARY" }],
                 isDisqualifier: false,
             },
@@ -821,30 +851,30 @@ const questions: Question[] = [
     },
     {
         id: "q_open_software_strictness",
-        text: "How strict do you want to be about proprietary software?",
+        text: "questions.q_open_software_strictness.text",
         showIf: showIfAdvanced,
         options: [
             {
                 id: "no_preference",
-                label: "No preference / keep my earlier choice",
+                label: "questions.q_open_software_strictness.options.no_preference",
                 patches: [],
                 isDisqualifier: false,
             },
             {
                 id: "strict",
-                label: "Strict — only free/open software",
+                label: "questions.q_open_software_strictness.options.strict",
                 patches: [{ op: "set", field: "proprietary", value: "AVOID" }],
                 isDisqualifier: false,
             },
             {
                 id: "practical",
-                label: "Practical — allow proprietary when needed",
+                label: "questions.q_open_software_strictness.options.practical",
                 patches: [{ op: "set", field: "proprietary", value: "OPTIONAL" }],
                 isDisqualifier: false,
             },
             {
                 id: "required",
-                label: "I need proprietary software to work",
+                label: "questions.q_open_software_strictness.options.required",
                 patches: [{ op: "set", field: "proprietary", value: "REQUIRED" }],
                 isDisqualifier: false,
             },
@@ -852,18 +882,18 @@ const questions: Question[] = [
     },
     {
         id: "q_advanced_control",
-        text: "Are you comfortable handling updates and fixes in the terminal when needed?",
+        text: "questions.q_advanced_control.text",
         showIf: showIfAdvanced,
         options: [
             {
                 id: "no_preference",
-                label: "No preference / keep my earlier choice",
+                label: "questions.q_advanced_control.options.no_preference",
                 patches: [],
                 isDisqualifier: false,
             },
             {
                 id: "yes",
-                label: "Yes, I'm fine with hands-on maintenance",
+                label: "questions.q_advanced_control.options.yes",
                 patches: [
                     { op: "set", field: "installation", value: "CLI_OK" },
                     { op: "set", field: "maintenance", value: "TERMINAL_OK" },
@@ -872,7 +902,7 @@ const questions: Question[] = [
             },
             {
                 id: "no",
-                label: "No, I prefer a smoother experience",
+                label: "questions.q_advanced_control.options.no",
                 patches: [
                     { op: "set", field: "installation", value: "GUI" },
                     { op: "set", field: "maintenance", value: "NO_TERMINAL" },
@@ -883,30 +913,30 @@ const questions: Question[] = [
     },
     {
         id: "q_init_system_preference",
-        text: "Preferred init system?",
+        text: "questions.q_init_system_preference.text",
         showIf: showIfAdvanced,
         options: [
             {
                 id: "no_preference",
-                label: "No preference",
+                label: "questions.q_init_system_preference.options.no_preference",
                 patches: [{ op: "set", field: "initSystem", value: "NO_PREFERENCE" }],
                 isDisqualifier: false,
             },
             {
                 id: "systemd",
-                label: "systemd",
+                label: "questions.q_init_system_preference.options.systemd",
                 patches: [{ op: "set", field: "initSystem", value: "SYSTEMD" }],
                 isDisqualifier: false,
             },
             {
                 id: "openrc",
-                label: "OpenRC",
+                label: "questions.q_init_system_preference.options.openrc",
                 patches: [{ op: "set", field: "initSystem", value: "OPENRC" }],
                 isDisqualifier: false,
             },
             {
                 id: "runit",
-                label: "runit",
+                label: "questions.q_init_system_preference.options.runit",
                 patches: [{ op: "set", field: "initSystem", value: "RUNIT" }],
                 isDisqualifier: false,
             },
@@ -914,48 +944,48 @@ const questions: Question[] = [
     },
     {
         id: "q_package_manager_preference",
-        text: "Preferred package manager?",
+        text: "questions.q_package_manager_preference.text",
         showIf: showIfAdvanced,
         options: [
             {
                 id: "no_preference",
-                label: "No preference",
+                label: "questions.q_package_manager_preference.options.no_preference",
                 patches: [{ op: "set", field: "packageManager", value: "NO_PREFERENCE" }],
                 isDisqualifier: false,
             },
             {
                 id: "apt",
-                label: "APT",
+                label: "questions.q_package_manager_preference.options.apt",
                 patches: [{ op: "set", field: "packageManager", value: "APT" }],
                 isDisqualifier: false,
             },
             {
                 id: "dnf",
-                label: "DNF",
+                label: "questions.q_package_manager_preference.options.dnf",
                 patches: [{ op: "set", field: "packageManager", value: "DNF" }],
                 isDisqualifier: false,
             },
             {
                 id: "pacman",
-                label: "Pacman",
+                label: "questions.q_package_manager_preference.options.pacman",
                 patches: [{ op: "set", field: "packageManager", value: "PACMAN" }],
                 isDisqualifier: false,
             },
             {
                 id: "zypper",
-                label: "Zypper",
+                label: "questions.q_package_manager_preference.options.zypper",
                 patches: [{ op: "set", field: "packageManager", value: "ZYPPER" }],
                 isDisqualifier: false,
             },
             {
                 id: "apk",
-                label: "APK",
+                label: "questions.q_package_manager_preference.options.apk",
                 patches: [{ op: "set", field: "packageManager", value: "APK" }],
                 isDisqualifier: false,
             },
             {
                 id: "nix",
-                label: "Nix",
+                label: "questions.q_package_manager_preference.options.nix",
                 patches: [{ op: "set", field: "packageManager", value: "NIX" }],
                 isDisqualifier: false,
             },
@@ -963,30 +993,30 @@ const questions: Question[] = [
     },
     {
         id: "q_ram_refinement_advanced",
-        text: "If you want to refine RAM requirements, choose a minimum.",
+        text: "questions.q_ram_refinement_advanced.text",
         showIf: showIfAdvanced,
         options: [
             {
                 id: "no_preference",
-                label: "No preference",
+                label: "questions.q_ram_refinement_advanced.options.no_preference",
                 patches: [],
                 isDisqualifier: false,
             },
             {
                 id: "ram_4",
-                label: "4 GB",
+                label: "questions.q_ram_refinement_advanced.options.ram_4",
                 patches: [{ op: "set", field: "minRam", value: 4 }],
                 isDisqualifier: false,
             },
             {
                 id: "ram_8",
-                label: "8 GB",
+                label: "questions.q_ram_refinement_advanced.options.ram_8",
                 patches: [{ op: "set", field: "minRam", value: 8 }],
                 isDisqualifier: false,
             },
             {
                 id: "ram_16",
-                label: "16 GB",
+                label: "questions.q_ram_refinement_advanced.options.ram_16",
                 patches: [{ op: "set", field: "minRam", value: 16 }],
                 isDisqualifier: false,
             },
@@ -1010,6 +1040,7 @@ export const QUESTION_PHASES = [
             "q_ram_hint",
             "q_privacy_importance",
             "q_gpu_simple",
+            "q_software_use_case",
             "q_secure_boot_simple",
         ],
     },

@@ -1,0 +1,678 @@
+{
+  "welcome": {
+    "hello": "¡Hola Mundo!",
+    "title": "Elija una distribución de Linux que se ajuste a sus opciones",
+    "tagline": "Este es un selector basado en compatibilidad. Nunca clasifica ni recomienda: solo filtra según lo que seleccionas.",
+    "expect": {
+      "title": "lo que puedes esperar",
+      "bullets": [
+        "Sin clasificaciones ni opiniones, solo compatibilidad.",
+        "Razones claras para cada resultado.",
+        "Deténgase en cualquier momento o refine más tarde."
+      ]
+    },
+    "start": "Comenzar",
+    "howItWorks": "como funciona",
+    "quickPhase": "Puedes detenerte después de la fase rápida y aún así obtener resultados."
+  },
+  "app": {
+    "title": "Elige tu Linux",
+    "tagline": "Basado en compatibilidad, explicable, sin clasificaciones."
+  },
+  "wizard": {
+    "complete": {
+      "title": "Estás listo para los resultados",
+      "tagline": "Vea la lista corta compatible según lo que seleccionó.",
+      "viewResults": "Ver resultados"
+    },
+    "progress": {
+      "progress": "Progreso",
+      "questionOf": "Pregunta {current} de {total}"
+    },
+    "phaseGate": {
+      "tagline": "Puede seguir refinando o saltar a los resultados ahora."
+    },
+    "nav": {
+      "back": "← Volver",
+      "reviewAnswers": "Revisar respuestas",
+      "restart": "Reanudar"
+    }
+  },
+  "reviewAnswers": {
+    "title": "Revisar respuestas",
+    "tagline": "Retrocede para cambiar cualquier cosa.",
+    "close": "Cerca",
+    "noAnswers": "Aún no se han registrado respuestas.",
+    "change": "Cambiar"
+  },
+  "debug": {
+    "title": "Depurar"
+  },
+  "results": {
+    "title": "Tu lista corta de compatibles",
+    "tagline": "Estos resultados son compatibles con sus elecciones. No hay rankings ni puntuaciones.",
+    "explainability": {
+      "title": "Explicabilidad y control",
+      "tagline": "Revise las respuestas o vea por qué se excluyeron algunas distribuciones."
+    },
+    "reviewAnswers": "Revisar respuestas",
+    "why": "¿Por qué estos resultados?",
+    "startOver": "Empezar de nuevo",
+    "noMatch": "Ninguno cumplió con las limitaciones actuales.",
+    "showFewer": "Mostrar menos distribuciones compatibles",
+    "showAll": "Mostrar todas las distribuciones compatibles",
+    "distroCard": {
+      "compatible": "Compatible",
+      "whyItFits": "¿Por qué encaja?",
+      "matchedChoices": "opciones coincidentes",
+      "strictFiltersMatched": "filtros estrictos coincidentes",
+      "choiceDrivenReasons": "razones impulsadas por la elección",
+      "noStrictFiltersMatched": "No se activaron filtros estrictos para este resultado.",
+      "noReasons": "Cumple con sus limitaciones requeridas.",
+      "details": "Ver detalles",
+      "hideDetails": "Ocultar detalles",
+      "showFewer": "Mostrar menos",
+      "showAll": "Mostrar todos los motivos",
+      "potentialFriction": "Fricción potencial",
+      "compare": "Comparar",
+      "compared": "Comparado",
+      "links": {
+        "website": "Sitio web",
+        "documentation": "Documentación",
+        "forum": "Foro",
+        "download": "Descargar",
+        "testDrive": "Prueba de manejo"
+      }
+    },
+    "compareSelected": "Comparar ({count})",
+    "compareButton": "Comparar"
+  },
+  "explainability": {
+    "title": "¿Por qué estos resultados?",
+    "tagline": "Restricciones y exclusiones transparentes.",
+    "close": "Cerca",
+    "activeConstraints": "restricciones activas",
+    "noActiveConstraints": "Sin restricciones activas.",
+    "excludedDistros": "Distribuciones excluidas",
+    "noneExcluded": "Ninguno fue excluido."
+  },
+  "disqualified": {
+    "title": "Detuvimos el flujo",
+    "tagline": "Una de sus respuestas provocó una parada brusca. Es posible que Linux no se ajuste a estas restricciones como se indica. Puede reiniciar o ajustar una respuesta para explorar otros resultados.",
+    "startOver": "Empezar de nuevo"
+  },
+  "howItWorks": {
+    "title": "como funciona",
+    "tagline": "Este sitio no elige una sola \"mejor\" versión de Linux. Solo muestra lo que se ajusta a las respuestas que das.",
+    "sections": [
+      {
+        "title": "1) Elige qué tan profundo quieres llegar",
+        "content": "Comience con una serie rápida de preguntas. Si desea mayor precisión, puede seguir refinando. También puedes dejar de hacerlo después de la primera fase y seguir obteniendo resultados."
+      },
+      {
+        "title": "2) Respondes preguntas sencillas",
+        "content": "Le preguntamos cosas como si quiere que todo funcione sin utilizar el terminal, si necesita software propietario o si su ordenador es antiguo."
+      },
+      {
+        "title": "3) Refinamientos opcionales (si lo desea)",
+        "content": "La siguiente fase explica algunos conceptos en términos para principiantes:",
+        "bullets": [
+          "<span class=\"font-semibold\">Preferencia de escritorio</span> = la apariencia y el diseño de la interfaz.",
+          "<span class=\"font-semibold\">Modelo de lanzamiento</span> = cómo llegan las actualizaciones (lotes fijos versus actualizaciones continuas).",
+          "<span class=\"font-semibold\">Sin preferencia</span> = no filtrar por ese atributo."
+        ]
+      },
+      {
+        "title": "4) Filtramos según tus elecciones.",
+        "content": "Tus respuestas se convierten en limitaciones claras y fijas. Cada versión de Linux se compara con esas restricciones. Si no los cumple, queda excluido. No se clasifica ni puntúa nada."
+      },
+      {
+        "title": "5) Múltiples resultados son normales",
+        "content": "Muchas versiones de Linux pueden satisfacer las mismas limitaciones. Eso es lo que se espera. Primero mostramos una lista corta compatible y puedes ampliarla o revisar los motivos de cada resultado."
+      },
+      {
+        "title": "lo que no hacemos",
+        "bullets": [
+          "No elegimos favoritos.",
+          "No clasificamos ni calificamos las versiones de Linux.",
+          "No añadimos pesos ocultos ni opiniones personales."
+        ]
+      }
+    ]
+  },
+  "questions": {
+    "q_experience_depth": {
+      "text": "¿A qué profundidad quieres llegar?",
+      "options": {
+        "quick": "Rápido",
+        "more_accurate": "Más preciso",
+        "expert_mode": "Modo experto"
+      }
+    },
+    "q_purpose": {
+      "text": "¿Para qué desea utilizar principalmente esta computadora?",
+      "options": {
+        "everyday": "Cosas cotidianas (web, correo electrónico, documentos)",
+        "gaming": "Juego de azar",
+        "privacy": "Uso centrado en la privacidad",
+        "server": "Ejecutando un servidor doméstico"
+      }
+    },
+    "q_works_right_away": {
+      "text": "¿Qué importancia tiene que la mayoría de las cosas funcionen de inmediato?",
+      "options": {
+        "very": "Muy importante: quiero una configuración mínima",
+        "ok_with_some": "Estoy bien haciendo un poco de configuración",
+        "only_free": "Sólo quiero software libre/abierto"
+      }
+    },
+    "q_installation": {
+      "text": "¿Cómo le gustaría instalar Linux?",
+      "options": {
+        "gui": "quiero un instalador sencillo",
+        "hands_on": "Estoy de acuerdo con una configuración más práctica"
+      }
+    },
+    "q_troubleshooting_style": {
+      "text": "Si algo no funciona, ¿qué es lo que te resulta más cómodo?",
+      "options": {
+        "menus": "Quiero botones y menús, no comandos.",
+        "follow_steps": "Puedo seguir una guía paso a paso."
+      }
+    },
+    "q_old_hardware": {
+      "text": "¿Esta computadora es antigua o no es muy potente?",
+      "options": {
+        "yes": "Si, es bastante viejo",
+        "no": "No, es bastante moderno."
+      }
+    },
+    "q_ram_hint": {
+      "text": "Aproximadamente, ¿cuánta memoria (RAM) tiene tu computadora?",
+      "options": {
+        "ram_4": "4 GB o menos",
+        "ram_8": "8GB",
+        "ram_16": "16 GB o más",
+        "not_sure": "No estoy seguro"
+      }
+    },
+    "q_privacy_importance": {
+      "text": "¿Qué importancia tiene la privacidad para usted?",
+      "options": {
+        "very_important": "muy importante",
+        "balanced": "Me importa, pero la conveniencia también importa"
+      }
+    },
+    "q_gpu_simple": {
+      "text": "¿Tienes una tarjeta gráfica NVIDIA?",
+      "options": {
+        "nvidia": "Si, NVIDIA",
+        "not_sure": "No estoy seguro",
+        "no": "No"
+      }
+    },
+    "q_software_use_case": {
+      "text": "¿Utiliza algún software especializado?",
+      "options": {
+        "office_suite": "Paquete de oficina (Word, Excel, PowerPoint)",
+        "creative_apps": "Aplicaciones creativas (Photoshop, Premiere, CAD)",
+        "development_tools": "Herramientas de desarrollo (IDE, Docker)",
+        "basic_use": "Sólo navegación básica y correo electrónico"
+      }
+    },
+    "q_secure_boot_simple": {
+      "text": "¿Su computadora necesita que el arranque seguro esté activado?",
+      "options": {
+        "yes": "Sí, debería permanecer encendido.",
+        "no": "No, puede estar apagado",
+        "not_sure": "No estoy seguro"
+      }
+    },
+    "q_phase_exit": {
+      "text": "¿Quiere ver resultados ahora o perfeccionarlos más?",
+      "options": {
+        "refine_further": "Refinar más",
+        "see_results": "Ver resultados ahora"
+      }
+    },
+    "q_architecture_clarifier": {
+      "text": "¿Está utilizando una PC/portátil típica o un dispositivo basado en ARM?",
+      "options": {
+        "pc": "PC/portátil típico",
+        "arm": "Dispositivo basado en ARM (algunos dispositivos más nuevos usan esto)",
+        "not_sure": "No estoy seguro"
+      }
+    },
+    "q_arm_expectation": {
+      "text": "En dispositivos ARM, las opciones de Linux pueden ser más limitadas. ¿Qué prefieres?",
+      "options": {
+        "simple": "Mantenlo simple y estable",
+        "i_can_tinker": "Puedo manejar una configuración más práctica"
+      }
+    },
+    "q_desktop_preference": {
+      "text": "¿Tienes un aspecto de escritorio que prefieras?",
+      "options": {
+        "no_preference": "Sin preferencia",
+        "gnome": "GNOME (limpio y sencillo)",
+        "kde": "KDE Plasma (muy personalizable)",
+        "xfce": "XFCE (ligero)",
+        "cinnamon": "Canela (familiar)",
+        "mate": "MATE (clásico)",
+        "lxqt": "LXQt (muy ligero)"
+      }
+    },
+    "q_release_model": {
+      "text": "¿Qué opinas de las actualizaciones?",
+      "options": {
+        "no_preference": "Sin preferencia",
+        "fixed": "Actualizaciones estables y menos frecuentes",
+        "rolling": "Últimas funciones, actualizaciones frecuentes"
+      }
+    },
+    "q_work_gaming_focus": {
+      "text": "Si trabajas y juegas, ¿qué es más importante en este momento?",
+      "options": {
+        "mostly_work": "Principalmente trabajo o uso diario",
+        "mostly_gaming": "Principalmente juegos",
+        "both": "Ambos aproximadamente por igual",
+        "no_preference": "Sin preferencia"
+      }
+    },
+    "q_secure_boot_clarifier": {
+      "text": "Si aparece Secure Boot, ¿qué preferirías?",
+      "options": {
+        "must_on": "debe permanecer encendido",
+        "can_off": "Puedo apagarlo si es necesario",
+        "still_unsure": "Todavía no estoy seguro"
+      }
+    },
+    "q_nvidia_tolerance": {
+      "text": "Si tienes NVIDIA, ¿cuánto trabajo de configuración estás dispuesto a realizar?",
+      "options": {
+        "no_preference": "Sin preferencia",
+        "want_easy": "Quiero que funcione con una configuración mínima.",
+        "ok_hands_on": "Estoy de acuerdo con pasos adicionales",
+        "avoid_proprietary": "Prefiero evitar el software NVIDIA de código cerrado"
+      }
+    },
+    "q_everyday_apps": {
+      "text": "¿Cuál se acerca más a tus expectativas para las aplicaciones cotidianas?",
+      "options": {
+        "must_just_work": "Quiero que las aplicaciones y los medios comunes funcionen sin problemas",
+        "ok_alternatives": "Estoy bien usando alternativas y haciendo una pequeña configuración."
+      }
+    },
+    "q_privacy_tradeoff": {
+      "text": "Cuando la privacidad entra en conflicto con la comodidad, ¿qué prefieres?",
+      "options": {
+        "privacy_first": "La privacidad es lo primero, incluso si algunas cosas son más difíciles",
+        "balanced": "El equilibrio está bien: todavía quiero que todo funcione sin problemas"
+      }
+    },
+    "q_gaming": {
+      "text": "¿Planeas jugar en esta máquina?",
+      "options": {
+        "yes": "Sí",
+        "no": "No"
+      }
+    },
+    "q_gaming_expectation": {
+      "text": "¿Qué describe mejor lo que esperas de los juegos en Linux?",
+      "options": {
+        "plug_and_play": "quiero que quede lo mas suave posible",
+        "i_can_tweak": "Puedo modificar la configuración si es necesario"
+      }
+    },
+    "q_anticheat_warning": {
+      "text": "¿Juegas principalmente a juegos que requieren un sistema anti-trampas estricto que puede no funcionar en Linux?",
+      "options": {
+        "yes": "Sí",
+        "no": "No / No estoy seguro"
+      }
+    },
+    "q_server_comfort": {
+      "text": "Para un servidor doméstico, ¿qué estilo de configuración prefiere?",
+      "options": {
+        "simple_admin": "Quiero una configuración sencilla y un mantenimiento sencillo",
+        "hands_on_server": "Estoy bien administrándolo de una manera más práctica."
+      }
+    },
+    "q_release_model_advanced": {
+      "text": "A nivel técnico, ¿prefieres lanzamientos rodantes o fijos?",
+      "options": {
+        "no_preference": "Sin preferencia",
+        "fixed": "Versiones fijas (actualizaciones predecibles y menos frecuentes)",
+        "rolling": "Lanzamiento continuo (actualizaciones continuas)"
+      }
+    },
+    "q_desktop_preference_advanced": {
+      "text": "Si le importa el entorno de escritorio, elija uno.",
+      "options": {
+        "no_preference": "Sin preferencia",
+        "gnome": "GNOMO",
+        "kde": "Plasma KDE",
+        "xfce": "XFCE",
+        "cinnamon": "Canela",
+        "mate": "COMPAÑERO",
+        "lxqt": "LXQt"
+      }
+    },
+    "q_gpu_confirm_advanced": {
+      "text": "¿Qué proveedor de GPU se adapta mejor a su sistema?",
+      "options": {
+        "not_sure": "No estoy seguro/sin preferencia",
+        "nvidia": "Nvidia",
+        "intel_amd": "Intel o AMD"
+      }
+    },
+    "q_secure_boot_advanced": {
+      "text": "Arranque seguro: ¿necesita soporte técnico inmediato?",
+      "options": {
+        "no_preference": "Sin preferencia/no estoy seguro",
+        "must_on": "Sí, debe permanecer encendido.",
+        "can_off": "No, puedo desactivarlo si es necesario."
+      }
+    },
+    "q_nvidia_tolerance_advanced": {
+      "text": "Para NVIDIA, ¿qué compensación de configuración acepta?",
+      "options": {
+        "no_preference": "Sin preferencia",
+        "want_easy": "Configuración mínima",
+        "ok_hands_on": "La configuración práctica está bien",
+        "avoid_proprietary": "Evite el software NVIDIA de código cerrado"
+      }
+    },
+    "q_open_software_strictness": {
+      "text": "¿Qué tan estricto quiere ser con respecto al software propietario?",
+      "options": {
+        "no_preference": "Sin preferencia/mantener mi elección anterior",
+        "strict": "Estricto: sólo software libre/abierto",
+        "practical": "Práctico: permita la propiedad cuando sea necesario",
+        "required": "Necesito software propietario para funcionar"
+      }
+    },
+    "q_advanced_control": {
+      "text": "¿Se siente cómodo manejando actualizaciones y correcciones en la terminal cuando es necesario?",
+      "options": {
+        "no_preference": "Sin preferencia/mantener mi elección anterior",
+        "yes": "Sí, estoy bien con el mantenimiento práctico.",
+        "no": "No, prefiero una experiencia más fluida."
+      }
+    },
+    "q_init_system_preference": {
+      "text": "¿Sistema de inicio preferido?",
+      "options": {
+        "no_preference": "Sin preferencia",
+        "systemd": "sistemad",
+        "openrc": "OpenRC",
+        "runit": "correr"
+      }
+    },
+    "q_package_manager_preference": {
+      "text": "¿Administrador de paquetes preferido?",
+      "options": {
+        "no_preference": "Sin preferencia",
+        "apt": "APTO",
+        "dnf": "abandonar",
+        "pacman": "Pacman",
+        "zypper": "cremallera",
+        "apk": "APK",
+        "nix": "Nada"
+      }
+    },
+    "q_ram_refinement_advanced": {
+      "text": "Si desea refinar los requisitos de RAM, elija un mínimo.",
+      "options": {
+        "no_preference": "Sin preferencia",
+        "ram_4": "4GB",
+        "ram_8": "8GB",
+        "ram_16": "16GB"
+      }
+    }
+  },
+  "reasons": {
+    "include_meets_requirements": "Cumple con sus limitaciones requeridas.",
+    "include_installer_gui_match": "Coincide con su preferencia por un instalador gráfico.",
+    "include_maintenance_low_friction_match": "Coincide con su preferencia por el mantenimiento de baja fricción.",
+    "include_proprietary_none_match": "Respeta su preferencia de evitar el software propietario.",
+    "include_proprietary_supported": "Soporta su necesidad de software propietario.",
+    "include_secure_boot_supported": "Admite arranque seguro desde el primer momento.",
+    "include_nvidia_easy_match": "Ofrece una configuración de NVIDIA relativamente sencilla.",
+    "include_gaming_good": "El soporte para juegos es bueno.",
+    "include_gaming_limited": "El soporte para juegos es limitado pero está disponible.",
+    "include_privacy_strong": "Tiene una fuerte postura de privacidad.",
+    "include_old_hardware_suitable": "Adecuado para hardware antiguo.",
+    "include_desktop_match": "Coincide con sus preferencias de escritorio.",
+    "include_release_model_match": "Coincide con su preferencia de modelo de lanzamiento.",
+    "include_init_system_match": "Coincide con la preferencia de su sistema de inicio.",
+    "include_package_manager_match": "Coincide con su preferencia de administrador de paquetes.",
+    "exclude_installer_manual": "Requiere un instalador manual.",
+    "exclude_maintenance_hands_on": "Requiere mantenimiento práctico.",
+    "exclude_proprietary_required": "Se basa en software propietario.",
+    "exclude_proprietary_missing": "No soporta software propietario.",
+    "exclude_old_hardware_unsuitable": "No apto para hardware antiguo.",
+    "exclude_secure_boot_unavailable": "No admite arranque seguro listo para usar.",
+    "exclude_nvidia_hard": "Es probable que la configuración de NVIDIA sea práctica.",
+    "exclude_nvidia_proprietary_required": "Probablemente requiera controladores propietarios de NVIDIA."
+  },
+  "constraints": {
+    "constraint_installer_gui": "Quieres un instalador gráfico.",
+    "constraint_maintenance_low_friction": "Quiere un mantenimiento de baja fricción sin el terminal.",
+    "constraint_proprietary_none": "Quiere evitar el software propietario.",
+    "constraint_proprietary_allowed": "Necesita acceso a software propietario.",
+    "constraint_old_hardware": "Necesita soporte para hardware antiguo.",
+    "constraint_gaming_support": "Te importa el soporte para juegos.",
+    "constraint_privacy_strong": "Quiere valores predeterminados de privacidad sólidos.",
+    "constraint_secure_boot_required": "Necesita arranque seguro para funcionar desde el primer momento.",
+    "constraint_nvidia_easy": "Quieres que NVIDIA sea fácil de configurar.",
+    "constraint_nvidia_avoid_proprietary": "Quiere evitar los controladores propietarios de NVIDIA.",
+    "constraint_desktop_gnome": "Prefieres el escritorio GNOME.",
+    "constraint_desktop_kde": "Prefieres el escritorio KDE.",
+    "constraint_desktop_xfce": "Prefieres el escritorio Xfce.",
+    "constraint_desktop_cinnamon": "Prefieres el escritorio Cinnamon.",
+    "constraint_desktop_mate": "Prefieres el escritorio MATE.",
+    "constraint_desktop_lxqt": "Prefieres el escritorio LXQt.",
+    "constraint_release_fixed": "Prefieres lanzamientos fijos.",
+    "constraint_release_rolling": "Prefieres los lanzamientos continuos.",
+    "constraint_init_systemd": "Prefieres systemd.",
+    "constraint_init_openrc": "Prefieres OpenRC.",
+    "constraint_init_runit": "Prefieres runit.",
+    "constraint_pkg_apt": "Prefieres el administrador de paquetes APT.",
+    "constraint_pkg_dnf": "Prefieres el administrador de paquetes DNF.",
+    "constraint_pkg_pacman": "Prefieres el administrador de paquetes de Pacman.",
+    "constraint_pkg_zypper": "Prefieres el administrador de paquetes Zypper.",
+    "constraint_pkg_apk": "Prefieres el administrador de paquetes APK.",
+    "constraint_pkg_nix": "Prefieres el administrador de paquetes Nix."
+  },
+  "compare": {
+    "title": "Comparar distribuciones",
+    "clearComparison": "Comparación clara",
+    "selectAtLeastTwo": "Seleccione al menos dos distribuciones para comparar.",
+    "feature": {
+      "desktopEnvironment": "Entorno de escritorio",
+      "packageManager": "Administrador de paquetes",
+      "initSystem": "Sistema de inicio",
+      "releaseModel": "Modelo de lanzamiento",
+      "minRam": "RAM mínima",
+      "installerExperience": "Experiencia del instalador",
+      "maintenanceStyle": "Estilo de mantenimiento",
+      "proprietarySupport": "Soporte de software propietario",
+      "gamingSupport": "Soporte para juegos",
+      "privacyPosture": "Postura de privacidad",
+      "secureBootOutOfBox": "Arranque seguro listo para usar",
+      "nvidiaExperience": "Experiencia NVIDIA",
+      "true": "Sí",
+      "false": "No",
+      "NO_PREFERENCE": "Sin preferencia",
+      "UNKNOWN": "Desconocido",
+      "GNOME": "GNOMO",
+      "KDE": "Plasma KDE",
+      "XFCE": "XFCE",
+      "CINNAMON": "Canela",
+      "MATE": "COMPAÑERO",
+      "LXQT": "LXQt",
+      "FIXED": "Fijado",
+      "ROLLING": "Laminación",
+      "SYSTEMD": "sistemad",
+      "OPENRC": "OpenRC",
+      "RUNIT": "correr",
+      "APT": "APTO",
+      "DNF": "abandonar",
+      "PACMAN": "Pacman",
+      "ZYPPER": "cremallera",
+      "APK": "APK",
+      "NIX": "Nada",
+      "GUI": "Gráfico",
+      "CLI_OK": "Línea de comando",
+      "LOW_FRICTION": "Baja fricción",
+      "TERMINAL_OK": "terminal bien",
+      "REQUIRED": "Requerido",
+      "OPTIONAL": "Opcional",
+      "AVOID": "Evitar",
+      "GOOD": "Bien",
+      "LIMITED": "Limitado",
+      "NONE": "Ninguno",
+      "STRONG": "Fuerte",
+      "MODERATE": "Moderado",
+      "WEAK": "Débil",
+      "WANT_EASY": "Fácil configuración",
+      "OK_HANDS_ON": "Configuración práctica",
+      "AVOID_PROPRIETARY": "Evite la propiedad"
+    }
+  },
+  "distros": {
+    "new_distro": {
+      "name": "Nueva distribución de Linux",
+      "description": "Una nueva distribución hipotética con fines de demostración."
+    }
+  },
+  "howItWorksDocs": {
+    "title": "Cómo funciona",
+    "tagline": "Esta página es una descripción general basada en documentos del motor de decisiones, el modelo de datos y las reglas de explicabilidad detrás de Pick Your Linux.",
+    "docsCoveredTitle": "Fuentes de documentación cubiertas",
+    "docsCovered": [
+      "ARCHITECTURE.md",
+      "DATA_CONTRACT.md",
+      "DATA_RULES.md",
+      "QUESTION_CATALOG.md",
+      "CONSTRAINT_MAPPING.md",
+      "RESULTS_COPY.md",
+      "TESTING.md",
+      "TONE_AND_COPY.md",
+      "FRONTEND-IMPLEMENTATION-RULES.md"
+    ],
+    "sections": [
+      {
+        "title": "1. Promesa del producto",
+        "summary": "Pick Your Linux es un motor de compatibilidad determinista. No clasifica, puntúa ni sugiere una sola mejor distribución. Solo filtra con reglas explícitas y muestra motivos transparentes.",
+        "bullets": [
+          "Se esperan múltiples coincidencias cuando varias distribuciones satisfacen las mismas restricciones.",
+          "No se utilizan ponderaciones ocultas, puntuaciones de popularidad ni recomendaciones subjetivas.",
+          "Puede cambiar las respuestas y ver inmediatamente cómo cambian los resultados."
+        ]
+      },
+      {
+        "title": "2. Arquitectura central",
+        "summary": "El sistema está dividido en capas estrictas para mantener la lógica comprobable y la interfaz de usuario tonta.",
+        "bullets": [
+          "Capa de datos (/src/data): esquemas, catálogo de preguntas, conjunto de datos de distribución.",
+          "Capa lógica (/src/engine/logic.ts): condición pura y evaluación de parches.",
+          "Capa de estado (/src/engine/state.ts): orquestación de flujo, progreso, deshacer, modelos de vista de resultados.",
+          "Capa UI (/src/components): componentes de solo renderizado que consumen modelos de vista.",
+          "La dirección de importación es unidireccional: UI -> estado -> lógica."
+        ]
+      },
+      {
+        "title": "3. Contrato de datos (intención del usuario)",
+        "summary": "Cada respuesta actualiza un único objeto UserIntent validado. Este es el estado de decisión.",
+        "bullets": [
+          "Las preferencias de instalación y mantenimiento definen la configuración y la tolerancia a la fricción posterior a la instalación.",
+          "La preferencia de propiedad controla la aceptación de componentes de código cerrado.",
+          "El contexto del hardware incluye arquitectura, RAM, arranque seguro y detalles de GPU.",
+          "Las etiquetas de casos de uso incluyen Juegos, Privacidad, Trabajo, Servidor y Hardware antiguo.",
+          "Los campos de refinamiento opcionales incluyen preferencia de escritorio, modelo de lanzamiento, sistema de inicio y administrador de paquetes."
+        ]
+      },
+      {
+        "title": "4. Motor de preguntas",
+        "summary": "Las preguntas se basan en datos. Cada opción contiene parches JSON deterministas. La visibilidad está controlada únicamente por condiciones explícitas.",
+        "bullets": [
+          "Operaciones de parche permitidas: set, add_tag, remove_tag.",
+          "Operaciones de condición permitidas: eq, neq, in, contiene y, o.",
+          "Sin funciones en los datos, sin devoluciones de llamada y sin evaluación del tiempo de ejecución.",
+          "El orden de las preguntas y el comportamiento de las fases provienen del catálogo, no de la lógica de la interfaz de usuario."
+        ]
+      },
+      {
+        "title": "5. Viaje por fases",
+        "summary": "La profundidad del flujo es progresiva y solo hacia adelante: Rápido (Principiante) -> Intermedio -> Avanzado.",
+        "bullets": [
+          "Quick reúne limitaciones de señal alta en un tiempo mínimo.",
+          "Intermedio agrega mejoras prácticas (estilo de escritorio, modelo de actualización, clarificadores de hardware).",
+          "Avanzado agrega preferencias explícitas del sistema (init, administrador de paquetes, controles más estrictos).",
+          "Los usuarios pueden detenerse en los resultados después de rápido/intermedio y continuar refinando más tarde sin reiniciar."
+        ]
+      },
+      {
+        "title": "6. Restricciones estrictas (aprobado/reprobado)",
+        "summary": "Las restricciones estrictas excluyen las distribuciones incompatibles. Si una distribución no cumple con una regla estricta, queda fuera.",
+        "bullets": [
+          "El requisito del instalador GUI excluye las distribuciones de instalador manual.",
+          "El requisito de mantenimiento sin terminal excluye las distribuciones de mantenimiento práctico.",
+          "Evitar propiedad excluye las distribuciones que requieren soporte propietario.",
+          "Requerir propiedad excluye las distribuciones sin soporte propietario.",
+          "El requisito de hardware antiguo excluye las distribuciones que no son adecuadas para hardware antiguo o de gama baja.",
+          "El arranque seguro y las preferencias de NVIDIA aplican comprobaciones de compatibilidad explícitas adicionales."
+        ]
+      },
+      {
+        "title": "7. Razones de compatibilidad blanda",
+        "summary": "Las razones blandas no clasifican las distribuciones. Sólo explican por qué una distribución compatible puede adaptarse mejor a objetivos específicos.",
+        "bullets": [
+          "La postura sobre el juego y la privacidad genera razones de explicabilidad.",
+          "Las preferencias de escritorio/lanzamiento/init/paquete-administrador agregan motivos de coincidencia explícitos.",
+          "Los motivos basados ​​en la elección y las coincidencias de filtro estricto se muestran por separado en los resultados."
+        ]
+      },
+      {
+        "title": "8. Resultados y explicabilidad",
+        "summary": "Los resultados se presentan como resultados de compatibilidad, no como recomendaciones.",
+        "bullets": [
+          "Cada tarjeta incluye filtros estrictos coincidentes, motivos basados ​​en elecciones y posibles fricciones.",
+          "El panel de explicabilidad muestra restricciones activas y motivos de distribución excluidos.",
+          "La página de comparación expone los atributos de distribución uno al lado del otro utilizando los mismos datos de origen.",
+          "La clasificación predeterminada es la mayoría de las coincidencias primero; Los filtros de usuario son explícitos y reversibles."
+        ]
+      },
+      {
+        "title": "9. Calidad de datos y auditorías",
+        "summary": "Los datos de distribución siguen la validación del esquema y las auditorías de coherencia.",
+        "bullets": [
+          "La validación del esquema aplica valores legales para cada atributo de distribución.",
+          "Las reglas de auditoría señalan combinaciones sospechosas (por ejemplo, compatibilidad con NVIDIA frente a política de propiedad).",
+          "Las reclamaciones de arranque seguro y las expectativas de mantenimiento continuo se auditan para determinar su defensa."
+        ]
+      },
+      {
+        "title": "10. Puertas de prueba y validación",
+        "summary": "Se espera que los cambios pasen procesos de validación deterministas.",
+        "bullets": [
+          "El validador de flujo verifica que la visibilidad de las preguntas y las transiciones sean coherentes.",
+          "Los validadores de preguntas y distribución hacen cumplir la integridad del esquema y del catálogo.",
+          "Las pruebas del motor cubren la lógica de condición, el comportamiento de los parches, la finalización y la deshacer.",
+          "El objetivo es un comportamiento explicable y reproducible bajo un estricto control de tipificación y esquema."
+        ]
+      },
+      {
+        "title": "11. UX y reglas de copia",
+        "summary": "El lenguaje está diseñado para brindar claridad y reversibilidad.",
+        "bullets": [
+          "Evite palabras como mejores, mejores, recomendadas o afirmaciones basadas en popularidad.",
+          "Evite enmarcar criterios de habilidad en la interfaz de usuario; centrarse en la comodidad y los objetivos.",
+          "Cada elección debe parecer reversible: revisar las respuestas, editarlas o reiniciar."
+        ]
+      }
+    ]
+  }
+}

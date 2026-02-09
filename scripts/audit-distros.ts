@@ -13,6 +13,18 @@ const distros = DistroListSchema.parse(parsed);
 
 const warnings: string[] = [];
 const allowRollingLowFriction = new Set<string>(["manjaro"]);
+const allowSecureBootOutOfBox = new Set<string>([
+    "ubuntu",
+    "fedora",
+    "opensuse_leap",
+    "opensuse_tumbleweed",
+    "kubuntu",
+    "ubuntu_mate",
+    "lubuntu",
+    "xubuntu",
+    "ubuntu_budgie",
+    "ubuntu_studio",
+]);
 
 const warn = (message: string) => warnings.push(message);
 
@@ -30,8 +42,11 @@ rollingLowFriction.forEach((distro) => {
 });
 
 const secureBootEnabled = distros.filter((distro) => distro.secureBootOutOfBox);
-secureBootEnabled.forEach((distro) => {
-    warn(`${distro.id}: secureBootOutOfBox=true should be rare and defensible.`);
+const secureBootUnexpected = secureBootEnabled.filter(
+    (distro) => !allowSecureBootOutOfBox.has(distro.id)
+);
+secureBootUnexpected.forEach((distro) => {
+    warn(`${distro.id}: secureBootOutOfBox=true needs explicit audit allowlist entry.`);
 });
 
 const secureBootRatio = secureBootEnabled.length / distros.length;

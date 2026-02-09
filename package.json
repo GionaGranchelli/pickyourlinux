@@ -19,5 +19,8 @@
   "dependencies": {
     "nuxt": "^3.0.0",
     "zod": "^3.0.0"
+  },
+  "devDependencies": {
+    "@nuxtjs/i18n": "^10.2.3"
   }
 }

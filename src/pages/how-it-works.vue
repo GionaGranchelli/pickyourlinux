@@ -1,63 +1,79 @@
+<script setup lang="ts">
+import { computed } from "vue";
+import { useI18n } from "vue-i18n";
+import howItWorksDe from "~/../i18n/how-it-works/de.md?raw";
+import howItWorksEn from "~/../i18n/how-it-works/en.md?raw";
+import howItWorksEs from "~/../i18n/how-it-works/es.md?raw";
+import howItWorksFr from "~/../i18n/how-it-works/fr.md?raw";
+import howItWorksIt from "~/../i18n/how-it-works/it.md?raw";
+import howItWorksNl from "~/../i18n/how-it-works/nl.md?raw";
+import howItWorksPt from "~/../i18n/how-it-works/pt.md?raw";
+import { renderMarkdown } from "~/utils/markdown";
+
+const { locale } = useI18n();
+
+const localizedHowItWorks: Record<string, string> = {
+  en: howItWorksEn,
+  es: howItWorksEs,
+  it: howItWorksIt,
+  fr: howItWorksFr,
+  de: howItWorksDe,
+  nl: howItWorksNl,
+  pt: howItWorksPt,
+};
+
+const html = computed(() => renderMarkdown(localizedHowItWorks[locale.value] ?? howItWorksEn));
+</script>
+
 <template>
-  <div class="mx-auto max-w-3xl space-y-8">
-    <header class="space-y-3">
-      <h1 class="text-3xl font-semibold text-slate-900">How it works</h1>
-      <p class="text-sm text-slate-600">
-        This site does not pick a single “best” Linux version. It only shows what fits the answers you give.
-      </p>
-    </header>
-
-    <section class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm space-y-4">
-      <h2 class="text-xl font-semibold text-slate-900">1) Pick how deep you want to go</h2>
-      <p class="text-sm text-slate-600">
-        Start with a quick set of questions. If you want more accuracy, you can keep refining.
-        You can also stop after the first phase and still get results.
-      </p>
-    </section>
-
-    <section class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm space-y-4">
-      <h2 class="text-xl font-semibold text-slate-900">2) You answer plain questions</h2>
-      <p class="text-sm text-slate-600">
-        We ask about things like whether you want everything to work without using the terminal,
-        whether you need proprietary software, or whether your computer is older.
-      </p>
-    </section>
-
-    <section class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm space-y-4">
-      <h2 class="text-xl font-semibold text-slate-900">3) Optional refinements (if you choose)</h2>
-      <p class="text-sm text-slate-600">
-        The next phase explains a few concepts in beginner terms:
-      </p>
-      <ul class="list-disc pl-5 text-sm text-slate-600 space-y-2">
-        <li><span class="font-semibold">Desktop preference</span> = the look and layout of the interface.</li>
-        <li><span class="font-semibold">Release model</span> = how updates arrive (fixed batches vs rolling updates).</li>
-        <li><span class="font-semibold">No preference</span> = don’t filter on that attribute.</li>
-      </ul>
-    </section>
-
-    <section class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm space-y-4">
-      <h2 class="text-xl font-semibold text-slate-900">4) We filter based on your choices</h2>
-      <p class="text-sm text-slate-600">
-        Your answers become clear, fixed constraints. Every Linux version is checked against those
-        constraints. If it doesn’t meet them, it is excluded. Nothing is ranked or scored.
-      </p>
-    </section>
-
-    <section class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm space-y-4">
-      <h2 class="text-xl font-semibold text-slate-900">5) Multiple results are normal</h2>
-      <p class="text-sm text-slate-600">
-        Many Linux versions can satisfy the same constraints. That is expected. You can review the
-        reasons for each result or change an answer to explore other outcomes.
-      </p>
-    </section>
-
-    <section class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm space-y-4">
-      <h2 class="text-xl font-semibold text-slate-900">What we do not do</h2>
-      <ul class="list-disc pl-5 text-sm text-slate-600 space-y-2">
-        <li>We do not choose favorites.</li>
-        <li>We do not rank or score Linux versions.</li>
-        <li>We do not add hidden weights or personal opinions.</li>
-      </ul>
-    </section>
+  <div class="mx-auto max-w-5xl">
+    <article class="rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">
+      <div class="markdown" v-html="html"></div>
+    </article>
   </div>
 </template>
+
+<style scoped>
+.markdown :deep(h1) {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+  font-weight: 600;
+  color: #0f172a;
+  margin-bottom: 1rem;
+}
+
+.markdown :deep(h2) {
+  font-size: 1.5rem;
+  line-height: 2rem;
+  font-weight: 600;
+  color: #0f172a;
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.markdown :deep(p) {
+  color: #475569;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 0.75rem;
+}
+
+.markdown :deep(ul) {
+  list-style: disc;
+  padding-left: 1.25rem;
+  color: #475569;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 0.75rem;
+}
+
+.markdown :deep(li) {
+  margin-bottom: 0.5rem;
+}
+
+.markdown :deep(hr) {
+  border: 0;
+  border-top: 1px solid #e2e8f0;
+  margin: 1.5rem 0;
+}
+</style>

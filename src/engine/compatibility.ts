@@ -15,6 +15,34 @@ const buildIncludedReasons = (intent: UserIntent, distroId: string): InclusionRe
 
     const reasons: InclusionReasonKey[] = [];
 
+    if (intent.installation === "GUI" && distro.installerExperience === "GUI") {
+        reasons.push("include_installer_gui_match");
+    }
+
+    if (intent.maintenance === "NO_TERMINAL" && distro.maintenanceStyle === "LOW_FRICTION") {
+        reasons.push("include_maintenance_low_friction_match");
+    }
+
+    if (intent.proprietary === "AVOID" && distro.proprietarySupport === "NONE") {
+        reasons.push("include_proprietary_none_match");
+    }
+
+    if (intent.proprietary === "REQUIRED" && distro.proprietarySupport !== "NONE") {
+        reasons.push("include_proprietary_supported");
+    }
+
+    if (intent.secureBootNeeded === true && distro.secureBootOutOfBox) {
+        reasons.push("include_secure_boot_supported");
+    }
+
+    if (
+        intent.gpu === "NVIDIA" &&
+        intent.nvidiaTolerance === "WANT_EASY" &&
+        (distro.nvidiaExperience === "GOOD" || distro.nvidiaExperience === "OK")
+    ) {
+        reasons.push("include_nvidia_easy_match");
+    }
+
     if (intent.tags.includes("Gaming")) {
         if (distro.gamingSupport === "GOOD") {
             reasons.push("include_gaming_good");

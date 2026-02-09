@@ -192,6 +192,24 @@ Allowed Answers
 
 ---
 
+### Q8b - Software Use Case
+Question ID: q_software_use_case
+Intent Fields
+- tags
+
+Question
+> Do you use any specialized software?
+
+Allowed Answers
+| User Answer | Applied Patches |
+|---|---|
+| Office suite (Word, Excel, PowerPoint) | add_tag Office |
+| Creative apps (Photoshop, Premiere, CAD) | add_tag Creative |
+| Development tools (IDEs, Docker) | add_tag Development |
+| Just basic browsing and email | add_tag Basic |
+
+---
+
 ### Q9 - Secure Boot (Simple)
 Question ID: q_secure_boot_simple
 Intent Fields

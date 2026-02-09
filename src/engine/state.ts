@@ -1,18 +1,16 @@
-import { computed, ref, toRaw } from "vue";
+import { computed, ref, toRaw, watch } from "vue";
 import { z } from "zod";
 import { UserIntentSchema, type UserIntent, type Question, type QuestionOption } from "~/data/types";
 import { ALL_QUESTIONS, QUESTION_PHASES } from "~/data/questions";
 import { CompatibilityResultListSchema, type CompatibilityResult } from "~/data/compatibility-types";
 import type { Distro } from "~/data/distro-types";
 import {
-    ConstraintTemplates,
-    ExclusionReasonTemplates,
-    InclusionReasonTemplates,
     type ConstraintKey,
     type ExclusionReasonKey,
     type InclusionReasonKey,
 } from "~/data/reason-templates";
 import { applyPatch, evaluateCondition } from "~/engine/logic";
+import { getDistros } from "~/engine/eliminate";
 import { buildCompatibility } from "~/engine/compatibility";
 
 export type EngineStatus = "IN_PROGRESS" | "COMPLETED" | "DISQUALIFIED";
@@ -39,6 +37,24 @@ const SessionStateSchema = z.object({
     answeredIds: z.array(z.string()),
     status: z.enum(["IN_PROGRESS", "COMPLETED", "DISQUALIFIED"]),
     disqualifyReason: z.string().optional(),
+});
+
+const SessionPayloadSchema = z.object({
+    intent: UserIntentSchema,
+    answeredIds: z.array(z.string()),
+    status: z.enum(["IN_PROGRESS", "COMPLETED", "DISQUALIFIED"]),
+    disqualifyReason: z.string().optional(),
+    appliedPatches: z.array(z.string()).optional(),
+    answerHistory: z
+        .array(
+            z.object({
+                questionId: z.string(),
+                questionText: z.string(),
+                optionId: z.string(),
+                optionLabel: z.string(),
+            })
+        )
+        .optional(),
 });
 
 const SharePayloadSchema = z.object({
@@ -78,6 +94,120 @@ export type AnswerGroup = {
     answers: AnswerRecord[];
 };
 
+export type ProgressVM = {
+    current: number;
+    total: number;
+    percent: number;
+    phaseLabel: string;
+};
+
+export type QuestionOptionVM = {
+    id: string;
+    label: string;
+    description?: string;
+};
+
+export type QuestionVM = {
+    id: string;
+    text: string;
+    options: QuestionOptionVM[];
+};
+
+export type PhaseGateVM = QuestionVM;
+
+export type AnswerVM = {
+    questionId: string;
+    questionText: string;
+    optionLabel: string;
+    phaseLabel: string;
+};
+
+export type WizardMode = "QUESTION" | "PHASE_GATE" | "COMPLETE" | "DISQUALIFIED";
+
+export type DistroCardVM = {
+    id: string;
+    name: string;
+    description?: string;
+    imageUrl?: string;
+    websiteUrl?: string;
+    documentationUrl?: string;
+    forumUrl?: string;
+    downloadUrl?: string;
+    testDriveUrl?: string;
+    reasonsIncluded: string[];
+    reasonsFriction: string[];
+    matchedConstraints?: string[];
+    activeConstraintCount?: number;
+    strictMatchCount: number;
+    choiceReasonCount: number;
+    releaseModel?: Distro["releaseModel"];
+    supportedDesktops?: Distro["supportedDesktops"];
+    gamingSupport?: Distro["gamingSupport"];
+    packageManager?: Distro["packageManager"];
+    initSystem?: Distro["initSystem"];
+    installerExperience?: Distro["installerExperience"];
+    maintenanceStyle?: Distro["maintenanceStyle"];
+    proprietarySupport?: Distro["proprietarySupport"];
+    privacyPosture?: Distro["privacyPosture"];
+    secureBootOutOfBox?: Distro["secureBootOutOfBox"];
+    nvidiaExperience?: Distro["nvidiaExperience"];
+    suitableForOldHardware?: Distro["suitableForOldHardware"];
+};
+
+export type ExcludedDistroVM = {
+    id: string;
+    name: string;
+    description?: string;
+    reasons: string[];
+};
+
+export type ResultsSort = "BEST_MATCH" | "NAME_ASC" | "NAME_DESC";
+
+export type ResultsFilters = {
+    releaseModel: "ALL" | Distro["releaseModel"];
+    desktop: "ALL" | Distro["supportedDesktops"][number];
+    gamingSupport: "ALL" | Distro["gamingSupport"];
+    packageManager: "ALL" | Distro["packageManager"];
+    initSystem: "ALL" | Distro["initSystem"];
+    installerExperience: "ALL" | Distro["installerExperience"];
+    maintenanceStyle: "ALL" | Distro["maintenanceStyle"];
+    proprietarySupport: "ALL" | Distro["proprietarySupport"];
+    privacyPosture: "ALL" | Distro["privacyPosture"];
+    secureBootOutOfBox: "ALL" | "YES" | "NO";
+    nvidiaExperience: "ALL" | Distro["nvidiaExperience"];
+    suitableForOldHardware: "ALL" | "YES" | "NO";
+};
+
+export const DEFAULT_RESULTS_FILTERS: ResultsFilters = {
+    releaseModel: "ALL",
+    desktop: "ALL",
+    gamingSupport: "ALL",
+    packageManager: "ALL",
+    initSystem: "ALL",
+    installerExperience: "ALL",
+    maintenanceStyle: "ALL",
+    proprietarySupport: "ALL",
+    privacyPosture: "ALL",
+    secureBootOutOfBox: "ALL",
+    nvidiaExperience: "ALL",
+    suitableForOldHardware: "ALL",
+};
+
+export type ResultsVM = {
+    shortlist: DistroCardVM[];
+    allCompatible: DistroCardVM[];
+    excluded: { name: string; reason: string }[];
+    excludedDistros: ExcludedDistroVM[];
+    activeConstraints: string[];
+};
+
+export type DebugVM = {
+    intent: UserIntent;
+    status: EngineStatus;
+    answeredIds: string[];
+    currentQuestionId?: string;
+};
+
 type PhaseKey = AnswerGroup["phaseKey"];
 
 const experiencePhaseLabel: Record<UserIntent["experience"], string> = {
@@ -86,6 +216,8 @@ const experiencePhaseLabel: Record<UserIntent["experience"], string> = {
     ADVANCED: "Expert",
 };
 
+const RESULTS_SHORTLIST_LIMIT = 3;
+
 const questionPhaseLookup = new Map<string, { key: PhaseKey; label: string }>();
 QUESTION_PHASES.forEach((phase) => {
     phase.questionIds.forEach((questionId) => {
@@ -93,20 +225,90 @@ QUESTION_PHASES.forEach((phase) => {
     });
 });
 
-export function useDecisionEngine() {
+const distrosForVM = getDistros();
+
+export function useDecisionEngine(t: (key: string) => string = (key) => key) {
     const debugEnabled = import.meta.dev;
 
+    // Auto-persist to localStorage
+    const STORAGE_KEY = "picklinux_session";
+    let isRestoring = true; // Flag to prevent watch during restoration
+    
     // Single source of truth (reactive)
     const intent = ref<UserIntent>(structuredClone(defaultIntent));
     const answeredIds = ref<string[]>([]);
     const status = ref<EngineStatus>("IN_PROGRESS");
     const disqualifyReason = ref<string | undefined>(undefined);
 
+    // Comparison state
+    const distrosToCompare = ref<string[]>([]);
+
     // History for undo
     const history = ref<Snapshot[]>([]);
     const appliedPatches = ref<string[]>([]);
     const lastAppliedPatches = ref<string[]>([]);
     const answerHistory = ref<AnswerRecord[]>([]);
+
+    // Restore from localStorage on initialization
+    if (import.meta.client) {
+        try {
+            const stored = localStorage.getItem(STORAGE_KEY);
+            if (stored) {
+                const parsed = SessionPayloadSchema.parse(JSON.parse(stored));
+                intent.value = parsed.intent;
+                answeredIds.value = parsed.answeredIds;
+                status.value = parsed.status;
+                disqualifyReason.value = parsed.disqualifyReason;
+                appliedPatches.value = parsed.appliedPatches || [];
+                answerHistory.value = parsed.answerHistory || [];
+            }
+        } catch {
+            // Invalid stored data, ignore
+        }
+        // Restoration complete, enable watch
+        isRestoring = false;
+    }
+
+    // Auto-save to localStorage on state changes
+    if (import.meta.client) {
+        watch(
+            [intent, answeredIds, status, disqualifyReason, appliedPatches, answerHistory],
+            () => {
+                if (isRestoring) return; // Skip during restoration
+                const payload = {
+                    intent: toRaw(intent.value),
+                    answeredIds: answeredIds.value,
+                    status: status.value,
+                    disqualifyReason: disqualifyReason.value,
+                    appliedPatches: appliedPatches.value,
+                    answerHistory: answerHistory.value,
+                };
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
+            },
+            { deep: true }
+        );
+    }
+
+    // Functions for comparison
+    const addDistroToCompare = (distroId: string) => {
+        if (!distrosToCompare.value.includes(distroId)) {
+            distrosToCompare.value.push(distroId);
+        }
+    };
+
+    const removeDistroFromCompare = (distroId: string) => {
+        distrosToCompare.value = distrosToCompare.value.filter((id) => id !== distroId);
+    };
+
+    const clearComparison = () => {
+        distrosToCompare.value = [];
+    };
+
+    const experienceRank: Record<UserIntent["experience"], number> = {
+        BEGINNER: 0,
+        INTERMEDIATE: 1,
+        ADVANCED: 2,
+    };
 
     // Derived: visible questions given current intent
     const visibleQuestions = computed<Question[]>(() => {
@@ -142,6 +344,26 @@ export function useDecisionEngine() {
 
     const phaseLabel = computed(() => experiencePhaseLabel[intent.value.experience]);
 
+    const progressVM = computed<ProgressVM>(() => ({
+        current: progress.value.current,
+        total: progress.value.total,
+        percent: progress.value.percent,
+        phaseLabel: phaseLabel.value,
+    }));
+
+    const currentQuestionVM = computed<QuestionVM | null>(() => {
+        if (!currentQuestion.value) return null;
+        return {
+            id: currentQuestion.value.id,
+            text: t(currentQuestion.value.text),
+            options: currentQuestion.value.options.map((option) => ({
+                id: option.id,
+                label: t(option.label),
+                description: option.description ? t(option.description) : undefined,
+            })),
+        };
+    });
+
     const answeredGroups = computed<AnswerGroup[]>(() => {
         const groups = QUESTION_PHASES.map((phase) => ({
             phaseKey: phase.key,
@@ -165,6 +387,117 @@ export function useDecisionEngine() {
 
         return groups.filter((group) => group.answers.length > 0);
     });
+
+    const answersVM = computed<AnswerVM[]>(() => {
+        return answerHistory.value.map((answer) => {
+            const phase = questionPhaseLookup.get(answer.questionId) ?? {
+                key: QUESTION_PHASES[0].key,
+                label: QUESTION_PHASES[0].label,
+            };
+
+            return {
+                questionId: answer.questionId,
+                questionText: answer.questionText,
+                optionLabel: answer.optionLabel,
+                phaseLabel: phase.label,
+            };
+        });
+    });
+
+    const wizardMode = computed<WizardMode>(() => {
+        if (status.value === "DISQUALIFIED") return "DISQUALIFIED";
+        if (status.value === "COMPLETED") return "COMPLETE";
+        if (currentQuestion.value?.id === "q_phase_exit") return "PHASE_GATE";
+        return "QUESTION";
+    });
+
+    const phaseGateVM = computed<PhaseGateVM | null>(() => {
+        if (wizardMode.value !== "PHASE_GATE") return null;
+        return currentQuestionVM.value;
+    });
+
+    const resultsVM = computed<ResultsVM>(() => {
+        if (status.value !== "COMPLETED") {
+            return {
+                shortlist: [],
+                allCompatible: [],
+                excluded: [],
+                excludedDistros: [],
+                activeConstraints: [],
+            };
+        }
+
+        const presentation = buildResultsPresentation(intent.value, distrosForVM, {
+            limit: RESULTS_SHORTLIST_LIMIT,
+            showAll: true,
+        }, t);
+
+        const toCardVM = (item: PresentedDistro): DistroCardVM => ({
+            id: item.distroId,
+            name: item.name,
+            description: item.description,
+            imageUrl: item.imageUrl,
+            websiteUrl: item.websiteUrl,
+            documentationUrl: item.documentationUrl,
+            forumUrl: item.forumUrl,
+            downloadUrl: item.downloadUrl,
+            testDriveUrl: item.testDriveUrl,
+            reasonsIncluded: item.includedBecause,
+            reasonsFriction: item.excludedBecause,
+            matchedConstraints: item.matchedConstraints,
+            activeConstraintCount: presentation.activeConstraints.length,
+            strictMatchCount: item.matchedConstraints.length,
+            choiceReasonCount: item.includedBecause.length,
+            releaseModel: item.releaseModel,
+            supportedDesktops: item.supportedDesktops,
+            gamingSupport: item.gamingSupport,
+            packageManager: item.packageManager,
+            initSystem: item.initSystem,
+            installerExperience: item.installerExperience,
+            maintenanceStyle: item.maintenanceStyle,
+            proprietarySupport: item.proprietarySupport,
+            privacyPosture: item.privacyPosture,
+            secureBootOutOfBox: item.secureBootOutOfBox,
+            nvidiaExperience: item.nvidiaExperience,
+            suitableForOldHardware: item.suitableForOldHardware,
+        });
+
+        const allCompatible = presentation.compatible.map(toCardVM);
+        const shortlist = allCompatible.slice(0, RESULTS_SHORTLIST_LIMIT);
+        const excludedDistros = presentation.excluded.map((item) => ({
+            id: item.distroId,
+            name: item.name,
+            description: item.description,
+            reasons: item.excludedBecause.length > 0 ? item.excludedBecause : ["Excluded by your constraints."],
+        }));
+        const excluded = presentation.excluded.flatMap((item) => {
+            if (item.excludedBecause.length === 0) {
+                return [{ name: item.name, reason: "Excluded by your constraints." }];
+            }
+
+            return item.excludedBecause.map((reason) => ({
+                name: item.name,
+                reason,
+            }));
+        });
+
+        return {
+            shortlist,
+            allCompatible,
+            excluded,
+            excludedDistros,
+            activeConstraints: presentation.activeConstraints,
+        };
+    });
+
+    const debugVM = computed<DebugVM>(() => ({
+        intent: intent.value,
+        status: status.value,
+        answeredIds: answeredIds.value,
+        currentQuestionId: currentQuestion.value?.id,
+    }));
+
+    const canUndo = computed(() => answeredIds.value.length > 0);
 
     const skippedQuestions = computed(() => {
         if (!debugEnabled) return [];
@@ -192,19 +525,30 @@ export function useDecisionEngine() {
         const question = ALL_QUESTIONS.find((item) => item.id === questionId);
         const record: AnswerRecord = {
             questionId,
-            questionText: question?.text ?? questionId,
+            questionText: t(question?.text ?? questionId),
             optionId: option.id,
-            optionLabel: option.label,
+            optionLabel: t(option.label),
         };
 
         // Disqualifier: stop immediately (do NOT apply patches unless you explicitly want to)
         if (option.isDisqualifier) {
             status.value = "DISQUALIFIED";
-            disqualifyReason.value = option.label;
+            disqualifyReason.value = t(option.label);
             if (!answeredIds.value.includes(questionId)) answeredIds.value.push(questionId);
             if (!answerHistory.value.some((item) => item.questionId === questionId)) {
                 answerHistory.value.push(record);
             }
+            lastAppliedPatches.value = [];
+            return;
+        }
+
+        // Special handling for phase gate "see results" option
+        if (questionId === "q_phase_exit" && option.id === "see_results") {
+            if (!answeredIds.value.includes(questionId)) answeredIds.value.push(questionId);
+            if (!answerHistory.value.some((item) => item.questionId === questionId)) {
+                answerHistory.value.push(record);
+            }
+            status.value = "COMPLETED";
             lastAppliedPatches.value = [];
             return;
         }
@@ -224,6 +568,12 @@ export function useDecisionEngine() {
         if (!answeredIds.value.includes(questionId)) answeredIds.value.push(questionId);
         if (!answerHistory.value.some((item) => item.questionId === questionId)) {
             answerHistory.value.push(record);
+        }
+
+        // Check if all visible questions are now answered
+        const next = visibleQuestions.value.find((q) => !answeredIds.value.includes(q.id));
+        if (!next) {
+            status.value = "COMPLETED";
         }
     }
 
@@ -257,6 +607,9 @@ export function useDecisionEngine() {
         appliedPatches.value = [];
         lastAppliedPatches.value = [];
         answerHistory.value = [];
+        if (import.meta.client) {
+            localStorage.removeItem(STORAGE_KEY);
+        }
     }
 
     function editAnswer(questionId: string) {
@@ -273,6 +626,20 @@ export function useDecisionEngine() {
         lastAppliedPatches.value = snapshot.lastAppliedPatches;
         answerHistory.value = snapshot.answerHistory;
         history.value = history.value.slice(0, index);
+    }
+
+    function upgradeExperienceLevel(next: UserIntent["experience"]): boolean {
+        const current = intent.value.experience;
+        if (experienceRank[next] <= experienceRank[current]) return false;
+
+        intent.value = {
+            ...toRaw(intent.value),
+            experience: next,
+        };
+        status.value = "IN_PROGRESS";
+        disqualifyReason.value = undefined;
+        clearComparison();
+        return true;
     }
 
     function serializeSession(): string {
@@ -354,6 +721,14 @@ export function useDecisionEngine() {
         answeredQuestions: answerHistory,
         answeredGroups,
         phaseLabel,
+        progressVM,
+        currentQuestionVM,
+        phaseGateVM,
+        answersVM,
+        wizardMode,
+        resultsVM,
+        debugVM,
+        canUndo,
 
         // derived
         visibleQuestions,
@@ -369,10 +744,17 @@ export function useDecisionEngine() {
         undo,
         editAnswer,
         reset,
+        upgradeExperienceLevel,
         serializeSession,
         restoreSession,
         getSharePayload,
         restoreSharePayload,
+
+        // comparison
+        distrosToCompare,
+        addDistroToCompare,
+        removeDistroFromCompare,
+        clearComparison,
     };
 }
 
@@ -386,9 +768,27 @@ export type PresentedDistro = {
     distroId: string;
     name: string;
     description?: string;
+    imageUrl?: string;
+    websiteUrl?: string;
+    documentationUrl?: string;
+    forumUrl?: string;
+    downloadUrl?: string;
+    testDriveUrl?: string;
     includedBecause: string[];
     excludedBecause: string[];
     matchedConstraints: string[];
+    releaseModel?: Distro["releaseModel"];
+    supportedDesktops?: Distro["supportedDesktops"];
+    gamingSupport?: Distro["gamingSupport"];
+    packageManager?: Distro["packageManager"];
+    initSystem?: Distro["initSystem"];
+    installerExperience?: Distro["installerExperience"];
+    maintenanceStyle?: Distro["maintenanceStyle"];
+    proprietarySupport?: Distro["proprietarySupport"];
+    privacyPosture?: Distro["privacyPosture"];
+    secureBootOutOfBox?: Distro["secureBootOutOfBox"];
+    nvidiaExperience?: Distro["nvidiaExperience"];
+    suitableForOldHardware?: Distro["suitableForOldHardware"];
 };
 
 export type ResultsPresentation = {
@@ -557,18 +957,19 @@ const matchesConstraint = (constraint: ConstraintKey, distro: Distro): boolean =
     }
 };
 
-const renderInclusionReasons = (reasons: InclusionReasonKey[]): string[] => {
-    return reasons.map((reason) => InclusionReasonTemplates[reason]);
+const renderInclusionReasons = (reasons: InclusionReasonKey[], t: (key: string) => string): string[] => {
+    return reasons.map((reason) => t(`reasons.${reason}`));
 };
 
-const renderExclusionReasons = (reasons: ExclusionReasonKey[]): string[] => {
-    return reasons.map((reason) => ExclusionReasonTemplates[reason]);
+const renderExclusionReasons = (reasons: ExclusionReasonKey[], t: (key: string) => string): string[] => {
+    return reasons.map((reason) => t(`reasons.${reason}`));
 };
 
 export function buildResultsPresentation(
     intent: UserIntent,
     distros: Distro[],
-    options: PresentationOptions
+    options: PresentationOptions,
+    t: (key: string) => string = (key) => key
 ): ResultsPresentation {
     const results = CompatibilityResultListSchema.parse(buildCompatibility(intent));
     const distrosById = new Map(distros.map((distro) => [distro.id, distro] as const));
@@ -578,23 +979,41 @@ export function buildResultsPresentation(
 
     const compatibleShown = options.showAll ? compatibleAll : compatibleAll.slice(0, options.limit);
     const activeConstraintKeys = getActiveConstraintKeys(intent);
-    const activeConstraints = activeConstraintKeys.map((key) => ConstraintTemplates[key]);
+    const activeConstraints = activeConstraintKeys.map((key) => t(`constraints.${key}`));
 
     const presentCompatible = (result: CompatibilityResult): PresentedDistro => {
         const distro = distrosById.get(result.distroId);
         const matchedConstraints = distro
             ? activeConstraintKeys
                   .filter((constraint) => matchesConstraint(constraint, distro))
-                  .map((constraint) => ConstraintTemplates[constraint])
+                  .map((constraint) => t(`constraints.${constraint}`))
             : [];
 
         return {
             distroId: result.distroId,
             name: distro?.name ?? result.distroId,
             description: distro?.description,
-            includedBecause: renderInclusionReasons(result.includedBecause),
+            imageUrl: distro?.imageUrl ?? undefined,
+            websiteUrl: distro?.websiteUrl ?? undefined,
+            documentationUrl: distro?.documentationUrl ?? undefined,
+            forumUrl: distro?.forumUrl ?? undefined,
+            downloadUrl: distro?.downloadUrl ?? undefined,
+            testDriveUrl: distro?.testDriveUrl ?? undefined,
+            includedBecause: renderInclusionReasons(result.includedBecause, t),
             excludedBecause: [],
             matchedConstraints,
+            releaseModel: distro?.releaseModel,
+            supportedDesktops: distro?.supportedDesktops,
+            gamingSupport: distro?.gamingSupport,
+            packageManager: distro?.packageManager,
+            initSystem: distro?.initSystem,
+            installerExperience: distro?.installerExperience,
+            maintenanceStyle: distro?.maintenanceStyle,
+            proprietarySupport: distro?.proprietarySupport,
+            privacyPosture: distro?.privacyPosture,
+            secureBootOutOfBox: distro?.secureBootOutOfBox,
+            nvidiaExperience: distro?.nvidiaExperience,
+            suitableForOldHardware: distro?.suitableForOldHardware,
         };
     };
 
@@ -604,9 +1023,27 @@ export function buildResultsPresentation(
             distroId: result.distroId,
             name: distro?.name ?? result.distroId,
             description: distro?.description,
+            imageUrl: distro?.imageUrl ?? undefined,
+            websiteUrl: distro?.websiteUrl ?? undefined,
+            documentationUrl: distro?.documentationUrl ?? undefined,
+            forumUrl: distro?.forumUrl ?? undefined,
+            downloadUrl: distro?.downloadUrl ?? undefined,
+            testDriveUrl: distro?.testDriveUrl ?? undefined,
             includedBecause: [],
-            excludedBecause: renderExclusionReasons(result.excludedBecause),
+            excludedBecause: renderExclusionReasons(result.excludedBecause, t),
             matchedConstraints: [],
+            releaseModel: distro?.releaseModel,
+            supportedDesktops: distro?.supportedDesktops,
+            gamingSupport: distro?.gamingSupport,
+            packageManager: distro?.packageManager,
+            initSystem: distro?.initSystem,
+            installerExperience: distro?.installerExperience,
+            maintenanceStyle: distro?.maintenanceStyle,
+            proprietarySupport: distro?.proprietarySupport,
+            privacyPosture: distro?.privacyPosture,
+            secureBootOutOfBox: distro?.secureBootOutOfBox,
+            nvidiaExperience: distro?.nvidiaExperience,
+            suitableForOldHardware: distro?.suitableForOldHardware,
         };
     };
 
@@ -617,4 +1054,61 @@ export function buildResultsPresentation(
         compatibleShown: compatibleShown.length,
         activeConstraints,
     };
+}
+
+export function filterAndSortResults(
+    cards: DistroCardVM[],
+    filters: ResultsFilters,
+    sort: ResultsSort
+): DistroCardVM[] {
+    const filtered = cards.filter((card) => {
+        if (filters.releaseModel !== "ALL" && card.releaseModel !== filters.releaseModel) return false;
+        if (
+            filters.desktop !== "ALL" &&
+            !(card.supportedDesktops ?? []).includes(filters.desktop)
+        ) {
+            return false;
+        }
+        if (filters.gamingSupport !== "ALL" && card.gamingSupport !== filters.gamingSupport) return false;
+        if (filters.packageManager !== "ALL" && card.packageManager !== filters.packageManager) return false;
+        if (filters.initSystem !== "ALL" && card.initSystem !== filters.initSystem) return false;
+        if (
+            filters.installerExperience !== "ALL" &&
+            card.installerExperience !== filters.installerExperience
+        ) {
+            return false;
+        }
+        if (
+            filters.maintenanceStyle !== "ALL" &&
+            card.maintenanceStyle !== filters.maintenanceStyle
+        ) {
+            return false;
+        }
+        if (
+            filters.proprietarySupport !== "ALL" &&
+            card.proprietarySupport !== filters.proprietarySupport
+        ) {
+            return false;
+        }
+        if (filters.privacyPosture !== "ALL" && card.privacyPosture !== filters.privacyPosture) return false;
+        if (filters.secureBootOutOfBox === "YES" && card.secureBootOutOfBox !== true) return false;
+        if (filters.secureBootOutOfBox === "NO" && card.secureBootOutOfBox !== false) return false;
+        if (filters.nvidiaExperience !== "ALL" && card.nvidiaExperience !== filters.nvidiaExperience) return false;
+        if (filters.suitableForOldHardware === "YES" && card.suitableForOldHardware !== true) return false;
+        if (filters.suitableForOldHardware === "NO" && card.suitableForOldHardware !== false) return false;
+        return true;
+    });
+
+    return [...filtered].sort((a, b) => {
+        if (sort === "NAME_ASC") return a.name.localeCompare(b.name);
+        if (sort === "NAME_DESC") return b.name.localeCompare(a.name);
+
+        if (b.strictMatchCount !== a.strictMatchCount) {
+            return b.strictMatchCount - a.strictMatchCount;
+        }
+        if (b.choiceReasonCount !== a.choiceReasonCount) {
+            return b.choiceReasonCount - a.choiceReasonCount;
+        }
+        return a.name.localeCompare(b.name);
+    });
 }

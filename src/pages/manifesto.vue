@@ -1,9 +1,28 @@
 <script setup lang="ts">
 import { computed } from "vue";
-import manifestoText from "~/../MANIFESTO.md?raw";
+import { useI18n } from "vue-i18n";
+import manifestoDe from "~/../i18n/manifesto/de.md?raw";
+import manifestoEn from "~/../i18n/manifesto/en.md?raw";
+import manifestoEs from "~/../i18n/manifesto/es.md?raw";
+import manifestoFr from "~/../i18n/manifesto/fr.md?raw";
+import manifestoIt from "~/../i18n/manifesto/it.md?raw";
+import manifestoNl from "~/../i18n/manifesto/nl.md?raw";
+import manifestoPt from "~/../i18n/manifesto/pt.md?raw";
 import { renderMarkdown } from "~/utils/markdown";
 
-const html = computed(() => renderMarkdown(manifestoText));
+const { locale } = useI18n();
+
+const localizedManifesto: Record<string, string> = {
+  en: manifestoEn,
+  es: manifestoEs,
+  it: manifestoIt,
+  fr: manifestoFr,
+  de: manifestoDe,
+  nl: manifestoNl,
+  pt: manifestoPt,
+};
+
+const html = computed(() => renderMarkdown(localizedManifesto[locale.value] ?? manifestoEn));
 </script>
 
 <template>

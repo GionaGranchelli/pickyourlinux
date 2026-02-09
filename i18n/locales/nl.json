@@ -1,0 +1,678 @@
+{
+  "welcome": {
+    "hello": "Hallo wereld!",
+    "title": "Kies een Linux-distributie die bij uw keuzes past",
+    "tagline": "Dit is een op compatibiliteit gebaseerde kiezer. Het rangschikt of beveelt nooit aan; het filtert alleen op basis van wat u selecteert.",
+    "expect": {
+      "title": "Wat je kunt verwachten",
+      "bullets": [
+        "Geen ranglijsten of meningen - alleen compatibiliteit.",
+        "Duidelijke redenen voor elk resultaat.",
+        "Stop op elk gewenst moment of verfijn later."
+      ]
+    },
+    "start": "Begin",
+    "howItWorks": "Hoe het werkt",
+    "quickPhase": "Je kunt na de snelle fase stoppen en toch resultaat boeken."
+  },
+  "app": {
+    "title": "Kies je Linux",
+    "tagline": "Compatibiliteitsgebaseerd, verklaarbaar, geen ranglijst."
+  },
+  "wizard": {
+    "complete": {
+      "title": "Je bent klaar voor resultaten",
+      "tagline": "Bekijk de compatibele shortlist op basis van wat je hebt geselecteerd.",
+      "viewResults": "Bekijk resultaten"
+    },
+    "progress": {
+      "progress": "Voortgang",
+      "questionOf": "Vraag {current} van {total}"
+    },
+    "phaseGate": {
+      "tagline": "U kunt nu blijven verfijnen of naar de resultaten springen."
+    },
+    "nav": {
+      "back": "← Terug",
+      "reviewAnswers": "Bekijk de antwoorden",
+      "restart": "Opnieuw opstarten"
+    }
+  },
+  "reviewAnswers": {
+    "title": "Bekijk de antwoorden",
+    "tagline": "Spring terug om iets te veranderen.",
+    "close": "Dichtbij",
+    "noAnswers": "Er zijn nog geen antwoorden geregistreerd.",
+    "change": "Wijziging"
+  },
+  "debug": {
+    "title": "Foutopsporing"
+  },
+  "results": {
+    "title": "Uw compatibele shortlist",
+    "tagline": "Deze resultaten zijn compatibel met uw keuzes. Er zijn geen ranglijsten of scores.",
+    "explainability": {
+      "title": "Uitlegbaarheid & controle",
+      "tagline": "Bekijk de antwoorden of ontdek waarom sommige distributies zijn uitgesloten."
+    },
+    "reviewAnswers": "Bekijk de antwoorden",
+    "why": "Waarom deze resultaten?",
+    "startOver": "Begin opnieuw",
+    "noMatch": "Geen enkele voldeed aan de huidige beperkingen.",
+    "showFewer": "Toon minder compatibele distributies",
+    "showAll": "Toon alle compatibele distributies",
+    "distroCard": {
+      "compatible": "Verenigbaar",
+      "whyItFits": "Waarom het past",
+      "matchedChoices": "op elkaar afgestemde keuzes",
+      "strictFiltersMatched": "strenge filters op elkaar afgestemd",
+      "choiceDrivenReasons": "keuzegedreven redenen",
+      "noStrictFiltersMatched": "Er waren geen strikte filters actief voor dit resultaat.",
+      "noReasons": "Voldoet aan uw vereiste beperkingen.",
+      "details": "Bekijk details",
+      "hideDetails": "Details verbergen",
+      "showFewer": "Laat minder zien",
+      "showAll": "Toon alle redenen",
+      "potentialFriction": "Potentiële wrijving",
+      "compare": "Vergelijken",
+      "compared": "Vergeleken",
+      "links": {
+        "website": "Website",
+        "documentation": "Documentatie",
+        "forum": "Forum",
+        "download": "Downloaden",
+        "testDrive": "Proefrit"
+      }
+    },
+    "compareSelected": "Vergelijken ({count})",
+    "compareButton": "Vergelijken"
+  },
+  "explainability": {
+    "title": "Waarom deze resultaten?",
+    "tagline": "Transparante beperkingen en uitsluitingen.",
+    "close": "Dichtbij",
+    "activeConstraints": "Actieve beperkingen",
+    "noActiveConstraints": "Geen actieve beperkingen.",
+    "excludedDistros": "Uitgesloten distributies",
+    "noneExcluded": "Geen enkele werd uitgesloten."
+  },
+  "disqualified": {
+    "title": "Wij hebben de stroom gestopt",
+    "tagline": "Eén van uw antwoorden veroorzaakte een harde stop. Linux voldoet mogelijk niet aan deze beperkingen, zoals vermeld. U kunt een antwoord opnieuw starten of aanpassen om andere uitkomsten te verkennen.",
+    "startOver": "Begin opnieuw"
+  },
+  "howItWorks": {
+    "title": "Hoe het werkt",
+    "tagline": "Deze site kiest geen enkele “beste” Linux-versie. Het laat alleen zien wat past bij de antwoorden die u geeft.",
+    "sections": [
+      {
+        "title": "1) Kies hoe diep je wilt gaan",
+        "content": "Begin met een korte reeks vragen. Als u meer nauwkeurigheid wilt, kunt u blijven verfijnen. Je kunt ook na de eerste fase stoppen en toch resultaat boeken."
+      },
+      {
+        "title": "2) Je beantwoordt eenvoudige vragen",
+        "content": "We vragen bijvoorbeeld of u wilt dat alles werkt zonder de terminal te gebruiken, of u eigen software nodig heeft of dat uw computer ouder is."
+      },
+      {
+        "title": "3) Optionele verfijningen (als u kiest)",
+        "content": "In de volgende fase worden een aantal concepten in beginnerstermen uitgelegd:",
+        "bullets": [
+          "<span class=\"font-semibold\">Desktopvoorkeur</span> = het uiterlijk en de indeling van de interface.",
+          "<span class=\"font-semibold\">Releasemodel</span> = hoe updates aankomen (vaste batches vs. rollende updates).",
+          "<span class=\"font-semibold\">Geen voorkeur</span> = filter niet op dat kenmerk."
+        ]
+      },
+      {
+        "title": "4) Wij filteren op basis van jouw keuzes",
+        "content": "Uw antwoorden worden duidelijke, vaste beperkingen. Elke Linux-versie wordt gecontroleerd op deze beperkingen. Als het niet aan deze voorwaarden voldoet, wordt het uitgesloten. Er wordt niets gerangschikt of gescoord."
+      },
+      {
+        "title": "5) Meerdere resultaten zijn normaal",
+        "content": "Veel Linux-versies kunnen aan dezelfde beperkingen voldoen. Dat wordt verwacht. We laten eerst een compatibele shortlist zien, en u kunt deze uitbreiden of de redenen voor elk resultaat bekijken."
+      },
+      {
+        "title": "Wat wij niet doen",
+        "bullets": [
+          "Wij kiezen geen favorieten.",
+          "We rangschikken of scoren geen Linux-versies.",
+          "Wij voegen geen verborgen gewichten of persoonlijke meningen toe."
+        ]
+      }
+    ]
+  },
+  "questions": {
+    "q_experience_depth": {
+      "text": "Hoe diep wil je gaan?",
+      "options": {
+        "quick": "Snel",
+        "more_accurate": "Nauwkeuriger",
+        "expert_mode": "Expert-modus"
+      }
+    },
+    "q_purpose": {
+      "text": "Waar wil je deze computer vooral voor gebruiken?",
+      "options": {
+        "everyday": "Alledaagse zaken (web, e-mail, documenten)",
+        "gaming": "Gamen",
+        "privacy": "Privacygericht gebruik",
+        "server": "Het runnen van een homeserver"
+      }
+    },
+    "q_works_right_away": {
+      "text": "Hoe belangrijk is het dat de meeste dingen meteen werken?",
+      "options": {
+        "very": "Heel belangrijk: ik wil een minimale installatie",
+        "ok_with_some": "Ik ben oké met wat instellingen",
+        "only_free": "Ik wil alleen gratis/open software"
+      }
+    },
+    "q_installation": {
+      "text": "Hoe wil je Linux installeren?",
+      "options": {
+        "gui": "Ik wil een eenvoudig installatieprogramma",
+        "hands_on": "Ik ben oké met een meer praktische opstelling"
+      }
+    },
+    "q_troubleshooting_style": {
+      "text": "Als iets niet werkt, wat voelt dan het prettigst?",
+      "options": {
+        "menus": "Ik wil knoppen en menu's, geen opdrachten",
+        "follow_steps": "Ik kan een stapsgewijze handleiding volgen"
+      }
+    },
+    "q_old_hardware": {
+      "text": "Is deze computer ouder of niet erg krachtig?",
+      "options": {
+        "yes": "Ja, het is behoorlijk oud",
+        "no": "Nee, het is redelijk modern"
+      }
+    },
+    "q_ram_hint": {
+      "text": "Hoeveel geheugen (RAM) heeft uw computer ongeveer?",
+      "options": {
+        "ram_4": "4 GB of minder",
+        "ram_8": "8 GB",
+        "ram_16": "16 GB of meer",
+        "not_sure": "Ik weet het niet zeker"
+      }
+    },
+    "q_privacy_importance": {
+      "text": "Hoe belangrijk is privacy voor u?",
+      "options": {
+        "very_important": "Heel belangrijk",
+        "balanced": "Het maakt mij uit, maar gemak is ook belangrijk"
+      }
+    },
+    "q_gpu_simple": {
+      "text": "Heb je een NVIDIA grafische kaart?",
+      "options": {
+        "nvidia": "Ja, NVIDIA",
+        "not_sure": "Niet zeker",
+        "no": "Nee"
+      }
+    },
+    "q_software_use_case": {
+      "text": "Gebruikt u speciale software?",
+      "options": {
+        "office_suite": "Officepakket (Word, Excel, PowerPoint)",
+        "creative_apps": "Creatieve apps (Photoshop, Premiere, CAD)",
+        "development_tools": "Ontwikkeltools (IDE's, Docker)",
+        "basic_use": "Gewoon basis browsen en e-mailen"
+      }
+    },
+    "q_secure_boot_simple": {
+      "text": "Moet Secure Boot op uw computer zijn ingeschakeld?",
+      "options": {
+        "yes": "Ja, het moet blijven zitten",
+        "no": "Nee, het kan uit zijn",
+        "not_sure": "Niet zeker"
+      }
+    },
+    "q_phase_exit": {
+      "text": "Wilt u nu resultaten zien of verder verfijnen?",
+      "options": {
+        "refine_further": "Verfijn verder",
+        "see_results": "Bekijk nu de resultaten"
+      }
+    },
+    "q_architecture_clarifier": {
+      "text": "Gebruikt u een typische pc/laptop of een ARM-gebaseerd apparaat?",
+      "options": {
+        "pc": "Typische pc/laptop",
+        "arm": "ARM-gebaseerd apparaat (sommige nieuwere apparaten gebruiken dit)",
+        "not_sure": "Niet zeker"
+      }
+    },
+    "q_arm_expectation": {
+      "text": "Op ARM-apparaten kunnen de Linux-opties beperkter zijn. Wat heb jij liever?",
+      "options": {
+        "simple": "Houd het simpel en stabiel",
+        "i_can_tinker": "Ik kan een meer praktische opstelling aan"
+      }
+    },
+    "q_desktop_preference": {
+      "text": "Heeft u een desktop-look die u verkiest?",
+      "options": {
+        "no_preference": "Geen voorkeur",
+        "gnome": "GNOME (schoon en eenvoudig)",
+        "kde": "KDE Plasma (zeer aanpasbaar)",
+        "xfce": "XFCE (lichtgewicht)",
+        "cinnamon": "Kaneel (bekend)",
+        "mate": "MAAT (klassiek)",
+        "lxqt": "LXQt (zeer licht)"
+      }
+    },
+    "q_release_model": {
+      "text": "Wat vindt u van updates?",
+      "options": {
+        "no_preference": "Geen voorkeur",
+        "fixed": "Stabiele, minder frequente updates",
+        "rolling": "Nieuwste functies, frequente updates"
+      }
+    },
+    "q_work_gaming_focus": {
+      "text": "Als je zowel werkt als gamet, wat is er op dit moment dan belangrijker?",
+      "options": {
+        "mostly_work": "Meestal werk of dagelijks gebruik",
+        "mostly_gaming": "Meestal gamen",
+        "both": "Beide ongeveer evenveel",
+        "no_preference": "Geen voorkeur"
+      }
+    },
+    "q_secure_boot_clarifier": {
+      "text": "Als Secure Boot verschijnt, wat zou dan uw voorkeur hebben?",
+      "options": {
+        "must_on": "Het moet blijven zitten",
+        "can_off": "Indien nodig kan ik het uitschakelen",
+        "still_unsure": "Nog steeds niet zeker"
+      }
+    },
+    "q_nvidia_tolerance": {
+      "text": "Als u NVIDIA heeft, hoeveel installatiewerk bent u dan bereid te doen?",
+      "options": {
+        "no_preference": "Geen voorkeur",
+        "want_easy": "Ik wil dat het werkt met minimale instellingen",
+        "ok_hands_on": "Ik ben akkoord met extra stappen",
+        "avoid_proprietary": "Ik vermijd liever closed-source NVIDIA-software"
+      }
+    },
+    "q_everyday_apps": {
+      "text": "Welke komt dichter bij uw verwachting voor alledaagse apps?",
+      "options": {
+        "must_just_work": "Ik wil dat gewone apps en media probleemloos werken",
+        "ok_alternatives": "Ik vind het prima om alternatieven te gebruiken en een kleine installatie uit te voeren"
+      }
+    },
+    "q_privacy_tradeoff": {
+      "text": "Als privacy conflicteert met gemak, wat heeft u dan het liefst?",
+      "options": {
+        "privacy_first": "Privacy voorop, ook al zijn sommige dingen moeilijker",
+        "balanced": "De balans is prima – ik wil nog steeds dat alles soepel verloopt"
+      }
+    },
+    "q_gaming": {
+      "text": "Ben je van plan games op deze machine te spelen?",
+      "options": {
+        "yes": "Ja",
+        "no": "Nee"
+      }
+    },
+    "q_gaming_expectation": {
+      "text": "Wat beschrijft het beste wat je verwacht van gamen op Linux?",
+      "options": {
+        "plug_and_play": "Ik wil dat het zo soepel mogelijk verloopt",
+        "i_can_tweak": "Indien nodig kan ik de instellingen aanpassen"
+      }
+    },
+    "q_anticheat_warning": {
+      "text": "Speel je voornamelijk games die strikte anti-cheat vereisen en die mogelijk niet werken op Linux?",
+      "options": {
+        "yes": "Ja",
+        "no": "Nee / niet zeker"
+      }
+    },
+    "q_server_comfort": {
+      "text": "Welke installatiestijl heeft uw voorkeur voor een thuisserver?",
+      "options": {
+        "simple_admin": "Ik wil een eenvoudige installatie en eenvoudig onderhoud",
+        "hands_on_server": "Ik kan het op een meer praktische manier beheren"
+      }
+    },
+    "q_release_model_advanced": {
+      "text": "Geef je op technisch niveau de voorkeur aan rollende of vaste releases?",
+      "options": {
+        "no_preference": "Geen voorkeur",
+        "fixed": "Vaste releases (voorspelbare, minder frequente updates)",
+        "rolling": "Rollende release (continue updates)"
+      }
+    },
+    "q_desktop_preference_advanced": {
+      "text": "Als je om de desktopomgeving geeft, kies er dan een.",
+      "options": {
+        "no_preference": "Geen voorkeur",
+        "gnome": "GNOME",
+        "kde": "KDE-plasma",
+        "xfce": "XFCE",
+        "cinnamon": "Kaneel",
+        "mate": "MAAT",
+        "lxqt": "LXQt"
+      }
+    },
+    "q_gpu_confirm_advanced": {
+      "text": "Welke GPU-leverancier past het beste bij uw systeem?",
+      "options": {
+        "not_sure": "Niet zeker / geen voorkeur",
+        "nvidia": "NVIDIA",
+        "intel_amd": "Intel of AMD"
+      }
+    },
+    "q_secure_boot_advanced": {
+      "text": "Secure Boot: heeft u out-of-the-box ondersteuning nodig?",
+      "options": {
+        "no_preference": "Geen voorkeur / niet zeker",
+        "must_on": "Ja, het moet blijven zitten",
+        "can_off": "Nee, ik kan het indien nodig uitschakelen"
+      }
+    },
+    "q_nvidia_tolerance_advanced": {
+      "text": "Welke setup-afweging accepteert u voor NVIDIA?",
+      "options": {
+        "no_preference": "Geen voorkeur",
+        "want_easy": "Minimale installatie",
+        "ok_hands_on": "Hands-on instellen is prima",
+        "avoid_proprietary": "Vermijd closed-source NVIDIA-software"
+      }
+    },
+    "q_open_software_strictness": {
+      "text": "Hoe streng wilt u zijn als het gaat om propriëtaire software?",
+      "options": {
+        "no_preference": "Geen voorkeur / behoud mijn eerdere keuze",
+        "strict": "Strikt – alleen gratis/open software",
+        "practical": "Praktisch - sta bedrijfseigen toe wanneer dat nodig is",
+        "required": "Ik heb eigen software nodig om te kunnen werken"
+      }
+    },
+    "q_advanced_control": {
+      "text": "Bent u op uw gemak met het afhandelen van updates en fixes in de terminal wanneer dat nodig is?",
+      "options": {
+        "no_preference": "Geen voorkeur / behoud mijn eerdere keuze",
+        "yes": "Ja, ik vind het prima om hands-on onderhoud uit te voeren",
+        "no": "Nee, ik geef de voorkeur aan een soepelere ervaring"
+      }
+    },
+    "q_init_system_preference": {
+      "text": "Voorkeur init-systeem?",
+      "options": {
+        "no_preference": "Geen voorkeur",
+        "systemd": "gesystematiseerd",
+        "openrc": "OpenRC",
+        "runit": "runit"
+      }
+    },
+    "q_package_manager_preference": {
+      "text": "Voorkeur pakketbeheerder?",
+      "options": {
+        "no_preference": "Geen voorkeur",
+        "apt": "APT",
+        "dnf": "Niet gevonden",
+        "pacman": "Pacman",
+        "zypper": "Zypper",
+        "apk": "APK",
+        "nix": "Nix"
+      }
+    },
+    "q_ram_refinement_advanced": {
+      "text": "Als u de RAM-vereisten wilt verfijnen, kiest u een minimum.",
+      "options": {
+        "no_preference": "Geen voorkeur",
+        "ram_4": "4 GB",
+        "ram_8": "8 GB",
+        "ram_16": "16 GB"
+      }
+    }
+  },
+  "reasons": {
+    "include_meets_requirements": "Voldoet aan uw vereiste beperkingen.",
+    "include_installer_gui_match": "Komt overeen met uw voorkeur voor een grafisch installatieprogramma.",
+    "include_maintenance_low_friction_match": "Past bij uw voorkeur voor wrijvingsarm onderhoud.",
+    "include_proprietary_none_match": "Respecteert uw voorkeur om propriëtaire software te vermijden.",
+    "include_proprietary_supported": "Ondersteunt uw behoefte aan bedrijfseigen software.",
+    "include_secure_boot_supported": "Ondersteunt Secure Boot out-of-the-box.",
+    "include_nvidia_easy_match": "Biedt relatief eenvoudige NVIDIA-installatie.",
+    "include_gaming_good": "Ondersteuning voor games is goed.",
+    "include_gaming_limited": "Gaming-ondersteuning is beperkt, maar beschikbaar.",
+    "include_privacy_strong": "Heeft een sterke privacyhouding.",
+    "include_old_hardware_suitable": "Geschikt voor oudere hardware.",
+    "include_desktop_match": "Komt overeen met uw desktopvoorkeur.",
+    "include_release_model_match": "Komt overeen met uw releasemodelvoorkeur.",
+    "include_init_system_match": "Komt overeen met uw init-systeemvoorkeur.",
+    "include_package_manager_match": "Komt overeen met uw pakketbeheerdervoorkeur.",
+    "exclude_installer_manual": "Vereist een handmatig installatieprogramma.",
+    "exclude_maintenance_hands_on": "Vereist praktisch onderhoud.",
+    "exclude_proprietary_required": "Vertrouwt op eigen software.",
+    "exclude_proprietary_missing": "Ondersteunt geen eigen software.",
+    "exclude_old_hardware_unsuitable": "Niet geschikt voor oudere hardware.",
+    "exclude_secure_boot_unavailable": "Ondersteunt geen Secure Boot uit de doos.",
+    "exclude_nvidia_hard": "De installatie van NVIDIA zal waarschijnlijk praktisch zijn.",
+    "exclude_nvidia_proprietary_required": "Vereist waarschijnlijk eigen NVIDIA-stuurprogramma's."
+  },
+  "constraints": {
+    "constraint_installer_gui": "U wilt een grafisch installatieprogramma.",
+    "constraint_maintenance_low_friction": "U wilt wrijvingsarm onderhoud zonder terminal.",
+    "constraint_proprietary_none": "U wilt propriëtaire software vermijden.",
+    "constraint_proprietary_allowed": "U hebt toegang nodig tot bedrijfseigen software.",
+    "constraint_old_hardware": "U heeft ondersteuning nodig voor oudere hardware.",
+    "constraint_gaming_support": "Je geeft om ondersteuning voor games.",
+    "constraint_privacy_strong": "U wilt sterke privacystandaarden.",
+    "constraint_secure_boot_required": "Om out-of-the-box te kunnen werken, hebt u Secure Boot nodig.",
+    "constraint_nvidia_easy": "U wilt dat NVIDIA eenvoudig te installeren is.",
+    "constraint_nvidia_avoid_proprietary": "U wilt eigen NVIDIA-stuurprogramma's vermijden.",
+    "constraint_desktop_gnome": "U geeft de voorkeur aan het GNOME-bureaublad.",
+    "constraint_desktop_kde": "U geeft de voorkeur aan het KDE-bureaublad.",
+    "constraint_desktop_xfce": "U geeft de voorkeur aan de Xfce-desktop.",
+    "constraint_desktop_cinnamon": "U geeft de voorkeur aan de Cinnamon-desktop.",
+    "constraint_desktop_mate": "U geeft de voorkeur aan het MATE-bureaublad.",
+    "constraint_desktop_lxqt": "U geeft de voorkeur aan de LXQt-desktop.",
+    "constraint_release_fixed": "Je geeft de voorkeur aan vaste releases.",
+    "constraint_release_rolling": "Je geeft de voorkeur aan rollende releases.",
+    "constraint_init_systemd": "Je geeft de voorkeur aan systemisch.",
+    "constraint_init_openrc": "U geeft de voorkeur aan OpenRC.",
+    "constraint_init_runit": "Je geeft de voorkeur aan runit.",
+    "constraint_pkg_apt": "U geeft de voorkeur aan de pakketbeheerder van APT.",
+    "constraint_pkg_dnf": "U geeft de voorkeur aan de DNF-pakketbeheerder.",
+    "constraint_pkg_pacman": "U geeft de voorkeur aan de Pacman-pakketbeheerder.",
+    "constraint_pkg_zypper": "U geeft de voorkeur aan de pakketbeheerder van Zypper.",
+    "constraint_pkg_apk": "U geeft de voorkeur aan de APK-pakketbeheerder.",
+    "constraint_pkg_nix": "U geeft de voorkeur aan de Nix-pakketbeheerder."
+  },
+  "compare": {
+    "title": "Vergelijk distributies",
+    "clearComparison": "Duidelijke vergelijking",
+    "selectAtLeastTwo": "Selecteer ten minste twee distributies om te vergelijken.",
+    "feature": {
+      "desktopEnvironment": "Desktopomgeving",
+      "packageManager": "Pakketbeheerder",
+      "initSystem": "Init-systeem",
+      "releaseModel": "Release-model",
+      "minRam": "Minimaal RAM-geheugen",
+      "installerExperience": "Installateur ervaring",
+      "maintenanceStyle": "Onderhoudsstijl",
+      "proprietarySupport": "Eigen softwareondersteuning",
+      "gamingSupport": "Gaming-ondersteuning",
+      "privacyPosture": "Privacyhouding",
+      "secureBootOutOfBox": "Veilig opstarten, out-of-the-box",
+      "nvidiaExperience": "NVIDIA-ervaring",
+      "true": "Ja",
+      "false": "Nee",
+      "NO_PREFERENCE": "Geen voorkeur",
+      "UNKNOWN": "Onbekend",
+      "GNOME": "GNOME",
+      "KDE": "KDE-plasma",
+      "XFCE": "XFCE",
+      "CINNAMON": "Kaneel",
+      "MATE": "MAAT",
+      "LXQT": "LXQt",
+      "FIXED": "Vast",
+      "ROLLING": "Rollend",
+      "SYSTEMD": "gesystematiseerd",
+      "OPENRC": "OpenRC",
+      "RUNIT": "runit",
+      "APT": "APT",
+      "DNF": "Niet gevonden",
+      "PACMAN": "Pacman",
+      "ZYPPER": "Zypper",
+      "APK": "APK",
+      "NIX": "Nix",
+      "GUI": "Grafisch",
+      "CLI_OK": "Commandoregel",
+      "LOW_FRICTION": "Lage wrijving",
+      "TERMINAL_OK": "Terminal Oké",
+      "REQUIRED": "Vereist",
+      "OPTIONAL": "Optioneel",
+      "AVOID": "Voorkomen",
+      "GOOD": "Goed",
+      "LIMITED": "Beperkt",
+      "NONE": "Geen",
+      "STRONG": "Sterk",
+      "MODERATE": "Gematigd",
+      "WEAK": "Zwak",
+      "WANT_EASY": "Eenvoudige installatie",
+      "OK_HANDS_ON": "Praktische installatie",
+      "AVOID_PROPRIETARY": "Vermijd eigendom"
+    }
+  },
+  "distros": {
+    "new_distro": {
+      "name": "Nieuwe Linux-distro",
+      "description": "Een hypothetische nieuwe distributie voor demonstratiedoeleinden."
+    }
+  },
+  "howItWorksDocs": {
+    "title": "Hoe het werkt",
+    "tagline": "Deze pagina is een documentgestuurd overzicht van de beslissingsengine, het datamodel en de uitlegbaarheidsregels achter Pick Your Linux.",
+    "docsCoveredTitle": "Documentatiebronnen gedekt",
+    "docsCovered": [
+      "ARCHITECTURE.md",
+      "DATA_CONTRACT.md",
+      "DATA_RULES.md",
+      "QUESTION_CATALOG.md",
+      "CONSTRAINT_MAPPING.md",
+      "RESULTS_COPY.md",
+      "TESTING.md",
+      "TONE_AND_COPY.md",
+      "FRONTEND-IMPLEMENTATION-RULES.md"
+    ],
+    "sections": [
+      {
+        "title": "1. Productbelofte",
+        "summary": "Pick Your Linux is een deterministische compatibiliteitsengine. Het rangschikt, scoort of suggereert geen enkele beste distributie. Het filtert alleen met expliciete regels en toont transparante redenen.",
+        "bullets": [
+          "Er worden meerdere overeenkomsten verwacht als meerdere distributies aan dezelfde beperkingen voldoen.",
+          "Er worden geen verborgen gewichten, populariteitsscores of subjectieve aanbevelingen gebruikt.",
+          "U kunt antwoorden wijzigen en meteen zien hoe de uitkomsten veranderen."
+        ]
+      },
+      {
+        "title": "2. Kernarchitectuur",
+        "summary": "Het systeem is opgesplitst in strikte lagen om de logica testbaar te houden en de gebruikersinterface dom te houden.",
+        "bullets": [
+          "Gegevenslaag (/src/data): schema's, vragencatalogus, distro-dataset.",
+          "Logische laag (/src/engine/logic.ts): pure conditie- en patchevaluatie.",
+          "Statuslaag (/src/engine/state.ts): stroomorkestratie, voortgang, ongedaan maken, resultatenweergavemodellen.",
+          "UI-laag (/src/components): alleen renderende componenten die weergavemodellen gebruiken.",
+          "De importrichting is eenrichtingsverkeer: UI -> status -> logica."
+        ]
+      },
+      {
+        "title": "3. Datacontract (Gebruikersintentie)",
+        "summary": "Bij elk antwoord wordt één gevalideerd UserIntent-object bijgewerkt. Dit is de beslissingsstatus.",
+        "bullets": [
+          "Installatie- en onderhoudsvoorkeuren definiëren de wrijvingstolerantie bij installatie en post-installatie.",
+          "Eigen voorkeuren controleren de acceptatie van closed-sourcecomponenten.",
+          "Hardwarecontext omvat architectuur, RAM, veilig opstarten en GPU-details.",
+          "Use-case-tags zijn onder meer Gaming, Privacy, Work, Server en OldHardware.",
+          "Optionele verfijningsvelden zijn onder meer bureaubladvoorkeur, releasemodel, init-systeem en pakketbeheerder."
+        ]
+      },
+      {
+        "title": "4. Vragenengine",
+        "summary": "Vragen zijn datagedreven. Elke optie bevat deterministische JSON-patches. De zichtbaarheid wordt alleen bepaald door expliciete voorwaarden.",
+        "bullets": [
+          "Toegestane patchbewerkingen: set, add_tag, remove_tag.",
+          "Toegestane voorwaarde-ops: eq, neq, in, contain en, or.",
+          "Geen functies in data, geen callbacks en geen runtime-evaluatie.",
+          "Vraagvolgorde en fasegedrag komen uit de catalogus, niet uit UI-logica."
+        ]
+      },
+      {
+        "title": "5. Gefaseerde reis",
+        "summary": "De stroomdiepte is progressief en alleen voorwaarts: Snel (Beginner) -> Gemiddeld -> Gevorderd.",
+        "bullets": [
+          "Quick verzamelt hoge signaalbeperkingen in minimale tijd.",
+          "Intermediate voegt praktische verfijningen toe (desktopstijl, updatemodel, hardwareverduidelijkers).",
+          "Advanced voegt expliciete systeemvoorkeuren toe (init, pakketbeheerder, strengere controles).",
+          "Gebruikers kunnen na snel/gemiddeld stoppen bij de resultaten en later doorgaan met verfijnen zonder opnieuw te hoeven starten."
+        ]
+      },
+      {
+        "title": "6. Harde beperkingen (geslaagd/mislukt)",
+        "summary": "Harde beperkingen sluiten incompatibele distributies uit. Als een distributie één harde regel niet naleeft, is deze uit.",
+        "bullets": [
+          "De vereisten voor een GUI-installatieprogramma zijn exclusief distributies van handmatige installatieprogramma's.",
+          "Geen terminalonderhoudsvereiste sluit praktische onderhoudsdistributies uit.",
+          "Eigendom vermijden sluit distributies uit die eigen ondersteuning vereisen.",
+          "Eigendom vereisen sluit distributies zonder eigen ondersteuning uit.",
+          "De vereisten voor oude hardware sluiten distributies uit die niet geschikt zijn voor low-end/oudere hardware.",
+          "Veilig opstarten en NVIDIA-voorkeuren passen aanvullende expliciete compatibiliteitscontroles toe."
+        ]
+      },
+      {
+        "title": "7. Zachte compatibiliteitsredenen",
+        "summary": "Zachte redenen rangschikken distributies niet. Ze leggen alleen uit waarom een ​​compatibele distro mogelijk beter geschikt is voor specifieke doelen.",
+        "bullets": [
+          "Gaming en privacy zorgen voor verklaarbaarheidsredenen.",
+          "Desktop/release/init/package-manager voorkeuren voegen expliciete matchredenen toe.",
+          "Keuzegedreven redenen en strikte filtermatches worden afzonderlijk in de resultaten weergegeven."
+        ]
+      },
+      {
+        "title": "8. Resultaten en uitlegbaarheid",
+        "summary": "Resultaten worden gepresenteerd als compatibiliteitsresultaten, niet als aanbevelingen.",
+        "bullets": [
+          "Elke kaart bevat strikte, op elkaar afgestemde filters, keuzegedreven redenen en potentiële wrijving.",
+          "Het deelvenster Verklaarbaarheid toont actieve beperkingen en uitgesloten distro-redenen.",
+          "Op de vergelijkingspagina worden distro-attributen naast elkaar weergegeven met behulp van dezelfde brongegevens.",
+          "Standaard wordt er eerst gesorteerd op de meeste overeenkomsten; gebruikersfilters zijn expliciet en omkeerbaar."
+        ]
+      },
+      {
+        "title": "9. Gegevenskwaliteit en audits",
+        "summary": "Distro-gegevens volgen schemavalidatie plus consistentie-audits.",
+        "bullets": [
+          "Schemavalidatie dwingt wettelijke waarden af ​​voor elk distributiekenmerk.",
+          "Auditregels markeren verdachte combinaties (bijvoorbeeld NVIDIA-ondersteuning versus eigen beleid).",
+          "Secure boot-claims en rolling-maintenance-verwachtingen worden gecontroleerd op verdedigbaarheid."
+        ]
+      },
+      {
+        "title": "10. Test- en validatiepoorten",
+        "summary": "Er wordt verwacht dat wijzigingen de deterministische validatiepijplijnen zullen passeren.",
+        "bullets": [
+          "De Flow Validator controleert of de zichtbaarheid van de vragen en de transities coherent zijn.",
+          "Vraag- en distributievalidators zorgen voor de integriteit van schema's en catalogi.",
+          "Enginetests omvatten conditielogica, patchgedrag, voltooiing en ongedaan maken.",
+          "Het doel is verklaarbaar en reproduceerbaar gedrag onder strikte type- en schemacontrole."
+        ]
+      },
+      {
+        "title": "11. UX- en kopieerregels",
+        "summary": "Taal is ontworpen met het oog op duidelijkheid en omkeerbaarheid.",
+        "bullets": [
+          "Vermijd woorden als 'beste', 'top', 'aanbevolen' of op populariteit gebaseerde claims.",
+          "Vermijd framing van vaardigheden in de gebruikersinterface; focus op comfort en doelen.",
+          "Elke keuze moet omkeerbaar aanvoelen: antwoorden bekijken, bewerken of opnieuw opstarten."
+        ]
+      }
+    ]
+  }
+}

@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 // --- 1. Enums (Legal Moves Only) ---
-export const TagEnum = z.enum(["Gaming", "Privacy", "Server", "OldHardware", "Work"]);
+export const TagEnum = z.enum(["Gaming", "Privacy", "Server", "OldHardware", "Work", "Office", "Creative", "Development", "Basic"]);
 export const ArchitectureEnum = z.enum(["x86_64", "arm64"]);
 export const ExperienceEnum = z.enum(["BEGINNER", "INTERMEDIATE", "ADVANCED"]);
 export const DesktopPreferenceEnum = z.enum([

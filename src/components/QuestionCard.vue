@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import type { Question } from "~/data/types";
+import OptionButton from "~/components/OptionButton.vue";
+import type { QuestionVM } from "~/engine/state";
 
-const props = defineProps<{ question: Question }>();
+const props = defineProps<{ question: QuestionVM }>();
 const emit = defineEmits<{ (event: "select", optionId: string): void }>();
 
 const onSelect = (optionId: string) => {
@@ -17,21 +18,15 @@ const onSelect = (optionId: string) => {
       </h2>
     </div>
 
-    <div class="grid gap-3" role="list">
-      <button
+    <div class="grid gap-3 max-h-80 overflow-y-auto pr-1 pt-1" role="list">
+      <OptionButton
         v-for="option in props.question.options"
         :key="option.id"
-        class="group text-left p-4 rounded-xl border-2 border-gray-100 hover:border-blue-500 hover:bg-blue-50 transition-all duration-200 hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+        :label="option.label"
+        :description="option.description"
         role="listitem"
-        @click="onSelect(option.id)"
-      >
-        <div class="font-semibold text-gray-800 group-hover:text-blue-700">
-          {{ option.label }}
-        </div>
-        <div v-if="option.description" class="text-sm text-gray-500 mt-1">
-          {{ option.description }}
-        </div>
-      </button>
+        @select="onSelect(option.id)"
+      />
     </div>
   </div>
 </template>
