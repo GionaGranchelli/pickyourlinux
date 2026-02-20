@@ -6,9 +6,9 @@ import { UserIntentSchema, type QuestionOption } from "../../src/data/types";
 import { buildResultsPresentation, useDecisionEngine } from "../../src/engine/state";
 
 const getOption = (questionId: string, optionId: string): QuestionOption => {
-    const question = ALL_QUESTIONS.find((q) => q.id === questionId);
+    const question = ALL_QUESTIONS.find((q: { id: string; }) => q.id === questionId);
     if (!question) throw new Error(`Missing question: ${questionId}`);
-    const option = question.options.find((opt) => opt.id === optionId);
+    const option = question.options.find((opt: { id: string; }) => opt.id === optionId);
     if (!option) throw new Error(`Missing option: ${optionId}`);
     return option;
 };
@@ -131,7 +131,7 @@ describe("engine/state", () => {
         const engine = useDecisionEngine();
         const firstQuestion = engine.currentQuestion.value;
         if (!firstQuestion) throw new Error("Expected an initial question");
-        const beforeIntent = structuredClone(engine.intent.value);
+        const beforeIntent = JSON.parse(JSON.stringify(engine.intent.value));
 
         engine.skipCurrentQuestion();
 

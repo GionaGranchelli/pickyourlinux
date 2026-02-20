@@ -22,8 +22,8 @@ const onSelect = (optionId: string) => {
     </div>
 
     <div 
-      class="grid gap-6 pr-1 pt-1" 
-      :class="[hasImages ? 'grid-cols-1 sm:grid-cols-2' : 'grid-cols-1']"
+      class="grid pr-1 pt-1"
+      :class="[hasImages ? 'gap-8 grid-cols-1 sm:grid-cols-2' : 'gap-6 grid-cols-1']"
       role="list"
     >
       <OptionButton
