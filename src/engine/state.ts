@@ -25,6 +25,7 @@ export interface SessionState {
 interface Snapshot {
     intent: UserIntent;
     answeredIds: string[];
+    skippedQuestionIds: string[];
     status: EngineStatus;
     disqualifyReason?: string;
     appliedPatches: string[];
@@ -42,6 +43,7 @@ const SessionStateSchema = z.object({
 const SessionPayloadSchema = z.object({
     intent: UserIntentSchema,
     answeredIds: z.array(z.string()),
+    skippedQuestionIds: z.array(z.string()).optional(),
     status: z.enum(["IN_PROGRESS", "COMPLETED", "DISQUALIFIED"]),
     disqualifyReason: z.string().optional(),
     appliedPatches: z.array(z.string()).optional(),
@@ -244,6 +246,7 @@ export function useDecisionEngine(t: (key: string) => string = (key) => key) {
     // Single source of truth (reactive)
     const intent = ref<UserIntent>(structuredClone(defaultIntent));
     const answeredIds = ref<string[]>([]);
+    const skippedQuestionIds = ref<string[]>([]);
     const status = ref<EngineStatus>("IN_PROGRESS");
     const disqualifyReason = ref<string | undefined>(undefined);
 
@@ -264,6 +267,7 @@ export function useDecisionEngine(t: (key: string) => string = (key) => key) {
                 const parsed = SessionPayloadSchema.parse(JSON.parse(stored));
                 intent.value = parsed.intent;
                 answeredIds.value = parsed.answeredIds;
+                skippedQuestionIds.value = parsed.skippedQuestionIds || [];
                 status.value = parsed.status;
                 disqualifyReason.value = parsed.disqualifyReason;
                 appliedPatches.value = parsed.appliedPatches || [];
@@ -279,12 +283,13 @@ export function useDecisionEngine(t: (key: string) => string = (key) => key) {
     // Auto-save to localStorage on state changes
     if (import.meta.client) {
         watch(
-            [intent, answeredIds, status, disqualifyReason, appliedPatches, answerHistory],
+            [intent, answeredIds, skippedQuestionIds, status, disqualifyReason, appliedPatches, answerHistory],
             () => {
                 if (isRestoring) return; // Skip during restoration
                 const payload = {
                     intent: toRaw(intent.value),
                     answeredIds: answeredIds.value,
+                    skippedQuestionIds: skippedQuestionIds.value,
                     status: status.value,
                     disqualifyReason: disqualifyReason.value,
                     appliedPatches: appliedPatches.value,
@@ -525,6 +530,7 @@ export function useDecisionEngine(t: (key: string) => string = (key) => key) {
         history.value.push({
             intent: structuredClone(toRaw(intent.value)),
             answeredIds: [...answeredIds.value],
+            skippedQuestionIds: [...skippedQuestionIds.value],
             status: status.value,
             disqualifyReason: disqualifyReason.value,
             appliedPatches: [...appliedPatches.value],
@@ -576,11 +582,46 @@ export function useDecisionEngine(t: (key: string) => string = (key) => key) {
 
         // Mark answered (by ID, not index)
         if (!answeredIds.value.includes(questionId)) answeredIds.value.push(questionId);
+        skippedQuestionIds.value = skippedQuestionIds.value.filter((id) => id !== questionId);
         if (!answerHistory.value.some((item) => item.questionId === questionId)) {
             answerHistory.value.push(record);
         }
 
         // Check if all visible questions are now answered
+        const next = visibleQuestions.value.find((q) => !answeredIds.value.includes(q.id));
+        if (!next) {
+            status.value = "COMPLETED";
+        }
+    }
+
+    function skipCurrentQuestion() {
+        if (status.value !== "IN_PROGRESS") return;
+        const question = currentQuestion.value;
+        if (!question) return;
+        if (question.id === "q_phase_exit") return;
+        if (question.options.some((option) => option.isDisqualifier)) return;
+
+        history.value.push({
+            intent: structuredClone(toRaw(intent.value)),
+            answeredIds: [...answeredIds.value],
+            skippedQuestionIds: [...skippedQuestionIds.value],
+            status: status.value,
+            disqualifyReason: disqualifyReason.value,
+            appliedPatches: [...appliedPatches.value],
+            lastAppliedPatches: [...lastAppliedPatches.value],
+            answerHistory: [...answerHistory.value],
+        });
+
+        if (!answeredIds.value.includes(question.id)) answeredIds.value.push(question.id);
+        if (!skippedQuestionIds.value.includes(question.id)) skippedQuestionIds.value.push(question.id);
+        answerHistory.value.push({
+            questionId: question.id,
+            questionText: t(question.text),
+            optionId: "__skipped__",
+            optionLabel: "Skipped",
+        });
+        lastAppliedPatches.value = [];
+
         const next = visibleQuestions.value.find((q) => !answeredIds.value.includes(q.id));
         if (!next) {
             status.value = "COMPLETED";
@@ -593,6 +634,7 @@ export function useDecisionEngine(t: (key: string) => string = (key) => key) {
 
         intent.value = prev.intent;
         answeredIds.value = prev.answeredIds;
+        skippedQuestionIds.value = prev.skippedQuestionIds;
         status.value = prev.status;
         disqualifyReason.value = prev.disqualifyReason;
         appliedPatches.value = prev.appliedPatches;
@@ -611,6 +653,7 @@ export function useDecisionEngine(t: (key: string) => string = (key) => key) {
     function reset() {
         intent.value = structuredClone(defaultIntent);
         answeredIds.value = [];
+        skippedQuestionIds.value = [];
         status.value = "IN_PROGRESS";
         disqualifyReason.value = undefined;
         history.value = [];
@@ -630,6 +673,7 @@ export function useDecisionEngine(t: (key: string) => string = (key) => key) {
 
         intent.value = snapshot.intent;
         answeredIds.value = snapshot.answeredIds;
+        skippedQuestionIds.value = snapshot.skippedQuestionIds;
         status.value = "IN_PROGRESS";
         disqualifyReason.value = undefined;
         appliedPatches.value = snapshot.appliedPatches;
@@ -681,6 +725,7 @@ export function useDecisionEngine(t: (key: string) => string = (key) => key) {
 
             intent.value = restored.intent;
             answeredIds.value = [...restored.answeredIds];
+            skippedQuestionIds.value = [];
             status.value = restored.status;
             disqualifyReason.value = restored.disqualifyReason;
             history.value = [];
@@ -707,6 +752,7 @@ export function useDecisionEngine(t: (key: string) => string = (key) => key) {
 
             intent.value = restored.intent;
             answeredIds.value = [...restored.answeredIds];
+            skippedQuestionIds.value = [];
             status.value = "IN_PROGRESS";
             disqualifyReason.value = undefined;
             history.value = [];
@@ -723,6 +769,7 @@ export function useDecisionEngine(t: (key: string) => string = (key) => key) {
         // state
         intent,
         answeredIds,
+        skippedQuestionIds,
         status,
         disqualifyReason,
         debugEnabled,
@@ -751,6 +798,7 @@ export function useDecisionEngine(t: (key: string) => string = (key) => key) {
         // actions
         selectOption,
         selectOptionById,
+        skipCurrentQuestion,
         undo,
         editAnswer,
         reset,

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, watch } from "vue";
+import { computed, ref, watch } from "vue";
 import { useI18n } from "vue-i18n";
 import QuestionCard from "~/components/QuestionCard.vue";
 import WizardProgress from "~/components/WizardProgress.vue";
@@ -18,16 +18,25 @@ const {
   status,
   wizardMode,
   progressVM,
+  currentQuestion,
   currentQuestionVM,
   phaseGateVM,
   answersVM,
   debugVM,
   canUndo,
   selectOptionById,
+  skipCurrentQuestion,
   undo,
   reset,
   editAnswer,
 } = engine;
+
+const canSkip = computed(() => {
+  if (wizardMode.value !== "QUESTION") return false;
+  if (!currentQuestion.value) return false;
+  if (currentQuestion.value.id === "q_phase_exit") return false;
+  return !currentQuestion.value.options.some((option) => option.isDisqualifier);
+});
 
 const reviewOpen = ref(false);
 
@@ -67,7 +76,14 @@ watch(wizardMode, (value) => {
 
     <section v-if="wizardMode === 'QUESTION' && currentQuestionVM" class="space-y-6">
       <QuestionCard :question="currentQuestionVM" @select="selectOptionById" />
-      <WizardNavBar :can-undo="canUndo" :on-undo="undo" :on-restart="onRestart" :on-review="openReview" />
+      <WizardNavBar
+        :can-undo="canUndo"
+        :on-undo="undo"
+        :on-skip="skipCurrentQuestion"
+        :can-skip="canSkip"
+        :on-restart="onRestart"
+        :on-review="openReview"
+      />
     </section>
 
     <section v-else-if="wizardMode === 'PHASE_GATE' && phaseGateVM" class="space-y-6">

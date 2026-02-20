@@ -375,7 +375,7 @@ const questions: Question[] = [
                 id: "windows_vibe",
                 label: "questions.q_beginner_ui_style.options.windows_vibe",
                 description: "questions.q_beginner_ui_style.options.windows_vibe_desc",
-                image: "https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/layout-panel-top.svg", // Placeholder for bottom taskbar layout
+                image: "https://fedoraproject.org/w/uploads/6/62/Cinnamon-screenshot-2015-10-19.png", // Placeholder for bottom taskbar layout
                 patches: [{ op: "set", field: "desktopPreference", value: "KDE" }],
                 isDisqualifier: false,
             },
@@ -383,7 +383,7 @@ const questions: Question[] = [
                 id: "mac_vibe",
                 label: "questions.q_beginner_ui_style.options.mac_vibe",
                 description: "questions.q_beginner_ui_style.options.mac_vibe_desc",
-                image: "https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/layout-template.svg", // Placeholder for centered/dock layout
+                image: "https://www.debugpoint.com/wp-content/uploads/2023/09/GNOME-Desktop-version-44.jpg", // Placeholder for centered/dock layout
                 patches: [{ op: "set", field: "desktopPreference", value: "GNOME" }],
                 isDisqualifier: false,
             },
@@ -391,7 +391,7 @@ const questions: Question[] = [
                 id: "classic_vibe",
                 label: "questions.q_beginner_ui_style.options.classic_vibe",
                 description: "questions.q_beginner_ui_style.options.classic_vibe_desc",
-                image: "https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/layout.svg", // Placeholder for classic layout
+                image: "https://www.debugpoint.com/wp-content/uploads/2023/09/Xfce-4.18-desktop.jpg", // Placeholder for classic layout
                 patches: [{ op: "set", field: "desktopPreference", value: "XFCE" }],
                 isDisqualifier: false,
             },
@@ -399,7 +399,7 @@ const questions: Question[] = [
                 id: "open_vibe",
                 label: "questions.q_beginner_ui_style.options.open_vibe",
                 description: "questions.q_beginner_ui_style.options.open_vibe_desc",
-                image: "https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/help-circle.svg",
+                image: "https://www.debugpoint.com/wp-content/uploads/2024/03/Cosmic-desktop-dev-March-2024.jpg",
                 patches: [{ op: "set", field: "desktopPreference", value: "NO_PREFERENCE" }],
                 isDisqualifier: false,
             },

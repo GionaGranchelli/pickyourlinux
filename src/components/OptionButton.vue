@@ -15,8 +15,11 @@ const onSelect = () => emit("select");
     type="button"
     @click="onSelect"
   >
-    <div v-if="props.image" class="w-full aspect-video bg-gray-100 overflow-hidden border-b border-gray-100">
-      <img :src="props.image" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" :alt="props.label">
+    <div
+      v-if="props.image"
+      class="w-full aspect-video sm:aspect-auto sm:h-40 md:h-36 lg:h-32 bg-gray-100 overflow-hidden border-b border-gray-100"
+    >
+      <img :src="props.image" class="w-full object-cover transition-transform duration-300 group-hover:scale-105" :alt="props.label">
     </div>
     <div class="p-5">
       <div class="font-bold text-gray-900 group-hover:text-blue-700 text-lg leading-snug">

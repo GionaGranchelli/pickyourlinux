@@ -126,4 +126,23 @@ describe("engine/state", () => {
         expect(compatibleIds).toEqual([...compatibleIds].sort());
         expect(excludedIds).toEqual([...excludedIds].sort());
     });
+
+    it("skip advances without applying patches and supports undo", () => {
+        const engine = useDecisionEngine();
+        const firstQuestion = engine.currentQuestion.value;
+        if (!firstQuestion) throw new Error("Expected an initial question");
+        const beforeIntent = structuredClone(engine.intent.value);
+
+        engine.skipCurrentQuestion();
+
+        expect(engine.answeredIds.value).toContain(firstQuestion.id);
+        expect(engine.skippedQuestionIds.value).toContain(firstQuestion.id);
+        expect(engine.intent.value).toEqual(beforeIntent);
+
+        engine.undo();
+
+        expect(engine.answeredIds.value).not.toContain(firstQuestion.id);
+        expect(engine.skippedQuestionIds.value).not.toContain(firstQuestion.id);
+        expect(engine.intent.value).toEqual(beforeIntent);
+    });
 });
