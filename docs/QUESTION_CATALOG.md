@@ -34,20 +34,20 @@ Notes
 
 ## Phase Selection (Entry Point)
 
-### Q0 - Depth Preference
-Question ID: q_experience_depth
+### Q0 - Linux Familiarity
+Question ID: q_linux_familiarity
 Intent Fields
 - experience
 
 Question
-> How deep do you want to go?
+> How familiar are you with Linux?
 
 Allowed Answers
 | User Answer | Applied Patches |
 |---|---|
-| Quick | set experience = BEGINNER |
-| More accurate | set experience = INTERMEDIATE |
-| Expert mode | set experience = ADVANCED |
+| I'm new to Linux | set experience = BEGINNER + set installation = GUI + set maintenance = NO_TERMINAL |
+| I'm somewhat familiar | set experience = INTERMEDIATE |
+| I'm advanced | set experience = ADVANCED |
 
 Notes
 - This question is always first.
@@ -224,6 +224,27 @@ Allowed Answers
 | Yes, it should stay on | set secureBootNeeded = true |
 | No, it can be off | set secureBootNeeded = false |
 | Not sure | set secureBootNeeded = null |
+
+---
+
+### Q9b - Beginner UI Style
+Question ID: q_beginner_ui_style
+Intent Fields
+- desktopPreference
+
+Condition (showIf)
+- experience = BEGINNER
+
+Question
+> What desktop style feels most familiar to you?
+
+Allowed Answers
+| User Answer | Applied Patches |
+|---|---|
+| Windows-like layout | set desktopPreference = KDE |
+| macOS-like layout | set desktopPreference = GNOME |
+| Classic/traditional layout | set desktopPreference = XFCE |
+| No preference | set desktopPreference = NO_PREFERENCE |
 
 ---
 

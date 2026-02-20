@@ -24,12 +24,38 @@ const localizedHowItWorks: Record<string, string> = {
 
 const html = computed(() => renderMarkdown(localizedHowItWorks[locale.value] ?? howItWorksEn));
 const repositoryUrl = "https://github.com/GionaGranchelli/pickyourlinux";
+const docsUsed = [
+  "docs/ARCHITECTURE.md",
+  "docs/DATA_CONTRACT.md",
+  "docs/DATA_RULES.md",
+  "docs/QUESTION_CATALOG.md",
+  "docs/CONSTRAINT_MAPPING.md",
+  "docs/RESULTS_COPY.md",
+  "docs/TESTING.md",
+  "docs/TONE_AND_COPY.md",
+  "docs/FRONTEND-IMPLEMENTATION-RULES.md",
+];
 </script>
 
 <template>
   <div class="mx-auto max-w-5xl">
     <div class="mb-4 rounded-xl border border-slate-200 bg-slate-50 p-4 text-sm text-slate-600">
       Source: <a :href="repositoryUrl" target="_blank" rel="noopener noreferrer" class="font-medium text-slate-900 underline">github.com/GionaGranchelli/pickyourlinux</a>
+    </div>
+    <div class="mb-4 rounded-xl border border-slate-200 bg-white p-4 text-sm text-slate-600">
+      <p class="mb-2 font-semibold text-slate-800">Documentation sources</p>
+      <ul class="space-y-1">
+        <li v-for="doc in docsUsed" :key="doc">
+          <a
+            :href="`${repositoryUrl}/blob/master/${doc}`"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="underline"
+          >
+            {{ doc }}
+          </a>
+        </li>
+      </ul>
     </div>
     <article class="rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">
       <div class="markdown" v-html="html"></div>

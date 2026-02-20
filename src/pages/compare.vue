@@ -2,14 +2,13 @@
 import { computed } from "vue";
 import { useI18n } from "vue-i18n";
 import { useDecisionEngine } from "~/composables/useDecisionEngine";
-import { getDistros } from "~/engine/eliminate";
-import { buildCompatibilityResults } from "~/engine/state";
+import { buildCompatibilityResults, getAllDistros } from "~/engine/state";
 
 const { t, te } = useI18n();
 const engine = useDecisionEngine(t);
 const { distrosToCompare, clearComparison, intent } = engine;
 
-const allDistros = getDistros();
+const allDistros = getAllDistros();
 const selectedDistros = computed(() => {
   return allDistros.filter((distro) => distrosToCompare.value.includes(distro.id));
 });

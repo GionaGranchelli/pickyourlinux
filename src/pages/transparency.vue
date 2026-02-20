@@ -6,9 +6,9 @@ import {
   ExclusionReasonKeys,
   InclusionReasonKeys,
 } from "~/data/reason-templates";
-import { getDistros } from "~/engine/eliminate";
+import { getAllDistros } from "~/engine/state";
 
-const distros = getDistros();
+const distros = getAllDistros();
 
 const distroCount = computed(() => distros.length);
 const questionCount = computed(() => ALL_QUESTIONS.length);
@@ -39,6 +39,7 @@ const dataQualityChecks = [
   "Distro consistency audits",
 ];
 
+const repositoryUrl = "https://github.com/GionaGranchelli/pickyourlinux";
 const docsUsed = [
   "docs/ARCHITECTURE.md",
   "docs/DATA_CONTRACT.md",
@@ -47,9 +48,10 @@ const docsUsed = [
   "docs/QUESTION_CATALOG.md",
   "docs/DISTRO_COVERAGE_AUDIT.md",
   "docs/TESTING.md",
-];
-
-const repositoryUrl = "https://github.com/GionaGranchelli/pickyourlinux";
+].map((path) => ({
+  path,
+  url: `${repositoryUrl}/blob/master/${path}`,
+}));
 </script>
 
 <template>
@@ -150,7 +152,11 @@ const repositoryUrl = "https://github.com/GionaGranchelli/pickyourlinux";
     <section class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm space-y-4">
       <h2 class="text-xl font-semibold text-slate-900">Source documents</h2>
       <ul class="space-y-1 text-sm text-slate-600">
-        <li v-for="doc in docsUsed" :key="doc"><code>{{ doc }}</code></li>
+        <li v-for="doc in docsUsed" :key="doc.path">
+          <a :href="doc.url" target="_blank" rel="noopener noreferrer" class="underline">
+            <code>{{ doc.path }}</code>
+          </a>
+        </li>
       </ul>
     </section>
   </div>

@@ -230,6 +230,10 @@ QUESTION_PHASES.forEach((phase) => {
 
 const distrosForVM = getDistros();
 
+export function getAllDistros(): Distro[] {
+    return distrosForVM;
+}
+
 export function useDecisionEngine(t: (key: string) => string = (key) => key) {
     const debugEnabled = import.meta.dev;
 

@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { UserIntentSchema } from "../../src/data/types";
 import { buildCompatibility } from "../../src/engine/compatibility";
+import { getDistros } from "../../src/engine/eliminate";
 
 const getResult = (results: ReturnType<typeof buildCompatibility>, distroId: string) => {
     const result = results.find((item) => item.distroId === distroId);
@@ -115,10 +116,20 @@ describe("compatibility engine", () => {
         });
 
         const results = buildCompatibility(intent);
-        const ubuntu = getResult(results, "ubuntu");
+        const distrosById = new Map(getDistros().map((distro) => [distro.id, distro]));
+        const compatible = results.filter((item) => item.compatible);
+        const excludedForSecureBoot = results.filter(
+            (item) =>
+                !item.compatible &&
+                item.excludedBecause.includes("exclude_secure_boot_unavailable")
+        );
         const mint = getResult(results, "linux_mint");
 
-        expect(ubuntu.compatible).toBe(true);
+        expect(compatible.length).toBeGreaterThan(0);
+        compatible.forEach((item) => {
+            expect(distrosById.get(item.distroId)?.secureBootOutOfBox).toBe(true);
+        });
+        expect(excludedForSecureBoot.length).toBeGreaterThan(0);
         expect(mint.compatible).toBe(false);
         expect(mint.excludedBecause).toContain("exclude_secure_boot_unavailable");
     });
@@ -148,6 +159,65 @@ describe("compatibility engine", () => {
         expect(arch.compatible).toBe(false);
         expect(arch.excludedBecause).toContain("exclude_nvidia_hard");
         expect(ubuntu.compatible).toBe(true);
+    });
+
+    it("adds secure boot inclusion reason when secure boot is required", () => {
+        const intent = UserIntentSchema.parse({
+            installation: "CLI_OK",
+            maintenance: "TERMINAL_OK",
+            proprietary: "OPTIONAL",
+            architecture: "x86_64",
+            minRam: 8,
+            tags: [],
+            experience: "BEGINNER",
+            desktopPreference: "NO_PREFERENCE",
+            releaseModel: "NO_PREFERENCE",
+            initSystem: "NO_PREFERENCE",
+            packageManager: "NO_PREFERENCE",
+            secureBootNeeded: true,
+            gpu: "UNKNOWN",
+            nvidiaTolerance: "NO_PREFERENCE",
+        });
+
+        const results = buildCompatibility(intent);
+        const compatible = results.filter((item) => item.compatible);
+
+        expect(compatible.length).toBeGreaterThan(0);
+        compatible.forEach((item) => {
+            expect(item.includedBecause).toContain("include_secure_boot_supported");
+        });
+    });
+
+    it("flags NVIDIA proprietary conflict when proprietary software is avoided", () => {
+        const intent = UserIntentSchema.parse({
+            installation: "CLI_OK",
+            maintenance: "TERMINAL_OK",
+            proprietary: "AVOID",
+            architecture: "x86_64",
+            minRam: 8,
+            tags: [],
+            experience: "BEGINNER",
+            desktopPreference: "NO_PREFERENCE",
+            releaseModel: "NO_PREFERENCE",
+            initSystem: "NO_PREFERENCE",
+            packageManager: "NO_PREFERENCE",
+            secureBootNeeded: null,
+            gpu: "NVIDIA",
+            nvidiaTolerance: "NO_PREFERENCE",
+        });
+
+        const results = buildCompatibility(intent);
+        const distrosById = new Map(getDistros().map((distro) => [distro.id, distro]));
+        const goodOrOkNvidia = results.filter((item) => {
+            const distro = distrosById.get(item.distroId);
+            return distro?.nvidiaExperience === "GOOD" || distro?.nvidiaExperience === "OK";
+        });
+
+        expect(goodOrOkNvidia.length).toBeGreaterThan(0);
+        goodOrOkNvidia.forEach((item) => {
+            expect(item.compatible).toBe(false);
+            expect(item.excludedBecause).toContain("exclude_nvidia_proprietary_required");
+        });
     });
 
     it("adds desktop preference reasons without excluding other distros", () => {

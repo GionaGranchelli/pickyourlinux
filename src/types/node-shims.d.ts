@@ -10,3 +10,8 @@ declare module "node:path" {
 declare module "node:url" {
     export function fileURLToPath(url: string | URL): string;
 }
+
+declare module "*.vue" {
+    const component: any;
+    export default component;
+}

@@ -17,14 +17,19 @@ UI components are strictly dumb. All decision logic lives in the engine.
 npm ci
 ```
 Run (Dev)
-```npm run dev```
+```bash
+npm run dev
+```
 Build
-```npm run build```
+```bash
+npm run build
+```
 
 ### Validation & Quality Gates
 Run all of these before committing:
 
-```npm run typecheck
+```bash
+npm run typecheck
 npm run lint
 npm test
 npm run validate

@@ -6,10 +6,12 @@ declare module "vitest" {
         toBe: (expected: unknown) => void;
         toEqual: (expected: unknown) => void;
         toContain: (expected: unknown) => void;
+        toBeGreaterThan: (expected: number) => void;
         not: {
             toBe: (expected: unknown) => void;
             toEqual: (expected: unknown) => void;
             toContain: (expected: unknown) => void;
+            toBeGreaterThan: (expected: number) => void;
         };
     };
 }
