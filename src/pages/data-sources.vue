@@ -5,6 +5,17 @@
       <p class="text-sm text-slate-600">
         These attributes describe observable traits we can compare. They are not opinions or rankings.
       </p>
+      <p class="text-sm text-slate-600">
+        Source:
+        <a
+          href="https://github.com/GionaGranchelli/pickyourlinux"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="font-medium text-slate-900 underline"
+        >
+          github.com/GionaGranchelli/pickyourlinux
+        </a>
+      </p>
     </header>
 
     <section class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm space-y-4">

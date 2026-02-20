@@ -12,12 +12,19 @@ const onClickStart = () => {
 
 const tr = (key: string, fallback: string): string => (te(key) ? t(key) : fallback);
 
+const fallbackExpectBullets = [
+  "No rankings or opinions - just compatibility.",
+  "Clear reasons for every result.",
+  "Stop anytime or refine later.",
+];
+
 const expectBullets = computed<string[]>(() => {
   const key: string = "welcome.expect.bullets";
-  if (!te(key)) return [];
+  if (!te(key)) return fallbackExpectBullets;
   const message = tm(key) as unknown;
-  if (!Array.isArray(message)) return [];
-  return message.map((item: unknown) => String(item));
+  if (!Array.isArray(message)) return fallbackExpectBullets;
+  const bullets = message.map((item: unknown) => String(item)).filter((item) => item.trim().length > 0);
+  return bullets.length > 0 ? bullets : fallbackExpectBullets;
 });
 </script>
 
@@ -32,6 +39,14 @@ const expectBullets = computed<string[]>(() => {
 
     <section class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
       <h2 class="text-base font-semibold text-slate-900">{{ tr("welcome.expect.title", "What you can expect") }}</h2>
+      <p class="mt-2 text-sm text-slate-600">
+        {{
+          tr(
+            "welcome.expect.intro",
+            "Pick Your Linux is an open, compatibility-first project: you answer clear questions, we apply explicit filters, and you get a shortlist with transparent reasons."
+          )
+        }}
+      </p>
       <ul class="mt-4 space-y-3 text-sm text-slate-600">
         <li v-for="(bullet, index) in expectBullets" :key="index" class="flex items-start gap-2">
           <span class="mt-1 h-2 w-2 rounded-full bg-blue-500"></span>

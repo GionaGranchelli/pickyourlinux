@@ -17,7 +17,7 @@ const handleReview = () => props.onReview();
 <template>
   <div class="mt-8 flex flex-wrap items-center justify-between gap-3">
     <button
-      class="text-gray-400 hover:text-gray-600 text-sm font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+      class="rounded-full border border-slate-300 px-4 py-2 text-xs font-semibold text-slate-700 transition hover:-translate-y-0.5 hover:border-slate-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 disabled:opacity-30 disabled:pointer-events-none"
       type="button"
       :disabled="!props.canUndo"
       @click="handleUndo"

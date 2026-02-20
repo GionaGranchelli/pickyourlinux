@@ -23,10 +23,14 @@ const localizedHowItWorks: Record<string, string> = {
 };
 
 const html = computed(() => renderMarkdown(localizedHowItWorks[locale.value] ?? howItWorksEn));
+const repositoryUrl = "https://github.com/GionaGranchelli/pickyourlinux";
 </script>
 
 <template>
   <div class="mx-auto max-w-5xl">
+    <div class="mb-4 rounded-xl border border-slate-200 bg-slate-50 p-4 text-sm text-slate-600">
+      Source: <a :href="repositoryUrl" target="_blank" rel="noopener noreferrer" class="font-medium text-slate-900 underline">github.com/GionaGranchelli/pickyourlinux</a>
+    </div>
     <article class="rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">
       <div class="markdown" v-html="html"></div>
     </article>

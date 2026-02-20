@@ -33,6 +33,7 @@ const explainOpen = ref(false);
 const reviewOpen = ref(false);
 const sortBy = ref<ResultsSort>("BEST_MATCH");
 const filters = ref<ResultsFilters>({ ...DEFAULT_RESULTS_FILTERS });
+const filterCollapsed = ref(true);
 
 const compareCount = computed(() => distrosToCompare.value.length);
 const allResults = computed(() => resultsVM.value.allCompatible);
@@ -154,25 +155,33 @@ watchEffect(() => {
     </section>
 
     <section class="results-filter-shell">
-      <div class="results-filter-header">
-        <div>
-          <h2 class="results-filter-title">Filter and sort</h2>
+      <div class="results-filter-header cursor-pointer select-none" @click="filterCollapsed = !filterCollapsed">
+        <div class="flex-grow">
+          <div class="flex items-center justify-between">
+            <h2 class="results-filter-title">Filter and sort</h2>
+            <button
+              class="flex items-center gap-1 text-xs font-bold text-blue-600 px-3 py-1 rounded-full bg-blue-50 hover:bg-blue-100 transition-colors"
+              type="button"
+            >
+              {{ filterCollapsed ? 'Expand Filters' : 'Collapse' }}
+            </button>
+          </div>
           <p class="results-filter-subtitle">Refine results using distro attributes and compare-style metadata.</p>
         </div>
-        <div class="results-filter-badges">
+        <div class="results-filter-badges hidden md:flex">
           <span class="results-pill">{{ visibleResultsCount }} / {{ totalResultsCount }} visible</span>
           <span class="results-pill results-pill-accent">{{ activeFilterCount }} filters active</span>
           <button
             class="results-reset-btn"
             type="button"
-            @click="resetFilters"
+            @click.stop="resetFilters"
           >
             Reset
           </button>
         </div>
       </div>
 
-      <div class="results-filter-grid">
+      <div v-show="!filterCollapsed" class="results-filter-grid pt-2 border-t border-slate-100 mt-2">
         <label class="results-filter-field">
           <span>Sort</span>
           <select v-model="sortBy" class="results-select">
@@ -259,6 +268,21 @@ watchEffect(() => {
             <option v-for="value in nvidiaOptions" :key="value" :value="value">{{ trFeature(String(value)) }}</option>
           </select>
         </label>
+      </div>
+
+      <div class="md:hidden mt-3 pt-3 border-t border-slate-200 flex flex-wrap gap-2 items-center justify-between">
+        <div class="flex gap-2">
+          <span class="text-[0.65rem] font-bold text-slate-500 bg-slate-100 px-2 py-0.5 rounded-full">{{ visibleResultsCount }} / {{ totalResultsCount }}</span>
+          <span v-if="activeFilterCount > 0" class="text-[0.65rem] font-bold text-blue-600 bg-blue-50 px-2 py-0.5 rounded-full">{{ activeFilterCount }} active</span>
+        </div>
+        <button
+          v-if="activeFilterCount > 0"
+          class="text-[0.65rem] font-bold text-slate-600 underline underline-offset-2"
+          type="button"
+          @click="resetFilters"
+        >
+          Reset Filters
+        </button>
       </div>
     </section>
 

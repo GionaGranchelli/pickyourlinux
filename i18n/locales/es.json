@@ -5,6 +5,7 @@
     "tagline": "Este es un selector basado en compatibilidad. Nunca clasifica ni recomienda: solo filtra según lo que seleccionas.",
     "expect": {
       "title": "lo que puedes esperar",
+      "intro": "Pick Your Linux es un proyecto abierto y centrado en la compatibilidad: respondes preguntas claras, aplicamos filtros explícitos y obtienes una lista breve con razones transparentes.",
       "bullets": [
         "Sin clasificaciones ni opiniones, solo compatibilidad.",
         "Razones claras para cada resultado.",

@@ -90,6 +90,21 @@ const handleToggleCompare = () => {
     </div>
 
     <div class="mt-3 flex flex-wrap items-center gap-2">
+      <span v-if="props.distro.isBeginnerFriendly" class="rounded-full bg-blue-100 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-blue-700 border border-blue-200">
+        🔰 Beginner Friendly
+      </span>
+      <span v-if="props.distro.gamingSupport === 'GOOD'" class="rounded-full bg-purple-100 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-purple-700 border border-purple-200">
+        🎮 Gaming Ready
+      </span>
+      <span v-if="props.distro.privacyPosture === 'STRONG'" class="rounded-full bg-teal-100 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-teal-700 border border-teal-200">
+        🛡️ Privacy First
+      </span>
+      <span v-if="props.distro.suitableForOldHardware" class="rounded-full bg-amber-100 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-amber-700 border border-amber-200">
+        🏗️ Old Hardware
+      </span>
+    </div>
+
+    <div class="mt-3 flex flex-wrap items-center gap-2">
       <span v-if="summaryReason" class="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-700">
         {{ summaryReason }}
       </span>
@@ -193,6 +208,9 @@ const handleToggleCompare = () => {
             </a>
             <a v-if="props.distro.downloadUrl" :href="props.distro.downloadUrl" target="_blank" rel="noopener noreferrer" class="rounded-full border border-blue-300 px-3 py-1 text-xs font-semibold text-blue-700 hover:bg-blue-50">
               {{ t("results.distroCard.links.download") }}
+            </a>
+            <a v-if="props.distro.distroSeaUrl" :href="props.distro.distroSeaUrl" target="_blank" rel="noopener noreferrer" class="rounded-full border-2 border-indigo-500 bg-indigo-50 px-3 py-1 text-xs font-bold text-indigo-700 hover:bg-indigo-100 shadow-sm transition-all hover:shadow-md">
+              ✨ {{ t("results.distroCard.links.tryOnline") }}
             </a>
             <a v-if="props.distro.testDriveUrl" :href="props.distro.testDriveUrl" target="_blank" rel="noopener noreferrer" class="rounded-full border border-blue-300 px-3 py-1 text-xs font-semibold text-blue-700 hover:bg-blue-50">
               {{ t("results.distroCard.links.testDrive") }}

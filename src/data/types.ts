@@ -108,8 +108,10 @@ export const QuestionSchema = z.object({
                 id: z.string(),
                 label: z.string(),
                 description: z.string().optional(),
+                image: z.string().optional(),
                 patches: z.array(PatchSchema),
                 isDisqualifier: z.boolean().default(false),
+                disqualificationReason: z.string().optional(),
             })
         )
         .min(1),

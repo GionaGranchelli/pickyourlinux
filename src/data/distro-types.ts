@@ -21,6 +21,7 @@ export const DistroSchema = z.object({
     forumUrl: z.string().nullable().optional(),
     testDriveUrl: z.string().nullable().optional(),
     downloadUrl: z.string().nullable().optional(),
+    distroSeaUrl: z.string().nullable().optional(),
     installerExperience: InstallerExperienceEnum,
     maintenanceStyle: MaintenanceStyleEnum,
     proprietarySupport: ProprietarySupportEnum,

@@ -48,6 +48,8 @@ const docsUsed = [
   "docs/DISTRO_COVERAGE_AUDIT.md",
   "docs/TESTING.md",
 ];
+
+const repositoryUrl = "https://github.com/GionaGranchelli/pickyourlinux";
 </script>
 
 <template>
@@ -56,6 +58,10 @@ const docsUsed = [
       <h1 class="text-3xl font-semibold text-slate-900">Transparency</h1>
       <p class="mt-2 text-sm text-slate-600">
         Full visibility into decision logic, data model, and quality controls.
+      </p>
+      <p class="mt-3 text-sm text-slate-600">
+        Source:
+        <a :href="repositoryUrl" target="_blank" rel="noopener noreferrer" class="font-medium text-slate-900 underline">github.com/GionaGranchelli/pickyourlinux</a>
       </p>
     </header>
 

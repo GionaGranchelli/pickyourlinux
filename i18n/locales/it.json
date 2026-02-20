@@ -5,6 +5,7 @@
     "tagline": "Questo è un selettore basato sulla compatibilità. Non classifica né consiglia mai: filtra solo in base a ciò che selezioni.",
     "expect": {
       "title": "Cosa puoi aspettarti",
+      "intro": "Pick Your Linux è un progetto aperto e orientato alla compatibilità: rispondi a domande chiare, applichiamo filtri espliciti e ottieni una shortlist con motivazioni trasparenti.",
       "bullets": [
         "Nessuna classifica o opinione: solo compatibilità.",
         "Motivazioni chiare per ogni risultato.",
@@ -39,62 +40,63 @@
     }
   },
   "reviewAnswers": {
-    "title": "Rivedi le risposte",
-    "tagline": "Torna indietro per cambiare qualsiasi cosa.",
-    "close": "Vicino",
-    "noAnswers": "Nessuna risposta ancora registrata.",
+    "title": "Rivedi le tue risposte",
+    "tagline": "Torna indietro per modificare le tue scelte.",
+    "close": "Chiudi",
+    "noAnswers": "Nessuna risposta registrata.",
     "change": "Modifica"
   },
   "debug": {
     "title": "Debug"
   },
   "results": {
-    "title": "La tua lista compatibile",
+    "title": "La tua lista di compatibilità",
     "tagline": "Questi risultati sono compatibili con le tue scelte. Non ci sono classifiche né punteggi.",
     "explainability": {
-      "title": "Spiegabilità e controllo",
-      "tagline": "Esamina le risposte o scopri perché alcune distribuzioni sono state escluse."
+      "title": "Trasparenza e controllo",
+      "tagline": "Esamina le tue risposte o scopri perché alcune distribuzioni sono state escluse."
     },
     "reviewAnswers": "Rivedi le risposte",
     "why": "Perché questi risultati?",
-    "startOver": "Ricominciare",
-    "noMatch": "Nessuno corrispondeva ai vincoli attuali.",
-    "showFewer": "Mostra meno distribuzioni compatibili",
-    "showAll": "Mostra tutte le distribuzioni compatibili",
+    "startOver": "Ricomincia",
+    "noMatch": "Nessuna distribuzione corrisponde ai criteri attuali.",
+    "showFewer": "Mostra meno distribuzioni",
+    "showAll": "Mostra tutte le distribuzioni",
     "distroCard": {
       "compatible": "Compatibile",
-      "whyItFits": "Perché si adatta",
+      "whyItFits": "Perché è adatta",
       "matchedChoices": "scelte corrispondenti",
-      "strictFiltersMatched": "filtri rigorosi abbinati",
-      "choiceDrivenReasons": "ragioni dettate dalla scelta",
-      "noStrictFiltersMatched": "Per questo risultato non erano attivi filtri rigidi.",
-      "noReasons": "Soddisfa i vincoli richiesti.",
-      "details": "Visualizza i dettagli",
+      "strictFiltersMatched": "filtri rigorosi soddisfatti",
+      "choiceDrivenReasons": "motivazioni basate sulle scelte",
+      "noStrictFiltersMatched": "Nessun filtro rigoroso attivo per questo risultato.",
+      "noReasons": "Soddisfa i criteri richiesti.",
+      "details": "Dettagli",
       "hideDetails": "Nascondi dettagli",
       "showFewer": "Mostra meno",
-      "showAll": "Mostra tutti i motivi",
-      "potentialFriction": "Attrito potenziale",
-      "compare": "Confrontare",
-      "compared": "Rispetto",
+      "showAll": "Mostra tutto",
+      "potentialFriction": "Possibili complicazioni",
+      "compare": "Confronta",
+      "compared": "Confrontato",
       "links": {
         "website": "Sito web",
         "documentation": "Documentazione",
-        "forum": "Foro",
-        "download": "Scaricamento",
-        "testDrive": "Prova su strada"
+        "forum": "Forum",
+        "download": "Download",
+        "testDrive": "Prova (Live)",
+        "tryOnline": "Prova Online"
       }
     },
     "compareSelected": "Confronta ({count})",
-    "compareButton": "Confrontare"
+    "compareButton": "Confronta"
   },
   "explainability": {
     "title": "Perché questi risultati?",
     "tagline": "Vincoli ed esclusioni trasparenti.",
-    "close": "Vicino",
+    "close": "Chiudi",
     "activeConstraints": "Vincoli attivi",
     "noActiveConstraints": "Nessun vincolo attivo.",
     "excludedDistros": "Distribuzioni escluse",
-    "noneExcluded": "Nessuno è stato escluso."
+    "noneExcluded": "Nessuna distribuzione esclusa."
   },
   "disqualified": {
     "title": "Abbiamo interrotto il flusso",
@@ -141,12 +143,15 @@
     ]
   },
   "questions": {
-    "q_experience_depth": {
-      "text": "Quanto in profondità vuoi andare?",
+    "q_linux_familiarity": {
+      "text": "Quanto hai familiarità con Linux?",
       "options": {
-        "quick": "Veloce e semplice (solo alcune domande)",
-        "more_accurate": "Più accurato",
-        "expert_mode": "Modalità esperto"
+        "beginner": "Non ho mai usato Linux",
+        "beginner_desc": "Aiutami a trovare la mia prima versione. Domande semplici, niente gergo tecnico.",
+        "familiar": "Ho familiarità / Distro hopping",
+        "familiar_desc": "Ho già usato Linux. So cos'è un ambiente desktop o un modello 'Rolling'.",
+        "expert": "Utente avanzato / Esperto",
+        "expert_desc": "Ho esigenze tecniche specifiche (Sistemi init, package manager, ecc)."
       }
     },
     "q_purpose": {
@@ -228,6 +233,19 @@
         "not_sure": "Non è sicuro"
       }
     },
+    "q_beginner_ui_style": {
+      "text": "Quale tipo di interfaccia computer preferisci?",
+      "options": {
+        "windows_vibe": "Tradizionale (Simile a Windows)",
+        "windows_vibe_desc": "Menu in basso a sinistra, barra delle applicazioni in basso.",
+        "mac_vibe": "Moderno (Simile a un Tablet o Mac)",
+        "mac_vibe_desc": "Pulito, focalizzato sulle app, layout centrato.",
+        "classic_vibe": "Classico (Semplice e Leggero)",
+        "classic_vibe_desc": "Stile vecchia scuola, molto veloce sui vecchi computer.",
+        "open_vibe": "Mostrami qualsiasi cosa",
+        "open_vibe_desc": "Sono aperto a provare qualsiasi stile di interfaccia."
+      }
+    },
     "q_phase_exit": {
       "text": "Vuoi vedere i risultati adesso o perfezionarli ulteriormente?",
       "options": {
@@ -251,15 +269,21 @@
       }
     },
     "q_desktop_preference": {
-      "text": "Hai un aspetto desktop che preferisci?",
+      "text": "Hai un ambiente desktop preferito?",
       "options": {
         "no_preference": "Nessuna preferenza",
-        "gnome": "GNOME (pulito e semplice)",
-        "kde": "KDE Plasma (molto personalizzabile)",
-        "xfce": "XFCE (leggero)",
-        "cinnamon": "Cannella (familiare)",
-        "mate": "MATE (classico)",
-        "lxqt": "LXQt (molto leggero)"
+        "gnome": "GNOME",
+        "gnome_desc": "Moderno, minimale e simile a un tablet.",
+        "kde": "KDE Plasma",
+        "kde_desc": "Classico, familiare e altamente personalizzabile.",
+        "xfce": "XFCE",
+        "xfce_desc": "Look vecchia scuola, molto veloce sui vecchi computer.",
+        "cinnamon": "Cinnamon",
+        "cinnamon_desc": "Layout tradizionale simile a Windows, facile da usare.",
+        "mate": "MATE",
+        "mate_desc": "Stile desktop classico della metà degli anni 2000.",
+        "lxqt": "LXQt",
+        "lxqt_desc": "Estremamente leggero per hardware molto vecchio."
       }
     },
     "q_release_model": {
@@ -329,7 +353,8 @@
       "options": {
         "yes": "SÌ",
         "no": "No/Non sono sicuro"
-      }
+      },
+      "disqualification_reason": "Per i giochi con anti-cheat rigoroso a livello di kernel, Microsoft Windows rimane per ora la scelta più compatibile."
     },
     "q_server_comfort": {
       "text": "Per un server domestico, quale stile di configurazione preferisci?",
@@ -449,12 +474,12 @@
     "include_package_manager_match": "Corrisponde alle preferenze del gestore pacchetti.",
     "exclude_installer_manual": "Richiede un programma di installazione manuale.",
     "exclude_maintenance_hands_on": "Richiede una manutenzione pratica.",
-    "exclude_proprietary_required": "Si basa su software proprietario.",
+    "exclude_proprietary_required": "Offre o facilita l'uso di software proprietario.",
     "exclude_proprietary_missing": "Non supporta software proprietario.",
     "exclude_old_hardware_unsuitable": "Non adatto per hardware più vecchio.",
     "exclude_secure_boot_unavailable": "Non supporta l'avvio protetto immediatamente.",
-    "exclude_nvidia_hard": "È probabile che la configurazione di NVIDIA sia pratica.",
-    "exclude_nvidia_proprietary_required": "Probabilmente richiede driver NVIDIA proprietari."
+    "exclude_nvidia_hard": "La configurazione di NVIDIA potrebbe essere complessa.",
+    "exclude_nvidia_proprietary_required": "Ottimizzata per driver NVIDIA proprietari."
   },
   "constraints": {
     "constraint_installer_gui": "Vuoi un programma di installazione grafico.",

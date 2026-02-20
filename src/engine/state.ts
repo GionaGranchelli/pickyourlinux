@@ -105,6 +105,7 @@ export type QuestionOptionVM = {
     id: string;
     label: string;
     description?: string;
+    image?: string;
 };
 
 export type QuestionVM = {
@@ -134,6 +135,7 @@ export type DistroCardVM = {
     forumUrl?: string;
     downloadUrl?: string;
     testDriveUrl?: string;
+    distroSeaUrl?: string;
     reasonsIncluded: string[];
     reasonsFriction: string[];
     matchedConstraints?: string[];
@@ -152,6 +154,7 @@ export type DistroCardVM = {
     secureBootOutOfBox?: Distro["secureBootOutOfBox"];
     nvidiaExperience?: Distro["nvidiaExperience"];
     suitableForOldHardware?: Distro["suitableForOldHardware"];
+    isBeginnerFriendly?: boolean;
 };
 
 export type ExcludedDistroVM = {
@@ -360,6 +363,7 @@ export function useDecisionEngine(t: (key: string) => string = (key) => key) {
                 id: option.id,
                 label: t(option.label),
                 description: option.description ? t(option.description) : undefined,
+                image: option.image,
             })),
         };
     });
@@ -442,6 +446,7 @@ export function useDecisionEngine(t: (key: string) => string = (key) => key) {
             forumUrl: item.forumUrl,
             downloadUrl: item.downloadUrl,
             testDriveUrl: item.testDriveUrl,
+            distroSeaUrl: item.distroSeaUrl,
             reasonsIncluded: item.includedBecause,
             reasonsFriction: item.excludedBecause,
             matchedConstraints: item.matchedConstraints,
@@ -460,6 +465,7 @@ export function useDecisionEngine(t: (key: string) => string = (key) => key) {
             secureBootOutOfBox: item.secureBootOutOfBox,
             nvidiaExperience: item.nvidiaExperience,
             suitableForOldHardware: item.suitableForOldHardware,
+            isBeginnerFriendly: item.isBeginnerFriendly,
         });
 
         const allCompatible = presentation.compatible.map(toCardVM);
@@ -533,7 +539,7 @@ export function useDecisionEngine(t: (key: string) => string = (key) => key) {
         // Disqualifier: stop immediately (do NOT apply patches unless you explicitly want to)
         if (option.isDisqualifier) {
             status.value = "DISQUALIFIED";
-            disqualifyReason.value = t(option.label);
+            disqualifyReason.value = option.disqualificationReason ? t(option.disqualificationReason) : t(option.label);
             if (!answeredIds.value.includes(questionId)) answeredIds.value.push(questionId);
             if (!answerHistory.value.some((item) => item.questionId === questionId)) {
                 answerHistory.value.push(record);
@@ -774,6 +780,7 @@ export type PresentedDistro = {
     forumUrl?: string;
     downloadUrl?: string;
     testDriveUrl?: string;
+    distroSeaUrl?: string;
     includedBecause: string[];
     excludedBecause: string[];
     matchedConstraints: string[];
@@ -789,6 +796,7 @@ export type PresentedDistro = {
     secureBootOutOfBox?: Distro["secureBootOutOfBox"];
     nvidiaExperience?: Distro["nvidiaExperience"];
     suitableForOldHardware?: Distro["suitableForOldHardware"];
+    isBeginnerFriendly?: boolean;
 };
 
 export type ResultsPresentation = {
@@ -999,6 +1007,7 @@ export function buildResultsPresentation(
             forumUrl: distro?.forumUrl ?? undefined,
             downloadUrl: distro?.downloadUrl ?? undefined,
             testDriveUrl: distro?.testDriveUrl ?? undefined,
+            distroSeaUrl: distro?.distroSeaUrl ?? undefined,
             includedBecause: renderInclusionReasons(result.includedBecause, t),
             excludedBecause: [],
             matchedConstraints,
@@ -1014,6 +1023,7 @@ export function buildResultsPresentation(
             secureBootOutOfBox: distro?.secureBootOutOfBox,
             nvidiaExperience: distro?.nvidiaExperience,
             suitableForOldHardware: distro?.suitableForOldHardware,
+            isBeginnerFriendly: distro?.installerExperience === "GUI" && distro?.maintenanceStyle === "LOW_FRICTION",
         };
     };
 
@@ -1044,6 +1054,7 @@ export function buildResultsPresentation(
             secureBootOutOfBox: distro?.secureBootOutOfBox,
             nvidiaExperience: distro?.nvidiaExperience,
             suitableForOldHardware: distro?.suitableForOldHardware,
+            isBeginnerFriendly: distro?.installerExperience === "GUI" && distro?.maintenanceStyle === "LOW_FRICTION",
         };
     };
 

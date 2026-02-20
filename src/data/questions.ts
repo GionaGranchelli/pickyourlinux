@@ -1,31 +1,39 @@
 import { QuestionSchema, type Condition, type Question } from "~/data/types";
 
-const showIfIntermediate: Condition = { field: "experience", op: "in", value: ["INTERMEDIATE", "ADVANCED"] };
+const showIfIntermediate: Condition = { field: "experience", op: "eq", value: "INTERMEDIATE" };
 const showIfAdvanced: Condition = { field: "experience", op: "eq", value: "ADVANCED" };
+const showIfBeginnerOrIntermediate: Condition = { field: "experience", op: "in", value: ["BEGINNER", "INTERMEDIATE"] };
 
 const questions: Question[] = [
     // ---------------------------
-    // PHASE 0 — Experience selection
+    // PHASE 0 — Familiarity selection
     // ---------------------------
     {
-        id: "q_experience_depth",
-        text: "questions.q_experience_depth.text",
+        id: "q_linux_familiarity",
+        text: "questions.q_linux_familiarity.text",
         options: [
             {
-                id: "quick",
-                label: "questions.q_experience_depth.options.quick",
-                patches: [{ op: "set", field: "experience", value: "BEGINNER" }],
+                id: "beginner",
+                label: "questions.q_linux_familiarity.options.beginner",
+                description: "questions.q_linux_familiarity.options.beginner_desc",
+                patches: [
+                    { op: "set", field: "experience", value: "BEGINNER" },
+                    { op: "set", field: "installation", value: "GUI" },
+                    { op: "set", field: "maintenance", value: "NO_TERMINAL" },
+                ],
                 isDisqualifier: false,
             },
             {
-                id: "more_accurate",
-                label: "questions.q_experience_depth.options.more_accurate",
+                id: "familiar",
+                label: "questions.q_linux_familiarity.options.familiar",
+                description: "questions.q_linux_familiarity.options.familiar_desc",
                 patches: [{ op: "set", field: "experience", value: "INTERMEDIATE" }],
                 isDisqualifier: false,
             },
             {
-                id: "expert_mode",
-                label: "questions.q_experience_depth.options.expert_mode",
+                id: "expert",
+                label: "questions.q_linux_familiarity.options.expert",
+                description: "questions.q_linux_familiarity.options.expert_desc",
                 patches: [{ op: "set", field: "experience", value: "ADVANCED" }],
                 isDisqualifier: false,
             },
@@ -149,6 +157,7 @@ const questions: Question[] = [
     {
         id: "q_ram_hint",
         text: "questions.q_ram_hint.text",
+        showIf: showIfBeginnerOrIntermediate,
         options: [
             {
                 id: "ram_4",
@@ -197,6 +206,7 @@ const questions: Question[] = [
     {
         id: "q_gpu_simple",
         text: "questions.q_gpu_simple.text",
+        showIf: showIfBeginnerOrIntermediate,
         options: [
             {
                 id: "nvidia",
@@ -251,6 +261,7 @@ const questions: Question[] = [
     {
         id: "q_secure_boot_simple",
         text: "questions.q_secure_boot_simple.text",
+        showIf: showIfBeginnerOrIntermediate,
         options: [
             {
                 id: "yes",
@@ -356,9 +367,54 @@ const questions: Question[] = [
         ],
     },
     {
+        id: "q_beginner_ui_style",
+        text: "questions.q_beginner_ui_style.text",
+        showIf: { field: "experience", op: "eq", value: "BEGINNER" },
+        options: [
+            {
+                id: "windows_vibe",
+                label: "questions.q_beginner_ui_style.options.windows_vibe",
+                description: "questions.q_beginner_ui_style.options.windows_vibe_desc",
+                image: "https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/layout-panel-top.svg", // Placeholder for bottom taskbar layout
+                patches: [{ op: "set", field: "desktopPreference", value: "KDE" }],
+                isDisqualifier: false,
+            },
+            {
+                id: "mac_vibe",
+                label: "questions.q_beginner_ui_style.options.mac_vibe",
+                description: "questions.q_beginner_ui_style.options.mac_vibe_desc",
+                image: "https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/layout-template.svg", // Placeholder for centered/dock layout
+                patches: [{ op: "set", field: "desktopPreference", value: "GNOME" }],
+                isDisqualifier: false,
+            },
+            {
+                id: "classic_vibe",
+                label: "questions.q_beginner_ui_style.options.classic_vibe",
+                description: "questions.q_beginner_ui_style.options.classic_vibe_desc",
+                image: "https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/layout.svg", // Placeholder for classic layout
+                patches: [{ op: "set", field: "desktopPreference", value: "XFCE" }],
+                isDisqualifier: false,
+            },
+            {
+                id: "open_vibe",
+                label: "questions.q_beginner_ui_style.options.open_vibe",
+                description: "questions.q_beginner_ui_style.options.open_vibe_desc",
+                image: "https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/help-circle.svg",
+                patches: [{ op: "set", field: "desktopPreference", value: "NO_PREFERENCE" }],
+                isDisqualifier: false,
+            },
+        ],
+    },
+    {
         id: "q_desktop_preference",
         text: "questions.q_desktop_preference.text",
-        showIf: showIfIntermediate,
+        showIf: {
+            op: "and",
+            conditions: [
+                showIfIntermediate,
+                { field: "experience", op: "neq", value: "BEGINNER" }
+            ]
+        },
         options: [
             {
                 id: "no_preference",
@@ -369,36 +425,42 @@ const questions: Question[] = [
             {
                 id: "gnome",
                 label: "questions.q_desktop_preference.options.gnome",
+                description: "questions.q_desktop_preference.options.gnome_desc",
                 patches: [{ op: "set", field: "desktopPreference", value: "GNOME" }],
                 isDisqualifier: false,
             },
             {
                 id: "kde",
                 label: "questions.q_desktop_preference.options.kde",
+                description: "questions.q_desktop_preference.options.kde_desc",
                 patches: [{ op: "set", field: "desktopPreference", value: "KDE" }],
                 isDisqualifier: false,
             },
             {
                 id: "xfce",
                 label: "questions.q_desktop_preference.options.xfce",
+                description: "questions.q_desktop_preference.options.xfce_desc",
                 patches: [{ op: "set", field: "desktopPreference", value: "XFCE" }],
                 isDisqualifier: false,
             },
             {
                 id: "cinnamon",
                 label: "questions.q_desktop_preference.options.cinnamon",
+                description: "questions.q_desktop_preference.options.cinnamon_desc",
                 patches: [{ op: "set", field: "desktopPreference", value: "CINNAMON" }],
                 isDisqualifier: false,
             },
             {
                 id: "mate",
                 label: "questions.q_desktop_preference.options.mate",
+                description: "questions.q_desktop_preference.options.mate_desc",
                 patches: [{ op: "set", field: "desktopPreference", value: "MATE" }],
                 isDisqualifier: false,
             },
             {
                 id: "lxqt",
                 label: "questions.q_desktop_preference.options.lxqt",
+                description: "questions.q_desktop_preference.options.lxqt_desc",
                 patches: [{ op: "set", field: "desktopPreference", value: "LXQT" }],
                 isDisqualifier: false,
             },
@@ -407,7 +469,13 @@ const questions: Question[] = [
     {
         id: "q_release_model",
         text: "questions.q_release_model.text",
-        showIf: showIfIntermediate,
+        showIf: {
+            op: "and",
+            conditions: [
+                showIfIntermediate,
+                { field: "experience", op: "neq", value: "BEGINNER" }
+            ]
+        },
         options: [
             {
                 id: "no_preference",
@@ -551,7 +619,11 @@ const questions: Question[] = [
         text: "questions.q_everyday_apps.text",
         showIf: {
             op: "and",
-            conditions: [showIfIntermediate, { field: "tags", op: "contains", value: "Work" }],
+            conditions: [
+                showIfIntermediate,
+                { field: "tags", op: "contains", value: "Work" },
+                { field: "proprietary", op: "eq", value: "OPTIONAL" }
+            ],
         },
         options: [
             {
@@ -573,7 +645,11 @@ const questions: Question[] = [
         text: "questions.q_privacy_tradeoff.text",
         showIf: {
             op: "and",
-            conditions: [showIfIntermediate, { field: "tags", op: "contains", value: "Privacy" }],
+            conditions: [
+                showIfIntermediate, 
+                { field: "tags", op: "contains", value: "Privacy" },
+                { field: "proprietary", op: "eq", value: "OPTIONAL" }
+            ],
         },
         options: [
             {
@@ -598,6 +674,7 @@ const questions: Question[] = [
             conditions: [
                 showIfIntermediate,
                 { field: "architecture", op: "eq", value: "x86_64" },
+                { field: "tags", op: "neq", value: "Gaming" }
             ],
         },
         options: [
@@ -620,7 +697,11 @@ const questions: Question[] = [
         text: "questions.q_gaming_expectation.text",
         showIf: {
             op: "and",
-            conditions: [showIfIntermediate, { field: "tags", op: "contains", value: "Gaming" }],
+            conditions: [
+                showIfIntermediate, 
+                { field: "tags", op: "contains", value: "Gaming" },
+                { field: "proprietary", op: "eq", value: "OPTIONAL" }
+            ],
         },
         options: [
             {
@@ -650,6 +731,7 @@ const questions: Question[] = [
                 label: "questions.q_anticheat_warning.options.yes",
                 patches: [],
                 isDisqualifier: true,
+                disqualificationReason: "questions.q_anticheat_warning.disqualification_reason"
             },
             {
                 id: "no",
@@ -694,7 +776,13 @@ const questions: Question[] = [
     {
         id: "q_release_model_advanced",
         text: "questions.q_release_model_advanced.text",
-        showIf: showIfAdvanced,
+        showIf: {
+            op: "and",
+            conditions: [
+                showIfAdvanced,
+                { field: "releaseModel", op: "eq", value: "NO_PREFERENCE" }
+            ]
+        },
         options: [
             {
                 id: "no_preference",
@@ -719,7 +807,13 @@ const questions: Question[] = [
     {
         id: "q_desktop_preference_advanced",
         text: "questions.q_desktop_preference_advanced.text",
-        showIf: showIfAdvanced,
+        showIf: {
+            op: "and",
+            conditions: [
+                showIfAdvanced,
+                { field: "desktopPreference", op: "eq", value: "NO_PREFERENCE" }
+            ]
+        },
         options: [
             {
                 id: "no_preference",
@@ -768,7 +862,13 @@ const questions: Question[] = [
     {
         id: "q_gpu_confirm_advanced",
         text: "questions.q_gpu_confirm_advanced.text",
-        showIf: showIfAdvanced,
+        showIf: {
+            op: "and",
+            conditions: [
+                showIfAdvanced,
+                { field: "gpu", op: "eq", value: "UNKNOWN" }
+            ]
+        },
         options: [
             {
                 id: "not_sure",
@@ -793,7 +893,13 @@ const questions: Question[] = [
     {
         id: "q_secure_boot_advanced",
         text: "questions.q_secure_boot_advanced.text",
-        showIf: showIfAdvanced,
+        showIf: {
+            op: "and",
+            conditions: [
+                showIfAdvanced,
+                { field: "secureBootNeeded", op: "eq", value: null }
+            ]
+        },
         options: [
             {
                 id: "no_preference",
@@ -820,7 +926,11 @@ const questions: Question[] = [
         text: "questions.q_nvidia_tolerance_advanced.text",
         showIf: {
             op: "and",
-            conditions: [showIfAdvanced, { field: "gpu", op: "eq", value: "NVIDIA" }],
+            conditions: [
+                showIfAdvanced, 
+                { field: "gpu", op: "eq", value: "NVIDIA" },
+                { field: "nvidiaTolerance", op: "eq", value: "NO_PREFERENCE" }
+            ],
         },
         options: [
             {
@@ -852,7 +962,13 @@ const questions: Question[] = [
     {
         id: "q_open_software_strictness",
         text: "questions.q_open_software_strictness.text",
-        showIf: showIfAdvanced,
+        showIf: {
+            op: "and",
+            conditions: [
+                showIfAdvanced,
+                { field: "proprietary", op: "eq", value: "OPTIONAL" }
+            ]
+        },
         options: [
             {
                 id: "no_preference",
@@ -1031,7 +1147,7 @@ export const QUESTION_PHASES = [
         key: "BEGINNER",
         label: "Beginner",
         questionIds: [
-            "q_experience_depth",
+            "q_linux_familiarity",
             "q_purpose",
             "q_works_right_away",
             "q_installation",
@@ -1042,6 +1158,7 @@ export const QUESTION_PHASES = [
             "q_gpu_simple",
             "q_software_use_case",
             "q_secure_boot_simple",
+            "q_beginner_ui_style",
         ],
     },
     {

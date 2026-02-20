@@ -5,6 +5,7 @@
     "tagline": "Dit is een op compatibiliteit gebaseerde kiezer. Het rangschikt of beveelt nooit aan; het filtert alleen op basis van wat u selecteert.",
     "expect": {
       "title": "Wat je kunt verwachten",
+      "intro": "Pick Your Linux is een open, compatibiliteit-eerst project: je beantwoordt duidelijke vragen, wij passen expliciete filters toe, en je krijgt een shortlist met transparante redenen.",
       "bullets": [
         "Geen ranglijsten of meningen - alleen compatibiliteit.",
         "Duidelijke redenen voor elk resultaat.",

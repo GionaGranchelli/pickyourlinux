@@ -5,6 +5,7 @@
     "tagline": "This is a compatibility-based picker. It never ranks or recommends — it only filters based on what you select.",
     "expect": {
       "title": "What you can expect",
+      "intro": "Pick Your Linux is an open, compatibility-first project: you answer clear questions, we apply explicit filters, and you get a shortlist with transparent reasons.",
       "bullets": [
         "No rankings or opinions — just compatibility.",
         "Clear reasons for every result.",
@@ -81,7 +82,8 @@
         "documentation": "Documentation",
         "forum": "Forum",
         "download": "Download",
-        "testDrive": "Test Drive"
+        "testDrive": "Test Drive",
+        "tryOnline": "Try Online"
       }
     },
     "compareSelected": "Compare ({count})",
@@ -141,12 +143,15 @@
     ]
   },
   "questions": {
-    "q_experience_depth": {
-      "text": "How deep do you want to go?",
+    "q_linux_familiarity": {
+      "text": "How familiar are you with Linux?",
       "options": {
-        "quick": "Quick",
-        "more_accurate": "More accurate",
-        "expert_mode": "Expert mode"
+        "beginner": "I'm new to Linux",
+        "beginner_desc": "Help me find my first daily driver. Simple questions, no jargon.",
+        "familiar": "I'm familiar / Distro hopping",
+        "familiar_desc": "I've used Linux before. I know common terms like 'DE' or 'Rolling'.",
+        "expert": "I'm a power user / Expert",
+        "expert_desc": "I have specific technical needs (Init systems, package managers, etc)."
       }
     },
     "q_purpose": {
@@ -228,6 +233,19 @@
         "not_sure": "Not sure"
       }
     },
+    "q_beginner_ui_style": {
+      "text": "What kind of computer interface do you prefer?",
+      "options": {
+        "windows_vibe": "Traditional (Like Windows)",
+        "windows_vibe_desc": "Menu at the bottom left, taskbar at the bottom.",
+        "mac_vibe": "Modern (Like a Tablet or Mac)",
+        "mac_vibe_desc": "Clean, focus on apps, centered layout.",
+        "classic_vibe": "Classic (Simple and Lightweight)",
+        "classic_vibe_desc": "Old-school style, very fast on older computers.",
+        "open_vibe": "Show me anything",
+        "open_vibe_desc": "I'm open to trying any interface style."
+      }
+    },
     "q_phase_exit": {
       "text": "Want to see results now or refine further?",
       "options": {
@@ -254,12 +272,18 @@
       "text": "Do you have a desktop look you prefer?",
       "options": {
         "no_preference": "No preference",
-        "gnome": "GNOME (clean and simple)",
-        "kde": "KDE Plasma (very customizable)",
-        "xfce": "XFCE (lightweight)",
-        "cinnamon": "Cinnamon (familiar)",
-        "mate": "MATE (classic)",
-        "lxqt": "LXQt (very light)"
+        "gnome": "GNOME",
+        "gnome_desc": "Modern, minimal, and tablet-like.",
+        "kde": "KDE Plasma",
+        "kde_desc": "Classic, familiar, and highly customizable.",
+        "xfce": "XFCE",
+        "xfce_desc": "Old-school look, very fast on older computers.",
+        "cinnamon": "Cinnamon",
+        "cinnamon_desc": "Traditional Windows-like layout, easy to use.",
+        "mate": "MATE",
+        "mate_desc": "Classic desktop style from the mid-2000s.",
+        "lxqt": "LXQt",
+        "lxqt_desc": "Extremely lightweight for very old hardware."
       }
     },
     "q_release_model": {
@@ -329,7 +353,8 @@
       "options": {
         "yes": "Yes",
         "no": "No / Not sure"
-      }
+      },
+      "disqualification_reason": "For games with strict kernel-level anti-cheat, Microsoft Windows remains the most compatible choice for now."
     },
     "q_server_comfort": {
       "text": "For a home server, what setup style do you prefer?",
@@ -449,12 +474,12 @@
     "include_package_manager_match": "Matches your package manager preference.",
     "exclude_installer_manual": "Requires a manual installer.",
     "exclude_maintenance_hands_on": "Requires hands-on maintenance.",
-    "exclude_proprietary_required": "Relies on proprietary software.",
+    "exclude_proprietary_required": "Includes or facilitates proprietary software.",
     "exclude_proprietary_missing": "Does not support proprietary software.",
     "exclude_old_hardware_unsuitable": "Not suitable for older hardware.",
     "exclude_secure_boot_unavailable": "Does not support Secure Boot out of the box.",
-    "exclude_nvidia_hard": "NVIDIA setup is likely to be hands-on.",
-    "exclude_nvidia_proprietary_required": "Likely requires proprietary NVIDIA drivers."
+    "exclude_nvidia_hard": "NVIDIA setup may be hands-on.",
+    "exclude_nvidia_proprietary_required": "Optimized for proprietary NVIDIA drivers."
   },
   "constraints": {
     "constraint_installer_gui": "You want a graphical installer.",

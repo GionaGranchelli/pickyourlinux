@@ -88,7 +88,7 @@ watch(wizardMode, (value) => {
     </section>
 
     <section v-else-if="wizardMode === 'DISQUALIFIED'">
-      <DisqualifiedCard :on-restart="onRestart" />
+      <DisqualifiedCard :reason="disqualifyReason" :on-undo="undo" :on-restart="onRestart" />
     </section>
 
     <ReviewAnswersDrawer

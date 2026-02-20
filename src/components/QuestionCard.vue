@@ -1,9 +1,12 @@
 <script setup lang="ts">
+import { computed } from "vue";
 import OptionButton from "~/components/OptionButton.vue";
 import type { QuestionVM } from "~/engine/state";
 
 const props = defineProps<{ question: QuestionVM }>();
 const emit = defineEmits<{ (event: "select", optionId: string): void }>();
+
+const hasImages = computed(() => props.question.options.some(opt => !!opt.image));
 
 const onSelect = (optionId: string) => {
   emit("select", optionId);
@@ -11,19 +14,24 @@ const onSelect = (optionId: string) => {
 </script>
 
 <template>
-  <div class="bg-white shadow-lg rounded-2xl p-8 transition-all duration-300">
-    <div class="mb-6">
-      <h2 class="text-2xl font-bold text-gray-900">
+  <div class="bg-white shadow-xl rounded-3xl p-6 sm:p-10 border border-gray-100 transition-all duration-300">
+    <div class="mb-10">
+      <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight leading-tight">
         {{ props.question.text }}
       </h2>
     </div>
 
-    <div class="grid gap-3 max-h-80 overflow-y-auto pr-1 pt-1" role="list">
+    <div 
+      class="grid gap-6 pr-1 pt-1" 
+      :class="[hasImages ? 'grid-cols-1 sm:grid-cols-2' : 'grid-cols-1']"
+      role="list"
+    >
       <OptionButton
         v-for="option in props.question.options"
         :key="option.id"
         :label="option.label"
         :description="option.description"
+        :image="option.image"
         role="listitem"
         @select="onSelect(option.id)"
       />
