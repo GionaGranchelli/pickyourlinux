@@ -155,6 +155,7 @@ export type DistroCardVM = {
     maintenanceStyle?: Distro["maintenanceStyle"];
     proprietarySupport?: Distro["proprietarySupport"];
     privacyPosture?: Distro["privacyPosture"];
+    docsEcosystem?: Distro["docsEcosystem"];
     secureBootOutOfBox?: Distro["secureBootOutOfBox"];
     nvidiaExperience?: Distro["nvidiaExperience"];
     suitableForOldHardware?: Distro["suitableForOldHardware"];
@@ -182,6 +183,7 @@ export type ResultsFilters = {
     maintenanceStyle: "ALL" | Distro["maintenanceStyle"];
     proprietarySupport: "ALL" | Distro["proprietarySupport"];
     privacyPosture: "ALL" | Distro["privacyPosture"];
+    docsEcosystem: "ALL" | Distro["docsEcosystem"];
     secureBootOutOfBox: "ALL" | "YES" | "NO";
     nvidiaExperience: "ALL" | Distro["nvidiaExperience"];
     suitableForOldHardware: "ALL" | "YES" | "NO";
@@ -197,6 +199,7 @@ export const DEFAULT_RESULTS_FILTERS: ResultsFilters = {
     maintenanceStyle: "ALL",
     proprietarySupport: "ALL",
     privacyPosture: "ALL",
+    docsEcosystem: "ALL",
     secureBootOutOfBox: "ALL",
     nvidiaExperience: "ALL",
     suitableForOldHardware: "ALL",
@@ -475,6 +478,7 @@ export function useDecisionEngine(t: (key: string) => string = (key) => key) {
             maintenanceStyle: item.maintenanceStyle,
             proprietarySupport: item.proprietarySupport,
             privacyPosture: item.privacyPosture,
+            docsEcosystem: item.docsEcosystem,
             secureBootOutOfBox: item.secureBootOutOfBox,
             nvidiaExperience: item.nvidiaExperience,
             suitableForOldHardware: item.suitableForOldHardware,
@@ -851,6 +855,7 @@ export type PresentedDistro = {
     maintenanceStyle?: Distro["maintenanceStyle"];
     proprietarySupport?: Distro["proprietarySupport"];
     privacyPosture?: Distro["privacyPosture"];
+    docsEcosystem?: Distro["docsEcosystem"];
     secureBootOutOfBox?: Distro["secureBootOutOfBox"];
     nvidiaExperience?: Distro["nvidiaExperience"];
     suitableForOldHardware?: Distro["suitableForOldHardware"];
@@ -931,6 +936,8 @@ const getActiveConstraintKeys = (intent: UserIntent): ConstraintKey[] => {
         constraints.push("constraint_desktop_mate");
     } else if (intent.desktopPreference === "LXQT") {
         constraints.push("constraint_desktop_lxqt");
+    } else if (intent.desktopPreference === "TILING") {
+        constraints.push("constraint_desktop_tiling");
     }
 
     if (intent.releaseModel === "FIXED") {
@@ -979,6 +986,10 @@ const getActiveConstraintKeys = (intent: UserIntent): ConstraintKey[] => {
         constraints.push("constraint_laptop_friendly");
     }
 
+    if (intent.experience === "BEGINNER" && intent.maintenance === "NO_TERMINAL") {
+        constraints.push("constraint_docs_ecosystem");
+    }
+
     return constraints;
 };
 
@@ -1016,6 +1027,8 @@ const matchesConstraint = (constraint: ConstraintKey, distro: Distro): boolean =
             return distro.supportedDesktops.includes("MATE");
         case "constraint_desktop_lxqt":
             return distro.supportedDesktops.includes("LXQT");
+        case "constraint_desktop_tiling":
+            return distro.supportedDesktops.includes("TILING");
         case "constraint_release_fixed":
             return distro.releaseModel === "FIXED";
         case "constraint_release_rolling":
@@ -1050,6 +1063,8 @@ const matchesConstraint = (constraint: ConstraintKey, distro: Distro): boolean =
             return distro.primaryUseCase === "SERVER" || distro.primaryUseCase === "BOTH";
         case "constraint_laptop_friendly":
             return distro.laptopFriendly;
+        case "constraint_docs_ecosystem":
+            return distro.docsEcosystem === "EXCELLENT" || distro.docsEcosystem === "GOOD";
         default:
             return false;
     }
@@ -1110,6 +1125,7 @@ export function buildResultsPresentation(
             maintenanceStyle: distro?.maintenanceStyle,
             proprietarySupport: distro?.proprietarySupport,
             privacyPosture: distro?.privacyPosture,
+            docsEcosystem: distro?.docsEcosystem,
             secureBootOutOfBox: distro?.secureBootOutOfBox,
             nvidiaExperience: distro?.nvidiaExperience,
             suitableForOldHardware: distro?.suitableForOldHardware,
@@ -1143,6 +1159,7 @@ export function buildResultsPresentation(
             maintenanceStyle: distro?.maintenanceStyle,
             proprietarySupport: distro?.proprietarySupport,
             privacyPosture: distro?.privacyPosture,
+            docsEcosystem: distro?.docsEcosystem,
             secureBootOutOfBox: distro?.secureBootOutOfBox,
             nvidiaExperience: distro?.nvidiaExperience,
             suitableForOldHardware: distro?.suitableForOldHardware,
@@ -1196,6 +1213,7 @@ export function filterAndSortResults(
             return false;
         }
         if (filters.privacyPosture !== "ALL" && card.privacyPosture !== filters.privacyPosture) return false;
+        if (filters.docsEcosystem !== "ALL" && card.docsEcosystem !== filters.docsEcosystem) return false;
         if (filters.secureBootOutOfBox === "YES" && card.secureBootOutOfBox !== true) return false;
         if (filters.secureBootOutOfBox === "NO" && card.secureBootOutOfBox !== false) return false;
         if (filters.nvidiaExperience !== "ALL" && card.nvidiaExperience !== filters.nvidiaExperience) return false;

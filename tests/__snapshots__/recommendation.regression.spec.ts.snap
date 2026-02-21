@@ -32,11 +32,11 @@ exports[`recommendation regression personas > beginner_gaming_nvidia_easy: Begin
 
 exports[`recommendation regression personas > beginner_old_hardware_low_friction: Beginner + old hardware + low friction 1`] = `
 [
-  "bodhi_linux",
   "linux_lite",
   "linux_mint",
   "lmde",
   "lubuntu",
+  "mageia",
 ]
 `;
 
@@ -51,10 +51,20 @@ exports[`recommendation regression personas > intermediate_privacy_fixed: Interm
 exports[`recommendation regression personas > laptop_low_friction: Laptop + low friction 1`] = `
 [
   "bazzite",
-  "bodhi_linux",
   "deepin",
   "elementary_os",
   "fedora_kinoite",
+  "fedora_silverblue",
+]
+`;
+
+exports[`recommendation regression personas > privacy_daily_driver_security: Privacy daily-driver security 1`] = `
+[
+  "parrot",
+  "pureos",
+  "qubes_os",
+  "tails",
+  "trisquel",
 ]
 `;
 

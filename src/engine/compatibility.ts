@@ -97,6 +97,14 @@ const buildIncludedReasons = (intent: UserIntent, distroId: string): InclusionRe
         reasons.push("include_laptop_friendly_match");
     }
 
+    if (
+        intent.experience === "BEGINNER" &&
+        intent.maintenance === "NO_TERMINAL" &&
+        (distro.docsEcosystem === "EXCELLENT" || distro.docsEcosystem === "GOOD")
+    ) {
+        reasons.push("include_docs_ecosystem_match");
+    }
+
     if (reasons.length === 0) {
         reasons.push("include_meets_requirements");
     }

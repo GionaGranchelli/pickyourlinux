@@ -413,4 +413,63 @@ describe("compatibility engine", () => {
         expect(gentoo.compatible).toBe(true);
         expect(gentoo.includedBecause).not.toContain("include_laptop_friendly_match");
     });
+
+    it("adds desktop match reason for tiling preference without hard exclusions", () => {
+        const intent = UserIntentSchema.parse({
+            installation: "CLI_OK",
+            maintenance: "TERMINAL_OK",
+            proprietary: "OPTIONAL",
+            architecture: "x86_64",
+            minRam: 8,
+            tags: [],
+            experience: "ADVANCED",
+            desktopPreference: "TILING",
+            releaseModel: "NO_PREFERENCE",
+            initSystem: "NO_PREFERENCE",
+            packageManager: "NO_PREFERENCE",
+            immutablePreference: "NO_PREFERENCE",
+            deviceType: "NO_PREFERENCE",
+            secureBootNeeded: null,
+            gpu: "UNKNOWN",
+            nvidiaTolerance: "NO_PREFERENCE",
+        });
+
+        const results = buildCompatibility(intent);
+        const arch = getResult(results, "arch");
+        const ubuntu = getResult(results, "ubuntu");
+
+        expect(arch.compatible).toBe(true);
+        expect(arch.includedBecause).toContain("include_desktop_match");
+        expect(ubuntu.compatible).toBe(true);
+    });
+
+    it("boosts strong docs ecosystems for beginner low-friction intent", () => {
+        const intent = UserIntentSchema.parse({
+            installation: "GUI",
+            maintenance: "NO_TERMINAL",
+            proprietary: "OPTIONAL",
+            architecture: "x86_64",
+            minRam: 8,
+            tags: [],
+            experience: "BEGINNER",
+            desktopPreference: "NO_PREFERENCE",
+            releaseModel: "NO_PREFERENCE",
+            initSystem: "NO_PREFERENCE",
+            packageManager: "NO_PREFERENCE",
+            immutablePreference: "NO_PREFERENCE",
+            deviceType: "NO_PREFERENCE",
+            secureBootNeeded: null,
+            gpu: "UNKNOWN",
+            nvidiaTolerance: "NO_PREFERENCE",
+        });
+
+        const results = buildCompatibility(intent);
+        const ubuntu = getResult(results, "ubuntu");
+        const bodhi = getResult(results, "bodhi_linux");
+
+        expect(ubuntu.compatible).toBe(true);
+        expect(ubuntu.includedBecause).toContain("include_docs_ecosystem_match");
+        expect(bodhi.compatible).toBe(true);
+        expect(bodhi.includedBecause).not.toContain("include_docs_ecosystem_match");
+    });
 });

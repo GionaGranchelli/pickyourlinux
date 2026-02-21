@@ -266,7 +266,9 @@
         "xfce_desc": "Old-school look, very fast on older computers.",
         "cinnamon_desc": "Traditional Windows-like layout, easy to use.",
         "mate_desc": "Classic desktop style from the mid-2000s.",
-        "lxqt_desc": "Extremely lightweight for very old hardware."
+        "lxqt_desc": "Extremely lightweight for very old hardware.",
+        "tiling": "Tiling WM",
+        "tiling_desc": "Keyboard-driven, highly customizable tiling workflow."
       }
     },
     "q_release_model": {
@@ -363,7 +365,8 @@
         "xfce": "XFCE",
         "cinnamon": "Cannelle",
         "mate": "COPAIN",
-        "lxqt": "LXQt"
+        "lxqt": "LXQt",
+        "tiling": "Tiling WM"
       }
     },
     "q_gpu_confirm_advanced": {
@@ -507,7 +510,8 @@
     "exclude_nvidia_proprietary_required": "Nécessite probablement des pilotes NVIDIA propriétaires.",
     "include_immutable_match": "Matches your immutable/traditional system preference.",
     "include_server_use_case_match": "Matches your server-use preference.",
-    "include_laptop_friendly_match": "Works well for laptop-focused usage."
+    "include_laptop_friendly_match": "Works well for laptop-focused usage.",
+    "include_docs_ecosystem_match": "Has strong docs/community support for easier troubleshooting."
   },
   "constraints": {
     "constraint_installer_gui": "Vous voulez un installateur graphique.",
@@ -542,7 +546,9 @@
     "constraint_immutable_prefer": "You prefer immutable (atomic-style) systems.",
     "constraint_immutable_avoid": "You prefer traditional mutable systems.",
     "constraint_server_use_case": "You want server-oriented recommendations.",
-    "constraint_laptop_friendly": "You want laptop-friendly systems."
+    "constraint_laptop_friendly": "You want laptop-friendly systems.",
+    "constraint_desktop_tiling": "You prefer a tiling window manager workflow.",
+    "constraint_docs_ecosystem": "You need strong documentation and community support."
   },
   "compare": {
     "title": "Comparez les distributions",

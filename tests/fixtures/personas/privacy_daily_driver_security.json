@@ -1,0 +1,12 @@
+{
+  "id": "privacy_daily_driver_security",
+  "name": "Privacy daily-driver security",
+  "topN": 5,
+  "selections": [
+    { "questionId": "q_linux_familiarity", "optionId": "familiar" },
+    { "questionId": "q_purpose", "optionId": "privacy" },
+    { "questionId": "q_works_right_away", "optionId": "ok_with_some" },
+    { "questionId": "q_troubleshooting_style", "optionId": "follow_steps" },
+    { "questionId": "q_privacy_tradeoff", "optionId": "balanced" }
+  ]
+}

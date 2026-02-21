@@ -488,6 +488,13 @@ const questions: Question[] = [
                 patches: [{ op: "set", field: "desktopPreference", value: "LXQT" }],
                 isDisqualifier: false,
             },
+            {
+                id: "tiling",
+                label: "questions.q_desktop_preference.options.tiling",
+                description: "questions.q_desktop_preference.options.tiling_desc",
+                patches: [{ op: "set", field: "desktopPreference", value: "TILING" }],
+                isDisqualifier: false,
+            },
         ],
     },
     {
@@ -879,6 +886,12 @@ const questions: Question[] = [
                 id: "lxqt",
                 label: "questions.q_desktop_preference_advanced.options.lxqt",
                 patches: [{ op: "set", field: "desktopPreference", value: "LXQT" }],
+                isDisqualifier: false,
+            },
+            {
+                id: "tiling",
+                label: "questions.q_desktop_preference_advanced.options.tiling",
+                patches: [{ op: "set", field: "desktopPreference", value: "TILING" }],
                 isDisqualifier: false,
             },
         ],

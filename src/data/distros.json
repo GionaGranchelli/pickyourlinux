@@ -28,7 +28,8 @@
     "primaryUseCase": "BOTH",
     "laptopFriendly": true,
     "lastVerified": "2026-02-21",
-    "verificationMethod": "INFERRED"
+    "verificationMethod": "INFERRED",
+    "docsEcosystem": "EXCELLENT"
   },
   {
     "id": "linux_mint",
@@ -59,7 +60,8 @@
     "primaryUseCase": "DESKTOP",
     "laptopFriendly": true,
     "lastVerified": "2026-02-21",
-    "verificationMethod": "INFERRED"
+    "verificationMethod": "INFERRED",
+    "docsEcosystem": "GOOD"
   },
   {
     "id": "pop_os",
@@ -90,7 +92,8 @@
     "primaryUseCase": "DESKTOP",
     "laptopFriendly": true,
     "lastVerified": "2026-02-21",
-    "verificationMethod": "INFERRED"
+    "verificationMethod": "INFERRED",
+    "docsEcosystem": "GOOD"
   },
   {
     "id": "fedora",
@@ -121,7 +124,8 @@
     "primaryUseCase": "BOTH",
     "laptopFriendly": true,
     "lastVerified": "2026-02-21",
-    "verificationMethod": "INFERRED"
+    "verificationMethod": "INFERRED",
+    "docsEcosystem": "EXCELLENT"
   },
   {
     "id": "debian",
@@ -152,7 +156,8 @@
     "primaryUseCase": "BOTH",
     "laptopFriendly": true,
     "lastVerified": "2026-02-21",
-    "verificationMethod": "INFERRED"
+    "verificationMethod": "INFERRED",
+    "docsEcosystem": "EXCELLENT"
   },
   {
     "id": "arch",
@@ -172,7 +177,8 @@
     "gamingSupport": "LIMITED",
     "privacyPosture": "DEFAULT",
     "supportedDesktops": [
-      "OTHER"
+      "OTHER",
+      "TILING"
     ],
     "releaseModel": "ROLLING",
     "initSystem": "SYSTEMD",
@@ -183,7 +189,8 @@
     "primaryUseCase": "BOTH",
     "laptopFriendly": false,
     "lastVerified": "2026-02-21",
-    "verificationMethod": "INFERRED"
+    "verificationMethod": "INFERRED",
+    "docsEcosystem": "EXCELLENT"
   },
   {
     "id": "manjaro",
@@ -214,7 +221,8 @@
     "primaryUseCase": "DESKTOP",
     "laptopFriendly": true,
     "lastVerified": "2026-02-21",
-    "verificationMethod": "INFERRED"
+    "verificationMethod": "INFERRED",
+    "docsEcosystem": "EXCELLENT"
   },
   {
     "id": "opensuse_leap",
@@ -245,7 +253,8 @@
     "primaryUseCase": "BOTH",
     "laptopFriendly": true,
     "lastVerified": "2026-02-21",
-    "verificationMethod": "INFERRED"
+    "verificationMethod": "INFERRED",
+    "docsEcosystem": "EXCELLENT"
   },
   {
     "id": "opensuse_tumbleweed",
@@ -276,7 +285,8 @@
     "primaryUseCase": "BOTH",
     "laptopFriendly": true,
     "lastVerified": "2026-02-21",
-    "verificationMethod": "INFERRED"
+    "verificationMethod": "INFERRED",
+    "docsEcosystem": "EXCELLENT"
   },
   {
     "id": "elementary_os",
@@ -307,7 +317,8 @@
     "primaryUseCase": "DESKTOP",
     "laptopFriendly": true,
     "lastVerified": "2026-02-21",
-    "verificationMethod": "INFERRED"
+    "verificationMethod": "INFERRED",
+    "docsEcosystem": "GOOD"
   },
   {
     "id": "zorin_os",
@@ -338,7 +349,8 @@
     "primaryUseCase": "DESKTOP",
     "laptopFriendly": true,
     "lastVerified": "2026-02-21",
-    "verificationMethod": "INFERRED"
+    "verificationMethod": "INFERRED",
+    "docsEcosystem": "GOOD"
   },
   {
     "id": "mx_linux",
@@ -369,7 +381,8 @@
     "primaryUseCase": "DESKTOP",
     "laptopFriendly": true,
     "lastVerified": "2026-02-21",
-    "verificationMethod": "INFERRED"
+    "verificationMethod": "INFERRED",
+    "docsEcosystem": "GOOD"
   },
   {
     "id": "endeavouros",
@@ -389,7 +402,8 @@
     "gamingSupport": "LIMITED",
     "privacyPosture": "DEFAULT",
     "supportedDesktops": [
-      "XFCE"
+      "XFCE",
+      "TILING"
     ],
     "releaseModel": "ROLLING",
     "initSystem": "SYSTEMD",
@@ -400,7 +414,8 @@
     "primaryUseCase": "DESKTOP",
     "laptopFriendly": false,
     "lastVerified": "2026-02-21",
-    "verificationMethod": "INFERRED"
+    "verificationMethod": "INFERRED",
+    "docsEcosystem": "GOOD"
   },
   {
     "id": "garuda",
@@ -431,7 +446,8 @@
     "primaryUseCase": "DESKTOP",
     "laptopFriendly": false,
     "lastVerified": "2026-02-21",
-    "verificationMethod": "INFERRED"
+    "verificationMethod": "INFERRED",
+    "docsEcosystem": "GOOD"
   },
   {
     "id": "void_linux",
@@ -451,7 +467,8 @@
     "gamingSupport": "LIMITED",
     "privacyPosture": "DEFAULT",
     "supportedDesktops": [
-      "OTHER"
+      "OTHER",
+      "TILING"
     ],
     "releaseModel": "ROLLING",
     "initSystem": "RUNIT",
@@ -462,7 +479,8 @@
     "primaryUseCase": "BOTH",
     "laptopFriendly": false,
     "lastVerified": "2026-02-21",
-    "verificationMethod": "INFERRED"
+    "verificationMethod": "INFERRED",
+    "docsEcosystem": "EXCELLENT"
   },
   {
     "id": "alpine",
@@ -493,7 +511,8 @@
     "primaryUseCase": "BOTH",
     "laptopFriendly": false,
     "lastVerified": "2026-02-21",
-    "verificationMethod": "INFERRED"
+    "verificationMethod": "INFERRED",
+    "docsEcosystem": "EXCELLENT"
   },
   {
     "id": "nixos",
@@ -524,7 +543,8 @@
     "primaryUseCase": "BOTH",
     "laptopFriendly": false,
     "lastVerified": "2026-02-21",
-    "verificationMethod": "INFERRED"
+    "verificationMethod": "INFERRED",
+    "docsEcosystem": "EXCELLENT"
   },
   {
     "id": "tails",
@@ -555,7 +575,8 @@
     "primaryUseCase": "DESKTOP",
     "laptopFriendly": true,
     "lastVerified": "2026-02-21",
-    "verificationMethod": "INFERRED"
+    "verificationMethod": "INFERRED",
+    "docsEcosystem": "GOOD"
   },
   {
     "id": "qubes_os",
@@ -586,7 +607,8 @@
     "primaryUseCase": "DESKTOP",
     "laptopFriendly": false,
     "lastVerified": "2026-02-21",
-    "verificationMethod": "INFERRED"
+    "verificationMethod": "INFERRED",
+    "docsEcosystem": "GOOD"
   },
   {
     "id": "trisquel",
@@ -617,7 +639,8 @@
     "primaryUseCase": "DESKTOP",
     "laptopFriendly": true,
     "lastVerified": "2026-02-21",
-    "verificationMethod": "INFERRED"
+    "verificationMethod": "INFERRED",
+    "docsEcosystem": "GOOD"
   },
   {
     "id": "slackware",
@@ -648,7 +671,8 @@
     "primaryUseCase": "DESKTOP",
     "laptopFriendly": false,
     "lastVerified": "2026-02-21",
-    "verificationMethod": "INFERRED"
+    "verificationMethod": "INFERRED",
+    "docsEcosystem": "GOOD"
   },
   {
     "id": "kubuntu",
@@ -679,7 +703,8 @@
     "primaryUseCase": "DESKTOP",
     "laptopFriendly": true,
     "lastVerified": "2026-02-21",
-    "verificationMethod": "INFERRED"
+    "verificationMethod": "INFERRED",
+    "docsEcosystem": "GOOD"
   },
   {
     "id": "ubuntu_mate",
@@ -710,7 +735,8 @@
     "primaryUseCase": "DESKTOP",
     "laptopFriendly": true,
     "lastVerified": "2026-02-21",
-    "verificationMethod": "INFERRED"
+    "verificationMethod": "INFERRED",
+    "docsEcosystem": "GOOD"
   },
   {
     "id": "lubuntu",
@@ -741,7 +767,8 @@
     "primaryUseCase": "DESKTOP",
     "laptopFriendly": true,
     "lastVerified": "2026-02-21",
-    "verificationMethod": "INFERRED"
+    "verificationMethod": "INFERRED",
+    "docsEcosystem": "GOOD"
   },
   {
     "id": "xubuntu",
@@ -772,7 +799,8 @@
     "primaryUseCase": "DESKTOP",
     "laptopFriendly": true,
     "lastVerified": "2026-02-21",
-    "verificationMethod": "INFERRED"
+    "verificationMethod": "INFERRED",
+    "docsEcosystem": "GOOD"
   },
   {
     "id": "kde_neon",
@@ -803,7 +831,8 @@
     "primaryUseCase": "DESKTOP",
     "laptopFriendly": true,
     "lastVerified": "2026-02-21",
-    "verificationMethod": "INFERRED"
+    "verificationMethod": "INFERRED",
+    "docsEcosystem": "GOOD"
   },
   {
     "id": "linux_lite",
@@ -834,7 +863,8 @@
     "primaryUseCase": "DESKTOP",
     "laptopFriendly": true,
     "lastVerified": "2026-02-21",
-    "verificationMethod": "INFERRED"
+    "verificationMethod": "INFERRED",
+    "docsEcosystem": "GOOD"
   },
   {
     "id": "peppermint_os",
@@ -865,7 +895,8 @@
     "primaryUseCase": "DESKTOP",
     "laptopFriendly": true,
     "lastVerified": "2026-02-21",
-    "verificationMethod": "INFERRED"
+    "verificationMethod": "INFERRED",
+    "docsEcosystem": "GOOD"
   },
   {
     "id": "nobara",
@@ -896,7 +927,8 @@
     "primaryUseCase": "DESKTOP",
     "laptopFriendly": true,
     "lastVerified": "2026-02-21",
-    "verificationMethod": "INFERRED"
+    "verificationMethod": "INFERRED",
+    "docsEcosystem": "GOOD"
   },
   {
     "id": "pureos",
@@ -927,7 +959,8 @@
     "primaryUseCase": "DESKTOP",
     "laptopFriendly": true,
     "lastVerified": "2026-02-21",
-    "verificationMethod": "INFERRED"
+    "verificationMethod": "INFERRED",
+    "docsEcosystem": "GOOD"
   },
   {
     "id": "rocky_linux",
@@ -958,7 +991,8 @@
     "primaryUseCase": "SERVER",
     "laptopFriendly": false,
     "lastVerified": "2026-02-21",
-    "verificationMethod": "MANUAL"
+    "verificationMethod": "MANUAL",
+    "docsEcosystem": "GOOD"
   },
   {
     "id": "almalinux",
@@ -989,7 +1023,8 @@
     "primaryUseCase": "SERVER",
     "laptopFriendly": false,
     "lastVerified": "2026-02-21",
-    "verificationMethod": "MANUAL"
+    "verificationMethod": "MANUAL",
+    "docsEcosystem": "GOOD"
   },
   {
     "id": "centos_stream",
@@ -1020,7 +1055,8 @@
     "primaryUseCase": "SERVER",
     "laptopFriendly": false,
     "lastVerified": "2026-02-21",
-    "verificationMethod": "MANUAL"
+    "verificationMethod": "MANUAL",
+    "docsEcosystem": "GOOD"
   },
   {
     "id": "ubuntu_budgie",
@@ -1051,7 +1087,8 @@
     "primaryUseCase": "DESKTOP",
     "laptopFriendly": true,
     "lastVerified": "2026-02-21",
-    "verificationMethod": "INFERRED"
+    "verificationMethod": "INFERRED",
+    "docsEcosystem": "GOOD"
   },
   {
     "id": "ubuntu_studio",
@@ -1082,7 +1119,8 @@
     "primaryUseCase": "DESKTOP",
     "laptopFriendly": true,
     "lastVerified": "2026-02-21",
-    "verificationMethod": "INFERRED"
+    "verificationMethod": "INFERRED",
+    "docsEcosystem": "GOOD"
   },
   {
     "id": "lmde",
@@ -1113,7 +1151,8 @@
     "primaryUseCase": "DESKTOP",
     "laptopFriendly": true,
     "lastVerified": "2026-02-21",
-    "verificationMethod": "INFERRED"
+    "verificationMethod": "INFERRED",
+    "docsEcosystem": "GOOD"
   },
   {
     "id": "solus",
@@ -1147,7 +1186,8 @@
     "primaryUseCase": "DESKTOP",
     "laptopFriendly": true,
     "lastVerified": "2026-02-21",
-    "verificationMethod": "MANUAL"
+    "verificationMethod": "MANUAL",
+    "docsEcosystem": "GOOD"
   },
   {
     "id": "mageia",
@@ -1180,7 +1220,8 @@
     "primaryUseCase": "DESKTOP",
     "laptopFriendly": true,
     "lastVerified": "2026-02-21",
-    "verificationMethod": "MANUAL"
+    "verificationMethod": "MANUAL",
+    "docsEcosystem": "GOOD"
   },
   {
     "id": "pclinuxos",
@@ -1213,7 +1254,8 @@
     "primaryUseCase": "DESKTOP",
     "laptopFriendly": true,
     "lastVerified": "2026-02-21",
-    "verificationMethod": "MANUAL"
+    "verificationMethod": "MANUAL",
+    "docsEcosystem": "THIN"
   },
   {
     "id": "deepin",
@@ -1244,7 +1286,8 @@
     "primaryUseCase": "DESKTOP",
     "laptopFriendly": true,
     "lastVerified": "2026-02-21",
-    "verificationMethod": "MANUAL"
+    "verificationMethod": "MANUAL",
+    "docsEcosystem": "GOOD"
   },
   {
     "id": "bodhi_linux",
@@ -1275,7 +1318,8 @@
     "primaryUseCase": "DESKTOP",
     "laptopFriendly": true,
     "lastVerified": "2026-02-21",
-    "verificationMethod": "MANUAL"
+    "verificationMethod": "MANUAL",
+    "docsEcosystem": "THIN"
   },
   {
     "id": "kali_linux",
@@ -1306,7 +1350,8 @@
     "primaryUseCase": "DESKTOP",
     "laptopFriendly": false,
     "lastVerified": "2026-02-21",
-    "verificationMethod": "MANUAL"
+    "verificationMethod": "MANUAL",
+    "docsEcosystem": "GOOD"
   },
   {
     "id": "gentoo",
@@ -1326,7 +1371,8 @@
     "gamingSupport": "LIMITED",
     "privacyPosture": "DEFAULT",
     "supportedDesktops": [
-      "OTHER"
+      "OTHER",
+      "TILING"
     ],
     "releaseModel": "ROLLING",
     "initSystem": "OPENRC",
@@ -1337,7 +1383,8 @@
     "primaryUseCase": "BOTH",
     "laptopFriendly": false,
     "lastVerified": "2026-02-21",
-    "verificationMethod": "INFERRED"
+    "verificationMethod": "INFERRED",
+    "docsEcosystem": "EXCELLENT"
   },
   {
     "id": "bazzite",
@@ -1369,7 +1416,8 @@
     "primaryUseCase": "DESKTOP",
     "laptopFriendly": true,
     "lastVerified": "2026-02-21",
-    "verificationMethod": "INFERRED"
+    "verificationMethod": "INFERRED",
+    "docsEcosystem": "GOOD"
   },
   {
     "id": "cachyos",
@@ -1392,7 +1440,8 @@
       "KDE",
       "GNOME",
       "XFCE",
-      "OTHER"
+      "OTHER",
+      "TILING"
     ],
     "releaseModel": "ROLLING",
     "initSystem": "SYSTEMD",
@@ -1403,7 +1452,8 @@
     "primaryUseCase": "DESKTOP",
     "laptopFriendly": false,
     "lastVerified": "2026-02-21",
-    "verificationMethod": "INFERRED"
+    "verificationMethod": "INFERRED",
+    "docsEcosystem": "GOOD"
   },
   {
     "id": "pikaos",
@@ -1435,7 +1485,8 @@
     "primaryUseCase": "DESKTOP",
     "laptopFriendly": true,
     "lastVerified": "2026-02-21",
-    "verificationMethod": "INFERRED"
+    "verificationMethod": "INFERRED",
+    "docsEcosystem": "GOOD"
   },
   {
     "id": "artix",
@@ -1455,7 +1506,8 @@
     "gamingSupport": "LIMITED",
     "privacyPosture": "DEFAULT",
     "supportedDesktops": [
-      "OTHER"
+      "OTHER",
+      "TILING"
     ],
     "releaseModel": "ROLLING",
     "initSystem": "OPENRC",
@@ -1466,7 +1518,8 @@
     "primaryUseCase": "BOTH",
     "laptopFriendly": false,
     "lastVerified": "2026-02-21",
-    "verificationMethod": "MANUAL"
+    "verificationMethod": "MANUAL",
+    "docsEcosystem": "GOOD"
   },
   {
     "id": "fedora_silverblue",
@@ -1497,7 +1550,8 @@
     "primaryUseCase": "DESKTOP",
     "laptopFriendly": true,
     "lastVerified": "2026-02-21",
-    "verificationMethod": "MANUAL"
+    "verificationMethod": "MANUAL",
+    "docsEcosystem": "EXCELLENT"
   },
   {
     "id": "fedora_kinoite",
@@ -1528,7 +1582,8 @@
     "primaryUseCase": "DESKTOP",
     "laptopFriendly": true,
     "lastVerified": "2026-02-21",
-    "verificationMethod": "MANUAL"
+    "verificationMethod": "MANUAL",
+    "docsEcosystem": "EXCELLENT"
   },
   {
     "id": "opensuse_microos",
@@ -1559,6 +1614,71 @@
     "primaryUseCase": "BOTH",
     "laptopFriendly": false,
     "lastVerified": "2026-02-21",
-    "verificationMethod": "MANUAL"
+    "verificationMethod": "MANUAL",
+    "docsEcosystem": "GOOD"
+  },
+  {
+    "id": "whonix",
+    "name": "Whonix",
+    "description": "Privacy-focused system designed around Tor-based isolation.",
+    "imageUrl": "https://www.whonix.org/w/images/2/2b/Whonix_logo.png",
+    "websiteUrl": "https://www.whonix.org/",
+    "documentationUrl": "https://www.whonix.org/wiki/Documentation",
+    "forumUrl": "https://forums.whonix.org/",
+    "testDriveUrl": null,
+    "downloadUrl": "https://www.whonix.org/wiki/Download",
+    "distroSeaUrl": null,
+    "installerExperience": "GUI",
+    "maintenanceStyle": "HANDS_ON",
+    "proprietarySupport": "OPTIONAL",
+    "suitableForOldHardware": false,
+    "gamingSupport": "NONE",
+    "privacyPosture": "STRONG",
+    "docsEcosystem": "GOOD",
+    "supportedDesktops": [
+      "OTHER"
+    ],
+    "releaseModel": "FIXED",
+    "initSystem": "SYSTEMD",
+    "packageManager": "APT",
+    "primaryUseCase": "DESKTOP",
+    "laptopFriendly": false,
+    "immutable": false,
+    "lastVerified": "2026-02-21",
+    "verificationMethod": "MANUAL",
+    "secureBootOutOfBox": false,
+    "nvidiaExperience": "HARD"
+  },
+  {
+    "id": "parrot",
+    "name": "Parrot OS",
+    "description": "Security-focused Debian-based distro suitable for privacy and daily hardened usage.",
+    "imageUrl": "https://parrotsec.org/images/logo.png",
+    "websiteUrl": "https://parrotsec.org/",
+    "documentationUrl": "https://www.parrotsec.org/docs/",
+    "forumUrl": "https://community.parrotsec.org/",
+    "testDriveUrl": null,
+    "downloadUrl": "https://www.parrotsec.org/download/",
+    "distroSeaUrl": null,
+    "installerExperience": "GUI",
+    "maintenanceStyle": "LOW_FRICTION",
+    "proprietarySupport": "OPTIONAL",
+    "suitableForOldHardware": true,
+    "gamingSupport": "LIMITED",
+    "privacyPosture": "STRONG",
+    "docsEcosystem": "GOOD",
+    "supportedDesktops": [
+      "XFCE"
+    ],
+    "releaseModel": "FIXED",
+    "initSystem": "SYSTEMD",
+    "packageManager": "APT",
+    "primaryUseCase": "DESKTOP",
+    "laptopFriendly": true,
+    "immutable": false,
+    "lastVerified": "2026-02-21",
+    "verificationMethod": "MANUAL",
+    "secureBootOutOfBox": false,
+    "nvidiaExperience": "OK"
   }
 ]

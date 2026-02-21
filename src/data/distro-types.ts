@@ -5,13 +5,14 @@ export const MaintenanceStyleEnum = z.enum(["LOW_FRICTION", "HANDS_ON"]);
 export const ProprietarySupportEnum = z.enum(["FULL", "OPTIONAL", "NONE"]);
 export const GamingSupportEnum = z.enum(["NONE", "LIMITED", "GOOD"]);
 export const PrivacyPostureEnum = z.enum(["DEFAULT", "STRONG"]);
-export const DesktopEnum = z.enum(["GNOME", "KDE", "XFCE", "CINNAMON", "MATE", "LXQT", "OTHER"]);
+export const DesktopEnum = z.enum(["GNOME", "KDE", "XFCE", "CINNAMON", "MATE", "LXQT", "TILING", "OTHER"]);
 export const ReleaseModelEnum = z.enum(["FIXED", "ROLLING"]);
 export const InitSystemEnum = z.enum(["SYSTEMD", "OPENRC", "RUNIT", "OTHER"]);
 export const PackageManagerEnum = z.enum(["APT", "DNF", "PACMAN", "ZYPPER", "APK", "NIX", "XBPS", "PORTAGE", "OTHER"]);
 export const NvidiaExperienceEnum = z.enum(["GOOD", "OK", "HARD", "UNKNOWN"]);
 export const PrimaryUseCaseEnum = z.enum(["DESKTOP", "SERVER", "BOTH"]);
 export const VerificationMethodEnum = z.enum(["MANUAL", "INFERRED", "COMMUNITY"]);
+export const DocsEcosystemEnum = z.enum(["EXCELLENT", "GOOD", "OK", "THIN"]);
 
 export const DistroSchema = z.object({
     id: z.string(),
@@ -30,6 +31,7 @@ export const DistroSchema = z.object({
     suitableForOldHardware: z.boolean(),
     gamingSupport: GamingSupportEnum,
     privacyPosture: PrivacyPostureEnum,
+    docsEcosystem: DocsEcosystemEnum,
     supportedDesktops: z.array(DesktopEnum).min(1),
     releaseModel: ReleaseModelEnum,
     initSystem: InitSystemEnum,

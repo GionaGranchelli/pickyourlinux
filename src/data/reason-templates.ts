@@ -18,7 +18,8 @@ export const InclusionReasonKeys = [
   "include_package_manager_match",
   "include_immutable_match",
   "include_server_use_case_match",
-  "include_laptop_friendly_match"
+  "include_laptop_friendly_match",
+  "include_docs_ecosystem_match"
 ] as const;
 
 export const ExclusionReasonKeys = [
@@ -49,6 +50,7 @@ export const ConstraintKeys = [
   "constraint_desktop_cinnamon",
   "constraint_desktop_mate",
   "constraint_desktop_lxqt",
+  "constraint_desktop_tiling",
   "constraint_release_fixed",
   "constraint_release_rolling",
   "constraint_init_systemd",
@@ -65,7 +67,8 @@ export const ConstraintKeys = [
   "constraint_immutable_prefer",
   "constraint_immutable_avoid",
   "constraint_server_use_case",
-  "constraint_laptop_friendly"
+  "constraint_laptop_friendly",
+  "constraint_docs_ecosystem"
 ] as const;
 
 export const InclusionReasonKeySchema = z.enum(InclusionReasonKeys);

@@ -12,6 +12,7 @@ export const DesktopPreferenceEnum = z.enum([
     "CINNAMON",
     "MATE",
     "LXQT",
+    "TILING",
 ]);
 export const ReleaseModelPreferenceEnum = z.enum(["NO_PREFERENCE", "FIXED", "ROLLING"]);
 export const InitSystemPreferenceEnum = z.enum(["NO_PREFERENCE", "SYSTEMD", "OPENRC", "RUNIT"]);

@@ -350,6 +350,7 @@ Allowed Answers
 | Cinnamon (familiar) | set desktopPreference = CINNAMON |
 | MATE (classic) | set desktopPreference = MATE |
 | LXQt (very light) | set desktopPreference = LXQT |
+| Tiling WM (keyboard-driven) | set desktopPreference = TILING |
 
 ---
 
@@ -602,6 +603,7 @@ Allowed Answers
 | Cinnamon | set desktopPreference = CINNAMON |
 | MATE | set desktopPreference = MATE |
 | LXQt | set desktopPreference = LXQT |
+| Tiling WM | set desktopPreference = TILING |
 
 ---
 
