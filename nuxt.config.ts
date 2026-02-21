@@ -68,20 +68,20 @@ export default defineNuxtConfig({
   },
   app: {
     head: {
-      title: "Pick Your Linux - The explainable compatibility-based distro picker",
+      title: "Pick Your Linux - The deterministic, logic-as-data distro picker",
       meta: [
         { charset: "utf-8" },
         { name: "viewport", content: "width=device-width, initial-scale=1" },
-        { name: "description", content: "Don't guess which Linux is best. Answer simple questions, apply strict filters, and see which distributions are truly compatible with your needs." },
+        { name: "description", content: "A schema-driven decision engine that evaluates 30+ conditional questions to recommend from 40+ Linux distributions with zero bias." },
         { name: "author", content: "Pick Your Linux Project" },
-        { property: "og:title", content: "Pick Your Linux" },
-        { property: "og:description", content: "Find the Linux distribution that fits your hardware and workflow." },
+        { property: "og:title", content: "Pick Your Linux - Honest Decision Flow" },
+        { property: "og:description", content: "Find the Linux distribution that fits your hardware and workflow using a deterministic, explainable engine." },
         { property: "og:type", content: "website" },
         { property: "og:url", content: "https://pickyourlinux.org" },
         { property: "og:image", content: "https://pickyourlinux.org/og-preview.png" },
         { name: "twitter:card", content: "summary_large_image" },
         { name: "twitter:title", content: "Pick Your Linux" },
-        { name: "twitter:description", content: "Compatibility-first Linux distro picker." },
+        { name: "twitter:description", content: "A study in logic-as-data and honest decision engine design." },
       ],
       link: [
         { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },

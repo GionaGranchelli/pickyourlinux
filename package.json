@@ -2,6 +2,20 @@
   "name": "picklinux",
   "private": true,
   "type": "module",
+  "description": "A deterministic, schema-driven Linux distribution picker built with Nuxt 3 and Zod.",
+  "keywords": [
+    "linux",
+    "linux-distribution",
+    "decision-engine",
+    "nuxt3",
+    "vue3",
+    "typescript",
+    "zod",
+    "rule-engine",
+    "logic-as-data",
+    "deterministic",
+    "i18n"
+  ],
   "scripts": {
     "dev": "nuxt dev",
     "build": "nuxt build",

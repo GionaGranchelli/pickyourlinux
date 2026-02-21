@@ -1,10 +1,21 @@
 # Pick Your Linux
 
-A deterministic, rule-based Linux distribution picker built with Nuxt 3.
-This project uses **logic-as-data** and a **compiler-enforced decision engine**.
-UI components are strictly dumb. All decision logic lives in the engine.
+A deterministic, schema-driven Linux distribution picker built with Nuxt 3.
+
+This project is a study in **logic-as-data** and **honest decision engine design**. It evaluates 30+ conditional questions across 3 structured phases to recommend from 40+ Linux distributions, while enforcing a strict boundary between domain logic and presentation.
+
+[**Read the Technical Case Study →**](./docs/CASE_STUDY.md)
 
 ---
+
+## 🏗️ Architectural Invariants
+
+* **Logic-as-Data:** All decision rules live in a declarative DSL, not in code.
+* **Pure Engine:** Zero business logic exists inside Vue components.
+* **Deterministic:** Every state change triggers a full recomputation from a validated snapshot.
+* **Zod-Enforced:** Every rule, question, and state transition is schema-validated at runtime.
+* **Trap UX Aware:** The engine detects when refinement questions lose utility and prompts for an early exit.
+
 
 ## 🚀 Getting Started
 
