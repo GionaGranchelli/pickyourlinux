@@ -443,7 +443,9 @@
         "pacman": "Pacman",
         "zypper": "Zypper",
         "apk": "APK",
-        "nix": "Nix"
+        "nix": "Nix",
+        "xbps": "XBPS",
+        "portage": "Portage"
       }
     },
     "q_ram_refinement_advanced": {
@@ -453,6 +455,14 @@
         "ram_4": "4 GB",
         "ram_8": "8 GB",
         "ram_16": "16 GB"
+      }
+    },
+    "q_atomic_preference": {
+      "text": "Do you prefer immutable (atomic-style) systems?",
+      "options": {
+        "no_preference": "No preference",
+        "prefer_immutable": "Prefer immutable",
+        "prefer_traditional": "Prefer traditional"
       }
     }
   },
@@ -479,7 +489,8 @@
     "exclude_old_hardware_unsuitable": "Not suitable for older hardware.",
     "exclude_secure_boot_unavailable": "Does not support Secure Boot out of the box.",
     "exclude_nvidia_hard": "NVIDIA setup may be hands-on.",
-    "exclude_nvidia_proprietary_required": "Optimized for proprietary NVIDIA drivers."
+    "exclude_nvidia_proprietary_required": "Optimized for proprietary NVIDIA drivers.",
+    "include_immutable_match": "Matches your immutable/traditional system preference."
   },
   "constraints": {
     "constraint_installer_gui": "You want a graphical installer.",
@@ -508,7 +519,11 @@
     "constraint_pkg_pacman": "You prefer the pacman package manager.",
     "constraint_pkg_zypper": "You prefer the Zypper package manager.",
     "constraint_pkg_apk": "You prefer the APK package manager.",
-    "constraint_pkg_nix": "You prefer the Nix package manager."
+    "constraint_pkg_nix": "You prefer the Nix package manager.",
+    "constraint_pkg_xbps": "You prefer the XBPS package manager.",
+    "constraint_pkg_portage": "You prefer the Portage package manager.",
+    "constraint_immutable_prefer": "You prefer immutable (atomic-style) systems.",
+    "constraint_immutable_avoid": "You prefer traditional mutable systems."
   },
   "compare": {
     "title": "Compare Distros",

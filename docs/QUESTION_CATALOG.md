@@ -734,10 +734,32 @@ Allowed Answers
 | Zypper | set packageManager = ZYPPER |
 | APK | set packageManager = APK |
 | Nix | set packageManager = NIX |
+| XBPS | set packageManager = XBPS |
+| Portage | set packageManager = PORTAGE |
 
 ---
 
-### Q33 - RAM Refinement (Advanced)
+### Q33 - Atomic / Immutable Preference
+Question ID: q_atomic_preference
+Intent Fields
+- immutablePreference
+
+Condition (showIf)
+- experience = ADVANCED
+
+Question
+> Do you prefer immutable (atomic-style) systems?
+
+Allowed Answers
+| User Answer | Applied Patches |
+|---|---|
+| No preference | set immutablePreference = NO_PREFERENCE |
+| Prefer immutable | set immutablePreference = PREFER_IMMUTABLE |
+| Prefer traditional | set immutablePreference = PREFER_TRADITIONAL |
+
+---
+
+### Q34 - RAM Refinement (Advanced)
 Question ID: q_ram_refinement_advanced
 Intent Fields
 - minRam

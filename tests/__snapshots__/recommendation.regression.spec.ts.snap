@@ -3,10 +3,10 @@
 exports[`recommendation regression personas > advanced_openrc_preference: Advanced + OpenRC preference 1`] = `
 [
   "alpine",
+  "artix",
   "gentoo",
   "almalinux",
   "arch",
-  "bazzite",
 ]
 `;
 
@@ -25,8 +25,8 @@ exports[`recommendation regression personas > beginner_gaming_nvidia_easy: Begin
   "bazzite",
   "deepin",
   "elementary_os",
-  "fedora",
-  "kde_neon",
+  "fedora_kinoite",
+  "fedora_silverblue",
 ]
 `;
 
@@ -54,6 +54,6 @@ exports[`recommendation regression personas > server_low_friction: Server-focuse
   "bodhi_linux",
   "deepin",
   "elementary_os",
-  "fedora",
+  "fedora_kinoite",
 ]
 `;

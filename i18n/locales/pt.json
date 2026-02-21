@@ -426,7 +426,9 @@
         "pacman": "Pacman",
         "zypper": "Zíper",
         "apk": "APK",
-        "nix": "Nix"
+        "nix": "Nix",
+        "xbps": "XBPS",
+        "portage": "Portage"
       }
     },
     "q_ram_refinement_advanced": {
@@ -461,6 +463,14 @@
         "open_vibe": "Show me anything",
         "open_vibe_desc": "I'm open to trying any interface style."
       }
+    },
+    "q_atomic_preference": {
+      "text": "Do you prefer immutable (atomic-style) systems?",
+      "options": {
+        "no_preference": "No preference",
+        "prefer_immutable": "Prefer immutable",
+        "prefer_traditional": "Prefer traditional"
+      }
     }
   },
   "reasons": {
@@ -486,7 +496,8 @@
     "exclude_old_hardware_unsuitable": "Não é adequado para hardware mais antigo.",
     "exclude_secure_boot_unavailable": "Não oferece suporte para inicialização segura imediatamente.",
     "exclude_nvidia_hard": "A configuração da NVIDIA provavelmente será prática.",
-    "exclude_nvidia_proprietary_required": "Provavelmente requer drivers proprietários da NVIDIA."
+    "exclude_nvidia_proprietary_required": "Provavelmente requer drivers proprietários da NVIDIA.",
+    "include_immutable_match": "Matches your immutable/traditional system preference."
   },
   "constraints": {
     "constraint_installer_gui": "Você quer um instalador gráfico.",
@@ -515,7 +526,11 @@
     "constraint_pkg_pacman": "Você prefere o gerenciador de pacotes pacman.",
     "constraint_pkg_zypper": "Você prefere o gerenciador de pacotes Zypper.",
     "constraint_pkg_apk": "Você prefere o gerenciador de pacotes APK.",
-    "constraint_pkg_nix": "Você prefere o gerenciador de pacotes Nix."
+    "constraint_pkg_nix": "Você prefere o gerenciador de pacotes Nix.",
+    "constraint_pkg_xbps": "You prefer the XBPS package manager.",
+    "constraint_pkg_portage": "You prefer the Portage package manager.",
+    "constraint_immutable_prefer": "You prefer immutable (atomic-style) systems.",
+    "constraint_immutable_avoid": "You prefer traditional mutable systems."
   },
   "compare": {
     "title": "Comparar distros",

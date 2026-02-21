@@ -324,4 +324,33 @@ describe("compatibility engine", () => {
 
         expect(kubuntu.includedBecause).not.toContain("include_desktop_match");
     });
+
+    it("adds immutable preference reason for matching distros", () => {
+        const intent = UserIntentSchema.parse({
+            installation: "CLI_OK",
+            maintenance: "TERMINAL_OK",
+            proprietary: "OPTIONAL",
+            architecture: "x86_64",
+            minRam: 8,
+            tags: [],
+            experience: "ADVANCED",
+            desktopPreference: "NO_PREFERENCE",
+            releaseModel: "NO_PREFERENCE",
+            initSystem: "NO_PREFERENCE",
+            packageManager: "NO_PREFERENCE",
+            immutablePreference: "PREFER_IMMUTABLE",
+            secureBootNeeded: null,
+            gpu: "UNKNOWN",
+            nvidiaTolerance: "NO_PREFERENCE",
+        });
+
+        const results = buildCompatibility(intent);
+        const silverblue = getResult(results, "fedora_silverblue");
+        const ubuntu = getResult(results, "ubuntu");
+
+        expect(silverblue.compatible).toBe(true);
+        expect(silverblue.includedBecause).toContain("include_immutable_match");
+        expect(ubuntu.compatible).toBe(true);
+        expect(ubuntu.includedBecause).not.toContain("include_immutable_match");
+    });
 });

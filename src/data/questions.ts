@@ -1105,6 +1105,43 @@ const questions: Question[] = [
                 patches: [{ op: "set", field: "packageManager", value: "NIX" }],
                 isDisqualifier: false,
             },
+            {
+                id: "xbps",
+                label: "questions.q_package_manager_preference.options.xbps",
+                patches: [{ op: "set", field: "packageManager", value: "XBPS" }],
+                isDisqualifier: false,
+            },
+            {
+                id: "portage",
+                label: "questions.q_package_manager_preference.options.portage",
+                patches: [{ op: "set", field: "packageManager", value: "PORTAGE" }],
+                isDisqualifier: false,
+            },
+        ],
+    },
+    {
+        id: "q_atomic_preference",
+        text: "questions.q_atomic_preference.text",
+        showIf: showIfAdvanced,
+        options: [
+            {
+                id: "no_preference",
+                label: "questions.q_atomic_preference.options.no_preference",
+                patches: [{ op: "set", field: "immutablePreference", value: "NO_PREFERENCE" }],
+                isDisqualifier: false,
+            },
+            {
+                id: "prefer_immutable",
+                label: "questions.q_atomic_preference.options.prefer_immutable",
+                patches: [{ op: "set", field: "immutablePreference", value: "PREFER_IMMUTABLE" }],
+                isDisqualifier: false,
+            },
+            {
+                id: "prefer_traditional",
+                label: "questions.q_atomic_preference.options.prefer_traditional",
+                patches: [{ op: "set", field: "immutablePreference", value: "PREFER_TRADITIONAL" }],
+                isDisqualifier: false,
+            },
         ],
     },
     {
@@ -1194,6 +1231,7 @@ export const QUESTION_PHASES = [
             "q_advanced_control",
             "q_init_system_preference",
             "q_package_manager_preference",
+            "q_atomic_preference",
             "q_ram_refinement_advanced",
         ],
     },

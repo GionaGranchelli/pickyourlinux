@@ -426,7 +426,9 @@
         "pacman": "Pacman",
         "zypper": "Zypper",
         "apk": "APK",
-        "nix": "Rien"
+        "nix": "Rien",
+        "xbps": "XBPS",
+        "portage": "Portage"
       }
     },
     "q_ram_refinement_advanced": {
@@ -461,6 +463,14 @@
         "open_vibe": "Show me anything",
         "open_vibe_desc": "I'm open to trying any interface style."
       }
+    },
+    "q_atomic_preference": {
+      "text": "Do you prefer immutable (atomic-style) systems?",
+      "options": {
+        "no_preference": "No preference",
+        "prefer_immutable": "Prefer immutable",
+        "prefer_traditional": "Prefer traditional"
+      }
     }
   },
   "reasons": {
@@ -486,7 +496,8 @@
     "exclude_old_hardware_unsuitable": "Ne convient pas au matériel plus ancien.",
     "exclude_secure_boot_unavailable": "Ne prend pas en charge le démarrage sécurisé dès la sortie de la boîte.",
     "exclude_nvidia_hard": "La configuration de NVIDIA sera probablement pratique.",
-    "exclude_nvidia_proprietary_required": "Nécessite probablement des pilotes NVIDIA propriétaires."
+    "exclude_nvidia_proprietary_required": "Nécessite probablement des pilotes NVIDIA propriétaires.",
+    "include_immutable_match": "Matches your immutable/traditional system preference."
   },
   "constraints": {
     "constraint_installer_gui": "Vous voulez un installateur graphique.",
@@ -515,7 +526,11 @@
     "constraint_pkg_pacman": "Vous préférez le gestionnaire de paquets Pacman.",
     "constraint_pkg_zypper": "Vous préférez le gestionnaire de packages Zypper.",
     "constraint_pkg_apk": "Vous préférez le gestionnaire de packages APK.",
-    "constraint_pkg_nix": "Vous préférez le gestionnaire de packages Nix."
+    "constraint_pkg_nix": "Vous préférez le gestionnaire de packages Nix.",
+    "constraint_pkg_xbps": "You prefer the XBPS package manager.",
+    "constraint_pkg_portage": "You prefer the Portage package manager.",
+    "constraint_immutable_prefer": "You prefer immutable (atomic-style) systems.",
+    "constraint_immutable_avoid": "You prefer traditional mutable systems."
   },
   "compare": {
     "title": "Comparez les distributions",

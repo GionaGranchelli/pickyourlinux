@@ -426,7 +426,9 @@
         "pacman": "Pacman",
         "zypper": "Zypper",
         "apk": "APK",
-        "nix": "Nix"
+        "nix": "Nix",
+        "xbps": "XBPS",
+        "portage": "Portage"
       }
     },
     "q_ram_refinement_advanced": {
@@ -461,6 +463,14 @@
         "open_vibe": "Show me anything",
         "open_vibe_desc": "I'm open to trying any interface style."
       }
+    },
+    "q_atomic_preference": {
+      "text": "Do you prefer immutable (atomic-style) systems?",
+      "options": {
+        "no_preference": "No preference",
+        "prefer_immutable": "Prefer immutable",
+        "prefer_traditional": "Prefer traditional"
+      }
     }
   },
   "reasons": {
@@ -486,7 +496,8 @@
     "exclude_old_hardware_unsuitable": "Nicht für ältere Hardware geeignet.",
     "exclude_secure_boot_unavailable": "Unterstützt Secure Boot nicht ab Werk.",
     "exclude_nvidia_hard": "Das NVIDIA-Setup wird wahrscheinlich praktisch sein.",
-    "exclude_nvidia_proprietary_required": "Erfordert wahrscheinlich proprietäre NVIDIA-Treiber."
+    "exclude_nvidia_proprietary_required": "Erfordert wahrscheinlich proprietäre NVIDIA-Treiber.",
+    "include_immutable_match": "Matches your immutable/traditional system preference."
   },
   "constraints": {
     "constraint_installer_gui": "Sie möchten ein grafisches Installationsprogramm.",
@@ -515,7 +526,11 @@
     "constraint_pkg_pacman": "Sie bevorzugen den Pacman-Paketmanager.",
     "constraint_pkg_zypper": "Sie bevorzugen den Zypper-Paketmanager.",
     "constraint_pkg_apk": "Sie bevorzugen den APK-Paketmanager.",
-    "constraint_pkg_nix": "Sie bevorzugen den Nix-Paketmanager."
+    "constraint_pkg_nix": "Sie bevorzugen den Nix-Paketmanager.",
+    "constraint_pkg_xbps": "You prefer the XBPS package manager.",
+    "constraint_pkg_portage": "You prefer the Portage package manager.",
+    "constraint_immutable_prefer": "You prefer immutable (atomic-style) systems.",
+    "constraint_immutable_avoid": "You prefer traditional mutable systems."
   },
   "compare": {
     "title": "Vergleichen Sie Distributionen",

@@ -8,7 +8,7 @@ export const PrivacyPostureEnum = z.enum(["DEFAULT", "STRONG"]);
 export const DesktopEnum = z.enum(["GNOME", "KDE", "XFCE", "CINNAMON", "MATE", "LXQT", "OTHER"]);
 export const ReleaseModelEnum = z.enum(["FIXED", "ROLLING"]);
 export const InitSystemEnum = z.enum(["SYSTEMD", "OPENRC", "RUNIT", "OTHER"]);
-export const PackageManagerEnum = z.enum(["APT", "DNF", "PACMAN", "ZYPPER", "APK", "NIX", "OTHER"]);
+export const PackageManagerEnum = z.enum(["APT", "DNF", "PACMAN", "ZYPPER", "APK", "NIX", "XBPS", "PORTAGE", "OTHER"]);
 export const NvidiaExperienceEnum = z.enum(["GOOD", "OK", "HARD", "UNKNOWN"]);
 
 export const DistroSchema = z.object({
@@ -32,6 +32,7 @@ export const DistroSchema = z.object({
     releaseModel: ReleaseModelEnum,
     initSystem: InitSystemEnum,
     packageManager: PackageManagerEnum,
+    immutable: z.boolean(),
     secureBootOutOfBox: z.boolean(),
     nvidiaExperience: NvidiaExperienceEnum,
 });

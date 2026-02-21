@@ -81,6 +81,14 @@ const buildIncludedReasons = (intent: UserIntent, distroId: string): InclusionRe
         reasons.push("include_package_manager_match");
     }
 
+    if (intent.immutablePreference === "PREFER_IMMUTABLE" && distro.immutable) {
+        reasons.push("include_immutable_match");
+    }
+
+    if (intent.immutablePreference === "PREFER_TRADITIONAL" && !distro.immutable) {
+        reasons.push("include_immutable_match");
+    }
+
     if (reasons.length === 0) {
         reasons.push("include_meets_requirements");
     }

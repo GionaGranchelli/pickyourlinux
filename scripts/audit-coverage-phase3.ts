@@ -96,6 +96,12 @@ const buildConstraintMatcher = (constraint: SetConstraint): ((distro: Distro) =>
             if (constraint.value === "NO_PREFERENCE") return () => true;
             return (distro) => distro.packageManager === constraint.value;
         }
+        case "immutablePreference": {
+            if (constraint.value === "NO_PREFERENCE") return () => true;
+            if (constraint.value === "PREFER_IMMUTABLE") return (distro) => distro.immutable;
+            if (constraint.value === "PREFER_TRADITIONAL") return (distro) => !distro.immutable;
+            return null;
+        }
         case "secureBootNeeded": {
             if (constraint.value === true) return (distro) => distro.secureBootOutOfBox;
             if (constraint.value === false || constraint.value === null) return () => true;

@@ -443,7 +443,9 @@
         "pacman": "Pacman",
         "zypper": "Zypper",
         "apk": "APK",
-        "nix": "Niente"
+        "nix": "Niente",
+        "xbps": "XBPS",
+        "portage": "Portage"
       }
     },
     "q_ram_refinement_advanced": {
@@ -453,6 +455,14 @@
         "ram_4": "4GB",
         "ram_8": "8 GB",
         "ram_16": "16GB"
+      }
+    },
+    "q_atomic_preference": {
+      "text": "Do you prefer immutable (atomic-style) systems?",
+      "options": {
+        "no_preference": "No preference",
+        "prefer_immutable": "Prefer immutable",
+        "prefer_traditional": "Prefer traditional"
       }
     }
   },
@@ -479,7 +489,8 @@
     "exclude_old_hardware_unsuitable": "Non adatto per hardware più vecchio.",
     "exclude_secure_boot_unavailable": "Non supporta l'avvio protetto immediatamente.",
     "exclude_nvidia_hard": "La configurazione di NVIDIA potrebbe essere complessa.",
-    "exclude_nvidia_proprietary_required": "Ottimizzata per driver NVIDIA proprietari."
+    "exclude_nvidia_proprietary_required": "Ottimizzata per driver NVIDIA proprietari.",
+    "include_immutable_match": "Matches your immutable/traditional system preference."
   },
   "constraints": {
     "constraint_installer_gui": "Vuoi un programma di installazione grafico.",
@@ -508,7 +519,11 @@
     "constraint_pkg_pacman": "Preferisci il gestore di pacchetti pacman.",
     "constraint_pkg_zypper": "Preferisci il gestore pacchetti Zypper.",
     "constraint_pkg_apk": "Preferisci il gestore pacchetti APK.",
-    "constraint_pkg_nix": "Preferisci il gestore pacchetti Nix."
+    "constraint_pkg_nix": "Preferisci il gestore pacchetti Nix.",
+    "constraint_pkg_xbps": "You prefer the XBPS package manager.",
+    "constraint_pkg_portage": "You prefer the Portage package manager.",
+    "constraint_immutable_prefer": "You prefer immutable (atomic-style) systems.",
+    "constraint_immutable_avoid": "You prefer traditional mutable systems."
   },
   "compare": {
     "title": "Confronta le distribuzioni",

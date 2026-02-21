@@ -23,7 +23,8 @@
     "initSystem": "SYSTEMD",
     "packageManager": "APT",
     "secureBootOutOfBox": false,
-    "nvidiaExperience": "OK"
+    "nvidiaExperience": "OK",
+    "immutable": false
   },
   {
     "id": "linux_mint",
@@ -49,7 +50,8 @@
     "initSystem": "SYSTEMD",
     "packageManager": "APT",
     "secureBootOutOfBox": false,
-    "nvidiaExperience": "OK"
+    "nvidiaExperience": "OK",
+    "immutable": false
   },
   {
     "id": "pop_os",
@@ -75,7 +77,8 @@
     "initSystem": "SYSTEMD",
     "packageManager": "APT",
     "secureBootOutOfBox": false,
-    "nvidiaExperience": "GOOD"
+    "nvidiaExperience": "GOOD",
+    "immutable": false
   },
   {
     "id": "fedora",
@@ -101,7 +104,8 @@
     "initSystem": "SYSTEMD",
     "packageManager": "DNF",
     "secureBootOutOfBox": true,
-    "nvidiaExperience": "OK"
+    "nvidiaExperience": "OK",
+    "immutable": false
   },
   {
     "id": "debian",
@@ -127,7 +131,8 @@
     "initSystem": "SYSTEMD",
     "packageManager": "APT",
     "secureBootOutOfBox": false,
-    "nvidiaExperience": "OK"
+    "nvidiaExperience": "OK",
+    "immutable": false
   },
   {
     "id": "arch",
@@ -153,7 +158,8 @@
     "initSystem": "SYSTEMD",
     "packageManager": "PACMAN",
     "secureBootOutOfBox": false,
-    "nvidiaExperience": "HARD"
+    "nvidiaExperience": "HARD",
+    "immutable": false
   },
   {
     "id": "manjaro",
@@ -179,7 +185,8 @@
     "initSystem": "SYSTEMD",
     "packageManager": "PACMAN",
     "secureBootOutOfBox": false,
-    "nvidiaExperience": "OK"
+    "nvidiaExperience": "OK",
+    "immutable": false
   },
   {
     "id": "opensuse_leap",
@@ -205,7 +212,8 @@
     "initSystem": "SYSTEMD",
     "packageManager": "ZYPPER",
     "secureBootOutOfBox": true,
-    "nvidiaExperience": "OK"
+    "nvidiaExperience": "OK",
+    "immutable": false
   },
   {
     "id": "opensuse_tumbleweed",
@@ -231,7 +239,8 @@
     "initSystem": "SYSTEMD",
     "packageManager": "ZYPPER",
     "secureBootOutOfBox": true,
-    "nvidiaExperience": "OK"
+    "nvidiaExperience": "OK",
+    "immutable": false
   },
   {
     "id": "elementary_os",
@@ -257,7 +266,8 @@
     "initSystem": "SYSTEMD",
     "packageManager": "APT",
     "secureBootOutOfBox": false,
-    "nvidiaExperience": "OK"
+    "nvidiaExperience": "OK",
+    "immutable": false
   },
   {
     "id": "zorin_os",
@@ -283,7 +293,8 @@
     "initSystem": "SYSTEMD",
     "packageManager": "APT",
     "secureBootOutOfBox": false,
-    "nvidiaExperience": "OK"
+    "nvidiaExperience": "OK",
+    "immutable": false
   },
   {
     "id": "mx_linux",
@@ -309,7 +320,8 @@
     "initSystem": "OTHER",
     "packageManager": "APT",
     "secureBootOutOfBox": false,
-    "nvidiaExperience": "OK"
+    "nvidiaExperience": "OK",
+    "immutable": false
   },
   {
     "id": "endeavouros",
@@ -335,7 +347,8 @@
     "initSystem": "SYSTEMD",
     "packageManager": "PACMAN",
     "secureBootOutOfBox": false,
-    "nvidiaExperience": "OK"
+    "nvidiaExperience": "OK",
+    "immutable": false
   },
   {
     "id": "garuda",
@@ -361,7 +374,8 @@
     "initSystem": "SYSTEMD",
     "packageManager": "PACMAN",
     "secureBootOutOfBox": false,
-    "nvidiaExperience": "GOOD"
+    "nvidiaExperience": "GOOD",
+    "immutable": false
   },
   {
     "id": "void_linux",
@@ -385,9 +399,10 @@
     ],
     "releaseModel": "ROLLING",
     "initSystem": "RUNIT",
-    "packageManager": "OTHER",
+    "packageManager": "XBPS",
     "secureBootOutOfBox": false,
-    "nvidiaExperience": "HARD"
+    "nvidiaExperience": "HARD",
+    "immutable": false
   },
   {
     "id": "alpine",
@@ -413,7 +428,8 @@
     "initSystem": "OPENRC",
     "packageManager": "APK",
     "secureBootOutOfBox": false,
-    "nvidiaExperience": "HARD"
+    "nvidiaExperience": "HARD",
+    "immutable": false
   },
   {
     "id": "nixos",
@@ -439,7 +455,8 @@
     "initSystem": "SYSTEMD",
     "packageManager": "NIX",
     "secureBootOutOfBox": false,
-    "nvidiaExperience": "HARD"
+    "nvidiaExperience": "HARD",
+    "immutable": false
   },
   {
     "id": "tails",
@@ -465,7 +482,8 @@
     "initSystem": "SYSTEMD",
     "packageManager": "APT",
     "secureBootOutOfBox": false,
-    "nvidiaExperience": "HARD"
+    "nvidiaExperience": "HARD",
+    "immutable": false
   },
   {
     "id": "qubes_os",
@@ -491,7 +509,8 @@
     "initSystem": "SYSTEMD",
     "packageManager": "DNF",
     "secureBootOutOfBox": false,
-    "nvidiaExperience": "HARD"
+    "nvidiaExperience": "HARD",
+    "immutable": false
   },
   {
     "id": "trisquel",
@@ -517,7 +536,8 @@
     "initSystem": "SYSTEMD",
     "packageManager": "APT",
     "secureBootOutOfBox": false,
-    "nvidiaExperience": "HARD"
+    "nvidiaExperience": "HARD",
+    "immutable": false
   },
   {
     "id": "slackware",
@@ -543,7 +563,8 @@
     "initSystem": "OTHER",
     "packageManager": "OTHER",
     "secureBootOutOfBox": false,
-    "nvidiaExperience": "HARD"
+    "nvidiaExperience": "HARD",
+    "immutable": false
   },
   {
     "id": "kubuntu",
@@ -569,7 +590,8 @@
     "initSystem": "SYSTEMD",
     "packageManager": "APT",
     "secureBootOutOfBox": true,
-    "nvidiaExperience": "OK"
+    "nvidiaExperience": "OK",
+    "immutable": false
   },
   {
     "id": "ubuntu_mate",
@@ -595,7 +617,8 @@
     "initSystem": "SYSTEMD",
     "packageManager": "APT",
     "secureBootOutOfBox": true,
-    "nvidiaExperience": "OK"
+    "nvidiaExperience": "OK",
+    "immutable": false
   },
   {
     "id": "lubuntu",
@@ -621,7 +644,8 @@
     "initSystem": "SYSTEMD",
     "packageManager": "APT",
     "secureBootOutOfBox": true,
-    "nvidiaExperience": "OK"
+    "nvidiaExperience": "OK",
+    "immutable": false
   },
   {
     "id": "xubuntu",
@@ -647,7 +671,8 @@
     "initSystem": "SYSTEMD",
     "packageManager": "APT",
     "secureBootOutOfBox": true,
-    "nvidiaExperience": "OK"
+    "nvidiaExperience": "OK",
+    "immutable": false
   },
   {
     "id": "kde_neon",
@@ -673,7 +698,8 @@
     "initSystem": "SYSTEMD",
     "packageManager": "APT",
     "secureBootOutOfBox": false,
-    "nvidiaExperience": "OK"
+    "nvidiaExperience": "OK",
+    "immutable": false
   },
   {
     "id": "linux_lite",
@@ -699,7 +725,8 @@
     "initSystem": "SYSTEMD",
     "packageManager": "APT",
     "secureBootOutOfBox": false,
-    "nvidiaExperience": "OK"
+    "nvidiaExperience": "OK",
+    "immutable": false
   },
   {
     "id": "peppermint_os",
@@ -725,7 +752,8 @@
     "initSystem": "SYSTEMD",
     "packageManager": "APT",
     "secureBootOutOfBox": false,
-    "nvidiaExperience": "OK"
+    "nvidiaExperience": "OK",
+    "immutable": false
   },
   {
     "id": "nobara",
@@ -751,7 +779,8 @@
     "initSystem": "SYSTEMD",
     "packageManager": "DNF",
     "secureBootOutOfBox": false,
-    "nvidiaExperience": "GOOD"
+    "nvidiaExperience": "GOOD",
+    "immutable": false
   },
   {
     "id": "pureos",
@@ -777,7 +806,8 @@
     "initSystem": "SYSTEMD",
     "packageManager": "APT",
     "secureBootOutOfBox": false,
-    "nvidiaExperience": "HARD"
+    "nvidiaExperience": "HARD",
+    "immutable": false
   },
   {
     "id": "rocky_linux",
@@ -803,7 +833,8 @@
     "initSystem": "SYSTEMD",
     "packageManager": "DNF",
     "secureBootOutOfBox": false,
-    "nvidiaExperience": "HARD"
+    "nvidiaExperience": "HARD",
+    "immutable": false
   },
   {
     "id": "almalinux",
@@ -829,7 +860,8 @@
     "initSystem": "SYSTEMD",
     "packageManager": "DNF",
     "secureBootOutOfBox": false,
-    "nvidiaExperience": "HARD"
+    "nvidiaExperience": "HARD",
+    "immutable": false
   },
   {
     "id": "centos_stream",
@@ -855,7 +887,8 @@
     "initSystem": "SYSTEMD",
     "packageManager": "DNF",
     "secureBootOutOfBox": false,
-    "nvidiaExperience": "HARD"
+    "nvidiaExperience": "HARD",
+    "immutable": false
   },
   {
     "id": "ubuntu_budgie",
@@ -881,7 +914,8 @@
     "initSystem": "SYSTEMD",
     "packageManager": "APT",
     "secureBootOutOfBox": true,
-    "nvidiaExperience": "OK"
+    "nvidiaExperience": "OK",
+    "immutable": false
   },
   {
     "id": "ubuntu_studio",
@@ -907,7 +941,8 @@
     "initSystem": "SYSTEMD",
     "packageManager": "APT",
     "secureBootOutOfBox": true,
-    "nvidiaExperience": "OK"
+    "nvidiaExperience": "OK",
+    "immutable": false
   },
   {
     "id": "lmde",
@@ -933,7 +968,8 @@
     "initSystem": "SYSTEMD",
     "packageManager": "APT",
     "secureBootOutOfBox": false,
-    "nvidiaExperience": "OK"
+    "nvidiaExperience": "OK",
+    "immutable": false
   },
   {
     "id": "solus",
@@ -962,7 +998,8 @@
     "initSystem": "SYSTEMD",
     "packageManager": "OTHER",
     "secureBootOutOfBox": false,
-    "nvidiaExperience": "OK"
+    "nvidiaExperience": "OK",
+    "immutable": false
   },
   {
     "id": "mageia",
@@ -990,7 +1027,8 @@
     "initSystem": "SYSTEMD",
     "packageManager": "OTHER",
     "secureBootOutOfBox": false,
-    "nvidiaExperience": "OK"
+    "nvidiaExperience": "OK",
+    "immutable": false
   },
   {
     "id": "pclinuxos",
@@ -1018,7 +1056,8 @@
     "initSystem": "OTHER",
     "packageManager": "OTHER",
     "secureBootOutOfBox": false,
-    "nvidiaExperience": "OK"
+    "nvidiaExperience": "OK",
+    "immutable": false
   },
   {
     "id": "deepin",
@@ -1044,7 +1083,8 @@
     "initSystem": "SYSTEMD",
     "packageManager": "APT",
     "secureBootOutOfBox": false,
-    "nvidiaExperience": "OK"
+    "nvidiaExperience": "OK",
+    "immutable": false
   },
   {
     "id": "bodhi_linux",
@@ -1070,7 +1110,8 @@
     "initSystem": "SYSTEMD",
     "packageManager": "APT",
     "secureBootOutOfBox": false,
-    "nvidiaExperience": "HARD"
+    "nvidiaExperience": "HARD",
+    "immutable": false
   },
   {
     "id": "kali_linux",
@@ -1096,7 +1137,8 @@
     "initSystem": "SYSTEMD",
     "packageManager": "APT",
     "secureBootOutOfBox": false,
-    "nvidiaExperience": "HARD"
+    "nvidiaExperience": "HARD",
+    "immutable": false
   },
   {
     "id": "gentoo",
@@ -1120,9 +1162,10 @@
     ],
     "releaseModel": "ROLLING",
     "initSystem": "OPENRC",
-    "packageManager": "OTHER",
+    "packageManager": "PORTAGE",
     "secureBootOutOfBox": false,
-    "nvidiaExperience": "HARD"
+    "nvidiaExperience": "HARD",
+    "immutable": false
   },
   {
     "id": "bazzite",
@@ -1149,7 +1192,8 @@
     "initSystem": "SYSTEMD",
     "packageManager": "DNF",
     "secureBootOutOfBox": true,
-    "nvidiaExperience": "GOOD"
+    "nvidiaExperience": "GOOD",
+    "immutable": true
   },
   {
     "id": "cachyos",
@@ -1178,7 +1222,8 @@
     "initSystem": "SYSTEMD",
     "packageManager": "PACMAN",
     "secureBootOutOfBox": true,
-    "nvidiaExperience": "GOOD"
+    "nvidiaExperience": "GOOD",
+    "immutable": false
   },
   {
     "id": "pikaos",
@@ -1205,6 +1250,115 @@
     "initSystem": "SYSTEMD",
     "packageManager": "APT",
     "secureBootOutOfBox": true,
-    "nvidiaExperience": "GOOD"
+    "nvidiaExperience": "GOOD",
+    "immutable": false
+  },
+  {
+    "id": "artix",
+    "name": "Artix Linux",
+    "description": "Arch-based distro focused on non-systemd init options.",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/1/1b/Artix-linux-logo.png",
+    "websiteUrl": "https://artixlinux.org/",
+    "documentationUrl": "https://wiki.artixlinux.org/",
+    "forumUrl": "https://forum.artixlinux.org/",
+    "testDriveUrl": null,
+    "downloadUrl": "https://artixlinux.org/download.php",
+    "distroSeaUrl": null,
+    "installerExperience": "MANUAL",
+    "maintenanceStyle": "HANDS_ON",
+    "proprietarySupport": "OPTIONAL",
+    "suitableForOldHardware": true,
+    "gamingSupport": "LIMITED",
+    "privacyPosture": "DEFAULT",
+    "supportedDesktops": [
+      "OTHER"
+    ],
+    "releaseModel": "ROLLING",
+    "initSystem": "OPENRC",
+    "packageManager": "PACMAN",
+    "immutable": false,
+    "secureBootOutOfBox": false,
+    "nvidiaExperience": "HARD"
+  },
+  {
+    "id": "fedora_silverblue",
+    "name": "Fedora Silverblue",
+    "description": "Immutable Fedora variant focused on atomic desktop updates.",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/41/Fedora_logo.svg",
+    "websiteUrl": "https://fedoraproject.org/atomic-desktops/silverblue/",
+    "documentationUrl": "https://docs.fedoraproject.org/en-US/fedora-silverblue/",
+    "forumUrl": "https://discussion.fedoraproject.org/c/ask/common-issues/silverblue/136",
+    "testDriveUrl": null,
+    "downloadUrl": "https://fedoraproject.org/atomic-desktops/silverblue/download",
+    "distroSeaUrl": null,
+    "installerExperience": "GUI",
+    "maintenanceStyle": "LOW_FRICTION",
+    "proprietarySupport": "OPTIONAL",
+    "suitableForOldHardware": false,
+    "gamingSupport": "LIMITED",
+    "privacyPosture": "DEFAULT",
+    "supportedDesktops": [
+      "GNOME"
+    ],
+    "releaseModel": "FIXED",
+    "initSystem": "SYSTEMD",
+    "packageManager": "DNF",
+    "immutable": true,
+    "secureBootOutOfBox": true,
+    "nvidiaExperience": "OK"
+  },
+  {
+    "id": "fedora_kinoite",
+    "name": "Fedora Kinoite",
+    "description": "Immutable Fedora KDE desktop using atomic updates.",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/41/Fedora_logo.svg",
+    "websiteUrl": "https://fedoraproject.org/atomic-desktops/kinoite/",
+    "documentationUrl": "https://docs.fedoraproject.org/en-US/fedora-kinoite/",
+    "forumUrl": "https://discussion.fedoraproject.org/c/ask/common-issues/silverblue/136",
+    "testDriveUrl": null,
+    "downloadUrl": "https://fedoraproject.org/atomic-desktops/kinoite/download",
+    "distroSeaUrl": null,
+    "installerExperience": "GUI",
+    "maintenanceStyle": "LOW_FRICTION",
+    "proprietarySupport": "OPTIONAL",
+    "suitableForOldHardware": false,
+    "gamingSupport": "LIMITED",
+    "privacyPosture": "DEFAULT",
+    "supportedDesktops": [
+      "KDE"
+    ],
+    "releaseModel": "FIXED",
+    "initSystem": "SYSTEMD",
+    "packageManager": "DNF",
+    "immutable": true,
+    "secureBootOutOfBox": true,
+    "nvidiaExperience": "OK"
+  },
+  {
+    "id": "opensuse_microos",
+    "name": "openSUSE MicroOS",
+    "description": "Immutable openSUSE system with transactional updates.",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d0/OpenSUSE_logo.svg",
+    "websiteUrl": "https://microos.opensuse.org/",
+    "documentationUrl": "https://en.opensuse.org/Portal:MicroOS",
+    "forumUrl": "https://forums.opensuse.org/",
+    "testDriveUrl": null,
+    "downloadUrl": "https://get.opensuse.org/microos/",
+    "distroSeaUrl": null,
+    "installerExperience": "GUI",
+    "maintenanceStyle": "LOW_FRICTION",
+    "proprietarySupport": "OPTIONAL",
+    "suitableForOldHardware": false,
+    "gamingSupport": "LIMITED",
+    "privacyPosture": "DEFAULT",
+    "supportedDesktops": [
+      "OTHER"
+    ],
+    "releaseModel": "ROLLING",
+    "initSystem": "SYSTEMD",
+    "packageManager": "ZYPPER",
+    "immutable": true,
+    "secureBootOutOfBox": true,
+    "nvidiaExperience": "OK"
   }
 ]

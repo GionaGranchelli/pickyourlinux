@@ -426,7 +426,9 @@
         "pacman": "Pacman",
         "zypper": "cremallera",
         "apk": "APK",
-        "nix": "Nada"
+        "nix": "Nada",
+        "xbps": "XBPS",
+        "portage": "Portage"
       }
     },
     "q_ram_refinement_advanced": {
@@ -461,6 +463,14 @@
         "open_vibe": "Show me anything",
         "open_vibe_desc": "I'm open to trying any interface style."
       }
+    },
+    "q_atomic_preference": {
+      "text": "Do you prefer immutable (atomic-style) systems?",
+      "options": {
+        "no_preference": "No preference",
+        "prefer_immutable": "Prefer immutable",
+        "prefer_traditional": "Prefer traditional"
+      }
     }
   },
   "reasons": {
@@ -486,7 +496,8 @@
     "exclude_old_hardware_unsuitable": "No apto para hardware antiguo.",
     "exclude_secure_boot_unavailable": "No admite arranque seguro listo para usar.",
     "exclude_nvidia_hard": "Es probable que la configuración de NVIDIA sea práctica.",
-    "exclude_nvidia_proprietary_required": "Probablemente requiera controladores propietarios de NVIDIA."
+    "exclude_nvidia_proprietary_required": "Probablemente requiera controladores propietarios de NVIDIA.",
+    "include_immutable_match": "Matches your immutable/traditional system preference."
   },
   "constraints": {
     "constraint_installer_gui": "Quieres un instalador gráfico.",
@@ -515,7 +526,11 @@
     "constraint_pkg_pacman": "Prefieres el administrador de paquetes de Pacman.",
     "constraint_pkg_zypper": "Prefieres el administrador de paquetes Zypper.",
     "constraint_pkg_apk": "Prefieres el administrador de paquetes APK.",
-    "constraint_pkg_nix": "Prefieres el administrador de paquetes Nix."
+    "constraint_pkg_nix": "Prefieres el administrador de paquetes Nix.",
+    "constraint_pkg_xbps": "You prefer the XBPS package manager.",
+    "constraint_pkg_portage": "You prefer the Portage package manager.",
+    "constraint_immutable_prefer": "You prefer immutable (atomic-style) systems.",
+    "constraint_immutable_avoid": "You prefer traditional mutable systems."
   },
   "compare": {
     "title": "Comparar distribuciones",

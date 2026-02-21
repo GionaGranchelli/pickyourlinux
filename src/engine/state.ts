@@ -78,6 +78,7 @@ const defaultIntent: UserIntent = UserIntentSchema.parse({
     releaseModel: "NO_PREFERENCE",
     initSystem: "NO_PREFERENCE",
     packageManager: "NO_PREFERENCE",
+    immutablePreference: "NO_PREFERENCE",
     secureBootNeeded: null,
     gpu: "UNKNOWN",
     nvidiaTolerance: "NO_PREFERENCE",
@@ -951,6 +952,16 @@ const getActiveConstraintKeys = (intent: UserIntent): ConstraintKey[] => {
         constraints.push("constraint_pkg_apk");
     } else if (intent.packageManager === "NIX") {
         constraints.push("constraint_pkg_nix");
+    } else if (intent.packageManager === "XBPS") {
+        constraints.push("constraint_pkg_xbps");
+    } else if (intent.packageManager === "PORTAGE") {
+        constraints.push("constraint_pkg_portage");
+    }
+
+    if (intent.immutablePreference === "PREFER_IMMUTABLE") {
+        constraints.push("constraint_immutable_prefer");
+    } else if (intent.immutablePreference === "PREFER_TRADITIONAL") {
+        constraints.push("constraint_immutable_avoid");
     }
 
     return constraints;
@@ -1012,6 +1023,14 @@ const matchesConstraint = (constraint: ConstraintKey, distro: Distro): boolean =
             return distro.packageManager === "APK";
         case "constraint_pkg_nix":
             return distro.packageManager === "NIX";
+        case "constraint_pkg_xbps":
+            return distro.packageManager === "XBPS";
+        case "constraint_pkg_portage":
+            return distro.packageManager === "PORTAGE";
+        case "constraint_immutable_prefer":
+            return distro.immutable;
+        case "constraint_immutable_avoid":
+            return !distro.immutable;
         default:
             return false;
     }
