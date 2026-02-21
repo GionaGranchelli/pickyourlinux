@@ -75,7 +75,24 @@ Allowed Answers
 
 ---
 
-### Q2 - Works Right Away
+### Q2 - Device Type
+Question ID: q_device_type
+Intent Fields
+- deviceType
+
+Question
+> What device are you choosing for?
+
+Allowed Answers
+| User Answer | Applied Patches |
+|---|---|
+| Laptop | set deviceType = LAPTOP |
+| Desktop | set deviceType = DESKTOP |
+| Server | set deviceType = SERVER |
+
+---
+
+### Q3 - Works Right Away
 Question ID: q_works_right_away
 Intent Fields
 - proprietary

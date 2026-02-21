@@ -24,7 +24,11 @@
     "packageManager": "APT",
     "secureBootOutOfBox": false,
     "nvidiaExperience": "OK",
-    "immutable": false
+    "immutable": false,
+    "primaryUseCase": "BOTH",
+    "laptopFriendly": true,
+    "lastVerified": "2026-02-21",
+    "verificationMethod": "INFERRED"
   },
   {
     "id": "linux_mint",
@@ -51,7 +55,11 @@
     "packageManager": "APT",
     "secureBootOutOfBox": false,
     "nvidiaExperience": "OK",
-    "immutable": false
+    "immutable": false,
+    "primaryUseCase": "DESKTOP",
+    "laptopFriendly": true,
+    "lastVerified": "2026-02-21",
+    "verificationMethod": "INFERRED"
   },
   {
     "id": "pop_os",
@@ -78,7 +86,11 @@
     "packageManager": "APT",
     "secureBootOutOfBox": false,
     "nvidiaExperience": "GOOD",
-    "immutable": false
+    "immutable": false,
+    "primaryUseCase": "DESKTOP",
+    "laptopFriendly": true,
+    "lastVerified": "2026-02-21",
+    "verificationMethod": "INFERRED"
   },
   {
     "id": "fedora",
@@ -105,7 +117,11 @@
     "packageManager": "DNF",
     "secureBootOutOfBox": true,
     "nvidiaExperience": "OK",
-    "immutable": false
+    "immutable": false,
+    "primaryUseCase": "BOTH",
+    "laptopFriendly": true,
+    "lastVerified": "2026-02-21",
+    "verificationMethod": "INFERRED"
   },
   {
     "id": "debian",
@@ -132,7 +148,11 @@
     "packageManager": "APT",
     "secureBootOutOfBox": false,
     "nvidiaExperience": "OK",
-    "immutable": false
+    "immutable": false,
+    "primaryUseCase": "BOTH",
+    "laptopFriendly": true,
+    "lastVerified": "2026-02-21",
+    "verificationMethod": "INFERRED"
   },
   {
     "id": "arch",
@@ -159,7 +179,11 @@
     "packageManager": "PACMAN",
     "secureBootOutOfBox": false,
     "nvidiaExperience": "HARD",
-    "immutable": false
+    "immutable": false,
+    "primaryUseCase": "BOTH",
+    "laptopFriendly": false,
+    "lastVerified": "2026-02-21",
+    "verificationMethod": "INFERRED"
   },
   {
     "id": "manjaro",
@@ -186,7 +210,11 @@
     "packageManager": "PACMAN",
     "secureBootOutOfBox": false,
     "nvidiaExperience": "OK",
-    "immutable": false
+    "immutable": false,
+    "primaryUseCase": "DESKTOP",
+    "laptopFriendly": true,
+    "lastVerified": "2026-02-21",
+    "verificationMethod": "INFERRED"
   },
   {
     "id": "opensuse_leap",
@@ -213,7 +241,11 @@
     "packageManager": "ZYPPER",
     "secureBootOutOfBox": true,
     "nvidiaExperience": "OK",
-    "immutable": false
+    "immutable": false,
+    "primaryUseCase": "BOTH",
+    "laptopFriendly": true,
+    "lastVerified": "2026-02-21",
+    "verificationMethod": "INFERRED"
   },
   {
     "id": "opensuse_tumbleweed",
@@ -240,7 +272,11 @@
     "packageManager": "ZYPPER",
     "secureBootOutOfBox": true,
     "nvidiaExperience": "OK",
-    "immutable": false
+    "immutable": false,
+    "primaryUseCase": "BOTH",
+    "laptopFriendly": true,
+    "lastVerified": "2026-02-21",
+    "verificationMethod": "INFERRED"
   },
   {
     "id": "elementary_os",
@@ -267,7 +303,11 @@
     "packageManager": "APT",
     "secureBootOutOfBox": false,
     "nvidiaExperience": "OK",
-    "immutable": false
+    "immutable": false,
+    "primaryUseCase": "DESKTOP",
+    "laptopFriendly": true,
+    "lastVerified": "2026-02-21",
+    "verificationMethod": "INFERRED"
   },
   {
     "id": "zorin_os",
@@ -294,7 +334,11 @@
     "packageManager": "APT",
     "secureBootOutOfBox": false,
     "nvidiaExperience": "OK",
-    "immutable": false
+    "immutable": false,
+    "primaryUseCase": "DESKTOP",
+    "laptopFriendly": true,
+    "lastVerified": "2026-02-21",
+    "verificationMethod": "INFERRED"
   },
   {
     "id": "mx_linux",
@@ -321,7 +365,11 @@
     "packageManager": "APT",
     "secureBootOutOfBox": false,
     "nvidiaExperience": "OK",
-    "immutable": false
+    "immutable": false,
+    "primaryUseCase": "DESKTOP",
+    "laptopFriendly": true,
+    "lastVerified": "2026-02-21",
+    "verificationMethod": "INFERRED"
   },
   {
     "id": "endeavouros",
@@ -348,7 +396,11 @@
     "packageManager": "PACMAN",
     "secureBootOutOfBox": false,
     "nvidiaExperience": "OK",
-    "immutable": false
+    "immutable": false,
+    "primaryUseCase": "DESKTOP",
+    "laptopFriendly": false,
+    "lastVerified": "2026-02-21",
+    "verificationMethod": "INFERRED"
   },
   {
     "id": "garuda",
@@ -375,7 +427,11 @@
     "packageManager": "PACMAN",
     "secureBootOutOfBox": false,
     "nvidiaExperience": "GOOD",
-    "immutable": false
+    "immutable": false,
+    "primaryUseCase": "DESKTOP",
+    "laptopFriendly": false,
+    "lastVerified": "2026-02-21",
+    "verificationMethod": "INFERRED"
   },
   {
     "id": "void_linux",
@@ -402,7 +458,11 @@
     "packageManager": "XBPS",
     "secureBootOutOfBox": false,
     "nvidiaExperience": "HARD",
-    "immutable": false
+    "immutable": false,
+    "primaryUseCase": "BOTH",
+    "laptopFriendly": false,
+    "lastVerified": "2026-02-21",
+    "verificationMethod": "INFERRED"
   },
   {
     "id": "alpine",
@@ -429,7 +489,11 @@
     "packageManager": "APK",
     "secureBootOutOfBox": false,
     "nvidiaExperience": "HARD",
-    "immutable": false
+    "immutable": false,
+    "primaryUseCase": "BOTH",
+    "laptopFriendly": false,
+    "lastVerified": "2026-02-21",
+    "verificationMethod": "INFERRED"
   },
   {
     "id": "nixos",
@@ -456,7 +520,11 @@
     "packageManager": "NIX",
     "secureBootOutOfBox": false,
     "nvidiaExperience": "HARD",
-    "immutable": false
+    "immutable": false,
+    "primaryUseCase": "BOTH",
+    "laptopFriendly": false,
+    "lastVerified": "2026-02-21",
+    "verificationMethod": "INFERRED"
   },
   {
     "id": "tails",
@@ -483,7 +551,11 @@
     "packageManager": "APT",
     "secureBootOutOfBox": false,
     "nvidiaExperience": "HARD",
-    "immutable": false
+    "immutable": false,
+    "primaryUseCase": "DESKTOP",
+    "laptopFriendly": true,
+    "lastVerified": "2026-02-21",
+    "verificationMethod": "INFERRED"
   },
   {
     "id": "qubes_os",
@@ -510,7 +582,11 @@
     "packageManager": "DNF",
     "secureBootOutOfBox": false,
     "nvidiaExperience": "HARD",
-    "immutable": false
+    "immutable": false,
+    "primaryUseCase": "DESKTOP",
+    "laptopFriendly": false,
+    "lastVerified": "2026-02-21",
+    "verificationMethod": "INFERRED"
   },
   {
     "id": "trisquel",
@@ -537,7 +613,11 @@
     "packageManager": "APT",
     "secureBootOutOfBox": false,
     "nvidiaExperience": "HARD",
-    "immutable": false
+    "immutable": false,
+    "primaryUseCase": "DESKTOP",
+    "laptopFriendly": true,
+    "lastVerified": "2026-02-21",
+    "verificationMethod": "INFERRED"
   },
   {
     "id": "slackware",
@@ -564,7 +644,11 @@
     "packageManager": "OTHER",
     "secureBootOutOfBox": false,
     "nvidiaExperience": "HARD",
-    "immutable": false
+    "immutable": false,
+    "primaryUseCase": "DESKTOP",
+    "laptopFriendly": false,
+    "lastVerified": "2026-02-21",
+    "verificationMethod": "INFERRED"
   },
   {
     "id": "kubuntu",
@@ -591,7 +675,11 @@
     "packageManager": "APT",
     "secureBootOutOfBox": true,
     "nvidiaExperience": "OK",
-    "immutable": false
+    "immutable": false,
+    "primaryUseCase": "DESKTOP",
+    "laptopFriendly": true,
+    "lastVerified": "2026-02-21",
+    "verificationMethod": "INFERRED"
   },
   {
     "id": "ubuntu_mate",
@@ -618,7 +706,11 @@
     "packageManager": "APT",
     "secureBootOutOfBox": true,
     "nvidiaExperience": "OK",
-    "immutable": false
+    "immutable": false,
+    "primaryUseCase": "DESKTOP",
+    "laptopFriendly": true,
+    "lastVerified": "2026-02-21",
+    "verificationMethod": "INFERRED"
   },
   {
     "id": "lubuntu",
@@ -645,7 +737,11 @@
     "packageManager": "APT",
     "secureBootOutOfBox": true,
     "nvidiaExperience": "OK",
-    "immutable": false
+    "immutable": false,
+    "primaryUseCase": "DESKTOP",
+    "laptopFriendly": true,
+    "lastVerified": "2026-02-21",
+    "verificationMethod": "INFERRED"
   },
   {
     "id": "xubuntu",
@@ -672,7 +768,11 @@
     "packageManager": "APT",
     "secureBootOutOfBox": true,
     "nvidiaExperience": "OK",
-    "immutable": false
+    "immutable": false,
+    "primaryUseCase": "DESKTOP",
+    "laptopFriendly": true,
+    "lastVerified": "2026-02-21",
+    "verificationMethod": "INFERRED"
   },
   {
     "id": "kde_neon",
@@ -699,7 +799,11 @@
     "packageManager": "APT",
     "secureBootOutOfBox": false,
     "nvidiaExperience": "OK",
-    "immutable": false
+    "immutable": false,
+    "primaryUseCase": "DESKTOP",
+    "laptopFriendly": true,
+    "lastVerified": "2026-02-21",
+    "verificationMethod": "INFERRED"
   },
   {
     "id": "linux_lite",
@@ -726,7 +830,11 @@
     "packageManager": "APT",
     "secureBootOutOfBox": false,
     "nvidiaExperience": "OK",
-    "immutable": false
+    "immutable": false,
+    "primaryUseCase": "DESKTOP",
+    "laptopFriendly": true,
+    "lastVerified": "2026-02-21",
+    "verificationMethod": "INFERRED"
   },
   {
     "id": "peppermint_os",
@@ -753,7 +861,11 @@
     "packageManager": "APT",
     "secureBootOutOfBox": false,
     "nvidiaExperience": "OK",
-    "immutable": false
+    "immutable": false,
+    "primaryUseCase": "DESKTOP",
+    "laptopFriendly": true,
+    "lastVerified": "2026-02-21",
+    "verificationMethod": "INFERRED"
   },
   {
     "id": "nobara",
@@ -780,7 +892,11 @@
     "packageManager": "DNF",
     "secureBootOutOfBox": false,
     "nvidiaExperience": "GOOD",
-    "immutable": false
+    "immutable": false,
+    "primaryUseCase": "DESKTOP",
+    "laptopFriendly": true,
+    "lastVerified": "2026-02-21",
+    "verificationMethod": "INFERRED"
   },
   {
     "id": "pureos",
@@ -807,7 +923,11 @@
     "packageManager": "APT",
     "secureBootOutOfBox": false,
     "nvidiaExperience": "HARD",
-    "immutable": false
+    "immutable": false,
+    "primaryUseCase": "DESKTOP",
+    "laptopFriendly": true,
+    "lastVerified": "2026-02-21",
+    "verificationMethod": "INFERRED"
   },
   {
     "id": "rocky_linux",
@@ -834,7 +954,11 @@
     "packageManager": "DNF",
     "secureBootOutOfBox": false,
     "nvidiaExperience": "HARD",
-    "immutable": false
+    "immutable": false,
+    "primaryUseCase": "SERVER",
+    "laptopFriendly": false,
+    "lastVerified": "2026-02-21",
+    "verificationMethod": "MANUAL"
   },
   {
     "id": "almalinux",
@@ -861,7 +985,11 @@
     "packageManager": "DNF",
     "secureBootOutOfBox": false,
     "nvidiaExperience": "HARD",
-    "immutable": false
+    "immutable": false,
+    "primaryUseCase": "SERVER",
+    "laptopFriendly": false,
+    "lastVerified": "2026-02-21",
+    "verificationMethod": "MANUAL"
   },
   {
     "id": "centos_stream",
@@ -888,7 +1016,11 @@
     "packageManager": "DNF",
     "secureBootOutOfBox": false,
     "nvidiaExperience": "HARD",
-    "immutable": false
+    "immutable": false,
+    "primaryUseCase": "SERVER",
+    "laptopFriendly": false,
+    "lastVerified": "2026-02-21",
+    "verificationMethod": "MANUAL"
   },
   {
     "id": "ubuntu_budgie",
@@ -915,7 +1047,11 @@
     "packageManager": "APT",
     "secureBootOutOfBox": true,
     "nvidiaExperience": "OK",
-    "immutable": false
+    "immutable": false,
+    "primaryUseCase": "DESKTOP",
+    "laptopFriendly": true,
+    "lastVerified": "2026-02-21",
+    "verificationMethod": "INFERRED"
   },
   {
     "id": "ubuntu_studio",
@@ -942,7 +1078,11 @@
     "packageManager": "APT",
     "secureBootOutOfBox": true,
     "nvidiaExperience": "OK",
-    "immutable": false
+    "immutable": false,
+    "primaryUseCase": "DESKTOP",
+    "laptopFriendly": true,
+    "lastVerified": "2026-02-21",
+    "verificationMethod": "INFERRED"
   },
   {
     "id": "lmde",
@@ -969,7 +1109,11 @@
     "packageManager": "APT",
     "secureBootOutOfBox": false,
     "nvidiaExperience": "OK",
-    "immutable": false
+    "immutable": false,
+    "primaryUseCase": "DESKTOP",
+    "laptopFriendly": true,
+    "lastVerified": "2026-02-21",
+    "verificationMethod": "INFERRED"
   },
   {
     "id": "solus",
@@ -999,7 +1143,11 @@
     "packageManager": "OTHER",
     "secureBootOutOfBox": false,
     "nvidiaExperience": "OK",
-    "immutable": false
+    "immutable": false,
+    "primaryUseCase": "DESKTOP",
+    "laptopFriendly": true,
+    "lastVerified": "2026-02-21",
+    "verificationMethod": "MANUAL"
   },
   {
     "id": "mageia",
@@ -1028,7 +1176,11 @@
     "packageManager": "OTHER",
     "secureBootOutOfBox": false,
     "nvidiaExperience": "OK",
-    "immutable": false
+    "immutable": false,
+    "primaryUseCase": "DESKTOP",
+    "laptopFriendly": true,
+    "lastVerified": "2026-02-21",
+    "verificationMethod": "MANUAL"
   },
   {
     "id": "pclinuxos",
@@ -1057,7 +1209,11 @@
     "packageManager": "OTHER",
     "secureBootOutOfBox": false,
     "nvidiaExperience": "OK",
-    "immutable": false
+    "immutable": false,
+    "primaryUseCase": "DESKTOP",
+    "laptopFriendly": true,
+    "lastVerified": "2026-02-21",
+    "verificationMethod": "MANUAL"
   },
   {
     "id": "deepin",
@@ -1084,7 +1240,11 @@
     "packageManager": "APT",
     "secureBootOutOfBox": false,
     "nvidiaExperience": "OK",
-    "immutable": false
+    "immutable": false,
+    "primaryUseCase": "DESKTOP",
+    "laptopFriendly": true,
+    "lastVerified": "2026-02-21",
+    "verificationMethod": "MANUAL"
   },
   {
     "id": "bodhi_linux",
@@ -1111,7 +1271,11 @@
     "packageManager": "APT",
     "secureBootOutOfBox": false,
     "nvidiaExperience": "HARD",
-    "immutable": false
+    "immutable": false,
+    "primaryUseCase": "DESKTOP",
+    "laptopFriendly": true,
+    "lastVerified": "2026-02-21",
+    "verificationMethod": "MANUAL"
   },
   {
     "id": "kali_linux",
@@ -1138,7 +1302,11 @@
     "packageManager": "APT",
     "secureBootOutOfBox": false,
     "nvidiaExperience": "HARD",
-    "immutable": false
+    "immutable": false,
+    "primaryUseCase": "DESKTOP",
+    "laptopFriendly": false,
+    "lastVerified": "2026-02-21",
+    "verificationMethod": "MANUAL"
   },
   {
     "id": "gentoo",
@@ -1165,7 +1333,11 @@
     "packageManager": "PORTAGE",
     "secureBootOutOfBox": false,
     "nvidiaExperience": "HARD",
-    "immutable": false
+    "immutable": false,
+    "primaryUseCase": "BOTH",
+    "laptopFriendly": false,
+    "lastVerified": "2026-02-21",
+    "verificationMethod": "INFERRED"
   },
   {
     "id": "bazzite",
@@ -1193,7 +1365,11 @@
     "packageManager": "DNF",
     "secureBootOutOfBox": true,
     "nvidiaExperience": "GOOD",
-    "immutable": true
+    "immutable": true,
+    "primaryUseCase": "DESKTOP",
+    "laptopFriendly": true,
+    "lastVerified": "2026-02-21",
+    "verificationMethod": "INFERRED"
   },
   {
     "id": "cachyos",
@@ -1223,7 +1399,11 @@
     "packageManager": "PACMAN",
     "secureBootOutOfBox": true,
     "nvidiaExperience": "GOOD",
-    "immutable": false
+    "immutable": false,
+    "primaryUseCase": "DESKTOP",
+    "laptopFriendly": false,
+    "lastVerified": "2026-02-21",
+    "verificationMethod": "INFERRED"
   },
   {
     "id": "pikaos",
@@ -1251,7 +1431,11 @@
     "packageManager": "APT",
     "secureBootOutOfBox": true,
     "nvidiaExperience": "GOOD",
-    "immutable": false
+    "immutable": false,
+    "primaryUseCase": "DESKTOP",
+    "laptopFriendly": true,
+    "lastVerified": "2026-02-21",
+    "verificationMethod": "INFERRED"
   },
   {
     "id": "artix",
@@ -1278,7 +1462,11 @@
     "packageManager": "PACMAN",
     "immutable": false,
     "secureBootOutOfBox": false,
-    "nvidiaExperience": "HARD"
+    "nvidiaExperience": "HARD",
+    "primaryUseCase": "BOTH",
+    "laptopFriendly": false,
+    "lastVerified": "2026-02-21",
+    "verificationMethod": "MANUAL"
   },
   {
     "id": "fedora_silverblue",
@@ -1305,7 +1493,11 @@
     "packageManager": "DNF",
     "immutable": true,
     "secureBootOutOfBox": true,
-    "nvidiaExperience": "OK"
+    "nvidiaExperience": "OK",
+    "primaryUseCase": "DESKTOP",
+    "laptopFriendly": true,
+    "lastVerified": "2026-02-21",
+    "verificationMethod": "MANUAL"
   },
   {
     "id": "fedora_kinoite",
@@ -1332,7 +1524,11 @@
     "packageManager": "DNF",
     "immutable": true,
     "secureBootOutOfBox": true,
-    "nvidiaExperience": "OK"
+    "nvidiaExperience": "OK",
+    "primaryUseCase": "DESKTOP",
+    "laptopFriendly": true,
+    "lastVerified": "2026-02-21",
+    "verificationMethod": "MANUAL"
   },
   {
     "id": "opensuse_microos",
@@ -1359,6 +1555,10 @@
     "packageManager": "ZYPPER",
     "immutable": true,
     "secureBootOutOfBox": true,
-    "nvidiaExperience": "OK"
+    "nvidiaExperience": "OK",
+    "primaryUseCase": "BOTH",
+    "laptopFriendly": false,
+    "lastVerified": "2026-02-21",
+    "verificationMethod": "MANUAL"
   }
 ]

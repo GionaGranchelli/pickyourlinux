@@ -353,4 +353,64 @@ describe("compatibility engine", () => {
         expect(ubuntu.compatible).toBe(true);
         expect(ubuntu.includedBecause).not.toContain("include_immutable_match");
     });
+
+    it("boosts server-focused distros when server purpose is selected", () => {
+        const intent = UserIntentSchema.parse({
+            installation: "CLI_OK",
+            maintenance: "TERMINAL_OK",
+            proprietary: "OPTIONAL",
+            architecture: "x86_64",
+            minRam: 8,
+            tags: ["Server"],
+            experience: "INTERMEDIATE",
+            desktopPreference: "NO_PREFERENCE",
+            releaseModel: "NO_PREFERENCE",
+            initSystem: "NO_PREFERENCE",
+            packageManager: "NO_PREFERENCE",
+            immutablePreference: "NO_PREFERENCE",
+            deviceType: "SERVER",
+            secureBootNeeded: null,
+            gpu: "UNKNOWN",
+            nvidiaTolerance: "NO_PREFERENCE",
+        });
+
+        const results = buildCompatibility(intent);
+        const rocky = getResult(results, "rocky_linux");
+        const linuxMint = getResult(results, "linux_mint");
+
+        expect(rocky.compatible).toBe(true);
+        expect(rocky.includedBecause).toContain("include_server_use_case_match");
+        expect(linuxMint.compatible).toBe(true);
+        expect(linuxMint.includedBecause).not.toContain("include_server_use_case_match");
+    });
+
+    it("boosts laptop-friendly distros when laptop device type is selected", () => {
+        const intent = UserIntentSchema.parse({
+            installation: "CLI_OK",
+            maintenance: "TERMINAL_OK",
+            proprietary: "OPTIONAL",
+            architecture: "x86_64",
+            minRam: 8,
+            tags: [],
+            experience: "BEGINNER",
+            desktopPreference: "NO_PREFERENCE",
+            releaseModel: "NO_PREFERENCE",
+            initSystem: "NO_PREFERENCE",
+            packageManager: "NO_PREFERENCE",
+            immutablePreference: "NO_PREFERENCE",
+            deviceType: "LAPTOP",
+            secureBootNeeded: null,
+            gpu: "UNKNOWN",
+            nvidiaTolerance: "NO_PREFERENCE",
+        });
+
+        const results = buildCompatibility(intent);
+        const ubuntu = getResult(results, "ubuntu");
+        const gentoo = getResult(results, "gentoo");
+
+        expect(ubuntu.compatible).toBe(true);
+        expect(ubuntu.includedBecause).toContain("include_laptop_friendly_match");
+        expect(gentoo.compatible).toBe(true);
+        expect(gentoo.includedBecause).not.toContain("include_laptop_friendly_match");
+    });
 });

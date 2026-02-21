@@ -10,6 +10,8 @@ export const ReleaseModelEnum = z.enum(["FIXED", "ROLLING"]);
 export const InitSystemEnum = z.enum(["SYSTEMD", "OPENRC", "RUNIT", "OTHER"]);
 export const PackageManagerEnum = z.enum(["APT", "DNF", "PACMAN", "ZYPPER", "APK", "NIX", "XBPS", "PORTAGE", "OTHER"]);
 export const NvidiaExperienceEnum = z.enum(["GOOD", "OK", "HARD", "UNKNOWN"]);
+export const PrimaryUseCaseEnum = z.enum(["DESKTOP", "SERVER", "BOTH"]);
+export const VerificationMethodEnum = z.enum(["MANUAL", "INFERRED", "COMMUNITY"]);
 
 export const DistroSchema = z.object({
     id: z.string(),
@@ -32,7 +34,11 @@ export const DistroSchema = z.object({
     releaseModel: ReleaseModelEnum,
     initSystem: InitSystemEnum,
     packageManager: PackageManagerEnum,
+    primaryUseCase: PrimaryUseCaseEnum,
+    laptopFriendly: z.boolean(),
     immutable: z.boolean(),
+    lastVerified: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+    verificationMethod: VerificationMethodEnum.optional(),
     secureBootOutOfBox: z.boolean(),
     nvidiaExperience: NvidiaExperienceEnum,
 });

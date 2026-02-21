@@ -5,6 +5,7 @@
   "selections": [
     { "questionId": "q_linux_familiarity", "optionId": "familiar" },
     { "questionId": "q_purpose", "optionId": "server" },
+    { "questionId": "q_device_type", "optionId": "server" },
     { "questionId": "q_server_comfort", "optionId": "simple_admin" },
     { "questionId": "q_troubleshooting_style", "optionId": "menus" }
   ]

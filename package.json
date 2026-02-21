@@ -11,11 +11,13 @@
     "typecheck": "nuxt typecheck",
     "lint": "node scripts/lint.js",
     "test": "npx vitest run",
-    "validate": "npm run validate:flow && npm run validate:questions && npm run validate:i18n && npm run validate:distros",
+    "validate": "npm run validate:flow && npm run validate:questions && npm run validate:i18n && npm run validate:distros && npm run validate:invariants",
     "validate:flow": "node scripts/validate-flow.js",
     "validate:questions": "node scripts/validate-question-catalog.js",
     "validate:i18n": "node scripts/validate-i18n-questions.js",
     "validate:distros": "node scripts/validate-distros.js",
+    "validate:invariants": "node scripts/validate-distro-invariants.js",
+    "backfill:distro-metadata": "node scripts/backfill-distro-metadata.js",
     "audit:distros": "node scripts/audit-distros.js"
   },
   "dependencies": {

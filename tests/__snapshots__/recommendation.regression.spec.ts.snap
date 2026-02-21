@@ -48,12 +48,22 @@ exports[`recommendation regression personas > intermediate_privacy_fixed: Interm
 ]
 `;
 
-exports[`recommendation regression personas > server_low_friction: Server-focused + low friction 1`] = `
+exports[`recommendation regression personas > laptop_low_friction: Laptop + low friction 1`] = `
 [
   "bazzite",
   "bodhi_linux",
   "deepin",
   "elementary_os",
   "fedora_kinoite",
+]
+`;
+
+exports[`recommendation regression personas > server_low_friction: Server-focused + low friction 1`] = `
+[
+  "fedora",
+  "opensuse_leap",
+  "opensuse_microos",
+  "ubuntu",
+  "bazzite",
 ]
 `;

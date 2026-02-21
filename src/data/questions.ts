@@ -74,6 +74,30 @@ const questions: Question[] = [
         ],
     },
     {
+        id: "q_device_type",
+        text: "questions.q_device_type.text",
+        options: [
+            {
+                id: "laptop",
+                label: "questions.q_device_type.options.laptop",
+                patches: [{ op: "set", field: "deviceType", value: "LAPTOP" }],
+                isDisqualifier: false,
+            },
+            {
+                id: "desktop",
+                label: "questions.q_device_type.options.desktop",
+                patches: [{ op: "set", field: "deviceType", value: "DESKTOP" }],
+                isDisqualifier: false,
+            },
+            {
+                id: "server",
+                label: "questions.q_device_type.options.server",
+                patches: [{ op: "set", field: "deviceType", value: "SERVER" }],
+                isDisqualifier: false,
+            },
+        ],
+    },
+    {
         id: "q_works_right_away",
         text: "questions.q_works_right_away.text",
         options: [
@@ -1186,6 +1210,7 @@ export const QUESTION_PHASES = [
         questionIds: [
             "q_linux_familiarity",
             "q_purpose",
+            "q_device_type",
             "q_works_right_away",
             "q_installation",
             "q_troubleshooting_style",

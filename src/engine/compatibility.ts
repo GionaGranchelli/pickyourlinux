@@ -89,6 +89,14 @@ const buildIncludedReasons = (intent: UserIntent, distroId: string): InclusionRe
         reasons.push("include_immutable_match");
     }
 
+    if (intent.tags.includes("Server") && (distro.primaryUseCase === "SERVER" || distro.primaryUseCase === "BOTH")) {
+        reasons.push("include_server_use_case_match");
+    }
+
+    if (intent.deviceType === "LAPTOP" && distro.laptopFriendly) {
+        reasons.push("include_laptop_friendly_match");
+    }
+
     if (reasons.length === 0) {
         reasons.push("include_meets_requirements");
     }

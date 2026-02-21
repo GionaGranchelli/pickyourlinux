@@ -79,6 +79,7 @@ const defaultIntent: UserIntent = UserIntentSchema.parse({
     initSystem: "NO_PREFERENCE",
     packageManager: "NO_PREFERENCE",
     immutablePreference: "NO_PREFERENCE",
+    deviceType: "NO_PREFERENCE",
     secureBootNeeded: null,
     gpu: "UNKNOWN",
     nvidiaTolerance: "NO_PREFERENCE",
@@ -157,6 +158,8 @@ export type DistroCardVM = {
     secureBootOutOfBox?: Distro["secureBootOutOfBox"];
     nvidiaExperience?: Distro["nvidiaExperience"];
     suitableForOldHardware?: Distro["suitableForOldHardware"];
+    primaryUseCase?: Distro["primaryUseCase"];
+    laptopFriendly?: Distro["laptopFriendly"];
     isBeginnerFriendly?: boolean;
 };
 
@@ -475,6 +478,8 @@ export function useDecisionEngine(t: (key: string) => string = (key) => key) {
             secureBootOutOfBox: item.secureBootOutOfBox,
             nvidiaExperience: item.nvidiaExperience,
             suitableForOldHardware: item.suitableForOldHardware,
+            primaryUseCase: item.primaryUseCase,
+            laptopFriendly: item.laptopFriendly,
             isBeginnerFriendly: item.isBeginnerFriendly,
         });
 
@@ -849,6 +854,8 @@ export type PresentedDistro = {
     secureBootOutOfBox?: Distro["secureBootOutOfBox"];
     nvidiaExperience?: Distro["nvidiaExperience"];
     suitableForOldHardware?: Distro["suitableForOldHardware"];
+    primaryUseCase?: Distro["primaryUseCase"];
+    laptopFriendly?: Distro["laptopFriendly"];
     isBeginnerFriendly?: boolean;
 };
 
@@ -964,6 +971,14 @@ const getActiveConstraintKeys = (intent: UserIntent): ConstraintKey[] => {
         constraints.push("constraint_immutable_avoid");
     }
 
+    if (intent.tags.includes("Server")) {
+        constraints.push("constraint_server_use_case");
+    }
+
+    if (intent.deviceType === "LAPTOP") {
+        constraints.push("constraint_laptop_friendly");
+    }
+
     return constraints;
 };
 
@@ -1031,6 +1046,10 @@ const matchesConstraint = (constraint: ConstraintKey, distro: Distro): boolean =
             return distro.immutable;
         case "constraint_immutable_avoid":
             return !distro.immutable;
+        case "constraint_server_use_case":
+            return distro.primaryUseCase === "SERVER" || distro.primaryUseCase === "BOTH";
+        case "constraint_laptop_friendly":
+            return distro.laptopFriendly;
         default:
             return false;
     }
@@ -1094,6 +1113,8 @@ export function buildResultsPresentation(
             secureBootOutOfBox: distro?.secureBootOutOfBox,
             nvidiaExperience: distro?.nvidiaExperience,
             suitableForOldHardware: distro?.suitableForOldHardware,
+            primaryUseCase: distro?.primaryUseCase,
+            laptopFriendly: distro?.laptopFriendly,
             isBeginnerFriendly: distro?.installerExperience === "GUI" && distro?.maintenanceStyle === "LOW_FRICTION",
         };
     };
@@ -1125,6 +1146,8 @@ export function buildResultsPresentation(
             secureBootOutOfBox: distro?.secureBootOutOfBox,
             nvidiaExperience: distro?.nvidiaExperience,
             suitableForOldHardware: distro?.suitableForOldHardware,
+            primaryUseCase: distro?.primaryUseCase,
+            laptopFriendly: distro?.laptopFriendly,
             isBeginnerFriendly: distro?.installerExperience === "GUI" && distro?.maintenanceStyle === "LOW_FRICTION",
         };
     };

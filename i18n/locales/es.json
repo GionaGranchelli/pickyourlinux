@@ -471,6 +471,14 @@
         "prefer_immutable": "Prefer immutable",
         "prefer_traditional": "Prefer traditional"
       }
+    },
+    "q_device_type": {
+      "text": "What device are you choosing for?",
+      "options": {
+        "laptop": "Laptop",
+        "desktop": "Desktop",
+        "server": "Server"
+      }
     }
   },
   "reasons": {
@@ -497,7 +505,9 @@
     "exclude_secure_boot_unavailable": "No admite arranque seguro listo para usar.",
     "exclude_nvidia_hard": "Es probable que la configuración de NVIDIA sea práctica.",
     "exclude_nvidia_proprietary_required": "Probablemente requiera controladores propietarios de NVIDIA.",
-    "include_immutable_match": "Matches your immutable/traditional system preference."
+    "include_immutable_match": "Matches your immutable/traditional system preference.",
+    "include_server_use_case_match": "Matches your server-use preference.",
+    "include_laptop_friendly_match": "Works well for laptop-focused usage."
   },
   "constraints": {
     "constraint_installer_gui": "Quieres un instalador gráfico.",
@@ -530,7 +540,9 @@
     "constraint_pkg_xbps": "You prefer the XBPS package manager.",
     "constraint_pkg_portage": "You prefer the Portage package manager.",
     "constraint_immutable_prefer": "You prefer immutable (atomic-style) systems.",
-    "constraint_immutable_avoid": "You prefer traditional mutable systems."
+    "constraint_immutable_avoid": "You prefer traditional mutable systems.",
+    "constraint_server_use_case": "You want server-oriented recommendations.",
+    "constraint_laptop_friendly": "You want laptop-friendly systems."
   },
   "compare": {
     "title": "Comparar distribuciones",

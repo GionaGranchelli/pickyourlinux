@@ -29,6 +29,7 @@ export const PackageManagerPreferenceEnum = z.enum([
 export const GpuEnum = z.enum(["UNKNOWN", "INTEL_AMD", "NVIDIA"]);
 export const NvidiaToleranceEnum = z.enum(["NO_PREFERENCE", "WANT_EASY", "OK_HANDS_ON", "AVOID_PROPRIETARY"]);
 export const ImmutablePreferenceEnum = z.enum(["NO_PREFERENCE", "PREFER_IMMUTABLE", "PREFER_TRADITIONAL"]);
+export const DeviceTypeEnum = z.enum(["NO_PREFERENCE", "LAPTOP", "DESKTOP", "SERVER"]);
 
 // --- 2. User Intent (The State) ---
 export const UserIntentSchema = z.object({
@@ -44,6 +45,7 @@ export const UserIntentSchema = z.object({
     initSystem: InitSystemPreferenceEnum.default("NO_PREFERENCE"),
     packageManager: PackageManagerPreferenceEnum.default("NO_PREFERENCE"),
     immutablePreference: ImmutablePreferenceEnum.default("NO_PREFERENCE"),
+    deviceType: DeviceTypeEnum.default("NO_PREFERENCE"),
     secureBootNeeded: z.boolean().nullable().default(null),
     gpu: GpuEnum.default("UNKNOWN"),
     nvidiaTolerance: NvidiaToleranceEnum.default("NO_PREFERENCE"),
