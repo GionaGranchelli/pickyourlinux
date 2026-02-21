@@ -12,6 +12,7 @@ const navItems = computed(() => [
   { to: "/how-it-works", label: tr("app.nav.howItWorks", "How it works") },
   { to: "/transparency", label: tr("app.nav.transparency", "Transparency") },
   { to: "/manifesto", label: tr("app.nav.manifesto", "Manifesto") },
+  { to: "/distros", label: tr("app.nav.allDistros", "All distros") },
   { to: "/data-sources", label: tr("app.nav.dataSources", "Data sources") },
   { to: "/contact", label: tr("app.nav.contact", "Contact") },
 ]);

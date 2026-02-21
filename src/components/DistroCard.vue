@@ -96,11 +96,50 @@ const handleToggleCompare = () => {
       <span v-if="props.distro.gamingSupport === 'GOOD'" class="rounded-full bg-purple-100 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-purple-700 border border-purple-200">
         🎮 Gaming Ready
       </span>
+      <span v-if="props.distro.primaryUseCase === 'SERVER' || props.distro.primaryUseCase === 'BOTH'" class="rounded-full bg-slate-100 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-slate-700 border border-slate-200">
+        🖥️ Server-Ready
+      </span>
+      <span v-if="props.distro.laptopFriendly" class="rounded-full bg-cyan-100 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-cyan-700 border border-cyan-200">
+        💻 Laptop-Friendly
+      </span>
+      <span v-if="props.distro.immutable" class="rounded-full bg-indigo-100 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-indigo-700 border border-indigo-200">
+        ⚛️ Immutable / Atomic
+      </span>
+      <span v-if="props.distro.docsEcosystem === 'EXCELLENT' || props.distro.docsEcosystem === 'GOOD'" class="rounded-full bg-emerald-100 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-emerald-700 border border-emerald-200">
+        📚 Strong Docs
+      </span>
+      <span v-if="props.distro.releaseModel === 'ROLLING'" class="rounded-full bg-orange-100 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-orange-700 border border-orange-200">
+        ♻️ Rolling Release
+      </span>
+      <span v-if="props.distro.releaseModel === 'FIXED'" class="rounded-full bg-lime-100 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-lime-700 border border-lime-200">
+        📌 Fixed Release
+      </span>
+      <span v-if="props.distro.secureBootOutOfBox" class="rounded-full bg-sky-100 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-sky-700 border border-sky-200">
+        ✅ Secure Boot OOTB
+      </span>
+      <span v-if="props.distro.nvidiaExperience === 'GOOD' || props.distro.nvidiaExperience === 'OK'" class="rounded-full bg-fuchsia-100 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-fuchsia-700 border border-fuchsia-200">
+        ✅ NVIDIA Compliant
+      </span>
+      <span v-if="props.distro.nvidiaExperience === 'HARD'" class="rounded-full bg-rose-100 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-rose-700 border border-rose-200">
+        🔧 NVIDIA Hands-On
+      </span>
+      <span v-if="props.distro.initSystem === 'SYSTEMD'" class="rounded-full bg-violet-100 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-violet-700 border border-violet-200">
+        ⚙️ systemd
+      </span>
+      <span v-if="props.distro.initSystem === 'OPENRC'" class="rounded-full bg-violet-100 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-violet-700 border border-violet-200">
+        ⚙️ OpenRC
+      </span>
+      <span v-if="props.distro.initSystem === 'RUNIT'" class="rounded-full bg-violet-100 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-violet-700 border border-violet-200">
+        ⚙️ runit
+      </span>
+      <span v-if="props.distro.packageManager && props.distro.packageManager !== 'OTHER'" class="rounded-full bg-zinc-100 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-zinc-700 border border-zinc-200">
+        📦 {{ props.distro.packageManager }}
+      </span>
       <span v-if="props.distro.privacyPosture === 'STRONG'" class="rounded-full bg-teal-100 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-teal-700 border border-teal-200">
-        🛡️ Privacy First
+        🛡️ Privacy-Focused
       </span>
       <span v-if="props.distro.suitableForOldHardware" class="rounded-full bg-amber-100 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-amber-700 border border-amber-200">
-        🏗️ Old Hardware
+        🏗️ Old Hardware Friendly
       </span>
     </div>
 

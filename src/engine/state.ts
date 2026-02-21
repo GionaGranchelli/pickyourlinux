@@ -161,6 +161,7 @@ export type DistroCardVM = {
     suitableForOldHardware?: Distro["suitableForOldHardware"];
     primaryUseCase?: Distro["primaryUseCase"];
     laptopFriendly?: Distro["laptopFriendly"];
+    immutable?: Distro["immutable"];
     isBeginnerFriendly?: boolean;
 };
 
@@ -484,6 +485,7 @@ export function useDecisionEngine(t: (key: string) => string = (key) => key) {
             suitableForOldHardware: item.suitableForOldHardware,
             primaryUseCase: item.primaryUseCase,
             laptopFriendly: item.laptopFriendly,
+            immutable: item.immutable,
             isBeginnerFriendly: item.isBeginnerFriendly,
         });
 
@@ -861,6 +863,7 @@ export type PresentedDistro = {
     suitableForOldHardware?: Distro["suitableForOldHardware"];
     primaryUseCase?: Distro["primaryUseCase"];
     laptopFriendly?: Distro["laptopFriendly"];
+    immutable?: Distro["immutable"];
     isBeginnerFriendly?: boolean;
 };
 
@@ -1131,6 +1134,7 @@ export function buildResultsPresentation(
             suitableForOldHardware: distro?.suitableForOldHardware,
             primaryUseCase: distro?.primaryUseCase,
             laptopFriendly: distro?.laptopFriendly,
+            immutable: distro?.immutable,
             isBeginnerFriendly: distro?.installerExperience === "GUI" && distro?.maintenanceStyle === "LOW_FRICTION",
         };
     };
@@ -1165,6 +1169,7 @@ export function buildResultsPresentation(
             suitableForOldHardware: distro?.suitableForOldHardware,
             primaryUseCase: distro?.primaryUseCase,
             laptopFriendly: distro?.laptopFriendly,
+            immutable: distro?.immutable,
             isBeginnerFriendly: distro?.installerExperience === "GUI" && distro?.maintenanceStyle === "LOW_FRICTION",
         };
     };

@@ -144,6 +144,17 @@ watchEffect(() => {
 
 <template>
   <div class="space-y-8">
+    <div v-if="compareCount >= 1" class="compare-dock">
+      <button
+        class="compare-dock-button"
+        type="button"
+        :disabled="compareCount < 2"
+        @click="goToCompare"
+      >
+        {{ t("results.compareSelected", { count: compareCount }) }}
+      </button>
+    </div>
+
     <section class="space-y-3">
       <h1 class="text-2xl font-semibold text-slate-900">{{ t("results.title") }}</h1>
       <p class="text-sm text-slate-600">
@@ -363,15 +374,6 @@ watchEffect(() => {
           >
             {{ refinementLabel }}
           </button>
-          <button
-            v-if="compareCount >= 1"
-            class="rounded-full bg-blue-600 px-4 py-2 text-xs font-semibold text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-blue-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-            type="button"
-            :disabled="compareCount < 2"
-            @click="goToCompare"
-          >
-            {{ t("results.compareSelected", { count: compareCount }) }}
-          </button>
         </div>
       </div>
     </section>
@@ -393,6 +395,40 @@ watchEffect(() => {
 </template>
 
 <style scoped>
+.compare-dock {
+  position: fixed;
+  top: 0.75rem;
+  right: 1rem;
+  z-index: 70;
+  display: flex;
+  justify-content: flex-end;
+  pointer-events: none;
+}
+
+.compare-dock-button {
+  border-radius: 999px;
+  background: #2563eb;
+  color: #ffffff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.5rem 0.9rem;
+  box-shadow: 0 8px 18px rgba(37, 99, 235, 0.28);
+  transition: transform 150ms ease, background-color 150ms ease;
+  pointer-events: auto;
+}
+
+.compare-dock-button:hover {
+  transform: translateY(-1px);
+  background: #1d4ed8;
+}
+
+.compare-dock-button:disabled {
+  cursor: not-allowed;
+  background: #94a3b8;
+  box-shadow: none;
+  transform: none;
+}
+
 .results-filter-shell {
   position: sticky;
   top: 0.75rem;
@@ -405,6 +441,21 @@ watchEffect(() => {
   border-radius: 1rem;
   padding: 1rem;
   box-shadow: 0 10px 28px rgba(15, 23, 42, 0.1);
+}
+
+@media (max-width: 640px) {
+  .compare-dock {
+    top: auto;
+    bottom: 0.9rem;
+    right: 0.75rem;
+    left: 0.75rem;
+    justify-content: center;
+  }
+
+  .compare-dock-button {
+    width: 100%;
+    max-width: 24rem;
+  }
 }
 
 .results-filter-header {
