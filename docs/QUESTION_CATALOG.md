@@ -109,7 +109,7 @@ Allowed Answers
 
 ---
 
-### Q3 - Install Preference
+### Q4 - Install Preference
 Question ID: q_installation
 Intent Fields
 - installation
@@ -125,7 +125,7 @@ Allowed Answers
 
 ---
 
-### Q4 - Troubleshooting Style
+### Q5 - Troubleshooting Style
 Question ID: q_troubleshooting_style
 Intent Fields
 - maintenance
@@ -141,7 +141,7 @@ Allowed Answers
 
 ---
 
-### Q5 - Older / Slower Computer
+### Q6 - Older / Slower Computer
 Question ID: q_old_hardware
 Intent Fields
 - tags (OldHardware)
@@ -158,7 +158,7 @@ Allowed Answers
 
 ---
 
-### Q6 - RAM Hint
+### Q7 - RAM Hint
 Question ID: q_ram_hint
 Intent Fields
 - minRam
@@ -176,7 +176,7 @@ Allowed Answers
 
 ---
 
-### Q7 - Privacy Importance
+### Q8 - Privacy Importance
 Question ID: q_privacy_importance
 Intent Fields
 - tags (Privacy)
@@ -192,7 +192,7 @@ Allowed Answers
 
 ---
 
-### Q8 - GPU (Simple)
+### Q9 - GPU (Simple)
 Question ID: q_gpu_simple
 Intent Fields
 - gpu
@@ -209,7 +209,7 @@ Allowed Answers
 
 ---
 
-### Q8b - Software Use Case
+### Q10 - Software Use Case
 Question ID: q_software_use_case
 Intent Fields
 - tags
@@ -227,7 +227,7 @@ Allowed Answers
 
 ---
 
-### Q9 - Secure Boot (Simple)
+### Q11 - Secure Boot (Simple)
 Question ID: q_secure_boot_simple
 Intent Fields
 - secureBootNeeded
@@ -244,7 +244,7 @@ Allowed Answers
 
 ---
 
-### Q9b - Beginner UI Style
+### Q12 - Beginner UI Style
 Question ID: q_beginner_ui_style
 Intent Fields
 - desktopPreference
@@ -267,7 +267,7 @@ Allowed Answers
 
 ## Phase Exit (After Beginner)
 
-### Q10 - See Results or Refine
+### Q13 - See Results or Refine
 Question ID: q_phase_exit
 Intent Fields
 - experience
@@ -288,7 +288,7 @@ Allowed Answers
 
 ## Intermediate Phase (Shown for INTERMEDIATE + ADVANCED)
 
-### Q11 - Architecture Clarifier (Fallback)
+### Q14 - Architecture Clarifier (Fallback)
 Question ID: q_architecture_clarifier
 Intent Fields
 - architecture
@@ -308,7 +308,7 @@ Allowed Answers
 
 ---
 
-### Q12 - ARM Expectation
+### Q15 - ARM Expectation
 Question ID: q_arm_expectation
 Intent Fields
 - installation
@@ -329,7 +329,7 @@ Allowed Answers
 
 ---
 
-### Q13 - Desktop Preference
+### Q16 - Desktop Preference
 Question ID: q_desktop_preference
 Intent Fields
 - desktopPreference
@@ -354,7 +354,7 @@ Allowed Answers
 
 ---
 
-### Q14 - Release Model
+### Q17 - Release Model
 Question ID: q_release_model
 Intent Fields
 - releaseModel
@@ -374,7 +374,7 @@ Allowed Answers
 
 ---
 
-### Q15 - Work vs Gaming Focus
+### Q18 - Work vs Gaming Focus
 Question ID: q_work_gaming_focus
 Intent Fields
 - tags
@@ -396,7 +396,7 @@ Allowed Answers
 
 ---
 
-### Q16 - Secure Boot Clarifier
+### Q19 - Secure Boot Clarifier
 Question ID: q_secure_boot_clarifier
 Intent Fields
 - secureBootNeeded
@@ -417,7 +417,7 @@ Allowed Answers
 
 ---
 
-### Q17 - NVIDIA Setup Tolerance
+### Q20 - NVIDIA Setup Tolerance
 Question ID: q_nvidia_tolerance
 Intent Fields
 - nvidiaTolerance
@@ -439,7 +439,7 @@ Allowed Answers
 
 ---
 
-### Q18 - Everyday Apps
+### Q21 - Everyday Apps
 Question ID: q_everyday_apps
 Intent Fields
 - proprietary
@@ -459,7 +459,7 @@ Allowed Answers
 
 ---
 
-### Q19 - Privacy Tradeoff
+### Q22 - Privacy Tradeoff
 Question ID: q_privacy_tradeoff
 Intent Fields
 - proprietary
@@ -479,7 +479,7 @@ Allowed Answers
 
 ---
 
-### Q20 - Gaming (Compatibility Gate)
+### Q23 - Gaming (Compatibility Gate)
 Question ID: q_gaming
 Intent Fields
 - tags (Gaming)
@@ -499,7 +499,7 @@ Allowed Answers
 
 ---
 
-### Q21 - Gaming Expectation
+### Q24 - Gaming Expectation
 Question ID: q_gaming_expectation
 Intent Fields
 - proprietary
@@ -519,7 +519,7 @@ Allowed Answers
 
 ---
 
-### Q22 - Anti-Cheat Warning
+### Q25 - Anti-Cheat Warning
 Question ID: q_anticheat_warning
 Intent Fields
 - none (disqualifier only)
@@ -539,7 +539,7 @@ Allowed Answers
 
 ---
 
-### Q23 - Server Comfort
+### Q26 - Server Comfort
 Question ID: q_server_comfort
 Intent Fields
 - installation
@@ -562,7 +562,7 @@ Allowed Answers
 
 ## Advanced Phase (Shown for ADVANCED Only)
 
-### Q24 - Release Model (Advanced Re-assert)
+### Q27 - Release Model (Advanced Re-assert)
 Question ID: q_release_model_advanced
 Intent Fields
 - releaseModel
@@ -582,7 +582,7 @@ Allowed Answers
 
 ---
 
-### Q25 - Desktop Preference (Advanced Re-assert)
+### Q28 - Desktop Preference (Advanced Re-assert)
 Question ID: q_desktop_preference_advanced
 Intent Fields
 - desktopPreference
@@ -607,7 +607,7 @@ Allowed Answers
 
 ---
 
-### Q26 - GPU Confirm (Advanced)
+### Q29 - GPU Confirm (Advanced)
 Question ID: q_gpu_confirm_advanced
 Intent Fields
 - gpu
@@ -627,7 +627,7 @@ Allowed Answers
 
 ---
 
-### Q27 - Secure Boot (Advanced)
+### Q30 - Secure Boot (Advanced)
 Question ID: q_secure_boot_advanced
 Intent Fields
 - secureBootNeeded
@@ -647,7 +647,7 @@ Allowed Answers
 
 ---
 
-### Q28 - NVIDIA Tolerance (Advanced)
+### Q31 - NVIDIA Tolerance (Advanced)
 Question ID: q_nvidia_tolerance_advanced
 Intent Fields
 - nvidiaTolerance
@@ -669,7 +669,7 @@ Allowed Answers
 
 ---
 
-### Q29 - Proprietary Strictness (Advanced)
+### Q32 - Proprietary Strictness (Advanced)
 Question ID: q_open_software_strictness
 Intent Fields
 - proprietary
@@ -690,7 +690,7 @@ Allowed Answers
 
 ---
 
-### Q30 - Hands-on Maintenance (Advanced)
+### Q33 - Hands-on Maintenance (Advanced)
 Question ID: q_advanced_control
 Intent Fields
 - installation
@@ -711,7 +711,7 @@ Allowed Answers
 
 ---
 
-### Q31 - Init System Preference
+### Q34 - Init System Preference
 Question ID: q_init_system_preference
 Intent Fields
 - initSystem
@@ -732,7 +732,7 @@ Allowed Answers
 
 ---
 
-### Q32 - Package Manager Preference
+### Q35 - Package Manager Preference
 Question ID: q_package_manager_preference
 Intent Fields
 - packageManager
@@ -758,7 +758,7 @@ Allowed Answers
 
 ---
 
-### Q33 - Atomic / Immutable Preference
+### Q36 - Atomic / Immutable Preference
 Question ID: q_atomic_preference
 Intent Fields
 - immutablePreference
@@ -778,7 +778,7 @@ Allowed Answers
 
 ---
 
-### Q34 - RAM Refinement (Advanced)
+### Q37 - RAM Refinement (Advanced)
 Question ID: q_ram_refinement_advanced
 Intent Fields
 - minRam
