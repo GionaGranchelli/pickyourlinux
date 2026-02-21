@@ -803,7 +803,7 @@
     "initSystem": "SYSTEMD",
     "packageManager": "DNF",
     "secureBootOutOfBox": false,
-    "nvidiaExperience": "UNKNOWN"
+    "nvidiaExperience": "HARD"
   },
   {
     "id": "almalinux",
@@ -829,7 +829,7 @@
     "initSystem": "SYSTEMD",
     "packageManager": "DNF",
     "secureBootOutOfBox": false,
-    "nvidiaExperience": "UNKNOWN"
+    "nvidiaExperience": "HARD"
   },
   {
     "id": "centos_stream",
@@ -855,7 +855,7 @@
     "initSystem": "SYSTEMD",
     "packageManager": "DNF",
     "secureBootOutOfBox": false,
-    "nvidiaExperience": "UNKNOWN"
+    "nvidiaExperience": "HARD"
   },
   {
     "id": "ubuntu_budgie",
@@ -962,7 +962,7 @@
     "initSystem": "SYSTEMD",
     "packageManager": "OTHER",
     "secureBootOutOfBox": false,
-    "nvidiaExperience": "UNKNOWN"
+    "nvidiaExperience": "OK"
   },
   {
     "id": "mageia",
@@ -990,7 +990,7 @@
     "initSystem": "SYSTEMD",
     "packageManager": "OTHER",
     "secureBootOutOfBox": false,
-    "nvidiaExperience": "UNKNOWN"
+    "nvidiaExperience": "OK"
   },
   {
     "id": "pclinuxos",
@@ -1018,7 +1018,7 @@
     "initSystem": "OTHER",
     "packageManager": "OTHER",
     "secureBootOutOfBox": false,
-    "nvidiaExperience": "UNKNOWN"
+    "nvidiaExperience": "OK"
   },
   {
     "id": "deepin",
@@ -1044,7 +1044,7 @@
     "initSystem": "SYSTEMD",
     "packageManager": "APT",
     "secureBootOutOfBox": false,
-    "nvidiaExperience": "UNKNOWN"
+    "nvidiaExperience": "OK"
   },
   {
     "id": "bodhi_linux",
@@ -1070,7 +1070,7 @@
     "initSystem": "SYSTEMD",
     "packageManager": "APT",
     "secureBootOutOfBox": false,
-    "nvidiaExperience": "UNKNOWN"
+    "nvidiaExperience": "HARD"
   },
   {
     "id": "kali_linux",
@@ -1096,7 +1096,7 @@
     "initSystem": "SYSTEMD",
     "packageManager": "APT",
     "secureBootOutOfBox": false,
-    "nvidiaExperience": "UNKNOWN"
+    "nvidiaExperience": "HARD"
   },
   {
     "id": "gentoo",

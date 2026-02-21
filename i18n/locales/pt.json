@@ -260,7 +260,13 @@
         "xfce": "XFCE (leve)",
         "cinnamon": "Canela (familiar)",
         "mate": "COMPANHEIRO (clássico)",
-        "lxqt": "LXQt (muito leve)"
+        "lxqt": "LXQt (muito leve)",
+        "gnome_desc": "Modern, minimal, and tablet-like.",
+        "kde_desc": "Classic, familiar, and highly customizable.",
+        "xfce_desc": "Old-school look, very fast on older computers.",
+        "cinnamon_desc": "Traditional Windows-like layout, easy to use.",
+        "mate_desc": "Classic desktop style from the mid-2000s.",
+        "lxqt_desc": "Extremely lightweight for very old hardware."
       }
     },
     "q_release_model": {
@@ -330,7 +336,8 @@
       "options": {
         "yes": "Sim",
         "no": "Não / Não tenho certeza"
-      }
+      },
+      "disqualification_reason": "For games with strict kernel-level anti-cheat, Microsoft Windows remains the most compatible choice for now."
     },
     "q_server_comfort": {
       "text": "Para um servidor doméstico, qual estilo de configuração você prefere?",
@@ -429,6 +436,30 @@
         "ram_4": "4GB",
         "ram_8": "8GB",
         "ram_16": "16 GB"
+      }
+    },
+    "q_linux_familiarity": {
+      "text": "How familiar are you with Linux?",
+      "options": {
+        "beginner": "I'm new to Linux",
+        "beginner_desc": "Help me find my first daily driver. Simple questions, no jargon.",
+        "familiar": "I'm familiar / Distro hopping",
+        "familiar_desc": "I've used Linux before. I know common terms like 'DE' or 'Rolling'.",
+        "expert": "I'm a power user / Expert",
+        "expert_desc": "I have specific technical needs (Init systems, package managers, etc)."
+      }
+    },
+    "q_beginner_ui_style": {
+      "text": "What kind of computer interface do you prefer?",
+      "options": {
+        "windows_vibe": "Traditional (Like Windows)",
+        "windows_vibe_desc": "Menu at the bottom left, taskbar at the bottom.",
+        "mac_vibe": "Modern (Like a Tablet or Mac)",
+        "mac_vibe_desc": "Clean, focus on apps, centered layout.",
+        "classic_vibe": "Classic (Simple and Lightweight)",
+        "classic_vibe_desc": "Old-school style, very fast on older computers.",
+        "open_vibe": "Show me anything",
+        "open_vibe_desc": "I'm open to trying any interface style."
       }
     }
   },

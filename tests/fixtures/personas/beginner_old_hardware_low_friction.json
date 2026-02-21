@@ -1,0 +1,12 @@
+{
+  "id": "beginner_old_hardware_low_friction",
+  "name": "Beginner + old hardware + low friction",
+  "topN": 5,
+  "selections": [
+    { "questionId": "q_linux_familiarity", "optionId": "beginner" },
+    { "questionId": "q_purpose", "optionId": "everyday" },
+    { "questionId": "q_old_hardware", "optionId": "yes" },
+    { "questionId": "q_troubleshooting_style", "optionId": "menus" },
+    { "questionId": "q_works_right_away", "optionId": "ok_with_some" }
+  ]
+}

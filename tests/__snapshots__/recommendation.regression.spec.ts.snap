@@ -1,0 +1,59 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`recommendation regression personas > advanced_openrc_preference: Advanced + OpenRC preference 1`] = `
+[
+  "alpine",
+  "gentoo",
+  "almalinux",
+  "arch",
+  "bazzite",
+]
+`;
+
+exports[`recommendation regression personas > advanced_rolling_system_preferences: Advanced + rolling + system preferences 1`] = `
+[
+  "arch",
+  "cachyos",
+  "endeavouros",
+  "garuda",
+  "manjaro",
+]
+`;
+
+exports[`recommendation regression personas > beginner_gaming_nvidia_easy: Beginner + gaming + NVIDIA + wants easy 1`] = `
+[
+  "bazzite",
+  "deepin",
+  "elementary_os",
+  "fedora",
+  "kde_neon",
+]
+`;
+
+exports[`recommendation regression personas > beginner_old_hardware_low_friction: Beginner + old hardware + low friction 1`] = `
+[
+  "bodhi_linux",
+  "linux_lite",
+  "linux_mint",
+  "lmde",
+  "lubuntu",
+]
+`;
+
+exports[`recommendation regression personas > intermediate_privacy_fixed: Intermediate + privacy + fixed release 1`] = `
+[
+  "pureos",
+  "tails",
+  "trisquel",
+]
+`;
+
+exports[`recommendation regression personas > server_low_friction: Server-focused + low friction 1`] = `
+[
+  "bazzite",
+  "bodhi_linux",
+  "deepin",
+  "elementary_os",
+  "fedora",
+]
+`;
