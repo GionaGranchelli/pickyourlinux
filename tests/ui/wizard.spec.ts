@@ -3,12 +3,24 @@ import { createSSRApp, h } from "vue";
 import { renderToString } from "@vue/server-renderer";
 import QuestionWizard from "../../src/components/QuestionWizard.vue";
 import { useDecisionEngine } from "../../src/engine/state";
+import {createI18n} from "vue-i18n";
+import en from "../../i18n/locales/en.json";
 
 const renderWizard = async (engine: ReturnType<typeof useDecisionEngine>) => {
     const app = createSSRApp({
         render: () => h(QuestionWizard, { engine }),
     });
 
+    const i18n = createI18n({
+        legacy: false,
+        locale: "en",
+        globalInjection: true,
+        messages: {
+            en,
+        },
+    } as any);
+
+    app.use(i18n);
     return renderToString(app);
 };
 

@@ -17,6 +17,7 @@ const renderComponent = async (component: any, props: Record<string, unknown>) =
   const i18n = createI18n({
     legacy: false,
     locale: "en",
+    globalInjection: true,
     messages: {
       en,
     },

@@ -57,8 +57,8 @@ const JsonValueSchema: z.ZodType<JsonValue> = z.lazy(() =>
         z.boolean(),
         z.null(),
         z.array(JsonValueSchema),
-        z.record(JsonValueSchema),
-    ])
+        z.record(z.string(), JsonValueSchema),
+    ]) as z.ZodType<JsonValue>
 );
 
 // --- 3. Logic Primitives (VM Instructions) ---

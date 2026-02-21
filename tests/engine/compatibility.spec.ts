@@ -10,6 +10,35 @@ const getResult = (results: ReturnType<typeof buildCompatibility>, distroId: str
 };
 
 describe("compatibility engine", () => {
+    it("keeps non-matching distros when a hard preference has low coverage", () => {
+        const intent = UserIntentSchema.parse({
+            installation: "CLI_OK",
+            maintenance: "TERMINAL_OK",
+            proprietary: "OPTIONAL",
+            architecture: "x86_64",
+            minRam: 8,
+            tags: [],
+            experience: "BEGINNER",
+            desktopPreference: "NO_PREFERENCE",
+            releaseModel: "NO_PREFERENCE",
+            initSystem: "NO_PREFERENCE",
+            packageManager: "NO_PREFERENCE",
+            secureBootNeeded: true,
+            gpu: "UNKNOWN",
+            nvidiaTolerance: "NO_PREFERENCE",
+        });
+
+        // Secure Boot matches are >3 today, so force a higher threshold to validate soft behavior.
+        const results = buildCompatibility(intent, { lowCoverageThreshold: 20 });
+        const fedora = getResult(results, "fedora");
+        const mint = getResult(results, "linux_mint");
+
+        expect(fedora.compatible).toBe(true);
+        expect(fedora.includedBecause).toContain("include_secure_boot_supported");
+        expect(mint.compatible).toBe(true);
+        expect(mint.excludedBecause).not.toContain("exclude_secure_boot_unavailable");
+    });
+
     it("handles 'just work' expectations", () => {
         const intent = UserIntentSchema.parse({
             installation: "GUI",
@@ -130,6 +159,31 @@ describe("compatibility engine", () => {
             expect(distrosById.get(item.distroId)?.secureBootOutOfBox).toBe(true);
         });
         expect(excludedForSecureBoot.length).toBeGreaterThan(0);
+        expect(mint.compatible).toBe(false);
+        expect(mint.excludedBecause).toContain("exclude_secure_boot_unavailable");
+    });
+
+    it("keeps hard filtering when coverage is at least 3", () => {
+        const intent = UserIntentSchema.parse({
+            installation: "GUI",
+            maintenance: "NO_TERMINAL",
+            proprietary: "OPTIONAL",
+            architecture: "x86_64",
+            minRam: 8,
+            tags: [],
+            experience: "BEGINNER",
+            desktopPreference: "NO_PREFERENCE",
+            releaseModel: "NO_PREFERENCE",
+            initSystem: "NO_PREFERENCE",
+            packageManager: "NO_PREFERENCE",
+            secureBootNeeded: true,
+            gpu: "UNKNOWN",
+            nvidiaTolerance: "NO_PREFERENCE",
+        });
+
+        const results = buildCompatibility(intent, { lowCoverageThreshold: 3 });
+        const mint = getResult(results, "linux_mint");
+
         expect(mint.compatible).toBe(false);
         expect(mint.excludedBecause).toContain("exclude_secure_boot_unavailable");
     });

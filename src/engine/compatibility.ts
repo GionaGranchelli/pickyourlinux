@@ -1,7 +1,7 @@
 import { CompatibilityResultListSchema, type CompatibilityResult } from "~/data/compatibility-types";
 import type { UserIntent } from "~/data/types";
 import type { InclusionReasonKey } from "~/data/reason-templates";
-import { eliminateDistros, getDistros } from "~/engine/eliminate";
+import { eliminateDistros, getDistros, type EnginePolicyOptions } from "~/engine/eliminate";
 
 const distros = getDistros();
 
@@ -88,8 +88,8 @@ const buildIncludedReasons = (intent: UserIntent, distroId: string): InclusionRe
     return reasons;
 };
 
-export function buildCompatibility(intent: UserIntent): CompatibilityResult[] {
-    const hardResults = eliminateDistros(intent);
+export function buildCompatibility(intent: UserIntent, options: EnginePolicyOptions = {}): CompatibilityResult[] {
+    const hardResults = eliminateDistros(intent, options);
 
     const results = hardResults.map((result) => {
         if (!result.included) {

@@ -23,6 +23,7 @@ const {
   phaseGateVM,
   answersVM,
   debugVM,
+  disqualifyReason,
   canUndo,
   selectOptionById,
   skipCurrentQuestion,
