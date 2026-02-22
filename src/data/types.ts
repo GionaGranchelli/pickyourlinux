@@ -15,7 +15,7 @@ export const DesktopPreferenceEnum = z.enum([
     "TILING",
 ]);
 export const ReleaseModelPreferenceEnum = z.enum(["NO_PREFERENCE", "FIXED", "ROLLING"]);
-export const InitSystemPreferenceEnum = z.enum(["NO_PREFERENCE", "SYSTEMD", "OPENRC", "RUNIT"]);
+export const InitSystemPreferenceEnum = z.enum(["NO_PREFERENCE", "SYSTEMD", "OPENRC", "RUNIT", "OTHER"]);
 export const PackageManagerPreferenceEnum = z.enum([
     "NO_PREFERENCE",
     "APT",
@@ -26,6 +26,7 @@ export const PackageManagerPreferenceEnum = z.enum([
     "NIX",
     "XBPS",
     "PORTAGE",
+    "OTHER",
 ]);
 export const GpuEnum = z.enum(["UNKNOWN", "INTEL_AMD", "NVIDIA"]);
 export const NvidiaToleranceEnum = z.enum(["NO_PREFERENCE", "WANT_EASY", "OK_HANDS_ON", "AVOID_PROPRIETARY"]);
@@ -50,6 +51,16 @@ export const UserIntentSchema = z.object({
     secureBootNeeded: z.boolean().nullable().default(null),
     gpu: GpuEnum.default("UNKNOWN"),
     nvidiaTolerance: NvidiaToleranceEnum.default("NO_PREFERENCE"),
+    // --- Shadow Fields (to break cycles in Phase 3) ---
+    // These store the 'original' value from earlier phases so Phase 3 questions
+    // can depend on them without depending on the fields they themselves modify.
+    p1_proprietary: z.enum(["REQUIRED", "OPTIONAL", "AVOID"]).default("OPTIONAL"),
+    p2_proprietary: z.enum(["REQUIRED", "OPTIONAL", "AVOID"]).default("OPTIONAL"),
+    p3_proprietary: z.enum(["REQUIRED", "OPTIONAL", "AVOID"]).default("OPTIONAL"),
+    p1_secureBootNeeded: z.boolean().nullable().default(null),
+    p2_secureBootNeeded: z.boolean().nullable().default(null),
+    p2_releaseModel: ReleaseModelPreferenceEnum.default("NO_PREFERENCE"),
+    p2_desktopPreference: DesktopPreferenceEnum.default("NO_PREFERENCE"),
 });
 export type UserIntent = z.infer<typeof UserIntentSchema>;
 export type IntentKey = keyof UserIntent;

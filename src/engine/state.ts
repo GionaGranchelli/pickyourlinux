@@ -83,6 +83,13 @@ const defaultIntent: UserIntent = UserIntentSchema.parse({
     secureBootNeeded: null,
     gpu: "UNKNOWN",
     nvidiaTolerance: "NO_PREFERENCE",
+    p1_proprietary: "OPTIONAL",
+    p2_proprietary: "OPTIONAL",
+    p3_proprietary: "OPTIONAL",
+    p1_secureBootNeeded: null,
+    p2_secureBootNeeded: null,
+    p2_releaseModel: "NO_PREFERENCE",
+    p2_desktopPreference: "NO_PREFERENCE",
 });
 
 export type AnswerRecord = {
@@ -110,6 +117,7 @@ export type QuestionOptionVM = {
     label: string;
     description?: string;
     image?: string;
+    narrowChoice?: boolean;
 };
 
 export type QuestionVM = {
@@ -373,15 +381,29 @@ export function useDecisionEngine(t: (key: string) => string = (key) => key) {
 
     const currentQuestionVM = computed<QuestionVM | null>(() => {
         if (!currentQuestion.value) return null;
+        
+        const NARROW_THRESHOLD = 3;
+        
         return {
             id: currentQuestion.value.id,
             text: t(currentQuestion.value.text),
-            options: currentQuestion.value.options.map((option) => ({
-                id: option.id,
-                label: t(option.label),
-                description: option.description ? t(option.description) : undefined,
-                image: option.image,
-            })),
+            options: currentQuestion.value.options.map((option) => {
+                // Determine if this choice is "narrow" (leads to very few distros)
+                let isNarrow = false;
+                if (status.value === "IN_PROGRESS" && !option.isDisqualifier && option.patches.length > 0) {
+                    const previewIntent = applyPatch(structuredClone(toRaw(intent.value)), option.patches);
+                    const compatibleCount = buildCompatibility(previewIntent).filter(r => r.compatible).length;
+                    isNarrow = compatibleCount > 0 && compatibleCount < NARROW_THRESHOLD;
+                }
+
+                return {
+                    id: option.id,
+                    label: t(option.label),
+                    description: option.description ? t(option.description) : undefined,
+                    image: option.image,
+                    narrowChoice: isNarrow,
+                };
+            }),
         };
     });
 
@@ -955,6 +977,8 @@ const getActiveConstraintKeys = (intent: UserIntent): ConstraintKey[] => {
         constraints.push("constraint_init_openrc");
     } else if (intent.initSystem === "RUNIT") {
         constraints.push("constraint_init_runit");
+    } else if (intent.initSystem === "OTHER") {
+        constraints.push("constraint_init_other");
     }
 
     if (intent.packageManager === "APT") {
@@ -973,6 +997,8 @@ const getActiveConstraintKeys = (intent: UserIntent): ConstraintKey[] => {
         constraints.push("constraint_pkg_xbps");
     } else if (intent.packageManager === "PORTAGE") {
         constraints.push("constraint_pkg_portage");
+    } else if (intent.packageManager === "OTHER") {
+        constraints.push("constraint_pkg_other");
     }
 
     if (intent.immutablePreference === "PREFER_IMMUTABLE") {
@@ -1042,6 +1068,8 @@ const matchesConstraint = (constraint: ConstraintKey, distro: Distro): boolean =
             return distro.initSystem === "OPENRC";
         case "constraint_init_runit":
             return distro.initSystem === "RUNIT";
+        case "constraint_init_other":
+            return distro.initSystem === "OTHER";
         case "constraint_pkg_apt":
             return distro.packageManager === "APT";
         case "constraint_pkg_dnf":
@@ -1058,6 +1086,8 @@ const matchesConstraint = (constraint: ConstraintKey, distro: Distro): boolean =
             return distro.packageManager === "XBPS";
         case "constraint_pkg_portage":
             return distro.packageManager === "PORTAGE";
+        case "constraint_pkg_other":
+            return distro.packageManager === "OTHER";
         case "constraint_immutable_prefer":
             return distro.immutable;
         case "constraint_immutable_avoid":

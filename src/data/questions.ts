@@ -104,19 +104,28 @@ const questions: Question[] = [
             {
                 id: "very",
                 label: "questions.q_works_right_away.options.very",
-                patches: [{ op: "set", field: "proprietary", value: "REQUIRED" }],
+                patches: [
+                    { op: "set", field: "proprietary", value: "REQUIRED" },
+                    { op: "set", field: "p1_proprietary", value: "REQUIRED" },
+                ],
                 isDisqualifier: false,
             },
             {
                 id: "ok_with_some",
                 label: "questions.q_works_right_away.options.ok_with_some",
-                patches: [{ op: "set", field: "proprietary", value: "OPTIONAL" }],
+                patches: [
+                    { op: "set", field: "proprietary", value: "OPTIONAL" },
+                    { op: "set", field: "p1_proprietary", value: "OPTIONAL" },
+                ],
                 isDisqualifier: false,
             },
             {
                 id: "only_free",
                 label: "questions.q_works_right_away.options.only_free",
-                patches: [{ op: "set", field: "proprietary", value: "AVOID" }],
+                patches: [
+                    { op: "set", field: "proprietary", value: "AVOID" },
+                    { op: "set", field: "p1_proprietary", value: "AVOID" },
+                ],
                 isDisqualifier: false,
             },
         ],
@@ -290,19 +299,28 @@ const questions: Question[] = [
             {
                 id: "yes",
                 label: "questions.q_secure_boot_simple.options.yes",
-                patches: [{ op: "set", field: "secureBootNeeded", value: true }],
+                patches: [
+                    { op: "set", field: "secureBootNeeded", value: true },
+                    { op: "set", field: "p1_secureBootNeeded", value: true },
+                ],
                 isDisqualifier: false,
             },
             {
                 id: "no",
                 label: "questions.q_secure_boot_simple.options.no",
-                patches: [{ op: "set", field: "secureBootNeeded", value: false }],
+                patches: [
+                    { op: "set", field: "secureBootNeeded", value: false },
+                    { op: "set", field: "p1_secureBootNeeded", value: false },
+                ],
                 isDisqualifier: false,
             },
             {
                 id: "not_sure",
                 label: "questions.q_secure_boot_simple.options.not_sure",
-                patches: [{ op: "set", field: "secureBootNeeded", value: null }],
+                patches: [
+                    { op: "set", field: "secureBootNeeded", value: null },
+                    { op: "set", field: "p1_secureBootNeeded", value: null },
+                ],
                 isDisqualifier: false,
             },
         ],
@@ -587,26 +605,35 @@ const questions: Question[] = [
             op: "and",
             conditions: [
                 showIfIntermediate,
-                { field: "secureBootNeeded", op: "eq", value: null },
+                { field: "p1_secureBootNeeded", op: "eq", value: null },
             ],
         },
         options: [
             {
                 id: "must_on",
                 label: "questions.q_secure_boot_clarifier.options.must_on",
-                patches: [{ op: "set", field: "secureBootNeeded", value: true }],
+                patches: [
+                    { op: "set", field: "secureBootNeeded", value: true },
+                    { op: "set", field: "p1_secureBootNeeded", value: true },
+                ],
                 isDisqualifier: false,
             },
             {
                 id: "can_off",
                 label: "questions.q_secure_boot_clarifier.options.can_off",
-                patches: [{ op: "set", field: "secureBootNeeded", value: false }],
+                patches: [
+                    { op: "set", field: "secureBootNeeded", value: false },
+                    { op: "set", field: "p1_secureBootNeeded", value: false },
+                ],
                 isDisqualifier: false,
             },
             {
                 id: "still_unsure",
                 label: "questions.q_secure_boot_clarifier.options.still_unsure",
-                patches: [{ op: "set", field: "secureBootNeeded", value: null }],
+                patches: [
+                    { op: "set", field: "secureBootNeeded", value: null },
+                    { op: "set", field: "p1_secureBootNeeded", value: null },
+                ],
                 isDisqualifier: false,
             },
         ],
@@ -653,20 +680,26 @@ const questions: Question[] = [
             conditions: [
                 showIfIntermediate,
                 { field: "tags", op: "contains", value: "Work" },
-                { field: "proprietary", op: "eq", value: "OPTIONAL" }
+                { field: "p1_proprietary", op: "eq", value: "OPTIONAL" }
             ],
         },
         options: [
             {
                 id: "must_just_work",
                 label: "questions.q_everyday_apps.options.must_just_work",
-                patches: [{ op: "set", field: "proprietary", value: "REQUIRED" }],
+                patches: [
+                    { op: "set", field: "proprietary", value: "REQUIRED" },
+                    { op: "set", field: "p2_proprietary", value: "REQUIRED" },
+                ],
                 isDisqualifier: false,
             },
             {
                 id: "ok_alternatives",
                 label: "questions.q_everyday_apps.options.ok_alternatives",
-                patches: [{ op: "set", field: "proprietary", value: "OPTIONAL" }],
+                patches: [
+                    { op: "set", field: "proprietary", value: "OPTIONAL" },
+                    { op: "set", field: "p2_proprietary", value: "OPTIONAL" },
+                ],
                 isDisqualifier: false,
             },
         ],
@@ -679,20 +712,26 @@ const questions: Question[] = [
             conditions: [
                 showIfIntermediate, 
                 { field: "tags", op: "contains", value: "Privacy" },
-                { field: "proprietary", op: "eq", value: "OPTIONAL" }
+                { field: "p1_proprietary", op: "eq", value: "OPTIONAL" }
             ],
         },
         options: [
             {
                 id: "privacy_first",
                 label: "questions.q_privacy_tradeoff.options.privacy_first",
-                patches: [{ op: "set", field: "proprietary", value: "AVOID" }],
+                patches: [
+                    { op: "set", field: "proprietary", value: "AVOID" },
+                    { op: "set", field: "p2_proprietary", value: "AVOID" },
+                ],
                 isDisqualifier: false,
             },
             {
                 id: "balanced",
                 label: "questions.q_privacy_tradeoff.options.balanced",
-                patches: [{ op: "set", field: "proprietary", value: "OPTIONAL" }],
+                patches: [
+                    { op: "set", field: "proprietary", value: "OPTIONAL" },
+                    { op: "set", field: "p2_proprietary", value: "OPTIONAL" },
+                ],
                 isDisqualifier: false,
             },
         ],
@@ -731,20 +770,26 @@ const questions: Question[] = [
             conditions: [
                 showIfIntermediate, 
                 { field: "tags", op: "contains", value: "Gaming" },
-                { field: "proprietary", op: "eq", value: "OPTIONAL" }
+                { field: "p1_proprietary", op: "eq", value: "OPTIONAL" }
             ],
         },
         options: [
             {
                 id: "plug_and_play",
                 label: "questions.q_gaming_expectation.options.plug_and_play",
-                patches: [{ op: "set", field: "proprietary", value: "REQUIRED" }],
+                patches: [
+                    { op: "set", field: "proprietary", value: "REQUIRED" },
+                    { op: "set", field: "p2_proprietary", value: "REQUIRED" },
+                ],
                 isDisqualifier: false,
             },
             {
                 id: "i_can_tweak",
                 label: "questions.q_gaming_expectation.options.i_can_tweak",
-                patches: [{ op: "set", field: "proprietary", value: "OPTIONAL" }],
+                patches: [
+                    { op: "set", field: "proprietary", value: "OPTIONAL" },
+                    { op: "set", field: "p2_proprietary", value: "OPTIONAL" },
+                ],
                 isDisqualifier: false,
             },
         ],
@@ -934,7 +979,7 @@ const questions: Question[] = [
             op: "and",
             conditions: [
                 showIfAdvanced,
-                { field: "secureBootNeeded", op: "eq", value: null }
+                { field: "p1_secureBootNeeded", op: "eq", value: null }
             ]
         },
         options: [
@@ -1003,7 +1048,7 @@ const questions: Question[] = [
             op: "and",
             conditions: [
                 showIfAdvanced,
-                { field: "proprietary", op: "eq", value: "OPTIONAL" }
+                { field: "p2_proprietary", op: "eq", value: "OPTIONAL" }
             ]
         },
         options: [
@@ -1093,6 +1138,12 @@ const questions: Question[] = [
                 patches: [{ op: "set", field: "initSystem", value: "RUNIT" }],
                 isDisqualifier: false,
             },
+            {
+                id: "other",
+                label: "questions.q_init_system_preference.options.other",
+                patches: [{ op: "set", field: "initSystem", value: "OTHER" }],
+                isDisqualifier: false,
+            },
         ],
     },
     {
@@ -1152,6 +1203,12 @@ const questions: Question[] = [
                 id: "portage",
                 label: "questions.q_package_manager_preference.options.portage",
                 patches: [{ op: "set", field: "packageManager", value: "PORTAGE" }],
+                isDisqualifier: false,
+            },
+            {
+                id: "other",
+                label: "questions.q_package_manager_preference.options.other",
+                patches: [{ op: "set", field: "packageManager", value: "OTHER" }],
                 isDisqualifier: false,
             },
         ],

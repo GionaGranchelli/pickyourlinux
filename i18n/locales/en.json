@@ -37,7 +37,8 @@
       "back": "← Back",
       "reviewAnswers": "Review answers",
       "restart": "Restart"
-    }
+    },
+    "narrowChoice": "Narrow Choice"
   },
   "reviewAnswers": {
     "title": "Review answers",
@@ -434,7 +435,8 @@
         "no_preference": "No preference",
         "systemd": "systemd",
         "openrc": "OpenRC",
-        "runit": "runit"
+        "runit": "runit",
+        "other": "Other"
       }
     },
     "q_package_manager_preference": {
@@ -448,7 +450,8 @@
         "apk": "APK",
         "nix": "Nix",
         "xbps": "XBPS",
-        "portage": "Portage"
+        "portage": "Portage",
+        "other": "Other"
       }
     },
     "q_ram_refinement_advanced": {
@@ -528,6 +531,7 @@
     "constraint_init_systemd": "You prefer systemd.",
     "constraint_init_openrc": "You prefer OpenRC.",
     "constraint_init_runit": "You prefer runit.",
+    "constraint_init_other": "You prefer an alternative init system.",
     "constraint_pkg_apt": "You prefer the APT package manager.",
     "constraint_pkg_dnf": "You prefer the DNF package manager.",
     "constraint_pkg_pacman": "You prefer the pacman package manager.",
@@ -536,6 +540,7 @@
     "constraint_pkg_nix": "You prefer the Nix package manager.",
     "constraint_pkg_xbps": "You prefer the XBPS package manager.",
     "constraint_pkg_portage": "You prefer the Portage package manager.",
+    "constraint_pkg_other": "You prefer an alternative package manager.",
     "constraint_immutable_prefer": "You prefer immutable (atomic-style) systems.",
     "constraint_immutable_avoid": "You prefer traditional mutable systems.",
     "constraint_server_use_case": "You want server-oriented recommendations.",
