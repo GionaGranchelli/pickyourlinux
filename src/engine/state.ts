@@ -1296,6 +1296,9 @@ export function filterAndSortResults(
         if (sort === "NAME_ASC") return a.name.localeCompare(b.name);
         if (sort === "NAME_DESC") return b.name.localeCompare(a.name);
 
+        if (b.score !== a.score) {
+            return b.score - a.score;
+        }
         if (b.strictMatchCount !== a.strictMatchCount) {
             return b.strictMatchCount - a.strictMatchCount;
         }

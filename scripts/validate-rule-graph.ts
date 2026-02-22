@@ -33,6 +33,36 @@ const __dirname = path.dirname(__filename);
 
 const distros = distrosData as Distro[];
 
+/**
+ * Options where the low match count reflects the actual Linux ecosystem,
+ * not a gap in the dataset. These are expected and should not be flagged
+ * as actionable traps.
+ *
+ * Format: "questionId/optionId"
+ */
+const ECOSYSTEM_CEILING_OPTIONS = new Set([
+  "q_package_manager_preference/apk",       // Alpine is the APK distro
+  "q_package_manager_preference/nix",       // NixOS is the Nix distro
+  "q_package_manager_preference/xbps",      // Void is the XBPS distro
+  "q_package_manager_preference/portage",   // Gentoo is the Portage distro
+  "q_desktop_preference_advanced/lxqt",     // LXQt ecosystem has one maintained option
+  "q_init_system_preference/runit",         // Void is the primary RUNIT distro
+]);
+
+/**
+ * Minimum distro matches before an option is considered a trap.
+ * Questions not listed here use DEFAULT_TRAP_THRESHOLD.
+ */
+const TRAP_THRESHOLDS: Record<string, number> = {
+  q_init_system_preference: 2,          // init ecosystem is narrow by nature
+  q_package_manager_preference: 2,      // package manager ecosystem is narrow
+  DEFAULT: 3,
+};
+
+function getTrapThreshold(questionId: string): number {
+  return TRAP_THRESHOLDS[questionId] ?? TRAP_THRESHOLDS["DEFAULT"];
+}
+
 // ---------------------------------------------------------------------------
 // Graph structures
 // ---------------------------------------------------------------------------
@@ -70,7 +100,8 @@ interface CoverageReport {
   value: unknown;
   matchCount: number;
   distroIds: string[];
-  isTrap: boolean; // true if matchCount < 3
+  isTrap: boolean;
+  reason: "MISSING_DISTROS" | "ECOSYSTEM_CEILING" | "OK";
 }
 
 interface GraphReport {
@@ -417,14 +448,24 @@ function auditCoverage(
           return dv === distroValue;
         });
 
+        const threshold = getTrapThreshold(q.id);
+        const matchCount = matchingDistros.length;
+        const key = `${q.id}/${opt.id}`;
+        const isEcosystemCeiling = ECOSYSTEM_CEILING_OPTIONS.has(key);
+
         reports.push({
           questionId: q.id,
           optionId: opt.id,
           field: patch.field,
           value: patch.value,
-          matchCount: matchingDistros.length,
+          matchCount,
           distroIds: matchingDistros.map((d) => d.id),
-          isTrap: matchingDistros.length < 3,
+          isTrap: matchCount < threshold && !isEcosystemCeiling,
+          reason: matchCount >= threshold
+            ? "OK"
+            : isEcosystemCeiling
+              ? "ECOSYSTEM_CEILING"
+              : "MISSING_DISTROS",
         });
       }
     }
@@ -561,24 +602,43 @@ function generateMarkdown(report: GraphReport): string {
     lines.push("");
   }
 
-  lines.push("## Phase 3 Coverage Audit (Trap UX Detection)");
+  lines.push("## Phase 3 Coverage Audit");
   lines.push("");
 
-  const traps = report.coverageReport.filter((r) => r.isTrap);
-  const safe = report.coverageReport.filter((r) => !r.isTrap);
+  const missing = report.coverageReport.filter((r) => r.reason === "MISSING_DISTROS");
+  const ceiling = report.coverageReport.filter((r) => r.reason === "ECOSYSTEM_CEILING");
+  const safe = report.coverageReport.filter((r) => r.reason === "OK");
 
-  if (traps.length === 0) {
-    lines.push("✅ All Phase 3 options match 3+ distros.", "");
+  if (missing.length === 0) {
+    lines.push("✅ No actionable traps (MISSING_DISTROS) detected.", "");
   } else {
     lines.push(
-      `⚠️ **${traps.length} option(s) match fewer than 3 distros — potential trap UX:**`,
+      `⚠️ **${missing.length} option(s) flagged as MISSING_DISTROS — these require dataset additions:**`,
       ""
     );
     lines.push(
       "| Question | Option | Field | Value | Matches | Distros |",
       "|----------|--------|-------|-------|---------|---------|"
     );
-    for (const trap of traps) {
+    for (const trap of missing) {
+      lines.push(
+        `| \`${trap.questionId}\` | \`${trap.optionId}\` | ${trap.field} | ${trap.value} | **${trap.matchCount}** | ${trap.distroIds.join(", ") || "none"} |`
+      );
+    }
+    lines.push("");
+  }
+
+  if (ceiling.length > 0) {
+    lines.push("## Ecosystem Ceiling Options (Expected — No Action Required)", "");
+    lines.push(
+      "These options have fewer matches because the Linux ecosystem genuinely has limited options for these preferences. This is accurate data, not a dataset gap. The two-pass scoring model handles these correctly.",
+      ""
+    );
+    lines.push(
+      "| Question | Option | Field | Value | Matches | Distros |",
+      "|----------|--------|-------|-------|---------|---------|"
+    );
+    for (const trap of ceiling) {
       lines.push(
         `| \`${trap.questionId}\` | \`${trap.optionId}\` | ${trap.field} | ${trap.value} | **${trap.matchCount}** | ${trap.distroIds.join(", ") || "none"} |`
       );
@@ -587,7 +647,7 @@ function generateMarkdown(report: GraphReport): string {
   }
 
   if (safe.length > 0) {
-    lines.push("<details><summary>✅ Safe options (3+ matches)</summary>", "");
+    lines.push("<details><summary>✅ Safe options (Meeting match threshold)</summary>", "");
     lines.push(
       "| Question | Option | Field | Value | Matches |",
       "|----------|--------|-------|-------|---------|"
@@ -680,16 +740,27 @@ async function main() {
 
   console.log("\n📊 Auditing Phase 3 option coverage...");
   const coverageReport = auditCoverage(ALL_QUESTIONS as any, distros);
-  const traps = coverageReport.filter((r) => r.isTrap);
-  if (traps.length > 0) {
-    console.warn(`   ⚠️  ${traps.length} trap option(s) with <3 distro matches:`);
-    for (const t of traps) {
-      console.warn(
+  const missing = coverageReport.filter((r) => r.reason === "MISSING_DISTROS");
+  const ceiling = coverageReport.filter((r) => r.reason === "ECOSYSTEM_CEILING");
+
+  if (missing.length > 0) {
+    console.error(`   ❌ ${missing.length} actionable trap(s) (MISSING_DISTROS):`);
+    for (const t of missing) {
+      console.error(
         `      ${t.questionId} / ${t.optionId}: ${t.matchCount} match(es) [${t.distroIds.join(", ") || "none"}]`
       );
     }
   } else {
-    console.log("   ✅ All Phase 3 options have 3+ distro matches");
+    console.log("   ✅ No actionable traps detected");
+  }
+
+  if (ceiling.length > 0) {
+    console.log(`   ℹ️  ${ceiling.length} ecosystem ceiling options (expected):`);
+    for (const t of ceiling) {
+      console.log(
+        `      ${t.questionId} / ${t.optionId}: ${t.matchCount} match(es) [${t.distroIds.join(", ") || "none"}]`
+      );
+    }
   }
 
   console.log("\n🗺️  Checking distro reachability...");
@@ -709,7 +780,7 @@ async function main() {
     console.log("   ✅ All distros reachable");
   }
 
-  const passed = cycles.length === 0;
+  const passed = cycles.length === 0 && missing.length === 0;
   const mermaid = generateMermaid(nodes, edges);
 
   const report: GraphReport = {
@@ -728,7 +799,7 @@ async function main() {
       cycleCount: cycles.length,
       deadDistroCount: dead.length,
       narrowDistroCount: narrow.length,
-      trapOptionCount: traps.length,
+      trapOptionCount: missing.length,
       passed,
     },
   };
@@ -750,7 +821,7 @@ async function main() {
   console.log(`   ${mmdOut}`);
 
   console.log(`\n${"=".repeat(45)}`);
-  console.log(`Result: ${passed ? "✅ PASSED" : "❌ FAILED (cycles detected)"}`);
+  console.log(`Result: ${passed ? "✅ PASSED" : "❌ FAILED (cycles or MISSING_DISTROS traps detected)"}`);
 
   if (!passed) process.exit(1);
 }

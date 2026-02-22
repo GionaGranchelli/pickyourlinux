@@ -1842,5 +1842,75 @@
     "supportedArchitectures": [
       "x86_64"
     ]
+  },
+  {
+    "id": "artix_linux",
+    "name": "Artix Linux",
+    "description": "Arch-based distribution without systemd. Ships with OpenRC, runit, s6, or dinit as init system choices.",
+    "imageUrl": "https://artixlinux.org/img/artix-logo.png",
+    "websiteUrl": "https://artixlinux.org/",
+    "documentationUrl": "https://wiki.artixlinux.org/",
+    "forumUrl": "https://forum.artixlinux.org/",
+    "downloadUrl": "https://artixlinux.org/download.php",
+    "distroSeaUrl": "https://distrosea.com/select/artix/",
+    "testDriveUrl": null,
+    "installerExperience": "GUI",
+    "maintenanceStyle": "HANDS_ON",
+    "proprietarySupport": "OPTIONAL",
+    "suitableForOldHardware": false,
+    "gamingSupport": "LIMITED",
+    "privacyPosture": "DEFAULT",
+    "docsEcosystem": "GOOD",
+    "supportedDesktops": [
+      "OTHER"
+    ],
+    "releaseModel": "ROLLING",
+    "initSystem": "OPENRC",
+    "packageManager": "PACMAN",
+    "primaryUseCase": "BOTH",
+    "laptopFriendly": false,
+    "immutable": false,
+    "lastVerified": "2026-02-22",
+    "verificationMethod": "MANUAL",
+    "secureBootOutOfBox": false,
+    "nvidiaExperience": "HARD",
+    "supportedArchitectures": [
+      "x86_64"
+    ]
+  },
+  {
+    "id": "feren_os",
+    "name": "Feren OS",
+    "description": "Ubuntu-based distribution focused on the Cinnamon desktop, designed for users migrating from Windows.",
+    "imageUrl": "https://ferenos.weebly.com/uploads/1/5/3/4/15348784/published/feren-os-logo.png",
+    "websiteUrl": "https://ferenos.weebly.com/",
+    "documentationUrl": "https://medium.com/feren-os",
+    "forumUrl": "https://www.reddit.com/r/ferenos/",
+    "downloadUrl": "https://ferenos.weebly.com/get-feren-os.html",
+    "distroSeaUrl": null,
+    "testDriveUrl": null,
+    "installerExperience": "GUI",
+    "maintenanceStyle": "LOW_FRICTION",
+    "proprietarySupport": "OPTIONAL",
+    "suitableForOldHardware": false,
+    "gamingSupport": "LIMITED",
+    "privacyPosture": "DEFAULT",
+    "docsEcosystem": "GOOD",
+    "supportedDesktops": [
+      "CINNAMON"
+    ],
+    "releaseModel": "FIXED",
+    "initSystem": "SYSTEMD",
+    "packageManager": "APT",
+    "primaryUseCase": "DESKTOP",
+    "laptopFriendly": true,
+    "immutable": false,
+    "lastVerified": "2026-02-22",
+    "verificationMethod": "MANUAL",
+    "secureBootOutOfBox": false,
+    "nvidiaExperience": "OK",
+    "supportedArchitectures": [
+      "x86_64"
+    ]
   }
 ]
