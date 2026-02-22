@@ -33,6 +33,7 @@ export const DistroSchema = z.object({
     privacyPosture: PrivacyPostureEnum,
     docsEcosystem: DocsEcosystemEnum,
     supportedDesktops: z.array(DesktopEnum).min(1),
+    supportedArchitectures: z.array(z.string()).min(1),
     releaseModel: ReleaseModelEnum,
     initSystem: InitSystemEnum,
     packageManager: PackageManagerEnum,

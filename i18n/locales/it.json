@@ -434,7 +434,8 @@
         "no_preference": "Nessuna preferenza",
         "systemd": "systemd",
         "openrc": "OpenRC",
-        "runit": "runit"
+        "runit": "runit",
+        "other": "Other"
       }
     },
     "q_package_manager_preference": {
@@ -448,7 +449,8 @@
         "apk": "APK",
         "nix": "Niente",
         "xbps": "XBPS",
-        "portage": "Portage"
+        "portage": "Portage",
+        "other": "Other"
       }
     },
     "q_ram_refinement_advanced": {

@@ -120,6 +120,7 @@ export const QuestionSchema = z.object({
     id: z.string(),
     text: z.string(),
     showIf: ConditionSchema.optional(),
+    constraintMode: z.enum(["HARD", "SOFT"]).optional().default("SOFT"),
     options: z
         .array(
             z.object({
@@ -130,6 +131,8 @@ export const QuestionSchema = z.object({
                 patches: z.array(PatchSchema),
                 isDisqualifier: z.boolean().default(false),
                 disqualificationReason: z.string().optional(),
+                isHardConstraint: z.boolean().optional().default(false),
+                preferenceWeight: z.number().optional().default(1),
             })
         )
         .min(1),
@@ -137,3 +140,21 @@ export const QuestionSchema = z.object({
 
 export type Question = z.infer<typeof QuestionSchema>;
 export type QuestionOption = Question["options"][number];
+
+// --- 5. Scoring Types ---
+import type { Distro } from "./distro-types";
+
+export interface MatchDetail {
+    field: string;
+    preferred: unknown;
+    actual: unknown;
+    weight: number;
+}
+
+export interface ScoredDistro {
+    distro: Distro;
+    score: number;
+    maxPossibleScore: number;
+    matchedPreferences: MatchDetail[];
+    missedPreferences: MatchDetail[];
+}

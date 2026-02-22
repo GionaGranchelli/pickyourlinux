@@ -68,7 +68,7 @@ describe("UI smoke", () => {
       distrosToCompare: [],
     });
 
-    expect(html).toContain(en.results.distroCard.compatible);
+    expect(html).toContain("Match Score");
   });
 
   it("renders review drawer with answers", async () => {
@@ -108,10 +108,10 @@ describe("UI smoke", () => {
 
   it("shows the toggle when more compatible distros are available", async () => {
     const sample: DistroCardVM[] = [
-      { id: "a", name: "A", reasonsIncluded: [], reasonsFriction: [], strictMatchCount: 0, choiceReasonCount: 0 },
-      { id: "b", name: "B", reasonsIncluded: [], reasonsFriction: [], strictMatchCount: 0, choiceReasonCount: 0 },
-      { id: "c", name: "C", reasonsIncluded: [], reasonsFriction: [], strictMatchCount: 0, choiceReasonCount: 0 },
-      { id: "d", name: "D", reasonsIncluded: [], reasonsFriction: [], strictMatchCount: 0, choiceReasonCount: 0 },
+      { id: "a", name: "A", reasonsIncluded: [], reasonsFriction: [], strictMatchCount: 0, choiceReasonCount: 0, score: 0, maxPossibleScore: 0, matchedPreferences: [], missedPreferences: [] },
+      { id: "b", name: "B", reasonsIncluded: [], reasonsFriction: [], strictMatchCount: 0, choiceReasonCount: 0, score: 0, maxPossibleScore: 0, matchedPreferences: [], missedPreferences: [] },
+      { id: "c", name: "C", reasonsIncluded: [], reasonsFriction: [], strictMatchCount: 0, choiceReasonCount: 0, score: 0, maxPossibleScore: 0, matchedPreferences: [], missedPreferences: [] },
+      { id: "d", name: "D", reasonsIncluded: [], reasonsFriction: [], strictMatchCount: 0, choiceReasonCount: 0, score: 0, maxPossibleScore: 0, matchedPreferences: [], missedPreferences: [] },
     ];
 
     const html = await renderComponent(ResultsShortlist, {

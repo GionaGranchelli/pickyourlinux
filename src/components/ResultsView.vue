@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { PropType } from "vue";
 import ReviewAnswers, { type AnswerGroup } from "~/components/ReviewAnswers.vue";
+import type { MatchDetail } from "~/data/types";
 
 type PresentedDistro = {
   distroId: string;
@@ -9,6 +10,10 @@ type PresentedDistro = {
   includedBecause: string[];
   excludedBecause: string[];
   matchedConstraints: string[];
+  score: number;
+  maxPossibleScore: number;
+  matchedPreferences: MatchDetail[];
+  missedPreferences: MatchDetail[];
 };
 
 defineProps({
@@ -51,6 +56,14 @@ defineProps({
   canShare: {
     type: Boolean,
     required: true
+  },
+  hardConstraintConflict: {
+    type: Boolean,
+    default: false
+  },
+  hardConstraintConflictFields: {
+    type: Array as PropType<string[]>,
+    default: () => []
   }
 });
 
@@ -91,7 +104,14 @@ const editAnswer = (questionId: string) => emit("editAnswer", questionId);
         </div>
       </div>
 
-      <div v-if="compatible.length === 0" class="rounded-xl border border-gray-200 bg-white p-6 text-sm text-gray-500">
+      <div v-if="hardConstraintConflict" class="rounded-xl border border-red-200 bg-red-50 p-6 text-sm text-red-800">
+        <div class="font-bold text-lg mb-2">No distros match all your required criteria.</div>
+        <p>Try relaxing one of your hard requirements: 
+          <span class="font-semibold">{{ hardConstraintConflictFields.join(', ') }}</span>.
+        </p>
+      </div>
+
+      <div v-else-if="compatible.length === 0" class="rounded-xl border border-gray-200 bg-white p-6 text-sm text-gray-500">
         None matched the current constraints.
       </div>
 
@@ -107,17 +127,41 @@ const editAnswer = (questionId: string) => emit("editAnswer", questionId);
               {{ result.description }}
             </p>
           </div>
-          <span class="inline-flex items-center rounded-full bg-green-100 px-3 py-1 text-xs font-semibold text-green-700">
-            Compatible
-          </span>
+          <div class="flex flex-col items-end gap-2">
+            <span class="inline-flex items-center rounded-full bg-green-100 px-3 py-1 text-xs font-semibold text-green-700">
+              Compatible
+            </span>
+            <span class="text-lg font-bold text-blue-600">
+              {{ result.score }}/{{ result.maxPossibleScore }}
+            </span>
+            <span class="text-xs text-gray-400">Match Score</span>
+          </div>
         </div>
 
-        <div class="mt-4">
-          <div class="text-xs font-semibold uppercase tracking-wide text-gray-400">Included because</div>
-          <ul class="mt-2 space-y-1 text-sm text-gray-600">
-            <li v-if="result.includedBecause.length === 0">No additional notes.</li>
-            <li v-for="(reason, idx) in result.includedBecause" :key="idx">{{ reason }}</li>
-          </ul>
+        <div class="mt-4 space-y-4">
+          <div v-if="result.matchedPreferences.length > 0">
+            <div class="text-xs font-semibold uppercase tracking-wide text-gray-400">Matched Preferences</div>
+            <ul class="mt-2 flex flex-wrap gap-2">
+              <li v-for="(pref, idx) in result.matchedPreferences" :key="idx" 
+                  class="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10">
+                {{ pref.field }}: {{ pref.preferred }}
+              </li>
+            </ul>
+          </div>
+
+          <div v-if="result.missedPreferences.length > 0">
+            <details class="group">
+              <summary class="cursor-pointer text-xs font-semibold uppercase tracking-wide text-gray-400 hover:text-gray-600">
+                Missed Preferences ({{ result.missedPreferences.length }})
+              </summary>
+              <ul class="mt-2 space-y-1 text-sm text-gray-600 border-l-2 border-gray-100 pl-4 py-1">
+                <li v-for="(pref, idx) in result.missedPreferences" :key="idx">
+                  <span class="font-medium text-gray-900 capitalize">{{ pref.field }}:</span> 
+                  You preferred <span class="italic">{{ pref.preferred }}</span>, but this distro uses <span class="font-medium text-amber-700">{{ pref.actual }}</span>.
+                </li>
+              </ul>
+            </details>
+          </div>
         </div>
       </div>
 

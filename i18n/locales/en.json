@@ -507,7 +507,8 @@
     "include_immutable_match": "Matches your immutable/traditional system preference.",
     "include_server_use_case_match": "Matches your server-use preference.",
     "include_laptop_friendly_match": "Works well for laptop-focused usage.",
-    "include_docs_ecosystem_match": "Has strong docs/community support for easier troubleshooting."
+    "include_docs_ecosystem_match": "Has strong docs/community support for easier troubleshooting.",
+    "exclude_hard_constraint_mismatch": "Does not match one or more of your required constraints."
   },
   "constraints": {
     "constraint_installer_gui": "You want a graphical installer.",

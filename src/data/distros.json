@@ -29,7 +29,11 @@
     "laptopFriendly": true,
     "lastVerified": "2026-02-21",
     "verificationMethod": "INFERRED",
-    "docsEcosystem": "EXCELLENT"
+    "docsEcosystem": "EXCELLENT",
+    "supportedArchitectures": [
+      "x86_64",
+      "arm64"
+    ]
   },
   {
     "id": "linux_mint",
@@ -61,7 +65,10 @@
     "laptopFriendly": true,
     "lastVerified": "2026-02-21",
     "verificationMethod": "INFERRED",
-    "docsEcosystem": "GOOD"
+    "docsEcosystem": "GOOD",
+    "supportedArchitectures": [
+      "x86_64"
+    ]
   },
   {
     "id": "pop_os",
@@ -93,7 +100,10 @@
     "laptopFriendly": true,
     "lastVerified": "2026-02-21",
     "verificationMethod": "INFERRED",
-    "docsEcosystem": "GOOD"
+    "docsEcosystem": "GOOD",
+    "supportedArchitectures": [
+      "x86_64"
+    ]
   },
   {
     "id": "fedora",
@@ -125,7 +135,11 @@
     "laptopFriendly": true,
     "lastVerified": "2026-02-21",
     "verificationMethod": "INFERRED",
-    "docsEcosystem": "EXCELLENT"
+    "docsEcosystem": "EXCELLENT",
+    "supportedArchitectures": [
+      "x86_64",
+      "arm64"
+    ]
   },
   {
     "id": "debian",
@@ -157,7 +171,12 @@
     "laptopFriendly": true,
     "lastVerified": "2026-02-21",
     "verificationMethod": "INFERRED",
-    "docsEcosystem": "EXCELLENT"
+    "docsEcosystem": "EXCELLENT",
+    "supportedArchitectures": [
+      "x86_64",
+      "arm64",
+      "x86"
+    ]
   },
   {
     "id": "arch",
@@ -190,7 +209,10 @@
     "laptopFriendly": false,
     "lastVerified": "2026-02-21",
     "verificationMethod": "INFERRED",
-    "docsEcosystem": "EXCELLENT"
+    "docsEcosystem": "EXCELLENT",
+    "supportedArchitectures": [
+      "x86_64"
+    ]
   },
   {
     "id": "manjaro",
@@ -222,7 +244,10 @@
     "laptopFriendly": true,
     "lastVerified": "2026-02-21",
     "verificationMethod": "INFERRED",
-    "docsEcosystem": "EXCELLENT"
+    "docsEcosystem": "EXCELLENT",
+    "supportedArchitectures": [
+      "x86_64"
+    ]
   },
   {
     "id": "opensuse_leap",
@@ -254,7 +279,10 @@
     "laptopFriendly": true,
     "lastVerified": "2026-02-21",
     "verificationMethod": "INFERRED",
-    "docsEcosystem": "EXCELLENT"
+    "docsEcosystem": "EXCELLENT",
+    "supportedArchitectures": [
+      "x86_64"
+    ]
   },
   {
     "id": "opensuse_tumbleweed",
@@ -286,7 +314,10 @@
     "laptopFriendly": true,
     "lastVerified": "2026-02-21",
     "verificationMethod": "INFERRED",
-    "docsEcosystem": "EXCELLENT"
+    "docsEcosystem": "EXCELLENT",
+    "supportedArchitectures": [
+      "x86_64"
+    ]
   },
   {
     "id": "elementary_os",
@@ -318,7 +349,10 @@
     "laptopFriendly": true,
     "lastVerified": "2026-02-21",
     "verificationMethod": "INFERRED",
-    "docsEcosystem": "GOOD"
+    "docsEcosystem": "GOOD",
+    "supportedArchitectures": [
+      "x86_64"
+    ]
   },
   {
     "id": "zorin_os",
@@ -350,7 +384,10 @@
     "laptopFriendly": true,
     "lastVerified": "2026-02-21",
     "verificationMethod": "INFERRED",
-    "docsEcosystem": "GOOD"
+    "docsEcosystem": "GOOD",
+    "supportedArchitectures": [
+      "x86_64"
+    ]
   },
   {
     "id": "mx_linux",
@@ -382,7 +419,10 @@
     "laptopFriendly": true,
     "lastVerified": "2026-02-21",
     "verificationMethod": "INFERRED",
-    "docsEcosystem": "GOOD"
+    "docsEcosystem": "GOOD",
+    "supportedArchitectures": [
+      "x86_64"
+    ]
   },
   {
     "id": "endeavouros",
@@ -415,7 +455,10 @@
     "laptopFriendly": false,
     "lastVerified": "2026-02-21",
     "verificationMethod": "INFERRED",
-    "docsEcosystem": "GOOD"
+    "docsEcosystem": "GOOD",
+    "supportedArchitectures": [
+      "x86_64"
+    ]
   },
   {
     "id": "garuda",
@@ -447,7 +490,10 @@
     "laptopFriendly": false,
     "lastVerified": "2026-02-21",
     "verificationMethod": "INFERRED",
-    "docsEcosystem": "GOOD"
+    "docsEcosystem": "GOOD",
+    "supportedArchitectures": [
+      "x86_64"
+    ]
   },
   {
     "id": "void_linux",
@@ -480,7 +526,10 @@
     "laptopFriendly": false,
     "lastVerified": "2026-02-21",
     "verificationMethod": "INFERRED",
-    "docsEcosystem": "EXCELLENT"
+    "docsEcosystem": "EXCELLENT",
+    "supportedArchitectures": [
+      "x86_64"
+    ]
   },
   {
     "id": "alpine",
@@ -512,7 +561,12 @@
     "laptopFriendly": false,
     "lastVerified": "2026-02-21",
     "verificationMethod": "INFERRED",
-    "docsEcosystem": "EXCELLENT"
+    "docsEcosystem": "EXCELLENT",
+    "supportedArchitectures": [
+      "x86_64",
+      "arm64",
+      "x86"
+    ]
   },
   {
     "id": "nixos",
@@ -544,7 +598,10 @@
     "laptopFriendly": false,
     "lastVerified": "2026-02-21",
     "verificationMethod": "INFERRED",
-    "docsEcosystem": "EXCELLENT"
+    "docsEcosystem": "EXCELLENT",
+    "supportedArchitectures": [
+      "x86_64"
+    ]
   },
   {
     "id": "tails",
@@ -576,7 +633,10 @@
     "laptopFriendly": true,
     "lastVerified": "2026-02-21",
     "verificationMethod": "INFERRED",
-    "docsEcosystem": "GOOD"
+    "docsEcosystem": "GOOD",
+    "supportedArchitectures": [
+      "x86_64"
+    ]
   },
   {
     "id": "qubes_os",
@@ -608,7 +668,10 @@
     "laptopFriendly": false,
     "lastVerified": "2026-02-21",
     "verificationMethod": "INFERRED",
-    "docsEcosystem": "GOOD"
+    "docsEcosystem": "GOOD",
+    "supportedArchitectures": [
+      "x86_64"
+    ]
   },
   {
     "id": "trisquel",
@@ -640,7 +703,10 @@
     "laptopFriendly": true,
     "lastVerified": "2026-02-21",
     "verificationMethod": "INFERRED",
-    "docsEcosystem": "GOOD"
+    "docsEcosystem": "GOOD",
+    "supportedArchitectures": [
+      "x86_64"
+    ]
   },
   {
     "id": "slackware",
@@ -672,7 +738,10 @@
     "laptopFriendly": false,
     "lastVerified": "2026-02-21",
     "verificationMethod": "INFERRED",
-    "docsEcosystem": "GOOD"
+    "docsEcosystem": "GOOD",
+    "supportedArchitectures": [
+      "x86_64"
+    ]
   },
   {
     "id": "kubuntu",
@@ -704,7 +773,10 @@
     "laptopFriendly": true,
     "lastVerified": "2026-02-21",
     "verificationMethod": "INFERRED",
-    "docsEcosystem": "GOOD"
+    "docsEcosystem": "GOOD",
+    "supportedArchitectures": [
+      "x86_64"
+    ]
   },
   {
     "id": "ubuntu_mate",
@@ -736,7 +808,10 @@
     "laptopFriendly": true,
     "lastVerified": "2026-02-21",
     "verificationMethod": "INFERRED",
-    "docsEcosystem": "GOOD"
+    "docsEcosystem": "GOOD",
+    "supportedArchitectures": [
+      "x86_64"
+    ]
   },
   {
     "id": "lubuntu",
@@ -768,7 +843,10 @@
     "laptopFriendly": true,
     "lastVerified": "2026-02-21",
     "verificationMethod": "INFERRED",
-    "docsEcosystem": "GOOD"
+    "docsEcosystem": "GOOD",
+    "supportedArchitectures": [
+      "x86_64"
+    ]
   },
   {
     "id": "xubuntu",
@@ -800,7 +878,10 @@
     "laptopFriendly": true,
     "lastVerified": "2026-02-21",
     "verificationMethod": "INFERRED",
-    "docsEcosystem": "GOOD"
+    "docsEcosystem": "GOOD",
+    "supportedArchitectures": [
+      "x86_64"
+    ]
   },
   {
     "id": "kde_neon",
@@ -832,7 +913,10 @@
     "laptopFriendly": true,
     "lastVerified": "2026-02-21",
     "verificationMethod": "INFERRED",
-    "docsEcosystem": "GOOD"
+    "docsEcosystem": "GOOD",
+    "supportedArchitectures": [
+      "x86_64"
+    ]
   },
   {
     "id": "linux_lite",
@@ -864,7 +948,10 @@
     "laptopFriendly": true,
     "lastVerified": "2026-02-21",
     "verificationMethod": "INFERRED",
-    "docsEcosystem": "GOOD"
+    "docsEcosystem": "GOOD",
+    "supportedArchitectures": [
+      "x86_64"
+    ]
   },
   {
     "id": "peppermint_os",
@@ -896,7 +983,10 @@
     "laptopFriendly": true,
     "lastVerified": "2026-02-21",
     "verificationMethod": "INFERRED",
-    "docsEcosystem": "GOOD"
+    "docsEcosystem": "GOOD",
+    "supportedArchitectures": [
+      "x86_64"
+    ]
   },
   {
     "id": "nobara",
@@ -928,7 +1018,10 @@
     "laptopFriendly": true,
     "lastVerified": "2026-02-21",
     "verificationMethod": "INFERRED",
-    "docsEcosystem": "GOOD"
+    "docsEcosystem": "GOOD",
+    "supportedArchitectures": [
+      "x86_64"
+    ]
   },
   {
     "id": "pureos",
@@ -960,7 +1053,10 @@
     "laptopFriendly": true,
     "lastVerified": "2026-02-21",
     "verificationMethod": "INFERRED",
-    "docsEcosystem": "GOOD"
+    "docsEcosystem": "GOOD",
+    "supportedArchitectures": [
+      "x86_64"
+    ]
   },
   {
     "id": "rocky_linux",
@@ -992,7 +1088,10 @@
     "laptopFriendly": false,
     "lastVerified": "2026-02-21",
     "verificationMethod": "MANUAL",
-    "docsEcosystem": "GOOD"
+    "docsEcosystem": "GOOD",
+    "supportedArchitectures": [
+      "x86_64"
+    ]
   },
   {
     "id": "almalinux",
@@ -1024,7 +1123,10 @@
     "laptopFriendly": false,
     "lastVerified": "2026-02-21",
     "verificationMethod": "MANUAL",
-    "docsEcosystem": "GOOD"
+    "docsEcosystem": "GOOD",
+    "supportedArchitectures": [
+      "x86_64"
+    ]
   },
   {
     "id": "centos_stream",
@@ -1056,7 +1158,10 @@
     "laptopFriendly": false,
     "lastVerified": "2026-02-21",
     "verificationMethod": "MANUAL",
-    "docsEcosystem": "GOOD"
+    "docsEcosystem": "GOOD",
+    "supportedArchitectures": [
+      "x86_64"
+    ]
   },
   {
     "id": "ubuntu_budgie",
@@ -1088,7 +1193,10 @@
     "laptopFriendly": true,
     "lastVerified": "2026-02-21",
     "verificationMethod": "INFERRED",
-    "docsEcosystem": "GOOD"
+    "docsEcosystem": "GOOD",
+    "supportedArchitectures": [
+      "x86_64"
+    ]
   },
   {
     "id": "ubuntu_studio",
@@ -1120,7 +1228,10 @@
     "laptopFriendly": true,
     "lastVerified": "2026-02-21",
     "verificationMethod": "INFERRED",
-    "docsEcosystem": "GOOD"
+    "docsEcosystem": "GOOD",
+    "supportedArchitectures": [
+      "x86_64"
+    ]
   },
   {
     "id": "lmde",
@@ -1152,7 +1263,10 @@
     "laptopFriendly": true,
     "lastVerified": "2026-02-21",
     "verificationMethod": "INFERRED",
-    "docsEcosystem": "GOOD"
+    "docsEcosystem": "GOOD",
+    "supportedArchitectures": [
+      "x86_64"
+    ]
   },
   {
     "id": "solus",
@@ -1187,7 +1301,10 @@
     "laptopFriendly": true,
     "lastVerified": "2026-02-21",
     "verificationMethod": "MANUAL",
-    "docsEcosystem": "GOOD"
+    "docsEcosystem": "GOOD",
+    "supportedArchitectures": [
+      "x86_64"
+    ]
   },
   {
     "id": "mageia",
@@ -1221,7 +1338,10 @@
     "laptopFriendly": true,
     "lastVerified": "2026-02-21",
     "verificationMethod": "MANUAL",
-    "docsEcosystem": "GOOD"
+    "docsEcosystem": "GOOD",
+    "supportedArchitectures": [
+      "x86_64"
+    ]
   },
   {
     "id": "pclinuxos",
@@ -1255,7 +1375,10 @@
     "laptopFriendly": true,
     "lastVerified": "2026-02-21",
     "verificationMethod": "MANUAL",
-    "docsEcosystem": "THIN"
+    "docsEcosystem": "THIN",
+    "supportedArchitectures": [
+      "x86_64"
+    ]
   },
   {
     "id": "deepin",
@@ -1287,7 +1410,10 @@
     "laptopFriendly": true,
     "lastVerified": "2026-02-21",
     "verificationMethod": "MANUAL",
-    "docsEcosystem": "GOOD"
+    "docsEcosystem": "GOOD",
+    "supportedArchitectures": [
+      "x86_64"
+    ]
   },
   {
     "id": "bodhi_linux",
@@ -1319,7 +1445,10 @@
     "laptopFriendly": true,
     "lastVerified": "2026-02-21",
     "verificationMethod": "MANUAL",
-    "docsEcosystem": "THIN"
+    "docsEcosystem": "THIN",
+    "supportedArchitectures": [
+      "x86_64"
+    ]
   },
   {
     "id": "kali_linux",
@@ -1351,7 +1480,10 @@
     "laptopFriendly": false,
     "lastVerified": "2026-02-21",
     "verificationMethod": "MANUAL",
-    "docsEcosystem": "GOOD"
+    "docsEcosystem": "GOOD",
+    "supportedArchitectures": [
+      "x86_64"
+    ]
   },
   {
     "id": "gentoo",
@@ -1384,7 +1516,10 @@
     "laptopFriendly": false,
     "lastVerified": "2026-02-21",
     "verificationMethod": "INFERRED",
-    "docsEcosystem": "EXCELLENT"
+    "docsEcosystem": "EXCELLENT",
+    "supportedArchitectures": [
+      "x86_64"
+    ]
   },
   {
     "id": "bazzite",
@@ -1417,7 +1552,10 @@
     "laptopFriendly": true,
     "lastVerified": "2026-02-21",
     "verificationMethod": "INFERRED",
-    "docsEcosystem": "GOOD"
+    "docsEcosystem": "GOOD",
+    "supportedArchitectures": [
+      "x86_64"
+    ]
   },
   {
     "id": "cachyos",
@@ -1453,7 +1591,10 @@
     "laptopFriendly": false,
     "lastVerified": "2026-02-21",
     "verificationMethod": "INFERRED",
-    "docsEcosystem": "GOOD"
+    "docsEcosystem": "GOOD",
+    "supportedArchitectures": [
+      "x86_64"
+    ]
   },
   {
     "id": "pikaos",
@@ -1486,7 +1627,10 @@
     "laptopFriendly": true,
     "lastVerified": "2026-02-21",
     "verificationMethod": "INFERRED",
-    "docsEcosystem": "GOOD"
+    "docsEcosystem": "GOOD",
+    "supportedArchitectures": [
+      "x86_64"
+    ]
   },
   {
     "id": "artix",
@@ -1519,7 +1663,10 @@
     "laptopFriendly": false,
     "lastVerified": "2026-02-21",
     "verificationMethod": "MANUAL",
-    "docsEcosystem": "GOOD"
+    "docsEcosystem": "GOOD",
+    "supportedArchitectures": [
+      "x86_64"
+    ]
   },
   {
     "id": "fedora_silverblue",
@@ -1551,7 +1698,10 @@
     "laptopFriendly": true,
     "lastVerified": "2026-02-21",
     "verificationMethod": "MANUAL",
-    "docsEcosystem": "EXCELLENT"
+    "docsEcosystem": "EXCELLENT",
+    "supportedArchitectures": [
+      "x86_64"
+    ]
   },
   {
     "id": "fedora_kinoite",
@@ -1583,7 +1733,10 @@
     "laptopFriendly": true,
     "lastVerified": "2026-02-21",
     "verificationMethod": "MANUAL",
-    "docsEcosystem": "EXCELLENT"
+    "docsEcosystem": "EXCELLENT",
+    "supportedArchitectures": [
+      "x86_64"
+    ]
   },
   {
     "id": "opensuse_microos",
@@ -1615,7 +1768,10 @@
     "laptopFriendly": false,
     "lastVerified": "2026-02-21",
     "verificationMethod": "MANUAL",
-    "docsEcosystem": "GOOD"
+    "docsEcosystem": "GOOD",
+    "supportedArchitectures": [
+      "x86_64"
+    ]
   },
   {
     "id": "whonix",
@@ -1647,7 +1803,10 @@
     "lastVerified": "2026-02-21",
     "verificationMethod": "MANUAL",
     "secureBootOutOfBox": false,
-    "nvidiaExperience": "HARD"
+    "nvidiaExperience": "HARD",
+    "supportedArchitectures": [
+      "x86_64"
+    ]
   },
   {
     "id": "parrot",
@@ -1679,6 +1838,9 @@
     "lastVerified": "2026-02-21",
     "verificationMethod": "MANUAL",
     "secureBootOutOfBox": false,
-    "nvidiaExperience": "OK"
+    "nvidiaExperience": "OK",
+    "supportedArchitectures": [
+      "x86_64"
+    ]
   }
 ]

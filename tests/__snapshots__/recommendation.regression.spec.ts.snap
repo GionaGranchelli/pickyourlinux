@@ -45,6 +45,7 @@ exports[`recommendation regression personas > intermediate_privacy_fixed: Interm
   "pureos",
   "tails",
   "trisquel",
+  "alpine",
 ]
 `;
 
@@ -74,6 +75,6 @@ exports[`recommendation regression personas > server_low_friction: Server-focuse
   "opensuse_leap",
   "opensuse_microos",
   "ubuntu",
-  "bazzite",
+  "almalinux",
 ]
 `;

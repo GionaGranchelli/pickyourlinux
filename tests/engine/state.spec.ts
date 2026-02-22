@@ -99,7 +99,7 @@ describe("engine/state", () => {
         expect(engine.isComplete.value).toBe(true);
     });
 
-    it("keeps presentation ordering stable by distro id", () => {
+    it("keeps presentation ordering stable by score then distro id", () => {
         const intent = UserIntentSchema.parse({
             installation: "GUI",
             maintenance: "NO_TERMINAL",
@@ -118,13 +118,21 @@ describe("engine/state", () => {
         });
 
         const distros = DistroListSchema.parse(distrosData);
-        const presentation = buildResultsPresentation(intent, distros, { limit: 50, showAll: true });
+        const presentation = buildResultsPresentation(intent, distros, { limit: 100, showAll: true });
 
         const compatibleIds = presentation.compatible.map((item) => item.distroId);
-        const excludedIds = presentation.excluded.map((item) => item.distroId);
-
-        expect(compatibleIds).toEqual([...compatibleIds].sort());
-        expect(excludedIds).toEqual([...excludedIds].sort());
+        
+        // Verify secondary sort: within the same score, they should be alphabetical
+        const scores = presentation.compatible.map(item => item.score);
+        const uniqueScores = [...new Set(scores)];
+        
+        uniqueScores.forEach(score => {
+            const idsForScore = presentation.compatible
+                .filter(item => item.score === score)
+                .map(item => item.distroId);
+            
+            expect(idsForScore).toEqual([...idsForScore].sort());
+        });
     });
 
     it("skip advances without applying patches and supports undo", () => {

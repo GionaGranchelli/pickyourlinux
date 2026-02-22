@@ -39,6 +39,8 @@ const compareCount = computed(() => distrosToCompare.value.length);
 const allResults = computed(() => resultsVM.value.allCompatible);
 const totalResultsCount = computed(() => allResults.value.length);
 const excludedDistros = computed(() => resultsVM.value.excludedDistros);
+const hardConstraintConflict = computed(() => resultsVM.value.hardConstraintConflict);
+const hardConstraintConflictFields = computed(() => resultsVM.value.hardConstraintConflictFields);
 
 const filteredResults = computed(() => {
   return filterAndSortResults(allResults.value, filters.value, sortBy.value);
@@ -296,6 +298,13 @@ watchEffect(() => {
         </button>
       </div>
     </section>
+
+    <div v-if="hardConstraintConflict" class="rounded-xl border border-red-200 bg-red-50 p-6 text-sm text-red-800 shadow-sm">
+      <div class="font-bold text-lg mb-2">No distros match all your required criteria.</div>
+      <p>Try relaxing one of your hard requirements: 
+        <span class="font-semibold text-red-900">{{ hardConstraintConflictFields.join(', ') }}</span>.
+      </p>
+    </div>
 
     <ResultsShortlist
       :shortlist="filteredShortlist"

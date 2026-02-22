@@ -417,7 +417,8 @@
         "no_preference": "Aucune préférence",
         "systemd": "système",
         "openrc": "OuvertRC",
-        "runit": "exécuter"
+        "runit": "exécuter",
+        "other": "Other"
       }
     },
     "q_package_manager_preference": {
@@ -431,7 +432,8 @@
         "apk": "APK",
         "nix": "Rien",
         "xbps": "XBPS",
-        "portage": "Portage"
+        "portage": "Portage",
+        "other": "Other"
       }
     },
     "q_ram_refinement_advanced": {
