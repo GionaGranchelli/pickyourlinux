@@ -30,11 +30,20 @@ const linksCount = computed(() =>
 const tr = (key: string, fallback: string) => (te(key) ? t(key) : fallback);
 
 const openModal = () => {
+  if (typeof umTrackEvent === "function") {
+    umTrackEvent("explanation_viewed", { section: "distro_modal", distro: props.distro.id });
+  }
   modalOpen.value = true;
 };
 
 const closeModal = () => {
   modalOpen.value = false;
+};
+
+const trackOutbound = (type: string) => {
+  if (typeof umTrackEvent === "function") {
+    umTrackEvent("distro_outbound_click", { distro: props.distro.id, type });
+  }
 };
 
 const handleToggleCompare = () => {
@@ -284,22 +293,22 @@ const handleToggleCompare = () => {
           </div>
 
           <div class="mt-5 flex flex-wrap gap-2">
-            <a v-if="props.distro.websiteUrl" :href="props.distro.websiteUrl" target="_blank" rel="noopener noreferrer" class="rounded-full border border-blue-300 px-3 py-1 text-xs font-semibold text-blue-700 hover:bg-blue-50">
+            <a v-if="props.distro.websiteUrl" :href="props.distro.websiteUrl" target="_blank" rel="noopener noreferrer" class="rounded-full border border-blue-300 px-3 py-1 text-xs font-semibold text-blue-700 hover:bg-blue-50" @click="trackOutbound('website')">
               {{ t("results.distroCard.links.website") }}
             </a>
-            <a v-if="props.distro.documentationUrl" :href="props.distro.documentationUrl" target="_blank" rel="noopener noreferrer" class="rounded-full border border-blue-300 px-3 py-1 text-xs font-semibold text-blue-700 hover:bg-blue-50">
+            <a v-if="props.distro.documentationUrl" :href="props.distro.documentationUrl" target="_blank" rel="noopener noreferrer" class="rounded-full border border-blue-300 px-3 py-1 text-xs font-semibold text-blue-700 hover:bg-blue-50" @click="trackOutbound('documentation')">
               {{ t("results.distroCard.links.documentation") }}
             </a>
-            <a v-if="props.distro.forumUrl" :href="props.distro.forumUrl" target="_blank" rel="noopener noreferrer" class="rounded-full border border-blue-300 px-3 py-1 text-xs font-semibold text-blue-700 hover:bg-blue-50">
+            <a v-if="props.distro.forumUrl" :href="props.distro.forumUrl" target="_blank" rel="noopener noreferrer" class="rounded-full border border-blue-300 px-3 py-1 text-xs font-semibold text-blue-700 hover:bg-blue-50" @click="trackOutbound('forum')">
               {{ t("results.distroCard.links.forum") }}
             </a>
-            <a v-if="props.distro.downloadUrl" :href="props.distro.downloadUrl" target="_blank" rel="noopener noreferrer" class="rounded-full border border-blue-300 px-3 py-1 text-xs font-semibold text-blue-700 hover:bg-blue-50">
+            <a v-if="props.distro.downloadUrl" :href="props.distro.downloadUrl" target="_blank" rel="noopener noreferrer" class="rounded-full border border-blue-300 px-3 py-1 text-xs font-semibold text-blue-700 hover:bg-blue-50" @click="trackOutbound('download')">
               {{ t("results.distroCard.links.download") }}
             </a>
-            <a v-if="props.distro.distroSeaUrl" :href="props.distro.distroSeaUrl" target="_blank" rel="noopener noreferrer" class="rounded-full border-2 border-indigo-500 bg-indigo-50 px-3 py-1 text-xs font-bold text-indigo-700 hover:bg-indigo-100 shadow-sm transition-all hover:shadow-md">
+            <a v-if="props.distro.distroSeaUrl" :href="props.distro.distroSeaUrl" target="_blank" rel="noopener noreferrer" class="rounded-full border-2 border-indigo-500 bg-indigo-50 px-3 py-1 text-xs font-bold text-indigo-700 hover:bg-indigo-100 shadow-sm transition-all hover:shadow-md" @click="trackOutbound('try_online')">
               ✨ {{ t("results.distroCard.links.tryOnline") }}
             </a>
-            <a v-if="props.distro.testDriveUrl" :href="props.distro.testDriveUrl" target="_blank" rel="noopener noreferrer" class="rounded-full border border-blue-300 px-3 py-1 text-xs font-semibold text-blue-700 hover:bg-blue-50">
+            <a v-if="props.distro.testDriveUrl" :href="props.distro.testDriveUrl" target="_blank" rel="noopener noreferrer" class="rounded-full border border-blue-300 px-3 py-1 text-xs font-semibold text-blue-700 hover:bg-blue-50" @click="trackOutbound('test_drive')">
               {{ t("results.distroCard.links.testDrive") }}
             </a>
           </div>

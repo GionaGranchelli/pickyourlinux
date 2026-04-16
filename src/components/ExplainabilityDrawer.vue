@@ -18,6 +18,9 @@ watch(
   () => props.open,
   (open) => {
     if (!open) return;
+    if (typeof umTrackEvent === "function") {
+      umTrackEvent("explanation_viewed", { section: "drawer" });
+    }
     void nextTick(() => panelRef.value?.focus());
   }
 );

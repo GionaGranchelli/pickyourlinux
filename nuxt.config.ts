@@ -1,6 +1,7 @@
 import { defineNuxtConfig } from "nuxt/config";
 
 export default defineNuxtConfig({
+  extends: ["nuxt-umami"],
   srcDir: "src/",
   css: ["~/assets/main.css"],
   modules: ["@nuxtjs/i18n"],

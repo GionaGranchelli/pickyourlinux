@@ -114,12 +114,18 @@ const closeReview = () => {
 };
 
 const restart = () => {
+  if (typeof umTrackEvent === "function") {
+    umTrackEvent("results_restarted");
+  }
   reset();
   void router.push("/");
 };
 
 const handleToggleCompare = (id: string, isCompared: boolean) => {
   if (isCompared) {
+    if (typeof umTrackEvent === "function") {
+      umTrackEvent("distro_compared", { id });
+    }
     addDistroToCompare(id);
   } else {
     removeDistroFromCompare(id);
@@ -132,6 +138,9 @@ const goToCompare = () => {
 
 const continueRefinement = () => {
   if (!nextExperience.value) return;
+  if (typeof umTrackEvent === "function") {
+    umTrackEvent("refinement_continued", { to: nextExperience.value });
+  }
   const changed = upgradeExperienceLevel(nextExperience.value);
   if (!changed) return;
   void router.push("/wizard");

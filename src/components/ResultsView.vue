@@ -205,7 +205,7 @@ const editAnswer = (questionId: string) => emit("editAnswer", questionId);
     </section>
 
     <section>
-      <details class="rounded-2xl border border-gray-200 bg-white p-6">
+      <details class="rounded-2xl border border-gray-200 bg-white p-6" @toggle="(e) => (e.target as HTMLDetailsElement).open && typeof umTrackEvent === 'function' && umTrackEvent('explanation_viewed', { section: 'excluded_distros' })">
         <summary class="cursor-pointer text-sm font-semibold text-gray-700">Excluded distros ({{ excluded.length }})</summary>
 
         <div v-if="excluded.length === 0" class="mt-4 text-sm text-gray-500">
@@ -257,5 +257,8 @@ const editAnswer = (questionId: string) => emit("editAnswer", questionId);
 
       <ReviewAnswers :groups="answerGroups" @edit-answer="editAnswer" />
     </section>
+  </div>
+</template>
+tion>
   </div>
 </template>

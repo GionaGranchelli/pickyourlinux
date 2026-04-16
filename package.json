@@ -37,13 +37,14 @@
     "audit:distros": "node scripts/audit-distros.js"
   },
   "dependencies": {
-    "nuxt": "^4.3.1",
-    "zod": "^4.3.6",
-    "jiti": "^2.6.1",
-    "vue": "^3.5.28",
-    "vitest": "3.2.4",
     "@vue/server-renderer": "^3.5.28",
-    "vue-i18n": "^11.2.8"
+    "jiti": "^2.6.1",
+    "nuxt": "^4.3.1",
+    "nuxt-umami": "^2.6.7",
+    "vitest": "3.2.4",
+    "vue": "^3.5.28",
+    "vue-i18n": "^11.2.8",
+    "zod": "^4.3.6"
   },
   "devDependencies": {
     "@nuxtjs/i18n": "^10.2.3",

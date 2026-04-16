@@ -8,6 +8,9 @@ const router = useRouter();
 const engine = useDecisionEngine(t);
 
 const start = () => {
+  if (typeof umTrackEvent === "function") {
+    umTrackEvent("flow_started");
+  }
   engine.reset();
   void router.push("/wizard");
 };

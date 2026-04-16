@@ -616,6 +616,21 @@ export function useDecisionEngine(t: (key: string) => string = (key) => key) {
             return;
         }
 
+        // Check if this choice is "narrow" (< 3 distros)
+        if (!option.isDisqualifier && option.patches.length > 0) {
+            const previewIntent = applyPatch(structuredClone(toRaw(intent.value)), option.patches);
+            const compatibleCount = buildCompatibility(previewIntent).filter(r => r.compatible).length;
+            if (compatibleCount > 0 && compatibleCount < 3) {
+                if (typeof umTrackEvent === "function") {
+                    umTrackEvent("narrow_path_selected", { 
+                        question: questionId, 
+                        option: option.id, 
+                        remaining: compatibleCount 
+                    });
+                }
+            }
+        }
+
         lastAppliedPatches.value = option.patches.map((patch) => JSON.stringify(patch));
 
         if (debugEnabled) {
@@ -638,6 +653,26 @@ export function useDecisionEngine(t: (key: string) => string = (key) => key) {
         const next = visibleQuestions.value.find((q) => !answeredIds.value.includes(q.id));
         if (!next) {
             status.value = "COMPLETED";
+            if (typeof umTrackEvent === "function") {
+                const finalIntent = toRaw(intent.value);
+                umTrackEvent("flow_completed", { experience: finalIntent.experience });
+                umTrackEvent("final_intent_profile", {
+                    experience: finalIntent.experience,
+                    gpu: finalIntent.gpu,
+                    desktop: finalIntent.desktopPreference,
+                    release: finalIntent.releaseModel,
+                    tags: finalIntent.tags.join(",")
+                });
+
+                // Check for logic conflict (dead end)
+                const { filteredDistros, conflictFields } = applyHardConstraints(distrosForVM, finalIntent);
+                if (filteredDistros.length === 0) {
+                    umTrackEvent("logic_conflict", { 
+                        fields: conflictFields.join(","),
+                        last_question: questionId
+                    });
+                }
+            }
         }
     }
 
@@ -647,6 +682,10 @@ export function useDecisionEngine(t: (key: string) => string = (key) => key) {
         if (!question) return;
         if (question.id === "q_phase_exit") return;
         if (question.options.some((option) => option.isDisqualifier)) return;
+
+        if (typeof umTrackEvent === "function") {
+            umTrackEvent("question_skipped", { question: question.id });
+        }
 
         history.value.push({
             intent: structuredClone(toRaw(intent.value)),
@@ -672,6 +711,24 @@ export function useDecisionEngine(t: (key: string) => string = (key) => key) {
         const next = visibleQuestions.value.find((q) => !answeredIds.value.includes(q.id));
         if (!next) {
             status.value = "COMPLETED";
+            if (typeof umTrackEvent === "function") {
+                const finalIntent = toRaw(intent.value);
+                umTrackEvent("flow_completed", { experience: finalIntent.experience, skipped: true });
+                umTrackEvent("final_intent_profile", {
+                    experience: finalIntent.experience,
+                    gpu: finalIntent.gpu,
+                    tags: finalIntent.tags.join(",")
+                });
+
+                // Check for logic conflict
+                const { filteredDistros, conflictFields } = applyHardConstraints(distrosForVM, finalIntent);
+                if (filteredDistros.length === 0) {
+                    umTrackEvent("logic_conflict", { 
+                        fields: conflictFields.join(","),
+                        last_question: question.id
+                    });
+                }
+            }
         }
     }
 
