@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
+import { usePageSeo } from "~/composables/usePageSeo";
 import type { Distro } from "~/data/distro-types";
 import { getAllDistros } from "~/engine/state";
 import DistroFilters from "~/components/distros/DistroFilters.vue";
@@ -57,6 +58,21 @@ const closeFeatures = () => {
 const selectedDistro = computed<Distro | null>(() => {
   if (!openDistroId.value) return null;
   return allDistros.find((d) => d.id === openDistroId.value) ?? null;
+});
+
+usePageSeo({
+  title: "All distros and metrics",
+  description: "Browse the full Linux distro dataset with release models, package managers, maintenance styles, and other explicit comparison fields.",
+  path: "/distros",
+  keywords: ["linux distro list", "linux distro comparison data", "all linux distros"],
+  structuredData: [
+    {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      name: "All distros and metrics",
+      description: "Browsable dataset of Linux distributions and modeled attributes.",
+    },
+  ],
 });
 </script>
 

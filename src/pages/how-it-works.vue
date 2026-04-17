@@ -8,6 +8,7 @@ import howItWorksFr from "~/../i18n/how-it-works/fr.md?raw";
 import howItWorksIt from "~/../i18n/how-it-works/it.md?raw";
 import howItWorksNl from "~/../i18n/how-it-works/nl.md?raw";
 import howItWorksPt from "~/../i18n/how-it-works/pt.md?raw";
+import { usePageSeo } from "~/composables/usePageSeo";
 import { renderMarkdown } from "~/utils/markdown";
 
 const { locale } = useI18n();
@@ -35,6 +36,13 @@ const docsUsed = [
   "docs/TONE_AND_COPY.md",
   "docs/FRONTEND-IMPLEMENTATION-RULES.md",
 ];
+
+usePageSeo({
+  title: "How it works",
+  description: "See how Pick Your Linux filters distributions through explicit constraints, declarative data, and explainable outputs.",
+  path: "/how-it-works",
+  keywords: ["how linux distro picker works", "declarative decision engine", "linux distro filtering logic"],
+});
 </script>
 
 <template>

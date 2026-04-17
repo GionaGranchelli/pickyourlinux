@@ -8,6 +8,7 @@ import manifestoFr from "~/../i18n/manifesto/fr.md?raw";
 import manifestoIt from "~/../i18n/manifesto/it.md?raw";
 import manifestoNl from "~/../i18n/manifesto/nl.md?raw";
 import manifestoPt from "~/../i18n/manifesto/pt.md?raw";
+import { usePageSeo } from "~/composables/usePageSeo";
 import { renderMarkdown } from "~/utils/markdown";
 
 const { locale } = useI18n();
@@ -24,6 +25,13 @@ const localizedManifesto: Record<string, string> = {
 
 const html = computed(() => renderMarkdown(localizedManifesto[locale.value] ?? manifestoEn));
 const repositoryUrl = "https://github.com/GionaGranchelli/pickyourlinux";
+
+usePageSeo({
+  title: "Manifesto",
+  description: "Read the design principles behind Pick Your Linux: deterministic outputs, logic as data, and transparent distro selection.",
+  path: "/manifesto",
+  keywords: ["linux distro manifesto", "transparent recommendation", "logic as data"],
+});
 </script>
 
 <template>

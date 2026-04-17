@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
 import { useI18n } from "vue-i18n";
+import { usePageSeo } from "~/composables/usePageSeo";
 import { useDecisionEngine } from "~/composables/useDecisionEngine";
 import { buildCompatibilityResults, getAllDistros } from "~/engine/state";
 
@@ -91,6 +92,13 @@ const getExclusionReasons = (distroId: string): string[] => {
     return te(key) ? t(key) : reason;
   });
 };
+
+usePageSeo({
+  title: "Compare distros",
+  description: "Side-by-side comparison for the distros currently selected in your session.",
+  path: "/compare",
+  noindex: true,
+});
 </script>
 
 <template>

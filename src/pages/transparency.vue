@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed } from "vue";
+import { usePageSeo } from "~/composables/usePageSeo";
 import { ALL_QUESTIONS } from "~/data/questions";
 import {
   ConstraintKeys,
@@ -52,6 +53,13 @@ const docsUsed = [
   path,
   url: `${repositoryUrl}/blob/master/${path}`,
 }));
+
+usePageSeo({
+  title: "Transparency",
+  description: "Inspect the question inventory, dataset coverage, validation steps, and decision policy behind Pick Your Linux.",
+  path: "/transparency",
+  keywords: ["linux distro dataset", "decision policy", "validation transparency"],
+});
 </script>
 
 <template>

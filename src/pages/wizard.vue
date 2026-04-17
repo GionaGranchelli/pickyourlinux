@@ -8,6 +8,7 @@ import PhaseGateCard from "~/components/PhaseGateCard.vue";
 import ReviewAnswersDrawer from "~/components/ReviewAnswersDrawer.vue";
 import DisqualifiedCard from "~/components/DisqualifiedCard.vue";
 import DebugOverlay from "~/components/DebugOverlay.vue";
+import { usePageSeo } from "~/composables/usePageSeo";
 import { useDecisionEngine } from "~/composables/useDecisionEngine";
 
 const { t } = useI18n();
@@ -40,6 +41,13 @@ const canSkip = computed(() => {
 });
 
 const reviewOpen = ref(false);
+
+usePageSeo({
+  title: "Question flow",
+  description: "Interactive question flow used to filter Linux distros by explicit constraints.",
+  path: "/wizard",
+  noindex: true,
+});
 
 const openReview = () => {
   reviewOpen.value = true;

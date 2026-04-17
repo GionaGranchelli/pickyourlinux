@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
+import { usePageSeo } from "~/composables/usePageSeo";
 
 const { t, te } = useI18n();
 const tr = (key: string, fallback: string): string => (te(key) ? t(key) : fallback);
@@ -12,13 +13,9 @@ const mailtoCodes = [109, 97, 105, 108, 116, 111, 58];
 
 const getEmailHref = () => {
   const local = String.fromCharCode(...emailLocalCodes);
-  console.log(local);
   const domain = String.fromCharCode(...emailDomainCodes);
-  console.log(domain);
   const at = String.fromCharCode(atCode);
-  console.log(at);
   const mailto = String.fromCharCode(...mailtoCodes);
-  console.log(mailto);
   return `${mailto}${local}${at}${domain}`;
 };
 
@@ -26,6 +23,21 @@ const openEmail = () => {
   if (!import.meta.client) return;
   window.location.href = getEmailHref();
 };
+
+usePageSeo({
+  title: "Contact",
+  description: "Contact the Pick Your Linux project for corrections, feedback, and issue reports about distro data or decision flows.",
+  path: "/contact",
+  keywords: ["contact pick your linux", "linux distro feedback", "report distro data issue"],
+  structuredData: [
+    {
+      "@context": "https://schema.org",
+      "@type": "ContactPage",
+      name: "Contact",
+      description: "Project contact and issue reporting page.",
+    },
+  ],
+});
 </script>
 
 <template>

@@ -4,6 +4,7 @@ import { useI18n } from "vue-i18n";
 import ResultsShortlist from "~/components/ResultsShortlist.vue";
 import ExplainabilityDrawer from "~/components/ExplainabilityDrawer.vue";
 import ReviewAnswersDrawer from "~/components/ReviewAnswersDrawer.vue";
+import { usePageSeo } from "~/composables/usePageSeo";
 import { useDecisionEngine } from "~/composables/useDecisionEngine";
 import {
   DEFAULT_RESULTS_FILTERS,
@@ -76,6 +77,13 @@ const resetFilters = () => {
   sortBy.value = "BEST_MATCH";
 };
 const tr = (key: string, fallback: string) => (te(key) ? t(key) : fallback);
+
+usePageSeo({
+  title: "Results",
+  description: "Compatibility results for your current distro selection flow.",
+  path: "/results",
+  noindex: true,
+});
 
 const nextExperience = computed<"INTERMEDIATE" | "ADVANCED" | null>(() => {
   if (intent.value.experience === "BEGINNER") return "INTERMEDIATE";

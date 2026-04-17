@@ -1,3 +1,14 @@
+<script setup lang="ts">
+import { usePageSeo } from "~/composables/usePageSeo";
+
+usePageSeo({
+  title: "Data sources and definitions",
+  description: "Review the field definitions and modeling boundaries used to compare Linux distributions without scores or hidden weights.",
+  path: "/data-sources",
+  keywords: ["linux distro data definitions", "linux distro metadata", "observable distro attributes"],
+});
+</script>
+
 <template>
   <div class="mx-auto max-w-3xl space-y-8">
     <header class="space-y-3">
