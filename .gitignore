@@ -10,3 +10,4 @@
 reports/**
 tasks/**
 dist/**
+.env
