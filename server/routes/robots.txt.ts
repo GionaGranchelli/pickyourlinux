@@ -10,6 +10,11 @@ export default defineEventHandler((event) => {
     "User-agent: *",
     "Allow: /",
     "",
+    "# Allow OpenAI search and model crawlers",
+    "User-agent: OAI-SearchBot",
+    "User-agent: GPTBot",
+    "Allow: /",
+    "",
     `Sitemap: ${new URL("/sitemap.xml", siteUrl).toString()}`,
   ].join("\n");
 });

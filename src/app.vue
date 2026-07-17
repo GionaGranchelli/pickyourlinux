@@ -54,26 +54,32 @@ useHead({
   ],
   script: () => [
     {
-      key: "ld-json-website",
+      key: "ld-json-site-graph",
       type: "application/ld+json",
       textContent: JSON.stringify({
         "@context": "https://schema.org",
-        "@type": "WebSite",
-        name: SITE_NAME,
-        url: siteUrl.value,
-        description: SITE_DESCRIPTION,
-        inLanguage: locale.value,
-      }),
-    },
-    {
-      key: "ld-json-organization",
-      type: "application/ld+json",
-      textContent: JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "Organization",
-        name: SITE_NAME,
-        url: siteUrl.value,
-        logo: socialImage.value,
+        "@graph": [
+          {
+            "@type": "WebSite",
+            "@id": `${siteUrl.value}/#website`,
+            name: SITE_NAME,
+            url: siteUrl.value,
+            description: SITE_DESCRIPTION,
+            inLanguage: locale.value,
+            publisher: { "@id": `${siteUrl.value}/#organization` },
+          },
+          {
+            "@type": "Organization",
+            "@id": `${siteUrl.value}/#organization`,
+            name: SITE_NAME,
+            url: siteUrl.value,
+            logo: {
+              "@type": "ImageObject",
+              url: socialImage.value,
+            },
+            sameAs: ["https://github.com/GionaGranchelli/pickyourlinux"],
+          },
+        ],
       }),
     },
   ],

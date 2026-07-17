@@ -39,17 +39,19 @@ export default defineNuxtConfig({
   nitro: {
     preset: "static",
     prerender: {
-      routes: [...INDEXABLE_ROUTES, "/robots.txt", "/sitemap.xml"],
+      routes: [...INDEXABLE_ROUTES, "/robots.txt", "/sitemap.xml", "/llms.txt", "/llms-full.txt"],
     },
   },
   routeRules: {
     ...Object.fromEntries(INDEXABLE_ROUTES.map((route) => [route, { prerender: true }])),
     "/robots.txt": { prerender: true },
     "/sitemap.xml": { prerender: true },
+    "/llms.txt": { prerender: true },
+    "/llms-full.txt": { prerender: true },
   },
   runtimeConfig: {
     public: {
-      siteUrl: "https://pickyourlinux.org",
+      siteUrl: "https://whichdistro.com",
       telemetryEndpoint: "",
     },
   },
@@ -67,15 +69,14 @@ export default defineNuxtConfig({
         { property: "og:title", content: "Pick Your Linux - Honest Decision Flow" },
         { property: "og:description", content: "Find the Linux distribution that fits your hardware and workflow using a deterministic, explainable engine." },
         { property: "og:type", content: "website" },
-        { property: "og:url", content: "https://pickyourlinux.org" },
-        { property: "og:image", content: "https://pickyourlinux.org/og-preview.png" },
+        { property: "og:url", content: "https://whichdistro.com" },
+        { property: "og:image", content: "https://whichdistro.com/og-preview.png" },
         { name: "twitter:card", content: "summary_large_image" },
         { name: "twitter:title", content: "Pick Your Linux" },
         { name: "twitter:description" , content: "A study in logic-as-data and honest decision engine design." },
       ],
       link: [
-        { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
-        { rel: "apple-touch-icon", sizes: "180x180", href: "/apple-touch-icon.png" },
+        { rel: "icon", type: "image/svg+xml", href: "/favicon.svg" },
       ],
     },
   },

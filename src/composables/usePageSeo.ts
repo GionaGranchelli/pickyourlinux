@@ -3,7 +3,6 @@ import { useI18n } from "vue-i18n";
 import {
   OG_LOCALE_BY_CODE,
   SITE_AUTHOR,
-  SITE_DESCRIPTION,
   SITE_KEYWORDS,
   SITE_NAME,
   SITE_URL,
@@ -65,15 +64,13 @@ export const usePageSeo = (options: PageSeoOptions) => {
     const pageSchema: StructuredData = {
       "@context": "https://schema.org",
       "@type": "WebPage",
+      "@id": `${canonicalUrl.value}#webpage`,
       name: options.title,
       description: options.description,
       url: canonicalUrl.value,
       inLanguage: locale.value,
       isPartOf: {
-        "@type": "WebSite",
-        name: SITE_NAME,
-        url: siteUrl.value,
-        description: SITE_DESCRIPTION,
+        "@id": `${siteUrl.value}/#website`,
       },
     };
 

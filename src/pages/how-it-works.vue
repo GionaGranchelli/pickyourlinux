@@ -37,11 +37,44 @@ const docsUsed = [
   "docs/FRONTEND-IMPLEMENTATION-RULES.md",
 ];
 
+const faqItems = [
+  {
+    question: "How does Pick Your Linux choose a distro?",
+    answer: "It filters the distro dataset using the answers you provide and explicit modeled attributes such as installer experience, release model, package manager, hardware needs, and maintenance style. The result explains the relevant constraints and trade-offs.",
+  },
+  {
+    question: "Does it use hidden scores or opaque recommendations?",
+    answer: "No. The project is designed around inspectable decision rules and schema-defined data. You can review the modeled fields, validation checks, and source code before relying on a result.",
+  },
+  {
+    question: "Can I browse the distro data without taking the flow?",
+    answer: "Yes. The All distros and metrics page exposes the current dataset and lets you filter distributions by attributes such as release model, intended use case, and documentation ecosystem.",
+  },
+  {
+    question: "How current is the distro information?",
+    answer: "Each distro record includes a last verified date. The fields are maintained snapshots, so use the linked official project site and documentation for release-specific details that may have changed.",
+  },
+];
+
 usePageSeo({
   title: "How it works",
   description: "See how Pick Your Linux filters distributions through explicit constraints, declarative data, and explainable outputs.",
   path: "/how-it-works",
   keywords: ["how linux distro picker works", "declarative decision engine", "linux distro filtering logic"],
+  structuredData: [
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: faqItems.map((item) => ({
+        "@type": "Question",
+        name: item.question,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: item.answer,
+        },
+      })),
+    },
+  ],
 });
 </script>
 
@@ -68,6 +101,16 @@ usePageSeo({
     <article class="rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">
       <div class="markdown" v-html="html"></div>
     </article>
+
+    <section class="rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">
+      <h2 class="text-2xl font-semibold text-slate-900">Frequently asked questions</h2>
+      <div class="mt-5 space-y-5">
+        <div v-for="item in faqItems" :key="item.question">
+          <h3 class="text-base font-semibold text-slate-900">{{ item.question }}</h3>
+          <p class="mt-2 text-sm leading-6 text-slate-600">{{ item.answer }}</p>
+        </div>
+      </div>
+    </section>
   </div>
 </template>
 

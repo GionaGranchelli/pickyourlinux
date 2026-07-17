@@ -1,10 +1,10 @@
 export const SITE_NAME = "Pick Your Linux";
-export const SITE_URL = "https://pickyourlinux.org";
+export const SITE_URL = "https://whichdistro.com";
 export const SITE_DESCRIPTION = "A deterministic Linux distro picker built with explicit rules, transparent constraints, and zero ranking heuristics.";
 export const SITE_DEFAULT_TITLE = "Deterministic Linux distro picker";
 export const SITE_AUTHOR = "Pick Your Linux Project";
 export const SITE_THEME_COLOR = "#0f172a";
-export const SOCIAL_IMAGE_PATH = "/og-preview.svg";
+export const SOCIAL_IMAGE_PATH = "/og-preview.png";
 
 export const INDEXABLE_ROUTES = [
   "/",
