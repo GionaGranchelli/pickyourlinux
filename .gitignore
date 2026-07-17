@@ -10,4 +10,6 @@ dist
 reports/**
 tasks/**
 dist/**
+.env.codex
+graphify-out/
 .env
