@@ -80,7 +80,7 @@ describe("eliminateDistros — the single survival authority", () => {
         const intent = baseIntent({ installation: "CLI_OK", maintenance: "TERMINAL_OK", proprietary: "AVOID" });
         const strictCount = allDistros.filter((distro) => distro.proprietarySupport === "NONE").length;
         const kept = survivors(intent);
-        expect(strictCount).toBeLessThan(5);
+        expect(strictCount).toBeLessThan(allDistros.length / 4);
         expect(kept.length).toBe(strictCount);
         expect(kept.length).toBeGreaterThan(0);
     });

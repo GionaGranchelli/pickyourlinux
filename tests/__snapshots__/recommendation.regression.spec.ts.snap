@@ -6,7 +6,7 @@ exports[`recommendation regression personas > advanced_openrc_preference: Advanc
   "artix",
   "gentoo",
   "almalinux",
-  "arch",
+  "antix",
 ]
 `;
 
@@ -73,7 +73,7 @@ exports[`recommendation regression personas > server_low_friction: Server-focuse
   "fedora",
   "opensuse_leap",
   "opensuse_microos",
+  "raspios",
   "ubuntu",
-  "bazzite",
 ]
 `;

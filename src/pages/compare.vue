@@ -44,7 +44,6 @@ const quickFeatures: Array<{ key: string; label: string }> = [
 
 const detailedFeatures: Array<{ key: string; label: string }> = [
   { key: "supportedDesktops", label: tr("compare.feature.desktopEnvironment", "Desktop Environment") },
-  { key: "minRam", label: tr("compare.feature.minRam", "Minimum RAM") },
   { key: "installerExperience", label: tr("compare.feature.installerExperience", "Installer Experience") },
   { key: "maintenanceStyle", label: tr("compare.feature.maintenanceStyle", "Maintenance Style") },
   { key: "proprietarySupport", label: tr("compare.feature.proprietarySupport", "Proprietary Software Support") },
