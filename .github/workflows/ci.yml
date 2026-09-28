@@ -16,10 +16,12 @@ jobs:
       # "Dependencies lock file is not found".
       - uses: pnpm/action-setup@v4
         with:
-          version: 11
+          # pnpm 11 uses node:sqlite, so it needs Node >= 22. Both are pinned to the
+          # toolchain the gates were verified against locally (Node 22 + pnpm 11.6).
+          version: 11.6.0
       - uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: "22"
           cache: "pnpm"
       - run: pnpm install --frozen-lockfile
       - run: pnpm typecheck
