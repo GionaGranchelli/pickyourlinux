@@ -73,16 +73,16 @@ describe("picker end-to-end profiles", () => {
         expect(voidLinux?.includedBecause).toContain("reasons.include_init_system_match");
         expect(voidLinux?.includedBecause).not.toContain("reasons.include_package_manager_match");
 
-        const bodhi = presentation.compatible.find((item) => item.distroId === "bodhi_linux");
-        expect(bodhi?.includedBecause).toContain("reasons.include_package_manager_match");
-        expect(bodhi?.includedBecause).not.toContain("reasons.include_init_system_match");
+        const debian = presentation.compatible.find((item) => item.distroId === "debian");
+        expect(debian?.includedBecause).toContain("reasons.include_package_manager_match");
+        expect(debian?.includedBecause).not.toContain("reasons.include_init_system_match");
 
         // Both satisfy exactly one stated preference, so the tie falls to the name — no weight.
         const countOf = (item: (typeof presentation.compatible)[number]) =>
             item.includedBecause.filter((reason) => reason !== "reasons.include_meets_requirements").length;
         expect(countOf(voidLinux!)).toBe(1);
-        expect(countOf(bodhi!)).toBe(1);
-        expect(presentation.compatible.indexOf(bodhi!)).toBeLessThan(presentation.compatible.indexOf(voidLinux!));
+        expect(countOf(debian!)).toBe(1);
+        expect(presentation.compatible.indexOf(debian!)).toBeLessThan(presentation.compatible.indexOf(voidLinux!));
     });
 
     it("no-terminal beginner never receives a manual-installer distro", () => {

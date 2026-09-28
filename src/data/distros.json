@@ -1131,7 +1131,7 @@
   {
     "id": "centos_stream",
     "name": "CentOS Stream",
-    "description": "Upstream RHEL distribution with rolling updates.",
+    "description": "RHEL's upstream development branch: a rolling preview of the next RHEL release, without the long lifecycle of a stable server distribution.",
     "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/CentOS_Stream_logo.svg/1200px-CentOS_Stream_logo.svg.png",
     "websiteUrl": "https://www.centos.org/centos-stream/",
     "documentationUrl": "https://docs.centos.org/",
@@ -1411,41 +1411,6 @@
     "lastVerified": "2026-02-21",
     "verificationMethod": "MANUAL",
     "docsEcosystem": "GOOD",
-    "supportedArchitectures": [
-      "x86_64"
-    ]
-  },
-  {
-    "id": "bodhi_linux",
-    "name": "Bodhi Linux",
-    "description": "Lightweight Ubuntu-based distribution.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Bodhi_Linux_Logo.svg/1200px-Bodhi_Linux_Logo.svg.png",
-    "websiteUrl": "https://www.bodhilinux.com/",
-    "documentationUrl": "https://www.bodhilinux.com/wiki/",
-    "forumUrl": "https://www.bodhilinux.com/forums/",
-    "downloadUrl": "https://www.bodhilinux.com/downloads/",
-    "distroSeaUrl": "https://distrosea.com/select/bodhi/",
-    "testDriveUrl": null,
-    "installerExperience": "GUI",
-    "maintenanceStyle": "LOW_FRICTION",
-    "proprietarySupport": "OPTIONAL",
-    "suitableForOldHardware": true,
-    "gamingSupport": "LIMITED",
-    "privacyPosture": "DEFAULT",
-    "supportedDesktops": [
-      "OTHER"
-    ],
-    "releaseModel": "FIXED",
-    "initSystem": "SYSTEMD",
-    "packageManager": "APT",
-    "secureBootOutOfBox": false,
-    "nvidiaExperience": "HARD",
-    "immutable": false,
-    "primaryUseCase": "DESKTOP",
-    "laptopFriendly": true,
-    "lastVerified": "2026-02-21",
-    "verificationMethod": "MANUAL",
-    "docsEcosystem": "THIN",
     "supportedArchitectures": [
       "x86_64"
     ]
@@ -1840,41 +1805,6 @@
     "laptopFriendly": true,
     "immutable": false,
     "lastVerified": "2026-09-28",
-    "verificationMethod": "MANUAL",
-    "secureBootOutOfBox": false,
-    "nvidiaExperience": "OK",
-    "supportedArchitectures": [
-      "x86_64"
-    ]
-  },
-  {
-    "id": "feren_os",
-    "name": "Feren OS",
-    "description": "Ubuntu-based distribution focused on the Cinnamon desktop, designed for users migrating from Windows.",
-    "imageUrl": "https://ferenos.weebly.com/uploads/1/5/3/4/15348784/published/feren-os-logo.png",
-    "websiteUrl": "https://ferenos.weebly.com/",
-    "documentationUrl": "https://medium.com/feren-os",
-    "forumUrl": "https://www.reddit.com/r/ferenos/",
-    "downloadUrl": "https://ferenos.weebly.com/get-feren-os.html",
-    "distroSeaUrl": null,
-    "testDriveUrl": null,
-    "installerExperience": "GUI",
-    "maintenanceStyle": "LOW_FRICTION",
-    "proprietarySupport": "OPTIONAL",
-    "suitableForOldHardware": false,
-    "gamingSupport": "LIMITED",
-    "privacyPosture": "DEFAULT",
-    "docsEcosystem": "GOOD",
-    "supportedDesktops": [
-      "CINNAMON"
-    ],
-    "releaseModel": "FIXED",
-    "initSystem": "SYSTEMD",
-    "packageManager": "APT",
-    "primaryUseCase": "DESKTOP",
-    "laptopFriendly": true,
-    "immutable": false,
-    "lastVerified": "2026-02-22",
     "verificationMethod": "MANUAL",
     "secureBootOutOfBox": false,
     "nvidiaExperience": "OK",

@@ -443,11 +443,12 @@ describe("compatibility engine", () => {
 
         const results = buildCompatibility(intent);
         const ubuntu = getResult(results, "ubuntu");
-        const bodhi = getResult(results, "bodhi_linux");
+        const antix = getResult(results, "antix");
 
         expect(ubuntu.compatible).toBe(true);
         expect(ubuntu.includedBecause).toContain("include_docs_ecosystem_match");
-        expect(bodhi.compatible).toBe(true);
-        expect(bodhi.includedBecause).not.toContain("include_docs_ecosystem_match");
+        // antiX is compatible under the same answers but its docs ecosystem is only OK.
+        expect(antix.compatible).toBe(true);
+        expect(antix.includedBecause).not.toContain("include_docs_ecosystem_match");
     });
 });
