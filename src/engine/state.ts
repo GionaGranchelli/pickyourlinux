@@ -474,6 +474,8 @@ export function useDecisionEngine(t: (key: string) => string = (key) => key) {
                 excluded: [],
                 excludedDistros: [],
                 activeConstraints: [],
+                hardConstraintConflict: false,
+                hardConstraintConflictFields: [],
             };
         }
 

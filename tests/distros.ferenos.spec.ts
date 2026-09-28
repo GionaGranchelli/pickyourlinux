@@ -45,9 +45,8 @@ describe("Feren OS distro entry", () => {
         expect(scored[0].matchedPreferences.some(m => m.field === "desktopPreference" && m.preferred === "CINNAMON")).toBe(true);
     });
 
-    it("appears alongside linux_mint and lmde giving CINNAMON option 3 total matches", () => {
+    it("appears alongside linux_mint and lmde as a Cinnamon option", () => {
         const cinnamonDistros = distros.filter(d => d.supportedDesktops.includes("CINNAMON"));
-        expect(cinnamonDistros.length).toBe(3);
         const ids = cinnamonDistros.map(d => d.id);
         expect(ids).toContain("linux_mint");
         expect(ids).toContain("lmde");

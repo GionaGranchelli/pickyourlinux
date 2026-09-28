@@ -5,7 +5,7 @@ import { UserIntentSchema } from "../src/data/types";
 import { applyHardConstraints, applySoftScoring } from "../src/engine/scoring";
 
 describe("Artix Linux distro entry", () => {
-    const artix = distros.find(d => d.id === "artix_linux");
+    const artix = distros.find(d => d.id === "artix");
 
     it("exists in distros.json", () => {
         expect(artix).toBeDefined();

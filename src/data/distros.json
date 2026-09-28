@@ -1635,23 +1635,27 @@
   {
     "id": "artix",
     "name": "Artix Linux",
-    "description": "Arch-based distro focused on non-systemd init options.",
+    "description": "Arch-based Linux distribution without systemd. Available with OpenRC, runit, s6, or dinit.",
     "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/1/1b/Artix-linux-logo.png",
     "websiteUrl": "https://artixlinux.org/",
     "documentationUrl": "https://wiki.artixlinux.org/",
     "forumUrl": "https://forum.artixlinux.org/",
     "testDriveUrl": null,
     "downloadUrl": "https://artixlinux.org/download.php",
-    "distroSeaUrl": null,
-    "installerExperience": "MANUAL",
+    "distroSeaUrl": "https://distrosea.com/select/artix/",
+    "installerExperience": "GUI",
     "maintenanceStyle": "HANDS_ON",
     "proprietarySupport": "OPTIONAL",
     "suitableForOldHardware": true,
     "gamingSupport": "LIMITED",
     "privacyPosture": "DEFAULT",
     "supportedDesktops": [
-      "OTHER",
-      "TILING"
+      "KDE",
+      "XFCE",
+      "MATE",
+      "CINNAMON",
+      "LXQT",
+      "OTHER"
     ],
     "releaseModel": "ROLLING",
     "initSystem": "OPENRC",
@@ -1661,7 +1665,7 @@
     "nvidiaExperience": "HARD",
     "primaryUseCase": "BOTH",
     "laptopFriendly": false,
-    "lastVerified": "2026-02-21",
+    "lastVerified": "2026-09-28",
     "verificationMethod": "MANUAL",
     "docsEcosystem": "GOOD",
     "supportedArchitectures": [
@@ -1839,41 +1843,6 @@
     "verificationMethod": "MANUAL",
     "secureBootOutOfBox": false,
     "nvidiaExperience": "OK",
-    "supportedArchitectures": [
-      "x86_64"
-    ]
-  },
-  {
-    "id": "artix_linux",
-    "name": "Artix Linux",
-    "description": "Arch-based distribution without systemd. Ships with OpenRC, runit, s6, or dinit as init system choices.",
-    "imageUrl": "https://artixlinux.org/img/artix-logo.png",
-    "websiteUrl": "https://artixlinux.org/",
-    "documentationUrl": "https://wiki.artixlinux.org/",
-    "forumUrl": "https://forum.artixlinux.org/",
-    "downloadUrl": "https://artixlinux.org/download.php",
-    "distroSeaUrl": "https://distrosea.com/select/artix/",
-    "testDriveUrl": null,
-    "installerExperience": "GUI",
-    "maintenanceStyle": "HANDS_ON",
-    "proprietarySupport": "OPTIONAL",
-    "suitableForOldHardware": false,
-    "gamingSupport": "LIMITED",
-    "privacyPosture": "DEFAULT",
-    "docsEcosystem": "GOOD",
-    "supportedDesktops": [
-      "OTHER"
-    ],
-    "releaseModel": "ROLLING",
-    "initSystem": "OPENRC",
-    "packageManager": "PACMAN",
-    "primaryUseCase": "BOTH",
-    "laptopFriendly": false,
-    "immutable": false,
-    "lastVerified": "2026-02-22",
-    "verificationMethod": "MANUAL",
-    "secureBootOutOfBox": false,
-    "nvidiaExperience": "HARD",
     "supportedArchitectures": [
       "x86_64"
     ]

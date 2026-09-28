@@ -120,7 +120,6 @@ export const QuestionSchema = z.object({
     id: z.string(),
     text: z.string(),
     showIf: ConditionSchema.optional(),
-    constraintMode: z.enum(["HARD", "SOFT"]).optional().default("SOFT"),
     options: z
         .array(
             z.object({
@@ -131,8 +130,6 @@ export const QuestionSchema = z.object({
                 patches: z.array(PatchSchema),
                 isDisqualifier: z.boolean().default(false),
                 disqualificationReason: z.string().optional(),
-                isHardConstraint: z.boolean().optional().default(false),
-                preferenceWeight: z.number().optional().default(1),
             })
         )
         .min(1),
