@@ -49,11 +49,5 @@
   "devDependencies": {
     "@nuxtjs/i18n": "^10.2.3",
     "@vitejs/plugin-vue": "^6.0.4"
-  },
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "@parcel/watcher",
-      "esbuild"
-    ]
   }
 }
