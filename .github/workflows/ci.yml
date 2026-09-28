@@ -10,12 +10,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      # The repository is a pnpm project (pnpm-lock.yaml, lockfileVersion 9.0) and has no
+      # npm lockfile, so the previous actions/setup-node cache:"npm" + `npm ci` never
+      # reached a single gate: every run failed at setup-node with
+      # "Dependencies lock file is not found".
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11
       - uses: actions/setup-node@v4
         with:
           node-version: "20"
-          cache: "npm"
-      - run: npm ci
-      - run: npm run typecheck
-      - run: npm run test
-      - run: npm run validate
-      - run: npm run lint
+          cache: "pnpm"
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm typecheck
+      - run: pnpm test
+      - run: pnpm validate
+      - run: pnpm lint
+      - run: pnpm build
