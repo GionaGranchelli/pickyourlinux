@@ -127,7 +127,6 @@ const questions: Question[] = [
                     { op: "set", field: "p1_proprietary", value: "AVOID" },
                 ],
                 isDisqualifier: false,
-                isHardConstraint: true,
             },
         ],
     },
@@ -305,7 +304,6 @@ const questions: Question[] = [
                     { op: "set", field: "p1_secureBootNeeded", value: true },
                 ],
                 isDisqualifier: false,
-                isHardConstraint: true,
             },
             {
                 id: "no",
@@ -357,7 +355,6 @@ const questions: Question[] = [
     {
         id: "q_architecture_clarifier",
         text: "questions.q_architecture_clarifier.text",
-        constraintMode: "HARD",
         showIf: showIfIntermediate,
         options: [
             {
@@ -371,7 +368,6 @@ const questions: Question[] = [
                 label: "questions.q_architecture_clarifier.options.arm",
                 patches: [{ op: "set", field: "architecture", value: "arm64" }],
                 isDisqualifier: false,
-                isHardConstraint: true,
             },
             {
                 id: "not_sure",
@@ -998,7 +994,6 @@ const questions: Question[] = [
                 label: "questions.q_secure_boot_advanced.options.must_on",
                 patches: [{ op: "set", field: "secureBootNeeded", value: true }],
                 isDisqualifier: false,
-                isHardConstraint: true,
             },
             {
                 id: "can_off",

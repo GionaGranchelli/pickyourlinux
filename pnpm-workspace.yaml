@@ -1,0 +1,7 @@
+# pnpm 11 keeps its settings here (the "pnpm" field in package.json is ignored) and fails
+# installs with ERR_PNPM_IGNORED_BUILDS unless each dependency that needs a lifecycle script is
+# named. `allowBuilds` is the key pnpm 11 writes itself (verified with `pnpm approve-builds
+# --all`); everything not listed keeps the stricter default.
+allowBuilds:
+  '@parcel/watcher': true
+  esbuild: true

@@ -10,7 +10,7 @@ const getResult = (results: ReturnType<typeof buildCompatibility>, distroId: str
 };
 
 describe("compatibility engine", () => {
-    it("keeps non-matching distros when a hard preference has low coverage", () => {
+    it("enforces a stated hard requirement even when few distros satisfy it", () => {
         const intent = UserIntentSchema.parse({
             installation: "CLI_OK",
             maintenance: "TERMINAL_OK",
@@ -28,15 +28,17 @@ describe("compatibility engine", () => {
             nvidiaTolerance: "NO_PREFERENCE",
         });
 
-        // Secure Boot matches are >3 today, so force a higher threshold to validate soft behavior.
-        const results = buildCompatibility(intent, { lowCoverageThreshold: 20 });
+        // Secure Boot is a stated requirement, so it is enforced regardless of how many
+        // distros satisfy it (the low-coverage escape hatch was removed).
+        const results = buildCompatibility(intent);
         const fedora = getResult(results, "fedora");
-        const mint = getResult(results, "linux_mint");
+        const popOs = getResult(results, "pop_os");
 
         expect(fedora.compatible).toBe(true);
         expect(fedora.includedBecause).toContain("include_secure_boot_supported");
-        expect(mint.compatible).toBe(true);
-        expect(mint.excludedBecause).not.toContain("exclude_secure_boot_unavailable");
+        // Pop!_OS upstream: "Secure boot must be disabled before installing Pop!_OS."
+        expect(popOs.compatible).toBe(false);
+        expect(popOs.excludedBecause).toContain("exclude_secure_boot_unavailable");
     });
 
     it("handles 'just work' expectations", () => {
@@ -152,41 +154,17 @@ describe("compatibility engine", () => {
                 !item.compatible &&
                 item.excludedBecause.includes("exclude_secure_boot_unavailable")
         );
-        const mint = getResult(results, "linux_mint");
+        const popOs = getResult(results, "pop_os");
 
         expect(compatible.length).toBeGreaterThan(0);
         compatible.forEach((item) => {
             expect(distrosById.get(item.distroId)?.secureBootOutOfBox).toBe(true);
         });
         expect(excludedForSecureBoot.length).toBeGreaterThan(0);
-        expect(mint.compatible).toBe(false);
-        expect(mint.excludedBecause).toContain("exclude_secure_boot_unavailable");
+        expect(popOs.compatible).toBe(false);
+        expect(popOs.excludedBecause).toContain("exclude_secure_boot_unavailable");
     });
 
-    it("keeps hard filtering when coverage is at least 3", () => {
-        const intent = UserIntentSchema.parse({
-            installation: "GUI",
-            maintenance: "NO_TERMINAL",
-            proprietary: "OPTIONAL",
-            architecture: "x86_64",
-            minRam: 8,
-            tags: [],
-            experience: "BEGINNER",
-            desktopPreference: "NO_PREFERENCE",
-            releaseModel: "NO_PREFERENCE",
-            initSystem: "NO_PREFERENCE",
-            packageManager: "NO_PREFERENCE",
-            secureBootNeeded: true,
-            gpu: "UNKNOWN",
-            nvidiaTolerance: "NO_PREFERENCE",
-        });
-
-        const results = buildCompatibility(intent, { lowCoverageThreshold: 3 });
-        const mint = getResult(results, "linux_mint");
-
-        expect(mint.compatible).toBe(false);
-        expect(mint.excludedBecause).toContain("exclude_secure_boot_unavailable");
-    });
 
     it("excludes hard NVIDIA setups when easy NVIDIA is required", () => {
         const intent = UserIntentSchema.parse({
@@ -465,11 +443,12 @@ describe("compatibility engine", () => {
 
         const results = buildCompatibility(intent);
         const ubuntu = getResult(results, "ubuntu");
-        const bodhi = getResult(results, "bodhi_linux");
+        const antix = getResult(results, "antix");
 
         expect(ubuntu.compatible).toBe(true);
         expect(ubuntu.includedBecause).toContain("include_docs_ecosystem_match");
-        expect(bodhi.compatible).toBe(true);
-        expect(bodhi.includedBecause).not.toContain("include_docs_ecosystem_match");
+        // antiX is compatible under the same answers but its docs ecosystem is only OK.
+        expect(antix.compatible).toBe(true);
+        expect(antix.includedBecause).not.toContain("include_docs_ecosystem_match");
     });
 });

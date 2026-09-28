@@ -9,84 +9,80 @@ export type EliminationResult = {
     excludedBecause: ExclusionReasonKey[];
 };
 
+/** The answer the user gave that a rule enforces. Used to explain a zero-result set. */
+export type IntentAxis =
+    | "architecture"
+    | "installation"
+    | "maintenance"
+    | "proprietary"
+    | "tags"
+    | "secureBootNeeded"
+    | "gpu";
+
+export const EXCLUSION_AXES: Record<ExclusionReasonKey, IntentAxis> = {
+    exclude_architecture_unsupported: "architecture",
+    exclude_installer_manual: "installation",
+    exclude_maintenance_hands_on: "maintenance",
+    exclude_proprietary_required: "proprietary",
+    exclude_proprietary_missing: "proprietary",
+    exclude_old_hardware_unsuitable: "tags",
+    exclude_secure_boot_unavailable: "secureBootNeeded",
+    exclude_nvidia_hard: "gpu",
+    exclude_nvidia_proprietary_required: "gpu",
+};
+
 const distros = DistroListSchema.parse(distrosData);
-const DEFAULT_LOW_COVERAGE_THRESHOLD = 3;
-
-type HardConstraintCoverage = {
-    installerGui: number;
-    maintenanceLowFriction: number;
-    proprietaryNone: number;
-    proprietaryAllowed: number;
-    oldHardwareSuitable: number;
-    secureBootOutOfBox: number;
-    nvidiaEasy: number;
-    nvidiaAvoidProprietary: number;
-};
-
-const HARD_CONSTRAINT_COVERAGE: HardConstraintCoverage = {
-    installerGui: distros.filter((distro) => distro.installerExperience === "GUI").length,
-    maintenanceLowFriction: distros.filter((distro) => distro.maintenanceStyle === "LOW_FRICTION").length,
-    proprietaryNone: distros.filter((distro) => distro.proprietarySupport === "NONE").length,
-    proprietaryAllowed: distros.filter((distro) => distro.proprietarySupport !== "NONE").length,
-    oldHardwareSuitable: distros.filter((distro) => distro.suitableForOldHardware).length,
-    secureBootOutOfBox: distros.filter((distro) => distro.secureBootOutOfBox).length,
-    nvidiaEasy: distros.filter((distro) => distro.nvidiaExperience === "GOOD" || distro.nvidiaExperience === "OK").length,
-    nvidiaAvoidProprietary: distros.filter((distro) => distro.nvidiaExperience === "HARD" || distro.nvidiaExperience === "UNKNOWN").length,
-};
-
-export type EnginePolicyOptions = {
-    lowCoverageThreshold?: number;
-};
 
 const needsOldHardwareSupport = (intent: UserIntent): boolean => {
     return intent.tags.includes("OldHardware");
 };
 
-export function eliminateDistros(intent: UserIntent, options: EnginePolicyOptions = {}): EliminationResult[] {
-    const lowCoverageThreshold = options.lowCoverageThreshold ?? DEFAULT_LOW_COVERAGE_THRESHOLD;
-    const softInstallerGui = intent.installation === "GUI" && HARD_CONSTRAINT_COVERAGE.installerGui < lowCoverageThreshold;
-    const softMaintenanceLowFriction = intent.maintenance === "NO_TERMINAL" && HARD_CONSTRAINT_COVERAGE.maintenanceLowFriction < lowCoverageThreshold;
-    const softProprietaryNone = intent.proprietary === "AVOID" && HARD_CONSTRAINT_COVERAGE.proprietaryNone < lowCoverageThreshold;
-    const softProprietaryAllowed = intent.proprietary === "REQUIRED" && HARD_CONSTRAINT_COVERAGE.proprietaryAllowed < lowCoverageThreshold;
-    const softOldHardware = needsOldHardwareSupport(intent) && HARD_CONSTRAINT_COVERAGE.oldHardwareSuitable < lowCoverageThreshold;
-    const softSecureBoot = intent.secureBootNeeded === true && HARD_CONSTRAINT_COVERAGE.secureBootOutOfBox < lowCoverageThreshold;
-    const softNvidiaEasy = intent.gpu === "NVIDIA" && intent.nvidiaTolerance === "WANT_EASY" && HARD_CONSTRAINT_COVERAGE.nvidiaEasy < lowCoverageThreshold;
-    const softNvidiaAvoidProprietary = intent.gpu === "NVIDIA" && intent.proprietary === "AVOID" && HARD_CONSTRAINT_COVERAGE.nvidiaAvoidProprietary < lowCoverageThreshold;
-
+/**
+ * The single survival authority: a distro is kept only when no rule fires.
+ * Every rule is an answer the user actually gave, evaluated as a boolean or enum
+ * comparison. Nothing is weighted, scored, or silently relaxed because the
+ * dataset has few matches — a stated constraint either applies or the user is
+ * told it cannot be met.
+ */
+export function eliminateDistros(intent: UserIntent): EliminationResult[] {
     return distros.map((distro) => {
         const excludedBecause: ExclusionReasonKey[] = [];
 
-        if (!softInstallerGui && intent.installation === "GUI" && distro.installerExperience !== "GUI") {
+        if (intent.architecture === "arm64" && !distro.supportedArchitectures.includes("arm64")) {
+            excludedBecause.push("exclude_architecture_unsupported");
+        }
+
+        if (intent.installation === "GUI" && distro.installerExperience !== "GUI") {
             excludedBecause.push("exclude_installer_manual");
         }
 
-        if (!softMaintenanceLowFriction && intent.maintenance === "NO_TERMINAL" && distro.maintenanceStyle !== "LOW_FRICTION") {
+        if (intent.maintenance === "NO_TERMINAL" && distro.maintenanceStyle !== "LOW_FRICTION") {
             excludedBecause.push("exclude_maintenance_hands_on");
         }
 
-        if (!softProprietaryNone && intent.proprietary === "AVOID" && distro.proprietarySupport !== "NONE") {
+        if (intent.proprietary === "AVOID" && distro.proprietarySupport !== "NONE") {
             excludedBecause.push("exclude_proprietary_required");
         }
 
-        if (!softProprietaryAllowed && intent.proprietary === "REQUIRED" && distro.proprietarySupport === "NONE") {
+        if (intent.proprietary === "REQUIRED" && distro.proprietarySupport === "NONE") {
             excludedBecause.push("exclude_proprietary_missing");
         }
 
-        if (!softOldHardware && needsOldHardwareSupport(intent) && !distro.suitableForOldHardware) {
+        if (needsOldHardwareSupport(intent) && !distro.suitableForOldHardware) {
             excludedBecause.push("exclude_old_hardware_unsuitable");
         }
 
-        if (!softSecureBoot && intent.secureBootNeeded === true && !distro.secureBootOutOfBox) {
+        if (intent.secureBootNeeded === true && !distro.secureBootOutOfBox) {
             excludedBecause.push("exclude_secure_boot_unavailable");
         }
 
-        if (!softNvidiaEasy && intent.gpu === "NVIDIA" && intent.nvidiaTolerance === "WANT_EASY") {
+        if (intent.gpu === "NVIDIA" && intent.nvidiaTolerance === "WANT_EASY") {
             if (distro.nvidiaExperience === "HARD") {
                 excludedBecause.push("exclude_nvidia_hard");
             }
         }
 
-        if (!softNvidiaAvoidProprietary && intent.gpu === "NVIDIA" && intent.proprietary === "AVOID") {
+        if (intent.gpu === "NVIDIA" && intent.proprietary === "AVOID") {
             if (distro.nvidiaExperience === "GOOD" || distro.nvidiaExperience === "OK") {
                 excludedBecause.push("exclude_nvidia_proprietary_required");
             }
@@ -98,6 +94,15 @@ export function eliminateDistros(intent: UserIntent, options: EnginePolicyOption
             excludedBecause,
         };
     });
+}
+
+/** Deduplicated axes behind the exclusions — what to tell the user when nothing survives. */
+export function excludedAxes(results: { excludedBecause: ExclusionReasonKey[] }[]): IntentAxis[] {
+    const axes = new Set<IntentAxis>();
+    results.forEach((result) => {
+        result.excludedBecause.forEach((reason) => axes.add(EXCLUSION_AXES[reason]));
+    });
+    return [...axes];
 }
 
 export function getDistros(): Distro[] {

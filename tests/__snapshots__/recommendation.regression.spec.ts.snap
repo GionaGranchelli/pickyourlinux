@@ -6,17 +6,17 @@ exports[`recommendation regression personas > advanced_openrc_preference: Advanc
   "artix",
   "gentoo",
   "almalinux",
-  "arch",
+  "antix",
 ]
 `;
 
 exports[`recommendation regression personas > advanced_rolling_system_preferences: Advanced + rolling + system preferences 1`] = `
 [
   "arch",
+  "archcraft",
   "cachyos",
   "endeavouros",
   "garuda",
-  "manjaro",
 ]
 `;
 
@@ -45,7 +45,6 @@ exports[`recommendation regression personas > intermediate_privacy_fixed: Interm
   "pureos",
   "tails",
   "trisquel",
-  "alpine",
 ]
 `;
 
@@ -74,7 +73,7 @@ exports[`recommendation regression personas > server_low_friction: Server-focuse
   "fedora",
   "opensuse_leap",
   "opensuse_microos",
+  "raspios",
   "ubuntu",
-  "almalinux",
 ]
 `;

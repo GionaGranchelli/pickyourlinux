@@ -2,10 +2,13 @@ import { describe, expect, it } from "vitest";
 import { DistroSchema } from "../src/data/distro-types";
 import distros from "../src/data/distros.json";
 import { UserIntentSchema } from "../src/data/types";
-import { applyHardConstraints, applySoftScoring } from "../src/engine/scoring";
+import { eliminateDistros } from "../src/engine/eliminate";
+import { buildCompatibility } from "../src/engine/compatibility";
+import { buildResultsPresentation } from "../src/engine/state";
+import { DistroListSchema } from "../src/data/distro-types";
 
 describe("Artix Linux distro entry", () => {
-    const artix = distros.find(d => d.id === "artix_linux");
+    const artix = distros.find(d => d.id === "artix");
 
     it("exists in distros.json", () => {
         expect(artix).toBeDefined();
@@ -23,10 +26,16 @@ describe("Artix Linux distro entry", () => {
         expect(artix?.maintenanceStyle).toBe("HANDS_ON");
     });
 
-    it("appears in soft scoring results when initSystem=OPENRC preference is active", () => {
+    it("is the only Artix entry in the dataset", () => {
+        const artixEntries = distros.filter(d => d.name === "Artix Linux");
+        expect(artixEntries).toHaveLength(1);
+        expect(artixEntries[0].id).toBe("artix");
+    });
+
+    it("matches an OPENRC preference with a stated reason", () => {
         const intent = UserIntentSchema.parse({
             installation: "GUI",
-            maintenance: "NO_TERMINAL",
+            maintenance: "TERMINAL_OK",
             proprietary: "OPTIONAL",
             architecture: "x86_64",
             minRam: 4,
@@ -41,12 +50,18 @@ describe("Artix Linux distro entry", () => {
             nvidiaTolerance: "NO_PREFERENCE",
         });
 
-        const scored = applySoftScoring([artix as any], intent);
-        expect(scored[0].score).toBeGreaterThan(0);
-        expect(scored[0].matchedPreferences.some(m => m.field === "initSystem" && m.preferred === "OPENRC")).toBe(true);
+        const presentation = buildResultsPresentation(
+            intent,
+            DistroListSchema.parse(distros),
+            { limit: Number.MAX_SAFE_INTEGER, showAll: true },
+            (key) => key
+        );
+        const presented = presentation.compatible.find(item => item.distroId === "artix");
+        expect(presented).toBeDefined();
+        expect(presented!.includedBecause).toContain("reasons.include_init_system_match");
     });
 
-    it("does NOT appear when hard constraint proprietary=AVOID is active and proprietarySupport=OPTIONAL", () => {
+    it("is excluded when proprietary=AVOID because proprietarySupport=OPTIONAL", () => {
         const intent = UserIntentSchema.parse({
             installation: "GUI",
             maintenance: "NO_TERMINAL",
@@ -64,7 +79,11 @@ describe("Artix Linux distro entry", () => {
             nvidiaTolerance: "NO_PREFERENCE",
         });
 
-        const { filteredDistros } = applyHardConstraints([artix as any], intent);
-        expect(filteredDistros.length).toBe(0);
+        const result = eliminateDistros(intent).find(item => item.distroId === "artix");
+        expect(result?.included).toBe(false);
+        expect(result?.excludedBecause).toContain("exclude_proprietary_required");
+
+        const compatibility = buildCompatibility(intent).find(item => item.distroId === "artix");
+        expect(compatibility?.compatible).toBe(false);
     });
 });

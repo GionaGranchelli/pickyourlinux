@@ -70,10 +70,9 @@ const handleToggleCompare = () => {
       </div>
       <div class="flex shrink-0 flex-col items-end gap-2">
         <div class="flex flex-col items-end">
-          <span class="text-xl font-bold text-blue-600">
-            {{ props.distro.score }}/{{ props.distro.maxPossibleScore }}
+          <span class="text-xs font-semibold text-blue-700">
+            {{ confidenceCoverageLabel }}
           </span>
-          <span class="text-[10px] text-gray-400 font-semibold uppercase tracking-wider">Match Score</span>
         </div>
         <button
           class="flex items-center gap-1 rounded-full border px-3 py-1 text-xs font-semibold transition hover:-translate-y-0.5"
@@ -101,20 +100,16 @@ const handleToggleCompare = () => {
       </div>
     </div>
 
-    <!-- Preferences summary -->
+    <!-- Why this distro matches -->
     <div class="mt-4 space-y-3">
-      <div v-if="props.distro.matchedPreferences.length > 0" class="flex flex-wrap gap-1.5">
-        <span v-for="(pref, idx) in props.distro.matchedPreferences.slice(0, 3)" :key="idx"
+      <div v-if="props.distro.reasonsIncluded.length > 0" class="flex flex-wrap gap-1.5">
+        <span v-for="(reason, idx) in props.distro.reasonsIncluded.slice(0, 3)" :key="idx"
               class="inline-flex items-center rounded-md bg-blue-50 px-2 py-0.5 text-[10px] font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10">
-          {{ pref.field }}: {{ pref.preferred }}
+          {{ reason }}
         </span>
-        <span v-if="props.distro.matchedPreferences.length > 3" class="text-[10px] text-gray-400 font-medium">
-          +{{ props.distro.matchedPreferences.length - 3 }} more
+        <span v-if="props.distro.reasonsIncluded.length > 3" class="text-[10px] text-gray-400 font-medium">
+          +{{ props.distro.reasonsIncluded.length - 3 }} more
         </span>
-      </div>
-
-      <div v-if="props.distro.missedPreferences.length > 0" class="text-[10px] text-amber-700 font-medium italic">
-        {{ props.distro.missedPreferences.length }} preference mismatch{{ props.distro.missedPreferences.length > 1 ? 'es' : '' }}
       </div>
     </div>
 
@@ -230,39 +225,31 @@ const handleToggleCompare = () => {
           </div>
 
           <div class="mt-4 flex flex-wrap gap-2">
-            <div class="flex flex-col">
-              <span class="text-2xl font-bold text-blue-600">{{ props.distro.score }}/{{ props.distro.maxPossibleScore }}</span>
-              <span class="text-[10px] text-gray-400 font-semibold uppercase tracking-wider">Match Score</span>
-            </div>
             <span class="rounded-full bg-emerald-100 px-3 py-1 text-xs font-medium text-emerald-800 self-center">
               {{ matchedChoicesCount }} {{ tr("results.distroCard.strictFiltersMatched", "Strict filters matched") }}
             </span>
           </div>
 
           <div class="mt-6 border-t border-gray-100 pt-5">
-            <h4 class="text-sm font-bold text-gray-900 mb-3 uppercase tracking-wider">Preference Score Breakdown</h4>
+            <h4 class="text-sm font-bold text-gray-900 mb-3 uppercase tracking-wider">Why this distro matches</h4>
             
             <div class="space-y-4">
-              <div v-if="props.distro.matchedPreferences.length > 0">
-                <div class="text-[10px] font-bold text-green-600 uppercase mb-2">✅ Matched Preferences</div>
+              <div v-if="props.distro.reasonsIncluded.length > 0">
+                <div class="text-[10px] font-bold text-green-600 uppercase mb-2">✅ Matched preferences</div>
                 <ul class="grid grid-cols-1 md:grid-cols-2 gap-2">
-                  <li v-for="(pref, idx) in props.distro.matchedPreferences" :key="idx" 
+                  <li v-for="(reason, idx) in props.distro.reasonsIncluded" :key="idx" 
                       class="text-sm bg-green-50 text-green-800 p-2 rounded-lg border border-green-100">
-                    <span class="font-semibold capitalize">{{ pref.field }}:</span> {{ pref.preferred }}
+                    {{ reason }}
                   </li>
                 </ul>
               </div>
 
-              <div v-if="props.distro.missedPreferences.length > 0">
-                <div class="text-[10px] font-bold text-amber-600 uppercase mb-2">⚠️ Missed Preferences</div>
+              <div v-if="props.distro.reasonsFriction.length > 0">
+                <div class="text-[10px] font-bold text-amber-600 uppercase mb-2">⚠️ Excluded by</div>
                 <ul class="space-y-2">
-                  <li v-for="(pref, idx) in props.distro.missedPreferences" :key="idx"
+                  <li v-for="(reason, idx) in props.distro.reasonsFriction" :key="idx"
                       class="text-sm bg-amber-50 text-amber-800 p-3 rounded-lg border border-amber-100">
-                    <div class="font-semibold capitalize mb-1">{{ pref.field }}</div>
-                    <div class="flex flex-wrap items-center gap-x-2 gap-y-1">
-                      <span>You preferred <span class="font-bold underlineDecoration-amber-200 underline">{{ pref.preferred }}</span>,</span>
-                      <span>but this distro uses <span class="font-bold">{{ pref.actual }}</span>.</span>
-                    </div>
+                    {{ reason }}
                   </li>
                 </ul>
               </div>

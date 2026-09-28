@@ -23,6 +23,7 @@ export const InclusionReasonKeys = [
 ] as const;
 
 export const ExclusionReasonKeys = [
+  "exclude_architecture_unsupported",
   "exclude_installer_manual",
   "exclude_maintenance_hands_on",
   "exclude_proprietary_required",
@@ -56,6 +57,7 @@ export const ConstraintKeys = [
   "constraint_init_systemd",
   "constraint_init_openrc",
   "constraint_init_runit",
+  "constraint_init_other",
   "constraint_pkg_apt",
   "constraint_pkg_dnf",
   "constraint_pkg_pacman",
@@ -64,6 +66,7 @@ export const ConstraintKeys = [
   "constraint_pkg_nix",
   "constraint_pkg_xbps",
   "constraint_pkg_portage",
+  "constraint_pkg_other",
   "constraint_immutable_prefer",
   "constraint_immutable_avoid",
   "constraint_server_use_case",

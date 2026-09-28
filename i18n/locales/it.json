@@ -22,6 +22,7 @@
   },
   "wizard": {
     "complete": {
+
       "title": "Sei pronto per i risultati",
       "tagline": "Visualizza l'elenco dei candidati compatibili in base a ciò che hai selezionato.",
       "viewResults": "Visualizza i risultati"
@@ -33,6 +34,7 @@
     "phaseGate": {
       "tagline": "Puoi continuare a perfezionare o passare ai risultati ora."
     },
+    "narrowChoice": "Restringi scelta",
     "nav": {
       "back": "← Indietro",
       "reviewAnswers": "Rivedi le risposte",
@@ -503,6 +505,8 @@
     "exclude_secure_boot_unavailable": "Non supporta l'avvio protetto immediatamente.",
     "exclude_nvidia_hard": "La configurazione di NVIDIA potrebbe essere complessa.",
     "exclude_nvidia_proprietary_required": "Ottimizzata per driver NVIDIA proprietari.",
+    "exclude_architecture_unsupported": "Non supporta l'architettura del tuo computer.",
+    "exclude_hard_constraint_mismatch": "Non soddisfa uno o più dei tuoi vincoli obbligatori.",
     "include_immutable_match": "Matches your immutable/traditional system preference.",
     "include_server_use_case_match": "Matches your server-use preference.",
     "include_laptop_friendly_match": "Works well for laptop-focused usage.",
@@ -530,6 +534,7 @@
     "constraint_init_systemd": "Preferisci systemd.",
     "constraint_init_openrc": "Preferisci OpenRC.",
     "constraint_init_runit": "Preferisci runit.",
+    "constraint_init_other": "Preferisci un init system alternativo.",
     "constraint_pkg_apt": "Preferisci il gestore pacchetti APT.",
     "constraint_pkg_dnf": "Preferisci il gestore pacchetti DNF.",
     "constraint_pkg_pacman": "Preferisci il gestore di pacchetti pacman.",
@@ -537,7 +542,8 @@
     "constraint_pkg_apk": "Preferisci il gestore pacchetti APK.",
     "constraint_pkg_nix": "Preferisci il gestore pacchetti Nix.",
     "constraint_pkg_xbps": "You prefer the XBPS package manager.",
-    "constraint_pkg_portage": "You prefer the Portage package manager.",
+    "constraint_pkg_portage": "Preferisci il gestore di pacchetti Portage.",
+    "constraint_pkg_other": "Preferisci un gestore di pacchetti alternativo.",
     "constraint_immutable_prefer": "You prefer immutable (atomic-style) systems.",
     "constraint_immutable_avoid": "You prefer traditional mutable systems.",
     "constraint_server_use_case": "You want server-oriented recommendations.",

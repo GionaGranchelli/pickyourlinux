@@ -22,6 +22,7 @@
   },
   "wizard": {
     "complete": {
+
       "title": "Sie sind bereit für Ergebnisse",
       "tagline": "Sehen Sie sich die kompatible Auswahlliste basierend auf Ihrer Auswahl an.",
       "viewResults": "Ergebnisse anzeigen"
@@ -33,6 +34,7 @@
     "phaseGate": {
       "tagline": "Sie können jetzt weiter verfeinern oder direkt zu den Ergebnissen springen."
     },
+    "narrowChoice": "Auswahl eingrenzen",
     "nav": {
       "back": "← Zurück",
       "reviewAnswers": "Überprüfen Sie die Antworten",
@@ -82,7 +84,8 @@
         "documentation": "Dokumentation",
         "forum": "Forum",
         "download": "Herunterladen",
-        "testDrive": "Probefahrt"
+        "testDrive": "Probefahrt",
+        "tryOnline": "Online testen"
       }
     },
     "compareSelected": "Vergleichen ({count})",
@@ -142,14 +145,7 @@
     ]
   },
   "questions": {
-    "q_experience_depth": {
-      "text": "Wie tief möchtest du gehen?",
-      "options": {
-        "quick": "Schnell",
-        "more_accurate": "Genauer",
-        "expert_mode": "Expertenmodus"
-      }
-    },
+
     "q_purpose": {
       "text": "Wofür möchten Sie diesen Computer hauptsächlich nutzen?",
       "options": {
@@ -510,6 +506,8 @@
     "exclude_secure_boot_unavailable": "Unterstützt Secure Boot nicht ab Werk.",
     "exclude_nvidia_hard": "Das NVIDIA-Setup wird wahrscheinlich praktisch sein.",
     "exclude_nvidia_proprietary_required": "Erfordert wahrscheinlich proprietäre NVIDIA-Treiber.",
+    "exclude_architecture_unsupported": "Unterstützt die Architektur deines Computers nicht.",
+    "exclude_hard_constraint_mismatch": "Erfüllt eine oder mehrere deiner zwingenden Anforderungen nicht.",
     "include_immutable_match": "Matches your immutable/traditional system preference.",
     "include_server_use_case_match": "Matches your server-use preference.",
     "include_laptop_friendly_match": "Works well for laptop-focused usage.",
@@ -537,6 +535,7 @@
     "constraint_init_systemd": "Sie bevorzugen systemd.",
     "constraint_init_openrc": "Sie bevorzugen OpenRC.",
     "constraint_init_runit": "Du bevorzugst Runit.",
+    "constraint_init_other": "Du bevorzugst ein alternatives Init-System.",
     "constraint_pkg_apt": "Sie bevorzugen den APT-Paketmanager.",
     "constraint_pkg_dnf": "Sie bevorzugen den DNF-Paketmanager.",
     "constraint_pkg_pacman": "Sie bevorzugen den Pacman-Paketmanager.",
@@ -544,7 +543,8 @@
     "constraint_pkg_apk": "Sie bevorzugen den APK-Paketmanager.",
     "constraint_pkg_nix": "Sie bevorzugen den Nix-Paketmanager.",
     "constraint_pkg_xbps": "You prefer the XBPS package manager.",
-    "constraint_pkg_portage": "You prefer the Portage package manager.",
+    "constraint_pkg_portage": "Du bevorzugst den Portage-Paketmanager.",
+    "constraint_pkg_other": "Du bevorzugst einen alternativen Paketmanager.",
     "constraint_immutable_prefer": "You prefer immutable (atomic-style) systems.",
     "constraint_immutable_avoid": "You prefer traditional mutable systems.",
     "constraint_server_use_case": "You want server-oriented recommendations.",

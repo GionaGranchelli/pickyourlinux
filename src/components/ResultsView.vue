@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import type { PropType } from "vue";
 import ReviewAnswers, { type AnswerGroup } from "~/components/ReviewAnswers.vue";
-import type { MatchDetail } from "~/data/types";
 
 type PresentedDistro = {
   distroId: string;
@@ -10,10 +9,6 @@ type PresentedDistro = {
   includedBecause: string[];
   excludedBecause: string[];
   matchedConstraints: string[];
-  score: number;
-  maxPossibleScore: number;
-  matchedPreferences: MatchDetail[];
-  missedPreferences: MatchDetail[];
 };
 
 defineProps({
@@ -131,36 +126,21 @@ const editAnswer = (questionId: string) => emit("editAnswer", questionId);
             <span class="inline-flex items-center rounded-full bg-green-100 px-3 py-1 text-xs font-semibold text-green-700">
               Compatible
             </span>
-            <span class="text-lg font-bold text-blue-600">
-              {{ result.score }}/{{ result.maxPossibleScore }}
+            <span v-if="result.matchedConstraints.length > 0" class="text-xs text-gray-500">
+              {{ result.matchedConstraints.length }} strict constraint{{ result.matchedConstraints.length > 1 ? 's' : '' }} matched
             </span>
-            <span class="text-xs text-gray-400">Match Score</span>
           </div>
         </div>
 
         <div class="mt-4 space-y-4">
-          <div v-if="result.matchedPreferences.length > 0">
-            <div class="text-xs font-semibold uppercase tracking-wide text-gray-400">Matched Preferences</div>
+          <div v-if="result.includedBecause.length > 0">
+            <div class="text-xs font-semibold uppercase tracking-wide text-gray-400">Why it matches</div>
             <ul class="mt-2 flex flex-wrap gap-2">
-              <li v-for="(pref, idx) in result.matchedPreferences" :key="idx" 
+              <li v-for="(reason, idx) in result.includedBecause" :key="idx" 
                   class="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10">
-                {{ pref.field }}: {{ pref.preferred }}
+                {{ reason }}
               </li>
             </ul>
-          </div>
-
-          <div v-if="result.missedPreferences.length > 0">
-            <details class="group">
-              <summary class="cursor-pointer text-xs font-semibold uppercase tracking-wide text-gray-400 hover:text-gray-600">
-                Missed Preferences ({{ result.missedPreferences.length }})
-              </summary>
-              <ul class="mt-2 space-y-1 text-sm text-gray-600 border-l-2 border-gray-100 pl-4 py-1">
-                <li v-for="(pref, idx) in result.missedPreferences" :key="idx">
-                  <span class="font-medium text-gray-900 capitalize">{{ pref.field }}:</span> 
-                  You preferred <span class="italic">{{ pref.preferred }}</span>, but this distro uses <span class="font-medium text-amber-700">{{ pref.actual }}</span>.
-                </li>
-              </ul>
-            </details>
           </div>
         </div>
       </div>
