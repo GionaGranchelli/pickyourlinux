@@ -22,6 +22,7 @@
   },
   "wizard": {
     "complete": {
+
       "title": "Je bent klaar voor resultaten",
       "tagline": "Bekijk de compatibele shortlist op basis van wat je hebt geselecteerd.",
       "viewResults": "Bekijk resultaten"
@@ -33,6 +34,7 @@
     "phaseGate": {
       "tagline": "U kunt nu blijven verfijnen of naar de resultaten springen."
     },
+    "narrowChoice": "Keuze beperken",
     "nav": {
       "back": "← Terug",
       "reviewAnswers": "Bekijk de antwoorden",
@@ -82,7 +84,8 @@
         "documentation": "Documentatie",
         "forum": "Forum",
         "download": "Downloaden",
-        "testDrive": "Proefrit"
+        "testDrive": "Proefrit",
+        "tryOnline": "Online proberen"
       }
     },
     "compareSelected": "Vergelijken ({count})",
@@ -142,14 +145,7 @@
     ]
   },
   "questions": {
-    "q_experience_depth": {
-      "text": "Hoe diep wil je gaan?",
-      "options": {
-        "quick": "Snel",
-        "more_accurate": "Nauwkeuriger",
-        "expert_mode": "Expert-modus"
-      }
-    },
+
     "q_purpose": {
       "text": "Waar wil je deze computer vooral voor gebruiken?",
       "options": {
@@ -510,6 +506,8 @@
     "exclude_secure_boot_unavailable": "Ondersteunt geen Secure Boot uit de doos.",
     "exclude_nvidia_hard": "De installatie van NVIDIA zal waarschijnlijk praktisch zijn.",
     "exclude_nvidia_proprietary_required": "Vereist waarschijnlijk eigen NVIDIA-stuurprogramma's.",
+    "exclude_architecture_unsupported": "Ondersteunt de architectuur van je computer niet.",
+    "exclude_hard_constraint_mismatch": "Voldoet niet aan een of meer van je verplichte eisen.",
     "include_immutable_match": "Matches your immutable/traditional system preference.",
     "include_server_use_case_match": "Matches your server-use preference.",
     "include_laptop_friendly_match": "Works well for laptop-focused usage.",
@@ -537,6 +535,7 @@
     "constraint_init_systemd": "Je geeft de voorkeur aan systemisch.",
     "constraint_init_openrc": "U geeft de voorkeur aan OpenRC.",
     "constraint_init_runit": "Je geeft de voorkeur aan runit.",
+    "constraint_init_other": "Je verkiest een alternatief init-systeem.",
     "constraint_pkg_apt": "U geeft de voorkeur aan de pakketbeheerder van APT.",
     "constraint_pkg_dnf": "U geeft de voorkeur aan de DNF-pakketbeheerder.",
     "constraint_pkg_pacman": "U geeft de voorkeur aan de Pacman-pakketbeheerder.",
@@ -544,7 +543,8 @@
     "constraint_pkg_apk": "U geeft de voorkeur aan de APK-pakketbeheerder.",
     "constraint_pkg_nix": "U geeft de voorkeur aan de Nix-pakketbeheerder.",
     "constraint_pkg_xbps": "You prefer the XBPS package manager.",
-    "constraint_pkg_portage": "You prefer the Portage package manager.",
+    "constraint_pkg_portage": "Je verkiest de Portage-pakketbeheerder.",
+    "constraint_pkg_other": "Je verkiest een alternatieve pakketbeheerder.",
     "constraint_immutable_prefer": "You prefer immutable (atomic-style) systems.",
     "constraint_immutable_avoid": "You prefer traditional mutable systems.",
     "constraint_server_use_case": "You want server-oriented recommendations.",

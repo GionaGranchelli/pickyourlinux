@@ -10,7 +10,7 @@ const getResult = (results: ReturnType<typeof buildCompatibility>, distroId: str
 };
 
 describe("compatibility engine", () => {
-    it("keeps non-matching distros when a hard preference has low coverage", () => {
+    it("enforces a stated hard requirement even when few distros satisfy it", () => {
         const intent = UserIntentSchema.parse({
             installation: "CLI_OK",
             maintenance: "TERMINAL_OK",
@@ -28,15 +28,16 @@ describe("compatibility engine", () => {
             nvidiaTolerance: "NO_PREFERENCE",
         });
 
-        // Secure Boot matches are >3 today, so force a higher threshold to validate soft behavior.
-        const results = buildCompatibility(intent, { lowCoverageThreshold: 20 });
+        // Secure Boot is a stated requirement, so it is enforced regardless of how many
+        // distros satisfy it (the low-coverage escape hatch was removed).
+        const results = buildCompatibility(intent);
         const fedora = getResult(results, "fedora");
         const mint = getResult(results, "linux_mint");
 
         expect(fedora.compatible).toBe(true);
         expect(fedora.includedBecause).toContain("include_secure_boot_supported");
-        expect(mint.compatible).toBe(true);
-        expect(mint.excludedBecause).not.toContain("exclude_secure_boot_unavailable");
+        expect(mint.compatible).toBe(false);
+        expect(mint.excludedBecause).toContain("exclude_secure_boot_unavailable");
     });
 
     it("handles 'just work' expectations", () => {
@@ -181,7 +182,7 @@ describe("compatibility engine", () => {
             nvidiaTolerance: "NO_PREFERENCE",
         });
 
-        const results = buildCompatibility(intent, { lowCoverageThreshold: 3 });
+        const results = buildCompatibility(intent);
         const mint = getResult(results, "linux_mint");
 
         expect(mint.compatible).toBe(false);

@@ -1,6 +1,6 @@
 import { computed, ref, toRaw, watch } from "vue";
 import { z } from "zod";
-import { UserIntentSchema, type UserIntent, type Question, type QuestionOption, type MatchDetail, type ScoredDistro } from "~/data/types";
+import { UserIntentSchema, type UserIntent, type Question, type QuestionOption } from "~/data/types";
 import { ALL_QUESTIONS, QUESTION_PHASES } from "~/data/questions";
 import { CompatibilityResultListSchema, type CompatibilityResult } from "~/data/compatibility-types";
 import type { Distro } from "~/data/distro-types";
@@ -10,9 +10,8 @@ import {
     type InclusionReasonKey,
 } from "~/data/reason-templates";
 import { applyPatch, evaluateCondition } from "~/engine/logic";
-import { getDistros } from "~/engine/eliminate";
+import { eliminateDistros, excludedAxes, getDistros } from "~/engine/eliminate";
 import { buildCompatibility } from "~/engine/compatibility";
-import { applyHardConstraints, applySoftScoring } from "~/engine/scoring";
 
 export type EngineStatus = "IN_PROGRESS" | "COMPLETED" | "DISQUALIFIED";
 
@@ -172,10 +171,6 @@ export type DistroCardVM = {
     laptopFriendly?: Distro["laptopFriendly"];
     immutable?: Distro["immutable"];
     isBeginnerFriendly?: boolean;
-    score: number;
-    maxPossibleScore: number;
-    matchedPreferences: MatchDetail[];
-    missedPreferences: MatchDetail[];
 };
 
 export type ExcludedDistroVM = {
@@ -518,10 +513,6 @@ export function useDecisionEngine(t: (key: string) => string = (key) => key) {
             laptopFriendly: item.laptopFriendly,
             immutable: item.immutable,
             isBeginnerFriendly: item.isBeginnerFriendly,
-            score: item.score,
-            maxPossibleScore: item.maxPossibleScore,
-            matchedPreferences: item.matchedPreferences,
-            missedPreferences: item.missedPreferences,
         });
 
         const allCompatible = presentation.compatible.map(toCardVM);
@@ -667,10 +658,10 @@ export function useDecisionEngine(t: (key: string) => string = (key) => key) {
                 });
 
                 // Check for logic conflict (dead end)
-                const { filteredDistros, conflictFields } = applyHardConstraints(distrosForVM, finalIntent);
-                if (filteredDistros.length === 0) {
+                const elimination = eliminateDistros(finalIntent);
+                if (!elimination.some((result) => result.included)) {
                     umTrackEvent("logic_conflict", { 
-                        fields: conflictFields.join(","),
+                        fields: excludedAxes(elimination).join(","),
                         last_question: questionId
                     });
                 }
@@ -723,10 +714,10 @@ export function useDecisionEngine(t: (key: string) => string = (key) => key) {
                 });
 
                 // Check for logic conflict
-                const { filteredDistros, conflictFields } = applyHardConstraints(distrosForVM, finalIntent);
-                if (filteredDistros.length === 0) {
+                const elimination = eliminateDistros(finalIntent);
+                if (!elimination.some((result) => result.included)) {
                     umTrackEvent("logic_conflict", { 
-                        fields: conflictFields.join(","),
+                        fields: excludedAxes(elimination).join(","),
                         last_question: question.id
                     });
                 }
@@ -959,10 +950,6 @@ export type PresentedDistro = {
     laptopFriendly?: Distro["laptopFriendly"];
     immutable?: Distro["immutable"];
     isBeginnerFriendly?: boolean;
-    score: number;
-    maxPossibleScore: number;
-    matchedPreferences: MatchDetail[];
-    missedPreferences: MatchDetail[];
 };
 
 export type ResultsPresentation = {
@@ -1195,115 +1182,94 @@ export function buildResultsPresentation(
     options: PresentationOptions,
     t: (key: string) => string = (key) => key
 ): ResultsPresentation {
-    const { filteredDistros, conflictFields } = applyHardConstraints(distros, intent);
-    const hardConstraintConflict = filteredDistros.length === 0;
-
-    const scoredResults = hardConstraintConflict
-        ? []
-        : applySoftScoring(filteredDistros, intent);
-
+    // Single survival authority: eliminate.ts. The results page applies exactly the
+    // same rules as /compare and the persona suite — no second, weaker filter.
+    const compatibility = buildCompatibility(intent);
     const distrosById = new Map(distros.map((distro) => [distro.id, distro] as const));
     const activeConstraintKeys = getActiveConstraintKeys(intent);
     const activeConstraints = activeConstraintKeys.map((key) => t(`constraints.${key}`));
 
-    const presentScored = (scored: ScoredDistro): PresentedDistro => {
-        const d = scored.distro;
-        const matchedConstraints = activeConstraintKeys
-            .filter((constraint) => matchesConstraint(constraint, d))
+    const matchedConstraintsFor = (distro: Distro): string[] =>
+        activeConstraintKeys
+            .filter((constraint) => matchesConstraint(constraint, distro))
             .map((constraint) => t(`constraints.${constraint}`));
 
-        return {
-            distroId: d.id,
-            name: d.name,
-            description: d.description,
-            imageUrl: d.imageUrl ?? undefined,
-            websiteUrl: d.websiteUrl ?? undefined,
-            documentationUrl: d.documentationUrl ?? undefined,
-            forumUrl: d.forumUrl ?? undefined,
-            downloadUrl: d.downloadUrl ?? undefined,
-            testDriveUrl: d.testDriveUrl ?? undefined,
-            distroSeaUrl: d.distroSeaUrl ?? undefined,
-            includedBecause: renderInclusionReasons([], t), // We might want to fill this with matched preferences or keep it empty
-            excludedBecause: [],
-            matchedConstraints,
-            releaseModel: d.releaseModel,
-            supportedDesktops: d.supportedDesktops,
-            gamingSupport: d.gamingSupport,
-            packageManager: d.packageManager,
-            initSystem: d.initSystem,
-            installerExperience: d.installerExperience,
-            maintenanceStyle: d.maintenanceStyle,
-            proprietarySupport: d.proprietarySupport,
-            privacyPosture: d.privacyPosture,
-            docsEcosystem: d.docsEcosystem,
-            secureBootOutOfBox: d.secureBootOutOfBox,
-            nvidiaExperience: d.nvidiaExperience,
-            suitableForOldHardware: d.suitableForOldHardware,
-            primaryUseCase: d.primaryUseCase,
-            laptopFriendly: d.laptopFriendly,
-            immutable: d.immutable,
-            isBeginnerFriendly: d.installerExperience === "GUI" && d.maintenanceStyle === "LOW_FRICTION",
-            score: scored.score,
-            maxPossibleScore: scored.maxPossibleScore,
-            matchedPreferences: scored.matchedPreferences,
-            missedPreferences: scored.missedPreferences,
-        };
-    };
+    /** Stated preferences the distro satisfies. Each counts once; nothing is weighted. */
+    const statedPreferenceCount = (reasons: CompatibilityResult["includedBecause"]): number =>
+        reasons.filter((reason) => reason !== "include_meets_requirements").length;
 
-    const compatibleShown = options.showAll ? scoredResults : scoredResults.slice(0, options.limit);
+    const present = (result: CompatibilityResult, d: Distro): PresentedDistro => ({
+        distroId: d.id,
+        name: d.name,
+        description: d.description,
+        imageUrl: d.imageUrl ?? undefined,
+        websiteUrl: d.websiteUrl ?? undefined,
+        documentationUrl: d.documentationUrl ?? undefined,
+        forumUrl: d.forumUrl ?? undefined,
+        downloadUrl: d.downloadUrl ?? undefined,
+        testDriveUrl: d.testDriveUrl ?? undefined,
+        distroSeaUrl: d.distroSeaUrl ?? undefined,
+        includedBecause: renderInclusionReasons(result.includedBecause, t),
+        excludedBecause: renderExclusionReasons(result.excludedBecause, t),
+        matchedConstraints: result.compatible ? matchedConstraintsFor(d) : [],
+        releaseModel: d.releaseModel,
+        supportedDesktops: d.supportedDesktops,
+        gamingSupport: d.gamingSupport,
+        packageManager: d.packageManager,
+        initSystem: d.initSystem,
+        installerExperience: d.installerExperience,
+        maintenanceStyle: d.maintenanceStyle,
+        proprietarySupport: d.proprietarySupport,
+        privacyPosture: d.privacyPosture,
+        docsEcosystem: d.docsEcosystem,
+        secureBootOutOfBox: d.secureBootOutOfBox,
+        nvidiaExperience: d.nvidiaExperience,
+        suitableForOldHardware: d.suitableForOldHardware,
+        primaryUseCase: d.primaryUseCase,
+        laptopFriendly: d.laptopFriendly,
+        immutable: d.immutable,
+        isBeginnerFriendly: d.installerExperience === "GUI" && d.maintenanceStyle === "LOW_FRICTION",
+    });
 
-    // For excluded distros, we still use the old buildCompatibility to find WHY they were excluded if it was a HARD constraint mismatch
-    // Actually, applyHardConstraints already filtered them.
-    // Let's find distros that were in `distros` but NOT in `filteredDistros`.
-    const excludedDistros = distros.filter(d => !filteredDistros.some(fd => fd.id === d.id));
+    const compatibleEntries = compatibility.flatMap((result) => {
+        const distro = distrosById.get(result.distroId);
+        return result.compatible && distro ? [{ result, distro }] : [];
+    });
 
-    const presentExcluded = (d: Distro): PresentedDistro => {
-        return {
-            distroId: d.id,
-            name: d.name,
-            description: d.description,
-            imageUrl: d.imageUrl ?? undefined,
-            websiteUrl: d.websiteUrl ?? undefined,
-            documentationUrl: d.documentationUrl ?? undefined,
-            forumUrl: d.forumUrl ?? undefined,
-            downloadUrl: d.downloadUrl ?? undefined,
-            testDriveUrl: d.testDriveUrl ?? undefined,
-            distroSeaUrl: d.distroSeaUrl ?? undefined,
-            includedBecause: [],
-            excludedBecause: [t("reasons.exclude_hard_constraint_mismatch")],
-            matchedConstraints: [],
-            releaseModel: d.releaseModel,
-            supportedDesktops: d.supportedDesktops,
-            gamingSupport: d.gamingSupport,
-            packageManager: d.packageManager,
-            initSystem: d.initSystem,
-            installerExperience: d.installerExperience,
-            maintenanceStyle: d.maintenanceStyle,
-            proprietarySupport: d.proprietarySupport,
-            privacyPosture: d.privacyPosture,
-            docsEcosystem: d.docsEcosystem,
-            secureBootOutOfBox: d.secureBootOutOfBox,
-            nvidiaExperience: d.nvidiaExperience,
-            suitableForOldHardware: d.suitableForOldHardware,
-            primaryUseCase: d.primaryUseCase,
-            laptopFriendly: d.laptopFriendly,
-            immutable: d.immutable,
-            isBeginnerFriendly: d.installerExperience === "GUI" && d.maintenanceStyle === "LOW_FRICTION",
-            score: 0,
-            maxPossibleScore: 0,
-            matchedPreferences: [],
-            missedPreferences: [],
-        };
-    };
+    // Ordering contract: stated constraints first, then stated preferences, then name.
+    // Counts only — a distro can never outrank another through an unstated weight.
+    const ranked = compatibleEntries
+        .map((entry) => ({
+            entry,
+            strictMatches: matchedConstraintsFor(entry.distro).length,
+            preferenceMatches: statedPreferenceCount(entry.result.includedBecause),
+        }))
+        .sort(
+            (a, b) =>
+                b.strictMatches - a.strictMatches ||
+                b.preferenceMatches - a.preferenceMatches ||
+                a.entry.distro.name.localeCompare(b.entry.distro.name)
+        );
+
+    const compatibleShown = (options.showAll ? ranked : ranked.slice(0, options.limit)).map(({ entry }) =>
+        present(entry.result, entry.distro)
+    );
+
+    const excludedDistros = compatibility.flatMap((result) => {
+        const distro = distrosById.get(result.distroId);
+        return result.compatible || !distro ? [] : [{ result, distro }];
+    });
+
+    const hardConstraintConflict = compatibleEntries.length === 0;
 
     return {
-        compatible: compatibleShown.map(presentScored),
-        excluded: excludedDistros.map(presentExcluded),
-        compatibleTotal: scoredResults.length,
+        compatible: compatibleShown,
+        excluded: excludedDistros.map(({ result, distro }) => present(result, distro)),
+        compatibleTotal: ranked.length,
         compatibleShown: compatibleShown.length,
         activeConstraints,
         hardConstraintConflict,
-        hardConstraintConflictFields: conflictFields,
+        hardConstraintConflictFields: hardConstraintConflict ? excludedAxes(compatibility) : [],
     };
 }
 
@@ -1355,9 +1321,6 @@ export function filterAndSortResults(
         if (sort === "NAME_ASC") return a.name.localeCompare(b.name);
         if (sort === "NAME_DESC") return b.name.localeCompare(a.name);
 
-        if (b.score !== a.score) {
-            return b.score - a.score;
-        }
         if (b.strictMatchCount !== a.strictMatchCount) {
             return b.strictMatchCount - a.strictMatchCount;
         }

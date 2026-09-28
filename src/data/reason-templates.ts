@@ -23,6 +23,7 @@ export const InclusionReasonKeys = [
 ] as const;
 
 export const ExclusionReasonKeys = [
+  "exclude_architecture_unsupported",
   "exclude_installer_manual",
   "exclude_maintenance_hands_on",
   "exclude_proprietary_required",

@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import { DistroSchema } from "../src/data/distro-types";
 import distros from "../src/data/distros.json";
 import { UserIntentSchema } from "../src/data/types";
-import { applySoftScoring } from "../src/engine/scoring";
+import { buildCompatibility } from "../src/engine/compatibility";
 
 describe("Feren OS distro entry", () => {
     const feren = distros.find(d => d.id === "feren_os");
@@ -22,7 +22,7 @@ describe("Feren OS distro entry", () => {
         expect(feren?.releaseModel).toBe("FIXED");
     });
 
-    it("appears in soft scoring results when desktopPreference=CINNAMON preference is active", () => {
+    it("is included with a desktop reason when desktopPreference=CINNAMON", () => {
         const intent = UserIntentSchema.parse({
             installation: "GUI",
             maintenance: "NO_TERMINAL",
@@ -40,9 +40,9 @@ describe("Feren OS distro entry", () => {
             nvidiaTolerance: "NO_PREFERENCE",
         });
 
-        const scored = applySoftScoring([feren as any], intent);
-        expect(scored[0].score).toBeGreaterThan(0);
-        expect(scored[0].matchedPreferences.some(m => m.field === "desktopPreference" && m.preferred === "CINNAMON")).toBe(true);
+        const result = buildCompatibility(intent).find(item => item.distroId === "feren_os");
+        expect(result?.compatible).toBe(true);
+        expect(result?.includedBecause).toContain("include_desktop_match");
     });
 
     it("appears alongside linux_mint and lmde as a Cinnamon option", () => {

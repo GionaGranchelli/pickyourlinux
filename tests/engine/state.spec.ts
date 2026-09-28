@@ -99,7 +99,7 @@ describe("engine/state", () => {
         expect(engine.isComplete.value).toBe(true);
     });
 
-    it("keeps presentation ordering stable by score then distro id", () => {
+    it("keeps presentation ordering stable by matched constraints then name", () => {
         const intent = UserIntentSchema.parse({
             installation: "GUI",
             maintenance: "NO_TERMINAL",
@@ -120,18 +120,25 @@ describe("engine/state", () => {
         const distros = DistroListSchema.parse(distrosData);
         const presentation = buildResultsPresentation(intent, distros, { limit: 100, showAll: true });
 
-        const compatibleIds = presentation.compatible.map((item) => item.distroId);
-        
-        // Verify secondary sort: within the same score, they should be alphabetical
-        const scores = presentation.compatible.map(item => item.score);
-        const uniqueScores = [...new Set(scores)];
-        
-        uniqueScores.forEach(score => {
-            const idsForScore = presentation.compatible
-                .filter(item => item.score === score)
-                .map(item => item.distroId);
-            
-            expect(idsForScore).toEqual([...idsForScore].sort());
+        // Within a group of equal fit, the order is alphabetical by name — never by a
+        // hidden score. Groups are keyed by (strict matches, stated-preference matches).
+        const keys = presentation.compatible.map((item) => ({
+            strict: item.matchedConstraints.length,
+            preferences: item.includedBecause.length,
+            name: item.name,
+        }));
+
+        keys.forEach((key, index) => {
+            const next = keys[index + 1];
+            if (!next) return;
+            const sameGroup = key.strict === next.strict && key.preferences === next.preferences;
+            if (sameGroup) {
+                expect(key.name.localeCompare(next.name)).toBeLessThanOrEqual(0);
+                return;
+            }
+            expect(
+                key.strict > next.strict || (key.strict === next.strict && key.preferences > next.preferences)
+            ).toBe(true);
         });
     });
 

@@ -504,6 +504,7 @@
     "exclude_secure_boot_unavailable": "Does not support Secure Boot out of the box.",
     "exclude_nvidia_hard": "NVIDIA setup may be hands-on.",
     "exclude_nvidia_proprietary_required": "Optimized for proprietary NVIDIA drivers.",
+    "exclude_architecture_unsupported": "Does not support your computer's architecture.",
     "include_immutable_match": "Matches your immutable/traditional system preference.",
     "include_server_use_case_match": "Matches your server-use preference.",
     "include_laptop_friendly_match": "Works well for laptop-focused usage.",

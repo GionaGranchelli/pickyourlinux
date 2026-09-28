@@ -137,21 +137,3 @@ export const QuestionSchema = z.object({
 
 export type Question = z.infer<typeof QuestionSchema>;
 export type QuestionOption = Question["options"][number];
-
-// --- 5. Scoring Types ---
-import type { Distro } from "./distro-types";
-
-export interface MatchDetail {
-    field: string;
-    preferred: unknown;
-    actual: unknown;
-    weight: number;
-}
-
-export interface ScoredDistro {
-    distro: Distro;
-    score: number;
-    maxPossibleScore: number;
-    matchedPreferences: MatchDetail[];
-    missedPreferences: MatchDetail[];
-}

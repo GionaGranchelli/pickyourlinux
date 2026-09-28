@@ -3,7 +3,6 @@ import { DistroListSchema, type Distro } from "~/data/distro-types";
 import { buildCompatibility } from "~/engine/compatibility";
 import { RecommendedDistroListSchema, type RecommendedDistro } from "~/data/recommendation-types";
 import type { UserIntent } from "~/data/types";
-import type { EnginePolicyOptions } from "~/engine/eliminate";
 
 export type DistroRecommendation = RecommendedDistro & { included: boolean };
 
@@ -27,8 +26,8 @@ const getMatchedTags = (intent: UserIntent, distro: Distro): UserIntent["tags"] 
     return matched;
 };
 
-export function recommendDistros(intent: UserIntent, options: EnginePolicyOptions = {}): DistroRecommendation[] {
-    const compatibility = buildCompatibility(intent, options);
+export function recommendDistros(intent: UserIntent): DistroRecommendation[] {
+    const compatibility = buildCompatibility(intent);
     const recommendations: DistroRecommendation[] = compatibility.map((result) => {
         const distro = distros.find((item) => item.id === result.distroId);
         const matchedTags = distro ? getMatchedTags(intent, distro) : [];
