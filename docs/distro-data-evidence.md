@@ -76,3 +76,31 @@ against a direct upstream statement, and why:
 | rhel | maintenanceStyle = `HANDS_ON`, proprietarySupport = `OPTIONAL` | kept consistent with the existing rocky/alma/centos_stream entries rather than inventing a different standard for the same product family |
 | antix | proprietarySupport = `OPTIONAL` | non-free is reachable through first-party opt-in tooling, not enabled by default (its FAQ also installs `broadcom-sta-dkms` from backports, which would read as FULL — flagged, not resolved) |
 | devuan | initSystem = `OTHER` | sysvinit has no enum value |
+
+## Second batch of new entries
+
+Field-level quotes: `docs/evidence/new-distros-tier2.md`.
+
+| Entry | Note |
+|---|---|
+| vanilla_os | immutable by design (ABRoot); `packageManager` APT on an immutable Debian base |
+| guix | `proprietarySupport = NONE` ("All of It, Free Software"); `packageManager`/`initSystem` = OTHER (Guix + GNU Shepherd); `immutable = false` because generations are not a read-only rootfs |
+| archcraft | Arch-based with a first-party Calamares installer; Secure Boot false, like Arch |
+
+Two values were changed from the draft after the verification pass, because they were
+unverified and would overpromise: `vanilla_os.secureBootOutOfBox` true → `false` (no upstream
+statement that its kernel chain is signed) and `vanilla_os.nvidiaExperience` OK → `HARD`
+(NVIDIA on an immutable ABRoot base is not a documented easy path).
+
+**Architecture spellings normalised.** The draft used `aarch64`/`armv7`/`i686`; the engine only
+consults `x86_64`, `arm64` and `x86` (`src/engine/eliminate.ts`), so `aarch64` would have made an
+ARM answer silently miss the entry. Guix is now `x86_64, x86, arm64` and Archcraft `x86_64,
+arm64`; 32-bit ARM and i686 are not expressible in the current vocabulary (same limitation as
+Raspberry Pi OS's `armhf`). A new `unknown_architecture` invariant now fails the build on any
+other spelling.
+
+**Tiny Core Linux was not added.** It has no logo on Wikimedia Commons and the project's own site
+was unreachable from the verification environment, so the entry could not satisfy the
+`missing_core_data` invariant (which requires an image URL). Its prepared entry is easy to
+re-add once a hotlinkable logo exists; dropping it was preferred over carving an exception into
+the invariant.

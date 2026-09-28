@@ -13,10 +13,10 @@ exports[`recommendation regression personas > advanced_openrc_preference: Advanc
 exports[`recommendation regression personas > advanced_rolling_system_preferences: Advanced + rolling + system preferences 1`] = `
 [
   "arch",
+  "archcraft",
   "cachyos",
   "endeavouros",
   "garuda",
-  "manjaro",
 ]
 `;
 

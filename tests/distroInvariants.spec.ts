@@ -51,6 +51,11 @@ describe("distro invariants", () => {
         expect(codes(missingLink)).toContain("missing_core_data");
     });
 
+    it("flags an architecture spelling the engine does not consult", () => {
+        const renamed = withDistro("archcraft", { supportedArchitectures: ["aarch64"] });
+        expect(codes(renamed)).toContain("unknown_architecture");
+    });
+
     it("flags a compare-view row that no distro field can fill", () => {
         const source = `const detailedFeatures = [{ key: "supportedDesktops", label: "x" }, { key: "minRam", label: "Minimum RAM" }];`;
         const violations = findInvariantViolations(real, { compareViewSource: source });

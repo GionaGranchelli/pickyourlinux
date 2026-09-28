@@ -137,6 +137,20 @@ export function findInvariantViolations(distros: Distro[], options: InvariantOpt
         });
     }
 
+    // The engine only consults x86_64 / arm64 / x86 (eliminate.ts). A different spelling
+    // (aarch64, armv7, i686) silently makes an architecture answer miss the entry.
+    const ARCHITECTURE_VOCABULARY = ["x86_64", "arm64", "x86"];
+    const unknownArchitectures = distros.filter((distro) =>
+        distro.supportedArchitectures.some((arch) => !ARCHITECTURE_VOCABULARY.includes(arch))
+    );
+    if (unknownArchitectures.length > 0) {
+        violations.push({
+            code: "unknown_architecture",
+            message: `supportedArchitectures must use the engine vocabulary (${ARCHITECTURE_VOCABULARY.join(", ")}).`,
+            distroIds: unknownArchitectures.map((distro) => distro.id),
+        });
+    }
+
     const family = distros.filter((distro) => UBUNTU_FAMILY.includes(distro.id));
     if (family.length > 1) {
         const reference = family[0];

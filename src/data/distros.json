@@ -2097,4 +2097,118 @@
     "secureBootOutOfBox": false,
     "nvidiaExperience": "HARD"
   }
+,
+  {
+    "id": "archcraft",
+    "name": "Archcraft",
+    "description": "Minimal Arch Linux-based desktop distribution preconfigured around lightweight window managers.",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Archcraft-logo.svg/1280px-Archcraft-logo.svg.png",
+    "websiteUrl": "https://archcraft.io/",
+    "documentationUrl": "https://wiki.archcraft.io/",
+    "forumUrl": "https://www.reddit.com/r/archcraft/",
+    "downloadUrl": "https://archcraft.io/download.html",
+    "distroSeaUrl": "https://distrosea.com/select/archcraft/",
+    "testDriveUrl": null,
+    "installerExperience": "GUI",
+    "maintenanceStyle": "HANDS_ON",
+    "proprietarySupport": "FULL",
+    "suitableForOldHardware": false,
+    "gamingSupport": "LIMITED",
+    "privacyPosture": "DEFAULT",
+    "supportedDesktops": [
+      "TILING",
+      "OTHER"
+    ],
+    "releaseModel": "ROLLING",
+    "initSystem": "SYSTEMD",
+    "packageManager": "PACMAN",
+    "secureBootOutOfBox": false,
+    "nvidiaExperience": "HARD",
+    "immutable": false,
+    "primaryUseCase": "DESKTOP",
+    "laptopFriendly": true,
+    "lastVerified": "2026-09-28",
+    "verificationMethod": "INFERRED",
+    "docsEcosystem": "GOOD",
+    "supportedArchitectures": [
+      "x86_64",
+      "arm64"
+    ]
+  },
+  {
+    "id": "guix",
+    "name": "Guix System",
+    "description": "Declarative GNU/Linux system built from the Guix package manager and configured in Guile Scheme.",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/GNU_Guix_logo.svg/1280px-GNU_Guix_logo.svg.png",
+    "websiteUrl": "https://guix.gnu.org/",
+    "documentationUrl": "https://guix.gnu.org/manual/",
+    "forumUrl": "https://lists.gnu.org/mailman/listinfo/help-guix",
+    "downloadUrl": "https://guix.gnu.org/en/download/",
+    "distroSeaUrl": null,
+    "testDriveUrl": null,
+    "installerExperience": "MANUAL",
+    "maintenanceStyle": "HANDS_ON",
+    "proprietarySupport": "NONE",
+    "suitableForOldHardware": true,
+    "gamingSupport": "LIMITED",
+    "privacyPosture": "DEFAULT",
+    "supportedDesktops": [
+      "GNOME",
+      "XFCE",
+      "MATE",
+      "LXQT",
+      "TILING"
+    ],
+    "releaseModel": "ROLLING",
+    "initSystem": "OTHER",
+    "packageManager": "OTHER",
+    "secureBootOutOfBox": false,
+    "nvidiaExperience": "HARD",
+    "immutable": false,
+    "primaryUseCase": "BOTH",
+    "laptopFriendly": false,
+    "lastVerified": "2026-09-28",
+    "verificationMethod": "INFERRED",
+    "docsEcosystem": "GOOD",
+    "supportedArchitectures": [
+      "x86_64",
+      "x86",
+      "arm64"
+    ]
+  },
+  {
+    "id": "vanilla_os",
+    "name": "Vanilla OS",
+    "description": "Immutable Debian-based GNOME desktop that updates as atomic OS images and runs apps in container-based environments.",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/c/cd/Vanilla-os-logo-black.png",
+    "websiteUrl": "https://vanillaos.org/",
+    "documentationUrl": "https://docs.vanillaos.org/",
+    "forumUrl": "https://vanillaos.org/community",
+    "downloadUrl": "https://vanillaos.org/download",
+    "distroSeaUrl": "https://distrosea.com/select/vanillaos/",
+    "testDriveUrl": null,
+    "installerExperience": "GUI",
+    "maintenanceStyle": "LOW_FRICTION",
+    "proprietarySupport": "OPTIONAL",
+    "suitableForOldHardware": false,
+    "gamingSupport": "GOOD",
+    "privacyPosture": "DEFAULT",
+    "supportedDesktops": [
+      "GNOME"
+    ],
+    "releaseModel": "FIXED",
+    "initSystem": "SYSTEMD",
+    "packageManager": "APT",
+    "secureBootOutOfBox": false,
+    "nvidiaExperience": "HARD",
+    "immutable": true,
+    "primaryUseCase": "DESKTOP",
+    "laptopFriendly": true,
+    "lastVerified": "2026-09-28",
+    "verificationMethod": "MANUAL",
+    "docsEcosystem": "GOOD",
+    "supportedArchitectures": [
+      "x86_64"
+    ]
+  }
 ]
